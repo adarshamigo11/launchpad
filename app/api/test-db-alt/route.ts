@@ -1,7 +1,9 @@
 import { type NextRequest, NextResponse } from "next/server"
-import { getDb } from "@/lib/mongodb"
+import { MongoClient } from "mongodb"
 
 export async function GET(req: NextRequest) {
+  let client: MongoClient | null = null
+  
   try {
     // Check if MongoDB URI is available
     if (!process.env.MongoDBuri) {
@@ -13,33 +15,41 @@ export async function GET(req: NextRequest) {
     }
 
     const uri = process.env.MongoDBuri
-    console.log("MongoDB URI length:", uri.length)
-    console.log("MongoDB URI preview:", uri.substring(0, 50) + "...")
+    console.log("Alternative connection test - URI length:", uri.length)
+    console.log("Alternative connection test - URI preview:", uri.substring(0, 50) + "...")
 
-    // Try to connect to database
-    const db = await getDb()
-    console.log("Database connection successful")
+    // Create a new client with minimal options
+    client = new MongoClient(uri, {
+      serverSelectionTimeoutMS: 10000,
+      connectTimeoutMS: 10000,
+    })
+
+    // Try to connect
+    await client.connect()
+    console.log("Alternative connection successful")
     
-    // Try to ping the database
-    await db.admin().ping()
-    console.log("Database ping successful")
+    // Try to ping
+    await client.db("admin").admin().ping()
+    console.log("Alternative ping successful")
     
-    // Try to access the users collection
+    // Try to access the Launchpad database
+    const db = client.db("Launchpad")
     const usersCollection = db.collection("users")
     const userCount = await usersCollection.countDocuments()
-    console.log("User count:", userCount)
+    console.log("Alternative user count:", userCount)
     
     return NextResponse.json({ 
       ok: true, 
-      message: "Database connection successful",
+      message: "Alternative database connection successful",
       hasEnvVar: true,
       userCount: userCount,
       databaseName: "Launchpad",
       uriLength: uri.length,
-      uriPreview: uri.substring(0, 30) + "..."
+      uriPreview: uri.substring(0, 30) + "...",
+      connectionMethod: "alternative"
     })
   } catch (error) {
-    console.error("[API/Test-DB] Error:", error)
+    console.error("[API/Test-DB-Alt] Error:", error)
     
     const uri = process.env.MongoDBuri
     const errorDetails = {
@@ -49,12 +59,17 @@ export async function GET(req: NextRequest) {
       uriPreview: uri ? uri.substring(0, 30) + "..." : "Not found",
       errorType: error instanceof Error ? error.constructor.name : "Unknown",
       errorCode: (error as any)?.code || "No code",
-      errorName: (error as any)?.name || "No name"
+      errorName: (error as any)?.name || "No name",
+      connectionMethod: "alternative"
     }
     
     return NextResponse.json({ 
       ok: false, 
       ...errorDetails
     }, { status: 500 })
+  } finally {
+    if (client) {
+      await client.close()
+    }
   }
 }
