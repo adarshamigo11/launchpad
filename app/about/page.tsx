@@ -5,35 +5,35 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-[#007BFF] to-[#FFC107] py-32 md:py-40 min-h-[60vh] flex items-center">
-        <div className="mx-auto max-w-6xl px-4 text-center">
-          <h1 className="text-6xl md:text-8xl font-bold text-white mb-8">About Launchpad</h1>
-          <p className="text-2xl md:text-3xl text-white/90 max-w-4xl mx-auto leading-relaxed">
+      <section className="bg-gradient-to-br from-[#007BFF] to-[#FFC107] py-20 sm:py-24 md:py-32 lg:py-40 min-h-[60vh] flex items-center">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white mb-6 sm:mb-8">About Launchpad</h1>
+          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-white/90 max-w-4xl mx-auto leading-relaxed px-2">
             Empowering the next generation of entrepreneurs through mentorship, competition, and real-world experience.
           </p>
         </div>
       </section>
 
       {/* Mission Section */}
-      <section className="py-24 bg-white">
-        <div className="mx-auto max-w-6xl px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-6xl font-bold text-[#007BFF] mb-6">Our Mission</h2>
-              <p className="text-lg text-gray-600 leading-relaxed mb-6">
+      <section className="py-16 sm:py-20 md:py-24 bg-white">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-center">
+            <div className="order-2 lg:order-1">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#007BFF] mb-4 sm:mb-6 text-center lg:text-left">Our Mission</h2>
+              <p className="text-base sm:text-lg text-gray-600 leading-relaxed mb-4 sm:mb-6 text-center lg:text-left">
                 Our mission is to build a supportive ecosystem where ambitious individuals can learn, compete, and thrive—helping them take the first step into entrepreneurship, transform ideas into ventures, and turn effort into sustainable growth.
               </p>
-              <p className="text-lg text-gray-600 leading-relaxed">
+              <p className="text-base sm:text-lg text-gray-600 leading-relaxed text-center lg:text-left">
                 We believe that every aspiring entrepreneur deserves access to quality mentorship, practical tools, and a community that supports their journey from idea to successful business.
               </p>
             </div>
-            <div className="bg-gradient-to-br from-[#007BFF]/10 to-[#FFC107]/10 p-8 rounded-lg">
+            <div className="bg-gradient-to-br from-[#007BFF]/10 to-[#FFC107]/10 p-6 sm:p-8 rounded-lg order-1 lg:order-2">
               <div className="text-center">
-                <div className="w-20 h-20 bg-[#007BFF] rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-white text-3xl">🎯</span>
+                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-[#007BFF] rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                  <span className="text-white text-2xl sm:text-3xl">🎯</span>
                 </div>
-                <h3 className="text-xl font-semibold text-[#007BFF] mb-2">Mission-Driven</h3>
-                <p className="text-gray-600">
+                <h3 className="text-lg sm:text-xl font-semibold text-[#007BFF] mb-2">Mission-Driven</h3>
+                <p className="text-sm sm:text-base text-gray-600">
                   Every feature and program is designed to support your entrepreneurial journey.
                 </p>
               </div>
@@ -43,29 +43,29 @@ export default function AboutPage() {
       </section>
 
       {/* Vision Section */}
-      <section className="py-24 relative bg-cover bg-center bg-no-repeat" style={{backgroundImage: 'url(/vision.jpg)'}}>
+      <section className="py-16 sm:py-20 md:py-24 relative bg-cover bg-center bg-no-repeat" style={{backgroundImage: 'url(/vision.jpg)'}}>
         {/* Black Gradient Overlay */}
         <div className="absolute inset-0 bg-black/80"></div>
         
-        <div className="relative z-10 mx-auto max-w-6xl px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="bg-white/10 backdrop-blur-sm border border-white/20 p-8 rounded-lg order-2 lg:order-1">
+        <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-center">
+            <div className="bg-white/10 backdrop-blur-sm border border-white/20 p-6 sm:p-8 rounded-lg order-2 lg:order-1">
               <div className="text-center">
-                <div className="w-20 h-20 bg-[#FFC107] rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-black text-3xl">🚀</span>
+                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-[#FFC107] rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                  <span className="text-black text-2xl sm:text-3xl">🚀</span>
                 </div>
-                <h3 className="text-xl font-semibold text-white mb-2">Vision-Focused</h3>
-                <p className="text-white/90">
+                <h3 className="text-lg sm:text-xl font-semibold text-white mb-2">Vision-Focused</h3>
+                <p className="text-white/90 text-sm sm:text-base">
                   Building the foundation for sustainable business growth and success.
                 </p>
               </div>
             </div>
             <div className="order-1 lg:order-2">
-              <h2 className="text-6xl font-bold text-white mb-6">Our Vision</h2>
-              <p className="text-lg text-white/90 leading-relaxed mb-6">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 text-center lg:text-left">Our Vision</h2>
+              <p className="text-base sm:text-lg text-white/90 leading-relaxed mb-4 sm:mb-6 text-center lg:text-left">
                 Created to empower aspiring entrepreneurs to take their first step into business, Launchpad helps transform ideas into ventures and build a strong foundation for sustainable growth.
               </p>
-              <p className="text-lg text-white/90 leading-relaxed">
+              <p className="text-base sm:text-lg text-white/90 leading-relaxed text-center lg:text-left">
                 We envision a world where every ambitious individual has the tools, knowledge, and support network needed to turn their entrepreneurial dreams into reality, powering the next generation of successful businesses.
               </p>
             </div>
@@ -74,11 +74,11 @@ export default function AboutPage() {
       </section>
 
       {/* What is Launchpad Section */}
-      <section className="py-24 bg-white">
-        <div className="mx-auto max-w-6xl px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-6xl font-bold text-[#007BFF] mb-6">What is Launchpad?</h2>
-            <p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed">
+      <section className="py-16 sm:py-20 md:py-24 bg-white">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#007BFF] mb-4 sm:mb-6">What is Launchpad?</h2>
+            <p className="text-base sm:text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed px-2">
               Launchpad is a platform that supports aspiring solopreneurs, youth, and startups in building their own agencies and brands. 
               It provides mentorship, ready-to-sell services, and a community to learn and grow. Through real-world sales and healthy competition, 
               participants gain recognition and transform their ambition into sustainable businesses.
@@ -88,34 +88,34 @@ export default function AboutPage() {
       </section>
 
       {/* Key Features */}
-      <section className="py-24 bg-gray-50">
-        <div className="mx-auto max-w-6xl px-4">
-          <h2 className="text-6xl font-bold text-center text-[#007BFF] mb-12">What We Offer</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-white p-6 rounded-lg shadow-lg">
-              <div className="w-12 h-12 bg-[#007BFF] rounded-lg flex items-center justify-center mb-4">
-                <span className="text-white text-xl">👥</span>
+      <section className="py-16 sm:py-20 md:py-24 bg-gray-50">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center text-[#007BFF] mb-8 sm:mb-12">What We Offer</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#007BFF] rounded-lg flex items-center justify-center mb-3 sm:mb-4">
+                <span className="text-white text-lg sm:text-xl">👥</span>
               </div>
-              <h3 className="text-xl font-semibold text-[#007BFF] mb-3">Expert Mentorship</h3>
-              <p className="text-gray-600">
+              <h3 className="text-lg sm:text-xl font-semibold text-[#007BFF] mb-2 sm:mb-3">Expert Mentorship</h3>
+              <p className="text-sm sm:text-base text-gray-600">
                 Industry experts guide you throughout the competition, advising on what to do and what to avoid, helping you make informed decisions.
               </p>
             </div>
-            <div className="bg-white p-6 rounded-lg shadow-lg">
-              <div className="w-12 h-12 bg-[#FFC107] rounded-lg flex items-center justify-center mb-4">
-                <span className="text-black text-xl">💼</span>
+            <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#FFC107] rounded-lg flex items-center justify-center mb-3 sm:mb-4">
+                <span className="text-black text-lg sm:text-xl">💼</span>
               </div>
-              <h3 className="text-xl font-semibold text-[#007BFF] mb-3">Ready-to-Sell Services</h3>
-              <p className="text-gray-600">
+              <h3 className="text-lg sm:text-xl font-semibold text-[#007BFF] mb-2 sm:mb-3">Ready-to-Sell Services</h3>
+              <p className="text-sm sm:text-base text-gray-600">
                 Access curated services that you can immediately start selling to build your agency and generate revenue from day one.
               </p>
             </div>
-            <div className="bg-white p-6 rounded-lg shadow-lg">
-              <div className="w-12 h-12 bg-[#007BFF] rounded-lg flex items-center justify-center mb-4">
-                <span className="text-white text-xl">🏆</span>
+            <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#007BFF] rounded-lg flex items-center justify-center mb-3 sm:mb-4">
+                <span className="text-white text-lg sm:text-xl">🏆</span>
               </div>
-              <h3 className="text-xl font-semibold text-[#007BFF] mb-3">Competition & Awards</h3>
-              <p className="text-gray-600">
+              <h3 className="text-lg sm:text-xl font-semibold text-[#007BFF] mb-2 sm:mb-3">Competition & Awards</h3>
+              <p className="text-sm sm:text-base text-gray-600">
                 Compete with peers and get recognized for achievements including highest turnover, best branding, and more at the Award Night.
               </p>
             </div>

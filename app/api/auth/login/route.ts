@@ -10,6 +10,15 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ ok: false, message: "Missing credentials" }, { status: 400 })
     }
 
+    // Check if MongoDB URI is available
+    if (!process.env.MongoDBuri) {
+      console.error("MongoDB URI not found in environment variables")
+      return NextResponse.json({ 
+        ok: false, 
+        message: "Database configuration error. Please contact support." 
+      }, { status: 500 })
+    }
+
     const db = await getDb()
     const usersCollection = db.collection<UserDoc>("users")
 
@@ -32,7 +41,28 @@ export async function POST(req: NextRequest) {
       },
     })
   } catch (error) {
-    console.error("[v0] Login error:", error)
-    return NextResponse.json({ ok: false, message: "Internal server error" }, { status: 500 })
+    console.error("[API/Login] Error:", error)
+    
+    // Provide more specific error messages
+    if (error instanceof Error) {
+      if (error.message.includes("MongoDBuri")) {
+        return NextResponse.json({ 
+          ok: false, 
+          message: "Database connection error. Please contact support." 
+        }, { status: 500 })
+      }
+      
+      if (error.message.includes("connect")) {
+        return NextResponse.json({ 
+          ok: false, 
+          message: "Unable to connect to database. Please try again later." 
+        }, { status: 500 })
+      }
+    }
+    
+    return NextResponse.json({ 
+      ok: false, 
+      message: "Internal server error. Please try again later." 
+    }, { status: 500 })
   }
 }

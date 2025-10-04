@@ -84,27 +84,27 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100 flex items-center justify-center relative overflow-hidden">
-      {/* Background decorative elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-[#007BFF]/10 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-[#FFC107]/10 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-[#007BFF]/5 to-[#FFC107]/5 rounded-full blur-3xl"></div>
-      </div>
-      
-      <section className="mx-auto max-w-md px-4 py-12 w-full relative z-10">
-        <div className="backdrop-blur-md bg-white/80 rounded-2xl border border-white/20 p-8 shadow-2xl">
+        <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100 flex items-center justify-center relative overflow-hidden">
+          {/* Background decorative elements */}
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute -top-40 -right-40 w-80 h-80 bg-[#007BFF]/10 rounded-full blur-3xl"></div>
+            <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-[#FFC107]/10 rounded-full blur-3xl"></div>
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-[#007BFF]/5 to-[#FFC107]/5 rounded-full blur-3xl"></div>
+          </div>
+          
+          <section className="mx-auto max-w-md px-4 sm:px-6 py-8 sm:py-12 w-full relative z-10">
+            <div className="backdrop-blur-md bg-white/80 rounded-2xl border border-white/20 p-6 sm:p-8 shadow-2xl">
           {/* Logo/Icon */}
-          <div className="text-center mb-6">
+          <div className="text-center mb-4 sm:mb-6">
             <img 
               src="/logo.png" 
               alt="Launchpad Logo" 
-              className="h-16 w-auto mx-auto mb-4"
+              className="h-12 sm:h-16 w-auto mx-auto mb-3 sm:mb-4"
             />
-            <h1 className="text-2xl font-bold text-gray-800 mb-2">
+            <h1 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2">
               {tab === "login" ? "Sign in to Launchpad" : "Join Launchpad"}
             </h1>
-            <p className="text-gray-600 text-sm">
+            <p className="text-gray-600 text-xs sm:text-sm px-2">
               {tab === "login" 
                 ? "Welcome back! Sign in to continue your entrepreneurial journey." 
                 : "Start your entrepreneurial journey and build your dream business."
@@ -113,32 +113,32 @@ export default function LoginPage() {
           </div>
           
           {/* Tab Navigation */}
-          <div className="flex gap-1 mb-8 bg-gray-100 p-1 rounded-lg">
+          <div className="flex gap-1 mb-6 sm:mb-8 bg-gray-100 p-1 rounded-lg">
           <button
-              className={`flex-1 px-4 py-2 rounded-md text-sm font-semibold transition-all duration-200 ${
+              className={`flex-1 px-3 sm:px-4 py-2 rounded-md text-xs sm:text-sm font-semibold transition-all duration-200 ${
                 tab === "login" 
                   ? "bg-white text-[#007BFF] shadow-sm" 
                   : "text-gray-600 hover:text-[#007BFF]"
-            }`}
-            onClick={() => setTab("login")}
-          >
+              }`}
+              onClick={() => setTab("login")}
+            >
               Sign In
-          </button>
-          <button
-              className={`flex-1 px-4 py-2 rounded-md text-sm font-semibold transition-all duration-200 ${
+            </button>
+            <button
+              className={`flex-1 px-3 sm:px-4 py-2 rounded-md text-xs sm:text-sm font-semibold transition-all duration-200 ${
                 tab === "signup" 
                   ? "bg-white text-[#FFC107] shadow-sm" 
                   : "text-gray-600 hover:text-[#FFC107]"
-            }`}
-            onClick={() => setTab("signup")}
-          >
+              }`}
+              onClick={() => setTab("signup")}
+            >
               Sign Up
-          </button>
+            </button>
         </div>
 
         {tab === "login" ? (
-          <form onSubmit={onLogin} className="space-y-6">
-            <div className="space-y-4">
+          <form onSubmit={onLogin} className="space-y-4 sm:space-y-6">
+            <div className="space-y-3 sm:space-y-4">
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <span className="text-gray-400">✉</span>
@@ -148,7 +148,7 @@ export default function LoginPage() {
                   placeholder="Email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="pl-10 h-12 bg-white !bg-white border-gray-200 focus:border-[#007BFF] focus:ring-[#007BFF] rounded-xl text-black"
+                  className="pl-10 h-10 sm:h-12 bg-white !bg-white border-gray-200 focus:border-[#007BFF] focus:ring-[#007BFF] rounded-xl text-black text-sm sm:text-base"
                   required
                 />
             </div>
@@ -163,31 +163,31 @@ export default function LoginPage() {
                   placeholder="Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="pl-10 h-12 bg-white !bg-white border-gray-200 focus:border-[#007BFF] focus:ring-[#007BFF] rounded-xl text-black"
+                  className="pl-10 h-10 sm:h-12 bg-white !bg-white border-gray-200 focus:border-[#007BFF] focus:ring-[#007BFF] rounded-xl text-black text-sm sm:text-base"
                   required
                 />
               </div>
             </div>
             
             <div className="flex items-center justify-end">
-              <button type="button" className="text-sm text-[#007BFF] hover:text-[#007BFF]/80">
+              <button type="button" className="text-xs sm:text-sm text-[#007BFF] hover:text-[#007BFF]/80">
                 Forgot password?
               </button>
             </div>
             
-            {error && <p className="text-sm text-red-600 text-center">{error}</p>}
+            {error && <p className="text-xs sm:text-sm text-red-600 text-center">{error}</p>}
             
             <Button 
               type="submit" 
-              className="w-full h-12 bg-gradient-to-r from-[#007BFF] to-[#007BFF]/90 text-white hover:from-[#007BFF]/90 hover:to-[#007BFF]/80 font-semibold rounded-xl shadow-lg" 
+              className="w-full h-10 sm:h-12 bg-gradient-to-r from-[#007BFF] to-[#007BFF]/90 text-white hover:from-[#007BFF]/90 hover:to-[#007BFF]/80 font-semibold rounded-xl shadow-lg text-sm sm:text-base" 
               disabled={loading}
             >
               {loading ? "Signing in..." : "Login"}
             </Button>
           </form>
         ) : (
-          <form onSubmit={onSignup} className="space-y-6">
-            <div className="space-y-4">
+          <form onSubmit={onSignup} className="space-y-4 sm:space-y-6">
+            <div className="space-y-3 sm:space-y-4">
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <span className="text-gray-400">👤</span>
@@ -197,7 +197,7 @@ export default function LoginPage() {
                   placeholder="Full Name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="pl-10 h-12 bg-white !bg-white border-gray-200 focus:border-[#FFC107] focus:ring-[#FFC107] rounded-xl text-black"
+                  className="pl-10 h-10 sm:h-12 bg-white !bg-white border-gray-200 focus:border-[#FFC107] focus:ring-[#FFC107] rounded-xl text-black text-sm sm:text-base"
                   required
                 />
             </div>
@@ -211,7 +211,7 @@ export default function LoginPage() {
                   placeholder="Email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="pl-10 h-12 bg-white !bg-white border-gray-200 focus:border-[#FFC107] focus:ring-[#FFC107] rounded-xl text-black"
+                  className="pl-10 h-10 sm:h-12 bg-white !bg-white border-gray-200 focus:border-[#FFC107] focus:ring-[#FFC107] rounded-xl text-black text-sm sm:text-base"
                   required
                 />
             </div>
@@ -226,7 +226,7 @@ export default function LoginPage() {
                   placeholder="Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="pl-10 h-12 bg-white !bg-white border-gray-200 focus:border-[#FFC107] focus:ring-[#FFC107] rounded-xl text-black"
+                  className="pl-10 h-10 sm:h-12 bg-white !bg-white border-gray-200 focus:border-[#FFC107] focus:ring-[#FFC107] rounded-xl text-black text-sm sm:text-base"
                   required
                 />
               </div>
@@ -241,46 +241,46 @@ export default function LoginPage() {
                   placeholder="Confirm Password"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  className="pl-10 h-12 bg-white !bg-white border-gray-200 focus:border-[#FFC107] focus:ring-[#FFC107] rounded-xl text-black"
+                  className="pl-10 h-10 sm:h-12 bg-white !bg-white border-gray-200 focus:border-[#FFC107] focus:ring-[#FFC107] rounded-xl text-black text-sm sm:text-base"
                   required
                 />
               </div>
             </div>
             
-            {/* Password Requirements */}
-            {password && (
-              <div className="bg-gray-50 p-3 rounded-lg">
-                <p className="text-xs text-gray-600 mb-2">Password requirements:</p>
-                <div className="space-y-1">
-                  <div className={`flex items-center text-xs ${password.length >= 8 ? 'text-green-600' : 'text-gray-500'}`}>
-                    <span className="mr-2">{password.length >= 8 ? '✓' : '○'}</span>
-                    At least 8 characters
+                {/* Password Requirements */}
+                {password && (
+                  <div className="bg-gray-50 p-2 sm:p-3 rounded-lg">
+                    <p className="text-xs text-gray-600 mb-2">Password requirements:</p>
+                    <div className="space-y-1">
+                      <div className={`flex items-center text-xs ${password.length >= 8 ? 'text-green-600' : 'text-gray-500'}`}>
+                        <span className="mr-1 sm:mr-2">{password.length >= 8 ? '✓' : '○'}</span>
+                        At least 8 characters
+                      </div>
+                      <div className={`flex items-center text-xs ${/[A-Z]/.test(password) ? 'text-green-600' : 'text-gray-500'}`}>
+                        <span className="mr-1 sm:mr-2">{/[A-Z]/.test(password) ? '✓' : '○'}</span>
+                        One uppercase letter
+                      </div>
+                      <div className={`flex items-center text-xs ${/[a-z]/.test(password) ? 'text-green-600' : 'text-gray-500'}`}>
+                        <span className="mr-1 sm:mr-2">{/[a-z]/.test(password) ? '✓' : '○'}</span>
+                        One lowercase letter
+                      </div>
+                      <div className={`flex items-center text-xs ${/\d/.test(password) ? 'text-green-600' : 'text-gray-500'}`}>
+                        <span className="mr-1 sm:mr-2">{/\d/.test(password) ? '✓' : '○'}</span>
+                        One number
+                      </div>
+                      <div className={`flex items-center text-xs ${/[!@#$%^&*(),.?":{}|<>]/.test(password) ? 'text-green-600' : 'text-gray-500'}`}>
+                        <span className="mr-1 sm:mr-2">{/[!@#$%^&*(),.?":{}|<>]/.test(password) ? '✓' : '○'}</span>
+                        One special character
+                      </div>
+                    </div>
                   </div>
-                  <div className={`flex items-center text-xs ${/[A-Z]/.test(password) ? 'text-green-600' : 'text-gray-500'}`}>
-                    <span className="mr-2">{/[A-Z]/.test(password) ? '✓' : '○'}</span>
-                    One uppercase letter
-                  </div>
-                  <div className={`flex items-center text-xs ${/[a-z]/.test(password) ? 'text-green-600' : 'text-gray-500'}`}>
-                    <span className="mr-2">{/[a-z]/.test(password) ? '✓' : '○'}</span>
-                    One lowercase letter
-                  </div>
-                  <div className={`flex items-center text-xs ${/\d/.test(password) ? 'text-green-600' : 'text-gray-500'}`}>
-                    <span className="mr-2">{/\d/.test(password) ? '✓' : '○'}</span>
-                    One number
-                  </div>
-                  <div className={`flex items-center text-xs ${/[!@#$%^&*(),.?":{}|<>]/.test(password) ? 'text-green-600' : 'text-gray-500'}`}>
-                    <span className="mr-2">{/[!@#$%^&*(),.?":{}|<>]/.test(password) ? '✓' : '○'}</span>
-                    One special character
-                  </div>
-                </div>
-              </div>
-            )}
+                )}
             
-            {error && <p className="text-sm text-red-600 text-center">{error}</p>}
+            {error && <p className="text-xs sm:text-sm text-red-600 text-center">{error}</p>}
             
             <Button 
               type="submit" 
-              className="w-full h-12 bg-gradient-to-r from-[#FFC107] to-[#FFC107]/90 text-black hover:from-[#FFC107]/90 hover:to-[#FFC107]/80 font-semibold rounded-xl shadow-lg" 
+              className="w-full h-10 sm:h-12 bg-gradient-to-r from-[#FFC107] to-[#FFC107]/90 text-black hover:from-[#FFC107]/90 hover:to-[#FFC107]/80 font-semibold rounded-xl shadow-lg text-sm sm:text-base" 
               disabled={loading}
             >
               {loading ? "Creating account..." : "Sign Up"}

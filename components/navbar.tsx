@@ -32,18 +32,18 @@ export function Navbar() {
 
   return (
     <header className="absolute top-0 left-0 right-0 z-30 bg-transparent">
-      <div className="mx-auto max-w-6xl px-6 pt-6">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 pt-4 sm:pt-6">
         <div className="bg-black/20 backdrop-blur-md rounded-2xl border border-white/20 shadow-lg">
-          <div className="h-16 flex items-center justify-between px-6">
+          <div className="h-12 sm:h-16 flex items-center justify-between px-4 sm:px-6">
             <Link href="/" className="flex items-center">
               <img 
                 src="/logo.png" 
                 alt="Launchpad Logo" 
-                className="h-16 w-auto"
+                className="h-10 sm:h-12 md:h-16 w-auto"
               />
             </Link>
             
-            <nav className="flex items-center gap-6">
+            <nav className="hidden md:flex items-center gap-4 lg:gap-6">
               {leftLinks.map((link) => (
                 <Link
                   key={link.href}
@@ -59,11 +59,34 @@ export function Navbar() {
                   ) : null}
                 </Link>
               ))}
-              
+            </nav>
+            
+            {/* Mobile Menu Button */}
+            <div className="md:hidden">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="text-white hover:text-white/80 hover:bg-white/10"
+                onClick={() => {
+                  // Simple mobile menu toggle - you can enhance this with a proper mobile menu
+                  const mobileMenu = document.getElementById('mobile-menu')
+                  if (mobileMenu) {
+                    mobileMenu.classList.toggle('hidden')
+                  }
+                }}
+              >
+                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              </Button>
+            </div>
+            
+            {/* Desktop Auth Buttons */}
+            <div className="hidden md:flex items-center gap-4">
               {currentUser ? (
                 <Button
                   variant="outline"
-                  className="border-white text-white hover:bg-white hover:text-black bg-transparent rounded-lg px-4 py-2 font-medium"
+                  className="border-white text-white hover:bg-white hover:text-black bg-transparent rounded-lg px-3 sm:px-4 py-1.5 sm:py-2 font-medium text-sm"
                   onClick={() => {
                     logout()
                     router.push("/")
@@ -75,13 +98,13 @@ export function Navbar() {
                 <Link href="/login">
                   <Button 
                     variant="outline" 
-                    className="border-white text-white hover:bg-white hover:text-black bg-transparent rounded-lg px-6 py-2 font-medium uppercase tracking-wide"
+                    className="border-white text-white hover:bg-white hover:text-black bg-transparent rounded-lg px-4 sm:px-6 py-1.5 sm:py-2 font-medium uppercase tracking-wide text-sm"
                   >
                     Login
                   </Button>
                 </Link>
               )}
-            </nav>
+            </div>
           </div>
         </div>
       </div>
