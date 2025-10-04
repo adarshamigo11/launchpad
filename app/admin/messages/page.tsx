@@ -5,12 +5,12 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { useAuth } from "@/components/state/auth-context"
+import { useApp } from "@/components/state/auth-context"
 import { useRouter } from "next/navigation"
 import type { Message } from "@/lib/models"
 
 export default function AdminMessagesPage() {
-  const { currentUser, isAdmin } = useAuth()
+  const { currentUser, isAdmin } = useApp()
   const router = useRouter()
   const [messages, setMessages] = useState<Message[]>([])
   const [loading, setLoading] = useState(true)
