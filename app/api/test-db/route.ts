@@ -17,6 +17,7 @@ export async function GET(req: NextRequest) {
     console.log("MongoDB URI preview:", uri.substring(0, 50) + "...")
 
     // Try to connect to database
+    console.log("Attempting to connect to database...")
     const db = await getDb()
     console.log("Database connection successful")
     

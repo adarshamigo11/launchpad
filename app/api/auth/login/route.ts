@@ -1,6 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { getDb } from "@/lib/mongodb"
 import type { UserDoc } from "@/lib/models"
+import { MongoClient } from "mongodb"
 
 export async function POST(req: NextRequest) {
   try {
@@ -19,7 +20,21 @@ export async function POST(req: NextRequest) {
       }, { status: 500 })
     }
 
-    const db = await getDb()
+    // Try direct connection as fallback
+    let db;
+    try {
+      db = await getDb()
+    } catch (error) {
+      console.error("Primary connection failed, trying direct connection:", error)
+      // Fallback to direct connection
+      const client = new MongoClient(process.env.MongoDBuri, {
+        serverSelectionTimeoutMS: 10000,
+        connectTimeoutMS: 10000,
+      })
+      await client.connect()
+      db = client.db("Launchpad")
+    }
+    
     const usersCollection = db.collection<UserDoc>("users")
 
     const user = await usersCollection.findOne({ email, password })

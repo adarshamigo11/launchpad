@@ -4,9 +4,6 @@ const options = {
   maxPoolSize: 10,
   serverSelectionTimeoutMS: 5000,
   socketTimeoutMS: 45000,
-  bufferMaxEntries: 0,
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
 }
 
 let client: MongoClient
@@ -43,7 +40,13 @@ function getClientPromise(): Promise<MongoClient> {
     }
   } catch (error) {
     console.error("Failed to create MongoDB client:", error)
-    throw new Error("Failed to connect to MongoDB database")
+    console.error("Error details:", {
+      message: error instanceof Error ? error.message : "Unknown error",
+      code: (error as any)?.code,
+      name: (error as any)?.name,
+      stack: error instanceof Error ? error.stack : "No stack"
+    })
+    throw error // Re-throw the original error instead of a generic one
   }
 }
 
