@@ -34,29 +34,26 @@ export function Navbar() {
     <header className="absolute top-0 left-0 right-0 z-30 bg-transparent">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 pt-4 sm:pt-6">
         <div className="bg-black/20 backdrop-blur-md rounded-2xl border border-white/20 shadow-lg">
-          <div className="h-12 sm:h-16 flex items-center justify-between px-4 sm:px-6">
+          <div className="h-16 sm:h-20 flex items-center justify-between px-6 sm:px-8">
             <Link href="/" className="flex items-center">
               <img 
                 src="/logo.png" 
                 alt="Launchpad Logo" 
-                className="h-10 sm:h-12 md:h-16 w-auto"
+                className="h-12 sm:h-16 md:h-20 w-auto"
               />
             </Link>
             
-            <nav className="hidden md:flex items-center gap-4 lg:gap-6">
+            <nav className="hidden md:flex items-center gap-6 lg:gap-8">
               {leftLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    "text-white text-sm font-medium transition-colors hover:text-[#FFC107] relative group",
+                    "text-white text-base font-medium transition-colors hover:text-[#FFC107] relative group",
                     pathname === link.href && "text-[#FFC107]"
                   )}
                 >
                   {link.label}
-                  {link.label === "About" || link.label === "Challenges" ? (
-                    <span className="ml-1 text-xs">▼</span>
-                  ) : null}
                 </Link>
               ))}
             </nav>
@@ -86,7 +83,7 @@ export function Navbar() {
               {currentUser ? (
                 <Button
                   variant="outline"
-                  className="border-white text-white hover:bg-white hover:text-black bg-transparent rounded-lg px-3 sm:px-4 py-1.5 sm:py-2 font-medium text-sm"
+                  className="border-white text-white hover:bg-white hover:text-black bg-transparent rounded-lg px-4 sm:px-6 py-2 sm:py-3 font-medium text-base"
                   onClick={() => {
                     logout()
                     router.push("/")
@@ -98,7 +95,7 @@ export function Navbar() {
                 <Link href="/login">
                   <Button 
                     variant="outline" 
-                    className="border-white text-white hover:bg-white hover:text-black bg-transparent rounded-lg px-4 sm:px-6 py-1.5 sm:py-2 font-medium uppercase tracking-wide text-sm"
+                    className="border-white text-white hover:bg-white hover:text-black bg-transparent rounded-lg px-6 sm:px-8 py-2 sm:py-3 font-medium uppercase tracking-wide text-base"
                   >
                     Login
                   </Button>

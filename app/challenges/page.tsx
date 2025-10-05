@@ -147,21 +147,21 @@ export default function ChallengesPage() {
 
             <Link href="/login">
               <Card className="group bg-gradient-to-br from-white to-gray-50 border-2 border-transparent hover:border-[#007BFF]/20 shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer hover:scale-105 transform h-full flex flex-col">
-                <CardHeader className="pb-4 flex-shrink-0">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-12 h-12 bg-gradient-to-br from-[#007BFF] to-[#007BFF]/80 rounded-xl flex items-center justify-center">
-                      <span className="text-white font-bold text-lg">2</span>
+                <CardHeader className="pb-3 sm:pb-4 flex-shrink-0 p-4 sm:p-6">
+                  <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-[#007BFF] to-[#007BFF]/80 rounded-xl flex items-center justify-center">
+                      <span className="text-white font-bold text-base sm:text-lg">2</span>
                     </div>
                     <div className="flex-1">
-                      <Badge className="bg-[#007BFF]/10 text-[#007BFF] border-[#007BFF]/20 mb-2">BASIC</Badge>
+                      <Badge className="bg-[#007BFF]/10 text-[#007BFF] border-[#007BFF]/20 mb-1 sm:mb-2 text-xs sm:text-sm">BASIC</Badge>
                     </div>
                   </div>
-                  <CardTitle className="text-[#007BFF] text-lg font-bold leading-tight group-hover:text-[#007BFF]/80 transition-colors">
+                  <CardTitle className="text-[#007BFF] text-base sm:text-lg font-bold leading-tight group-hover:text-[#007BFF]/80 transition-colors">
                     Validate Demand Challenge
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="pt-0 flex-grow flex flex-col">
-                  <p className="text-gray-600 leading-relaxed mb-4 flex-grow">
+                <CardContent className="pt-0 flex-grow flex flex-col p-4 sm:p-6">
+                  <p className="text-sm sm:text-base text-gray-600 leading-relaxed mb-3 sm:mb-4 flex-grow">
                     Guides you to test your niche by talking to potential customers, researching competitors, and running small validation experiments.
                   </p>
                   <div className="flex items-center text-[#007BFF] font-semibold text-xs sm:text-sm group-hover:text-[#007BFF]/80 transition-colors mt-auto">
@@ -174,21 +174,21 @@ export default function ChallengesPage() {
 
             <Link href="/login">
               <Card className="group bg-gradient-to-br from-white to-gray-50 border-2 border-transparent hover:border-[#007BFF]/20 shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer hover:scale-105 transform h-full flex flex-col">
-                <CardHeader className="pb-4 flex-shrink-0">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-12 h-12 bg-gradient-to-br from-[#007BFF] to-[#007BFF]/80 rounded-xl flex items-center justify-center">
-                      <span className="text-white font-bold text-lg">3</span>
+                <CardHeader className="pb-3 sm:pb-4 flex-shrink-0 p-4 sm:p-6">
+                  <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-[#007BFF] to-[#007BFF]/80 rounded-xl flex items-center justify-center">
+                      <span className="text-white font-bold text-base sm:text-lg">3</span>
                     </div>
                     <div className="flex-1">
-                      <Badge className="bg-[#007BFF]/10 text-[#007BFF] border-[#007BFF]/20 mb-2">BASIC</Badge>
+                      <Badge className="bg-[#007BFF]/10 text-[#007BFF] border-[#007BFF]/20 mb-1 sm:mb-2 text-xs sm:text-sm">BASIC</Badge>
                     </div>
                   </div>
-                  <CardTitle className="text-[#007BFF] text-lg font-bold leading-tight group-hover:text-[#007BFF]/80 transition-colors">
+                  <CardTitle className="text-[#007BFF] text-base sm:text-lg font-bold leading-tight group-hover:text-[#007BFF]/80 transition-colors">
                     One-Page Business Plan Challenge
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="pt-0 flex-grow flex flex-col">
-                  <p className="text-gray-600 leading-relaxed mb-4 flex-grow">
+                <CardContent className="pt-0 flex-grow flex flex-col p-4 sm:p-6">
+                  <p className="text-sm sm:text-base text-gray-600 leading-relaxed mb-3 sm:mb-4 flex-grow">
                     Simplifies business planning into one page covering customers, services, pricing, and growth targets.
                   </p>
                   <div className="flex items-center text-[#007BFF] font-semibold text-xs sm:text-sm group-hover:text-[#007BFF]/80 transition-colors mt-auto">
@@ -201,21 +201,21 @@ export default function ChallengesPage() {
 
             <Link href="/login">
               <Card className="group bg-gradient-to-br from-white to-gray-50 border-2 border-transparent hover:border-[#007BFF]/20 shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer hover:scale-105 transform h-full flex flex-col">
-                <CardHeader className="pb-4 flex-shrink-0">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-12 h-12 bg-gradient-to-br from-[#007BFF] to-[#007BFF]/80 rounded-xl flex items-center justify-center">
-                      <span className="text-white font-bold text-lg">4</span>
+                <CardHeader className="pb-3 sm:pb-4 flex-shrink-0 p-4 sm:p-6">
+                  <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-[#007BFF] to-[#007BFF]/80 rounded-xl flex items-center justify-center">
+                      <span className="text-white font-bold text-base sm:text-lg">4</span>
                     </div>
                     <div className="flex-1">
-                      <Badge className="bg-[#007BFF]/10 text-[#007BFF] border-[#007BFF]/20 mb-2">BASIC</Badge>
+                      <Badge className="bg-[#007BFF]/10 text-[#007BFF] border-[#007BFF]/20 mb-1 sm:mb-2 text-xs sm:text-sm">BASIC</Badge>
                     </div>
                   </div>
-                  <CardTitle className="text-[#007BFF] text-lg font-bold leading-tight group-hover:text-[#007BFF]/80 transition-colors">
+                  <CardTitle className="text-[#007BFF] text-base sm:text-lg font-bold leading-tight group-hover:text-[#007BFF]/80 transition-colors">
                     Company Name & Legal Setup Challenge
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="pt-0 flex-grow flex flex-col">
-                  <p className="text-gray-600 leading-relaxed mb-4 flex-grow">
+                <CardContent className="pt-0 flex-grow flex flex-col p-4 sm:p-6">
+                  <p className="text-sm sm:text-base text-gray-600 leading-relaxed mb-3 sm:mb-4 flex-grow">
                     Helps you choose a strong business name, register it legally, and secure your online presence.
                   </p>
                   <div className="flex items-center text-[#007BFF] font-semibold text-xs sm:text-sm group-hover:text-[#007BFF]/80 transition-colors mt-auto">
@@ -228,21 +228,21 @@ export default function ChallengesPage() {
 
             <Link href="/login">
               <Card className="group bg-gradient-to-br from-white to-gray-50 border-2 border-transparent hover:border-[#007BFF]/20 shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer hover:scale-105 transform h-full flex flex-col">
-                <CardHeader className="pb-4 flex-shrink-0">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-12 h-12 bg-gradient-to-br from-[#007BFF] to-[#007BFF]/80 rounded-xl flex items-center justify-center">
-                      <span className="text-white font-bold text-lg">5</span>
+                <CardHeader className="pb-3 sm:pb-4 flex-shrink-0 p-4 sm:p-6">
+                  <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-[#007BFF] to-[#007BFF]/80 rounded-xl flex items-center justify-center">
+                      <span className="text-white font-bold text-base sm:text-lg">5</span>
                     </div>
                     <div className="flex-1">
-                      <Badge className="bg-[#007BFF]/10 text-[#007BFF] border-[#007BFF]/20 mb-2">BASIC</Badge>
+                      <Badge className="bg-[#007BFF]/10 text-[#007BFF] border-[#007BFF]/20 mb-1 sm:mb-2 text-xs sm:text-sm">BASIC</Badge>
                     </div>
                   </div>
-                  <CardTitle className="text-[#007BFF] text-lg font-bold leading-tight group-hover:text-[#007BFF]/80 transition-colors">
+                  <CardTitle className="text-[#007BFF] text-base sm:text-lg font-bold leading-tight group-hover:text-[#007BFF]/80 transition-colors">
                     Business Bank & Accounting Setup Challenge
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="pt-0 flex-grow flex flex-col">
-                  <p className="text-gray-600 leading-relaxed mb-4 flex-grow">
+                <CardContent className="pt-0 flex-grow flex flex-col p-4 sm:p-6">
+                  <p className="text-sm sm:text-base text-gray-600 leading-relaxed mb-3 sm:mb-4 flex-grow">
                     Gets your finances organized with a business bank account, invoicing tools, and a simple bookkeeping system.
                   </p>
                   <div className="flex items-center text-[#007BFF] font-semibold text-xs sm:text-sm group-hover:text-[#007BFF]/80 transition-colors mt-auto">
@@ -255,21 +255,21 @@ export default function ChallengesPage() {
 
             <Link href="/login">
               <Card className="group bg-gradient-to-br from-white to-gray-50 border-2 border-transparent hover:border-[#007BFF]/20 shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer hover:scale-105 transform h-full flex flex-col">
-                <CardHeader className="pb-4 flex-shrink-0">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-12 h-12 bg-gradient-to-br from-[#007BFF] to-[#007BFF]/80 rounded-xl flex items-center justify-center">
-                      <span className="text-white font-bold text-lg">6</span>
+                <CardHeader className="pb-3 sm:pb-4 flex-shrink-0 p-4 sm:p-6">
+                  <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-[#007BFF] to-[#007BFF]/80 rounded-xl flex items-center justify-center">
+                      <span className="text-white font-bold text-base sm:text-lg">6</span>
                     </div>
                     <div className="flex-1">
-                      <Badge className="bg-[#007BFF]/10 text-[#007BFF] border-[#007BFF]/20 mb-2">BASIC</Badge>
+                      <Badge className="bg-[#007BFF]/10 text-[#007BFF] border-[#007BFF]/20 mb-1 sm:mb-2 text-xs sm:text-sm">BASIC</Badge>
                     </div>
                   </div>
-                  <CardTitle className="text-[#007BFF] text-lg font-bold leading-tight group-hover:text-[#007BFF]/80 transition-colors">
+                  <CardTitle className="text-[#007BFF] text-base sm:text-lg font-bold leading-tight group-hover:text-[#007BFF]/80 transition-colors">
                     Pricing & Packages Challenge
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="pt-0 flex-grow flex flex-col">
-                  <p className="text-gray-600 leading-relaxed mb-4 flex-grow">
+                <CardContent className="pt-0 flex-grow flex flex-col p-4 sm:p-6">
+                  <p className="text-sm sm:text-base text-gray-600 leading-relaxed mb-3 sm:mb-4 flex-grow">
                     Guides you to create 2–3 clear service tiers (Starter, Growth, Premium) and a retainer/day-rate option.
                   </p>
                   <div className="flex items-center text-[#007BFF] font-semibold text-xs sm:text-sm group-hover:text-[#007BFF]/80 transition-colors mt-auto">
@@ -326,21 +326,21 @@ export default function ChallengesPage() {
 
             <Link href="/login">
               <Card className="group bg-gradient-to-br from-gray-50 to-gray-100 border-2 border-transparent hover:border-[#FFC107]/20 shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer hover:scale-105 transform h-full flex flex-col">
-                <CardHeader className="pb-4 flex-shrink-0">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-12 h-12 bg-gradient-to-br from-[#FFC107] to-[#FFC107]/80 rounded-xl flex items-center justify-center">
-                      <span className="text-black font-bold text-lg">2</span>
+                <CardHeader className="pb-3 sm:pb-4 flex-shrink-0 p-4 sm:p-6">
+                  <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-[#FFC107] to-[#FFC107]/80 rounded-xl flex items-center justify-center">
+                      <span className="text-black font-bold text-base sm:text-lg">2</span>
                     </div>
                     <div className="flex-1">
-                      <Badge className="bg-[#FFC107]/10 text-[#FFC107] border-[#FFC107]/20 mb-2">ADVANCED</Badge>
+                      <Badge className="bg-[#FFC107]/10 text-[#FFC107] border-[#FFC107]/20 mb-1 sm:mb-2 text-xs sm:text-sm">ADVANCED</Badge>
                     </div>
                   </div>
-                  <CardTitle className="text-[#FFC107] text-lg font-bold leading-tight group-hover:text-[#FFC107]/80 transition-colors">
+                  <CardTitle className="text-[#FFC107] text-base sm:text-lg font-bold leading-tight group-hover:text-[#FFC107]/80 transition-colors">
                     Week 2 Challenge
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="pt-0 flex-grow flex flex-col">
-                  <div className="space-y-2 text-gray-600 text-sm flex-grow">
+                <CardContent className="pt-0 flex-grow flex flex-col p-4 sm:p-6">
+                  <div className="space-y-1 sm:space-y-2 text-gray-600 text-xs sm:text-sm flex-grow">
                     <p>• Place a single order worth ₹10,000+</p>
                     <p>• Reorder any service used last week</p>
                     <p>• Order 5+ content pieces (blogs/posts/videos)</p>
@@ -357,21 +357,21 @@ export default function ChallengesPage() {
 
             <Link href="/login">
               <Card className="group bg-gradient-to-br from-gray-50 to-gray-100 border-2 border-transparent hover:border-[#FFC107]/20 shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer hover:scale-105 transform h-full flex flex-col">
-                <CardHeader className="pb-4 flex-shrink-0">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-12 h-12 bg-gradient-to-br from-[#FFC107] to-[#FFC107]/80 rounded-xl flex items-center justify-center">
-                      <span className="text-black font-bold text-lg">3</span>
+                <CardHeader className="pb-3 sm:pb-4 flex-shrink-0 p-4 sm:p-6">
+                  <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-[#FFC107] to-[#FFC107]/80 rounded-xl flex items-center justify-center">
+                      <span className="text-black font-bold text-base sm:text-lg">3</span>
                     </div>
                     <div className="flex-1">
-                      <Badge className="bg-[#FFC107]/10 text-[#FFC107] border-[#FFC107]/20 mb-2">ADVANCED</Badge>
+                      <Badge className="bg-[#FFC107]/10 text-[#FFC107] border-[#FFC107]/20 mb-1 sm:mb-2 text-xs sm:text-sm">ADVANCED</Badge>
                     </div>
                   </div>
-                  <CardTitle className="text-[#FFC107] text-lg font-bold leading-tight group-hover:text-[#FFC107]/80 transition-colors">
+                  <CardTitle className="text-[#FFC107] text-base sm:text-lg font-bold leading-tight group-hover:text-[#FFC107]/80 transition-colors">
                     Week 3 Challenge
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="pt-0 flex-grow flex flex-col">
-                  <div className="space-y-2 text-gray-600 text-sm flex-grow">
+                <CardContent className="pt-0 flex-grow flex flex-col p-4 sm:p-6">
+                  <div className="space-y-1 sm:space-y-2 text-gray-600 text-xs sm:text-sm flex-grow">
                     <p>• Use 3 different services this week</p>
                     <p>• Complete 3 transactions in 7 days</p>
                     <p>• Place a bundle order worth ₹20,000+</p>
@@ -388,21 +388,21 @@ export default function ChallengesPage() {
 
             <Link href="/login">
               <Card className="group bg-gradient-to-br from-gray-50 to-gray-100 border-2 border-transparent hover:border-[#FFC107]/20 shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer hover:scale-105 transform h-full flex flex-col">
-                <CardHeader className="pb-4 flex-shrink-0">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-12 h-12 bg-gradient-to-br from-[#FFC107] to-[#FFC107]/80 rounded-xl flex items-center justify-center">
-                      <span className="text-black font-bold text-lg">4</span>
+                <CardHeader className="pb-3 sm:pb-4 flex-shrink-0 p-4 sm:p-6">
+                  <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-[#FFC107] to-[#FFC107]/80 rounded-xl flex items-center justify-center">
+                      <span className="text-black font-bold text-base sm:text-lg">4</span>
                     </div>
                     <div className="flex-1">
-                      <Badge className="bg-[#FFC107]/10 text-[#FFC107] border-[#FFC107]/20 mb-2">ADVANCED</Badge>
+                      <Badge className="bg-[#FFC107]/10 text-[#FFC107] border-[#FFC107]/20 mb-1 sm:mb-2 text-xs sm:text-sm">ADVANCED</Badge>
                     </div>
                   </div>
-                  <CardTitle className="text-[#FFC107] text-lg font-bold leading-tight group-hover:text-[#FFC107]/80 transition-colors">
+                  <CardTitle className="text-[#FFC107] text-base sm:text-lg font-bold leading-tight group-hover:text-[#FFC107]/80 transition-colors">
                     Week 4 Challenge
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="pt-0 flex-grow flex flex-col">
-                  <div className="space-y-2 text-gray-600 text-sm flex-grow">
+                <CardContent className="pt-0 flex-grow flex flex-col p-4 sm:p-6">
+                  <div className="space-y-1 sm:space-y-2 text-gray-600 text-xs sm:text-sm flex-grow">
                     <p>• Place a project worth ₹25,000+</p>
                     <p>• Make 4 transactions this week</p>
                     <p>• Order 10+ deliverables (posts/videos/blogs)</p>
@@ -419,21 +419,21 @@ export default function ChallengesPage() {
 
             <Link href="/login">
               <Card className="group bg-gradient-to-br from-gray-50 to-gray-100 border-2 border-transparent hover:border-[#FFC107]/20 shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer hover:scale-105 transform h-full flex flex-col">
-                <CardHeader className="pb-4 flex-shrink-0">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-12 h-12 bg-gradient-to-br from-[#FFC107] to-[#FFC107]/80 rounded-xl flex items-center justify-center">
-                      <span className="text-black font-bold text-lg">5</span>
+                <CardHeader className="pb-3 sm:pb-4 flex-shrink-0 p-4 sm:p-6">
+                  <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-[#FFC107] to-[#FFC107]/80 rounded-xl flex items-center justify-center">
+                      <span className="text-black font-bold text-base sm:text-lg">5</span>
                     </div>
                     <div className="flex-1">
-                      <Badge className="bg-[#FFC107]/10 text-[#FFC107] border-[#FFC107]/20 mb-2">ADVANCED</Badge>
+                      <Badge className="bg-[#FFC107]/10 text-[#FFC107] border-[#FFC107]/20 mb-1 sm:mb-2 text-xs sm:text-sm">ADVANCED</Badge>
                     </div>
                   </div>
-                  <CardTitle className="text-[#FFC107] text-lg font-bold leading-tight group-hover:text-[#FFC107]/80 transition-colors">
+                  <CardTitle className="text-[#FFC107] text-base sm:text-lg font-bold leading-tight group-hover:text-[#FFC107]/80 transition-colors">
                     Week 5 Challenge
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="pt-0 flex-grow flex flex-col">
-                  <div className="space-y-2 text-gray-600 text-sm flex-grow">
+                <CardContent className="pt-0 flex-grow flex flex-col p-4 sm:p-6">
+                  <div className="space-y-1 sm:space-y-2 text-gray-600 text-xs sm:text-sm flex-grow">
                     <p>• Place 2 orders worth ₹15,000+ each</p>
                     <p>• Use 4 different services this week</p>
                     <p>• Refer 1 client (₹15,000+)</p>
@@ -450,21 +450,21 @@ export default function ChallengesPage() {
 
             <Link href="/login">
               <Card className="group bg-gradient-to-br from-gray-50 to-gray-100 border-2 border-transparent hover:border-[#FFC107]/20 shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer hover:scale-105 transform h-full flex flex-col">
-                <CardHeader className="pb-4 flex-shrink-0">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-12 h-12 bg-gradient-to-br from-[#FFC107] to-[#FFC107]/80 rounded-xl flex items-center justify-center">
-                      <span className="text-black font-bold text-lg">6</span>
+                <CardHeader className="pb-3 sm:pb-4 flex-shrink-0 p-4 sm:p-6">
+                  <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-[#FFC107] to-[#FFC107]/80 rounded-xl flex items-center justify-center">
+                      <span className="text-black font-bold text-base sm:text-lg">6</span>
                     </div>
                     <div className="flex-1">
-                      <Badge className="bg-[#FFC107]/10 text-[#FFC107] border-[#FFC107]/20 mb-2">ADVANCED</Badge>
+                      <Badge className="bg-[#FFC107]/10 text-[#FFC107] border-[#FFC107]/20 mb-1 sm:mb-2 text-xs sm:text-sm">ADVANCED</Badge>
                     </div>
                   </div>
-                  <CardTitle className="text-[#FFC107] text-lg font-bold leading-tight group-hover:text-[#FFC107]/80 transition-colors">
+                  <CardTitle className="text-[#FFC107] text-base sm:text-lg font-bold leading-tight group-hover:text-[#FFC107]/80 transition-colors">
                     Week 6 Challenge
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="pt-0 flex-grow flex flex-col">
-                  <div className="space-y-2 text-gray-600 text-sm flex-grow">
+                <CardContent className="pt-0 flex-grow flex flex-col p-4 sm:p-6">
+                  <div className="space-y-1 sm:space-y-2 text-gray-600 text-xs sm:text-sm flex-grow">
                     <p>• Place a project worth ₹30,000+</p>
                     <p>• Complete 3 repeat orders (any service)</p>
                     <p>• Build a bundle order worth ₹40,000+</p>
@@ -483,63 +483,63 @@ export default function ChallengesPage() {
       </section>
 
       {/* Evaluation & Awards */}
-      <section className="py-16 bg-gray-50">
-        <div className="mx-auto max-w-6xl px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-6xl font-bold text-[#007BFF] mb-6">Evaluation & Awards</h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+      <section className="py-12 sm:py-16 bg-gray-50">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-[#007BFF] mb-4 sm:mb-6 leading-tight">Evaluation & Awards</h2>
+            <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-3xl mx-auto px-2">
               Participants will be evaluated based on multiple criteria, with top performers receiving recognition and awards.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            <div className="text-center p-6 bg-white rounded-lg shadow-lg">
-              <div className="w-16 h-16 bg-[#007BFF] rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-white text-2xl">💰</span>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8 sm:mb-12">
+            <div className="text-center p-4 sm:p-6 bg-white rounded-lg shadow-lg">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-[#007BFF] rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                <span className="text-white text-lg sm:text-2xl">💰</span>
               </div>
-              <h3 className="text-lg font-semibold text-[#007BFF] mb-2">Sales Generated</h3>
-              <p className="text-gray-600 text-sm">Revenue and sales performance</p>
+              <h3 className="text-base sm:text-lg font-semibold text-[#007BFF] mb-2">Sales Generated</h3>
+              <p className="text-gray-600 text-xs sm:text-sm">Revenue and sales performance</p>
             </div>
-            <div className="text-center p-6 bg-white rounded-lg shadow-lg">
-              <div className="w-16 h-16 bg-[#FFC107] rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-black text-2xl">🎨</span>
+            <div className="text-center p-4 sm:p-6 bg-white rounded-lg shadow-lg">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-[#FFC107] rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                <span className="text-black text-lg sm:text-2xl">🎨</span>
               </div>
-              <h3 className="text-lg font-semibold text-[#007BFF] mb-2">Creativity</h3>
-              <p className="text-gray-600 text-sm">Innovation and creative solutions</p>
+              <h3 className="text-base sm:text-lg font-semibold text-[#007BFF] mb-2">Creativity</h3>
+              <p className="text-gray-600 text-xs sm:text-sm">Innovation and creative solutions</p>
             </div>
-            <div className="text-center p-6 bg-white rounded-lg shadow-lg">
-              <div className="w-16 h-16 bg-[#007BFF] rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-white text-2xl">🤝</span>
+            <div className="text-center p-4 sm:p-6 bg-white rounded-lg shadow-lg">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-[#007BFF] rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                <span className="text-white text-lg sm:text-2xl">🤝</span>
               </div>
-              <h3 className="text-lg font-semibold text-[#007BFF] mb-2">Client Handling</h3>
-              <p className="text-gray-600 text-sm">Customer service excellence</p>
+              <h3 className="text-base sm:text-lg font-semibold text-[#007BFF] mb-2">Client Handling</h3>
+              <p className="text-gray-600 text-xs sm:text-sm">Customer service excellence</p>
             </div>
-            <div className="text-center p-6 bg-white rounded-lg shadow-lg">
-              <div className="w-16 h-16 bg-[#FFC107] rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-black text-2xl">📈</span>
+            <div className="text-center p-4 sm:p-6 bg-white rounded-lg shadow-lg">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-[#FFC107] rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                <span className="text-black text-lg sm:text-2xl">📈</span>
               </div>
-              <h3 className="text-lg font-semibold text-[#007BFF] mb-2">Overall Performance</h3>
-              <p className="text-gray-600 text-sm">Comprehensive business growth</p>
+              <h3 className="text-base sm:text-lg font-semibold text-[#007BFF] mb-2">Overall Performance</h3>
+              <p className="text-gray-600 text-xs sm:text-sm">Comprehensive business growth</p>
             </div>
           </div>
 
-          <div className="bg-gradient-to-r from-[#007BFF] to-[#FFC107] p-8 rounded-lg text-white text-center">
-            <h3 className="text-6xl font-bold mb-4">Launchpad Award Night</h3>
-            <p className="text-lg mb-6">
+          <div className="bg-gradient-to-r from-[#007BFF] to-[#FFC107] p-6 sm:p-8 rounded-lg text-white text-center">
+            <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 sm:mb-4 leading-tight">Launchpad Award Night</h3>
+            <p className="text-sm sm:text-base lg:text-lg mb-4 sm:mb-6 px-2">
               Top performers will be recognized during the Launchpad Award Night, with awards for:
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="bg-white/20 p-4 rounded-lg">
-                <h4 className="font-semibold mb-2">Highest Turnover</h4>
-                <p className="text-sm">Best revenue performance</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+              <div className="bg-white/20 p-3 sm:p-4 rounded-lg">
+                <h4 className="font-semibold mb-1 sm:mb-2 text-sm sm:text-base">Highest Turnover</h4>
+                <p className="text-xs sm:text-sm">Best revenue performance</p>
               </div>
-              <div className="bg-white/20 p-4 rounded-lg">
-                <h4 className="font-semibold mb-2">Best Branding</h4>
-                <p className="text-sm">Most creative brand identity</p>
+              <div className="bg-white/20 p-3 sm:p-4 rounded-lg">
+                <h4 className="font-semibold mb-1 sm:mb-2 text-sm sm:text-base">Best Branding</h4>
+                <p className="text-xs sm:text-sm">Most creative brand identity</p>
               </div>
-              <div className="bg-white/20 p-4 rounded-lg">
-                <h4 className="font-semibold mb-2">Rising Star</h4>
-                <p className="text-sm">Most promising newcomer</p>
+              <div className="bg-white/20 p-3 sm:p-4 rounded-lg sm:col-span-2 lg:col-span-1">
+                <h4 className="font-semibold mb-1 sm:mb-2 text-sm sm:text-base">Rising Star</h4>
+                <p className="text-xs sm:text-sm">Most promising newcomer</p>
               </div>
             </div>
           </div>
@@ -547,21 +547,17 @@ export default function ChallengesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-[#007BFF]">
-        <div className="mx-auto max-w-4xl px-4 text-center">
-          <h2 className="text-3xl font-bold text-white mb-4">Ready to Take on the Challenge?</h2>
-          <p className="text-xl text-white/90 mb-8">
+      <section className="py-12 sm:py-16 bg-[#007BFF]">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3 sm:mb-4 leading-tight">Ready to Take on the Challenge?</h2>
+          <p className="text-base sm:text-lg lg:text-xl text-white/90 mb-6 sm:mb-8 px-2">
             Choose your challenge level and start building your entrepreneurial empire today.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/login">
-              <Button size="lg" className="bg-[#FFC107] text-black hover:bg-[#FFC107]/90 font-bold text-lg px-8 py-3">
-                Register for BASIC
-              </Button>
-            </Link>
-            <Link href="/login">
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-[#007BFF] font-semibold text-lg px-8 py-3">
-                Register for ADVANCED
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
+            
+            <Link href="/login" className="w-full sm:w-auto">
+              <Button size="lg" variant="outline" className="w-full sm:w-auto border-white text-white hover:bg-white hover:text-[#007BFF] font-semibold text-base sm:text-lg px-6 sm:px-8 py-3">
+                Register Now
               </Button>
             </Link>
           </div>

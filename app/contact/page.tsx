@@ -78,7 +78,7 @@ export default function ContactPage() {
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-[#007BFF] to-[#FFC107] py-20 sm:py-24 md:py-32 lg:py-40 min-h-[60vh] flex items-center">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white mb-6 sm:mb-8">Get In Touch</h1>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white mb-6 sm:mb-8">Contact Us</h1>
           <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-white/90 max-w-4xl mx-auto mb-6 sm:mb-8 leading-relaxed px-2">
             Have questions about Launchpad? Need support with your challenges? We're here to help you succeed on your entrepreneurial journey.
           </p>
@@ -105,7 +105,7 @@ export default function ContactPage() {
 
           <Card className="shadow-2xl border-2 border-[#007BFF]/20 bg-white">
             <CardHeader className="bg-gradient-to-r from-[#007BFF] to-[#007BFF]/80 text-white">
-              <CardTitle className="text-lg sm:text-xl lg:text-2xl text-center">Contact Form</CardTitle>
+              <CardTitle className="text-lg sm:text-xl lg:text-2xl text-center">Contact Us</CardTitle>
             </CardHeader>
             <CardContent className="p-4 sm:p-6 lg:p-8">
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -194,7 +194,7 @@ export default function ContactPage() {
                 <span className="text-white text-lg sm:text-2xl">📧</span>
               </div>
               <h3 className="text-lg sm:text-xl font-bold text-[#007BFF] mb-2">Email Us</h3>
-              <p className="text-sm sm:text-base text-gray-600">Launchpad.xpert@gmail.com</p>
+              <p className="text-sm sm:text-base text-gray-600">launchpad.xpert@gmail.com</p>
             </Card>
 
             <Card className="text-center p-4 sm:p-6 border-2 border-[#FFC107]/20 hover:shadow-lg transition-shadow bg-white">
@@ -202,7 +202,7 @@ export default function ContactPage() {
                 <span className="text-black text-lg sm:text-2xl">📱</span>
               </div>
               <h3 className="text-lg sm:text-xl font-bold text-[#FFC107] mb-2">Call Us</h3>
-              <p className="text-sm sm:text-base text-gray-600">+1 (555) 123-4567</p>
+              <p className="text-sm sm:text-base text-gray-600">+91 9039654155</p>
             </Card>
           </div>
         </div>

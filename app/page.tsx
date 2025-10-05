@@ -141,8 +141,8 @@ export default function HomePage() {
               </div>
             </div>
             <div className="bg-gradient-to-br from-[#007BFF] to-[#FFC107] p-8 rounded-lg text-white">
-              <h4 className="text-xl font-semibold mb-4">Registration Deadline</h4>
-              <p className="text-3xl font-bold mb-2">26th October 2025</p>
+              
+              <p className="text-3xl font-bold mb-2">Registration closing soon</p>
               <p className="text-white/90 mb-6">
                 Early registration may provide bonus points or early access to mentorship.
               </p>

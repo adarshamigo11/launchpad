@@ -30,7 +30,7 @@ export default function AboutPage() {
             <div className="bg-gradient-to-br from-[#007BFF]/10 to-[#FFC107]/10 p-6 sm:p-8 rounded-lg order-1 lg:order-2">
               <div className="text-center">
                 <div className="w-16 h-16 sm:w-20 sm:h-20 bg-[#007BFF] rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
-                  <span className="text-white text-2xl sm:text-3xl">🎯</span>
+                  <span className="text-white text-2xl sm:text-3xl">🚀</span>
                 </div>
                 <h3 className="text-lg sm:text-xl font-semibold text-[#007BFF] mb-2">Mission-Driven</h3>
                 <p className="text-sm sm:text-base text-gray-600">
@@ -93,8 +93,8 @@ export default function AboutPage() {
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center text-[#007BFF] mb-8 sm:mb-12">What We Offer</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#007BFF] rounded-lg flex items-center justify-center mb-3 sm:mb-4">
-                <span className="text-white text-lg sm:text-xl">👥</span>
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#FFC107] rounded-lg flex items-center justify-center mb-3 sm:mb-4">
+                <span className="text-black text-lg sm:text-xl">👥</span>
               </div>
               <h3 className="text-lg sm:text-xl font-semibold text-[#007BFF] mb-2 sm:mb-3">Expert Mentorship</h3>
               <p className="text-sm sm:text-base text-gray-600">
@@ -153,7 +153,7 @@ export default function AboutPage() {
       {/* Code of Conduct */}
       <section className="py-24 bg-white">
         <div className="mx-auto max-w-4xl px-4">
-          <h2 className="text-6xl font-bold text-center text-[#007BFF] mb-8">Code of Conduct</h2>
+          <h2 className="text-6xl font-bold text-center text-[#007BFF] mb-8">Guidelines</h2>
           <div className="bg-gray-50 p-8 rounded-lg">
             <p className="text-lg text-gray-700 leading-relaxed mb-6">
               Participants are expected to act professionally, maintain integrity, and follow platform rules. 
