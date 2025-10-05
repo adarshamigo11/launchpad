@@ -10,6 +10,7 @@ export interface UserDoc {
   profilePhoto: string
   points: number
   visitedTaskIds: string[]
+  uniqueId: string
   createdAt: Date
 }
 
@@ -51,6 +52,7 @@ export type User = {
   profilePhoto: string
   points: number
   visitedTaskIds: string[]
+  uniqueId: string
 }
 
 export type Task = {

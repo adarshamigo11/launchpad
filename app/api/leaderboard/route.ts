@@ -21,6 +21,7 @@ export async function GET() {
         profilePhoto: u.profilePhoto,
         points: u.points,
         visitedTaskIds: u.visitedTaskIds,
+        uniqueId: u.uniqueId,
       })),
     })
   } catch (error) {

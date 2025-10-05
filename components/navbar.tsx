@@ -3,6 +3,7 @@ import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { useApp } from "@/components/state/auth-context"
+import { ThemeToggle } from "@/components/theme-toggle"
 import { cn } from "@/lib/utils"
 
 export function Navbar() {
@@ -33,7 +34,7 @@ export function Navbar() {
   return (
     <header className="absolute top-0 left-0 right-0 z-30 bg-transparent">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 pt-4 sm:pt-6">
-        <div className="bg-black/20 backdrop-blur-md rounded-2xl border border-white/20 shadow-lg">
+        <div className="bg-black/20 dark:bg-black/20 backdrop-blur-md rounded-2xl border border-white/20 dark:border-white/20 shadow-lg">
           <div className="h-16 sm:h-20 flex items-center justify-between px-6 sm:px-8">
             <Link href="/" className="flex items-center">
               <img 
@@ -49,7 +50,7 @@ export function Navbar() {
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    "text-white text-base font-medium transition-colors hover:text-[#FFC107] relative group",
+                    "text-white dark:text-white text-base font-medium transition-colors hover:text-[#FFC107] relative group",
                     pathname === link.href && "text-[#FFC107]"
                   )}
                 >
@@ -63,7 +64,7 @@ export function Navbar() {
               <Button
                 variant="ghost"
                 size="sm"
-                className="text-white hover:text-white/80 hover:bg-white/10"
+                className="text-white dark:text-white hover:text-white/80 hover:bg-white/10"
                 onClick={() => {
                   // Simple mobile menu toggle - you can enhance this with a proper mobile menu
                   const mobileMenu = document.getElementById('mobile-menu')
@@ -80,17 +81,23 @@ export function Navbar() {
             
             {/* Desktop Auth Buttons */}
             <div className="hidden md:flex items-center gap-4">
+              {currentUser && <ThemeToggle />}
               {currentUser ? (
-                <Button
-                  variant="outline"
-                  className="border-white text-white hover:bg-white hover:text-black bg-transparent rounded-lg px-4 sm:px-6 py-2 sm:py-3 font-medium text-base"
-                  onClick={() => {
-                    logout()
-                    router.push("/")
-                  }}
-                >
-                  Logout
-                </Button>
+                <div className="flex items-center gap-3">
+                  <span className="text-white dark:text-white text-sm font-medium bg-white/20 dark:bg-white/20 px-3 py-1 rounded-lg">
+                    {currentUser.uniqueId}
+                  </span>
+                  <Button
+                    variant="outline"
+                    className="border-white text-white hover:bg-white hover:text-black bg-transparent rounded-lg px-4 sm:px-6 py-2 sm:py-3 font-medium text-base"
+                    onClick={() => {
+                      logout()
+                      router.push("/")
+                    }}
+                  >
+                    Logout
+                  </Button>
+                </div>
               ) : (
                 <Link href="/login">
                   <Button 

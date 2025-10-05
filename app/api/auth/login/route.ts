@@ -53,6 +53,7 @@ export async function POST(req: NextRequest) {
         profilePhoto: user.profilePhoto,
         points: user.points,
         visitedTaskIds: user.visitedTaskIds,
+        uniqueId: user.uniqueId,
       },
     })
   } catch (error) {

@@ -16,7 +16,7 @@ export default function ProfilePage() {
   if (!currentUser || currentUser.email === "admin@admin.com") return null
 
   return (
-    <section className="mx-auto max-w-xl px-4 py-12 grid gap-6">
+    <section className="mx-auto max-w-xl px-4 pt-32 pb-12 grid gap-6">
       <div className="flex items-center gap-4">
         <Image
           src={currentUser.profilePhoto || "/placeholder-user.jpg"}
@@ -28,6 +28,9 @@ export default function ProfilePage() {
         <div>
           <h1 className="text-2xl font-semibold">{currentUser.name}</h1>
           <p className="text-muted-foreground">{currentUser.email}</p>
+          <p className="text-sm font-medium text-primary bg-primary/10 px-2 py-1 rounded-md inline-block mt-1">
+            {currentUser.uniqueId}
+          </p>
         </div>
       </div>
       <div className="rounded-lg border border-primary/40 p-4">

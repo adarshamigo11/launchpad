@@ -1,6 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { getDb } from "@/lib/mongodb"
 import type { UserDoc } from "@/lib/models"
+import { generateUniqueId } from "@/lib/server-utils"
 
 export async function POST(req: NextRequest) {
   try {
@@ -19,6 +20,9 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ ok: false, message: "User already exists" }, { status: 400 })
     }
 
+    // Generate unique ID for new user
+    const uniqueId = await generateUniqueId()
+
     // Create new user
     const newUser: UserDoc = {
       email,
@@ -27,6 +31,7 @@ export async function POST(req: NextRequest) {
       profilePhoto: "/placeholder-user.jpg",
       points: 0,
       visitedTaskIds: [],
+      uniqueId,
       createdAt: new Date(),
     }
 

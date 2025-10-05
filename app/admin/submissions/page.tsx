@@ -78,9 +78,14 @@ export default function AdminSubmissionsPage() {
                     <span className="text-sm">
                       {user?.name} — {user?.email}
                     </span>
-                    <span className="text-xs text-muted-foreground">
-                      Task: {task?.title} ({task?.points} pts)
-                    </span>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded-md">
+                        {user?.uniqueId}
+                      </span>
+                      <span className="text-xs text-muted-foreground">
+                        Task: {task?.title} ({task?.points} pts)
+                      </span>
+                    </div>
                   </div>
                   <a href={s.dataUrl} download={s.fileName} className="text-xs underline">
                     Download

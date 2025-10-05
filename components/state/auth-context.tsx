@@ -9,6 +9,7 @@ export type User = {
   profilePhoto: string
   points: number
   visitedTaskIds: string[]
+  uniqueId: string
 }
 
 export type Task = {

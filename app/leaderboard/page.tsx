@@ -27,22 +27,23 @@ export default function LeaderboardPage() {
 
   if (loading) {
     return (
-      <section className="mx-auto max-w-3xl px-4 py-10">
+      <section className="mx-auto max-w-3xl px-4 pt-32 pb-10">
         <p className="text-muted-foreground">Loading leaderboard...</p>
       </section>
     )
   }
 
   return (
-    <section className="mx-auto max-w-3xl px-4 py-10">
+    <section className="mx-auto max-w-3xl px-4 pt-32 pb-10">
       <h1 className="text-2xl font-semibold mb-6">Leaderboard</h1>
       <ul className="grid gap-2">
         {ranked.map((u, idx) => (
           <li key={u.email} className="flex items-center justify-between rounded-md border border-primary/40 px-4 py-3">
             <div className="flex items-center gap-3">
               <span className="text-sm text-muted-foreground w-6">{idx + 1}.</span>
-              <span className="font-medium">{u.name}</span>
-              <span className="text-muted-foreground text-sm">({u.email})</span>
+              <span className="text-sm font-medium text-primary bg-primary/10 px-2 py-1 rounded-md">
+                {u.uniqueId}
+              </span>
             </div>
             <span className="text-primary font-semibold">{u.points}</span>
           </li>
