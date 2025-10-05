@@ -21,7 +21,7 @@ export async function GET() {
         profilePhoto: u.profilePhoto,
         points: u.points,
         visitedTaskIds: u.visitedTaskIds,
-        uniqueId: u.uniqueId,
+        uniqueId: u.uniqueId || "LP000", // Fallback for users without uniqueId
       })),
     })
   } catch (error) {

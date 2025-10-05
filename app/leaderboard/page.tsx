@@ -33,9 +33,24 @@ export default function LeaderboardPage() {
     )
   }
 
+  const refreshLeaderboard = async () => {
+    setLoading(true)
+    const users = await fetchLeaderboard()
+    setRanked(users)
+    setLoading(false)
+  }
+
   return (
     <section className="mx-auto max-w-3xl px-4 pt-32 pb-10">
-      <h1 className="text-2xl font-semibold mb-6">Leaderboard</h1>
+      <div className="flex items-center justify-between mb-6">
+        <h1 className="text-2xl font-semibold">Leaderboard</h1>
+        <button
+          onClick={refreshLeaderboard}
+          className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
+        >
+          Refresh
+        </button>
+      </div>
       <ul className="grid gap-2">
         {ranked.map((u, idx) => (
           <li key={u.email} className="flex items-center justify-between rounded-md border border-primary/40 px-4 py-3">
