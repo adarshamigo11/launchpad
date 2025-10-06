@@ -1,6 +1,7 @@
 "use client"
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { useApp } from "@/components/state/auth-context"
 import { ThemeToggle } from "@/components/theme-toggle"
@@ -10,6 +11,7 @@ export function Navbar() {
   const { currentUser, isAdmin, logout } = useApp()
   const pathname = usePathname()
   const router = useRouter()
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   const leftLinks =
     currentUser && isAdmin
@@ -27,7 +29,6 @@ export function Navbar() {
         : [
             { href: "/", label: "Home" },
             { href: "/about", label: "About" },
-            { href: "/challenges", label: "Challenges" },
             { href: "/contact", label: "Contact" },
           ]
 
@@ -65,17 +66,17 @@ export function Navbar() {
                 variant="ghost"
                 size="sm"
                 className="text-white dark:text-white hover:text-white/80 hover:bg-white/10"
-                onClick={() => {
-                  // Simple mobile menu toggle - you can enhance this with a proper mobile menu
-                  const mobileMenu = document.getElementById('mobile-menu')
-                  if (mobileMenu) {
-                    mobileMenu.classList.toggle('hidden')
-                  }
-                }}
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               >
-                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
+                {isMobileMenuOpen ? (
+                  <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                ) : (
+                  <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                )}
               </Button>
             </div>
             
@@ -111,6 +112,65 @@ export function Navbar() {
             </div>
           </div>
         </div>
+        
+        {/* Mobile Menu */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden mt-2 bg-black/20 dark:bg-black/20 backdrop-blur-md rounded-2xl border border-white/20 dark:border-white/20 shadow-lg">
+            <div className="px-6 py-4 space-y-4">
+              {/* Navigation Links */}
+              <nav className="space-y-3">
+                {leftLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={cn(
+                      "block text-white dark:text-white text-base font-medium transition-colors hover:text-[#FFC107] py-2",
+                      pathname === link.href && "text-[#FFC107]"
+                    )}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </nav>
+              
+              {/* Mobile Auth Section */}
+              <div className="pt-4 border-t border-white/20">
+                {currentUser && (
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-white dark:text-white text-sm font-medium bg-white/20 dark:bg-white/20 px-3 py-1 rounded-lg">
+                      {currentUser.uniqueId}
+                    </span>
+                    <ThemeToggle />
+                  </div>
+                )}
+                
+                {currentUser ? (
+                  <Button
+                    variant="outline"
+                    className="w-full border-white text-white hover:bg-white hover:text-black bg-transparent rounded-lg py-2"
+                    onClick={() => {
+                      logout()
+                      router.push("/")
+                      setIsMobileMenuOpen(false)
+                    }}
+                  >
+                    Logout
+                  </Button>
+                ) : (
+                  <Link href="/login" className="block" onClick={() => setIsMobileMenuOpen(false)}>
+                    <Button 
+                      variant="outline" 
+                      className="w-full border-white text-white hover:bg-white hover:text-black bg-transparent rounded-lg py-2"
+                    >
+                      Login
+                    </Button>
+                  </Link>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </header>
   )

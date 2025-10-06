@@ -87,68 +87,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Key Features */}
-      <section className="py-16 sm:py-20 md:py-24 bg-gray-50">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center text-[#007BFF] mb-8 sm:mb-12">What We Offer</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#FFC107] rounded-lg flex items-center justify-center mb-3 sm:mb-4">
-                <span className="text-black text-lg sm:text-xl">👥</span>
-              </div>
-              <h3 className="text-lg sm:text-xl font-semibold text-[#007BFF] mb-2 sm:mb-3">Expert Mentorship</h3>
-              <p className="text-sm sm:text-base text-gray-600">
-                Industry experts guide you throughout the competition, advising on what to do and what to avoid, helping you make informed decisions.
-              </p>
-            </div>
-            <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#FFC107] rounded-lg flex items-center justify-center mb-3 sm:mb-4">
-                <span className="text-black text-lg sm:text-xl">💼</span>
-              </div>
-              <h3 className="text-lg sm:text-xl font-semibold text-[#007BFF] mb-2 sm:mb-3">Ready-to-Sell Services</h3>
-              <p className="text-sm sm:text-base text-gray-600">
-                Access curated services that you can immediately start selling to build your agency and generate revenue from day one.
-              </p>
-            </div>
-            <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#007BFF] rounded-lg flex items-center justify-center mb-3 sm:mb-4">
-                <span className="text-white text-lg sm:text-xl">🏆</span>
-              </div>
-              <h3 className="text-lg sm:text-xl font-semibold text-[#007BFF] mb-2 sm:mb-3">Competition & Awards</h3>
-              <p className="text-sm sm:text-base text-gray-600">
-                Compete with peers and get recognized for achievements including highest turnover, best branding, and more at the Award Night.
-              </p>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-lg">
-              <div className="w-12 h-12 bg-[#FFC107] rounded-lg flex items-center justify-center mb-4">
-                <span className="text-black text-xl">📈</span>
-              </div>
-              <h3 className="text-xl font-semibold text-[#007BFF] mb-3">Real-World Experience</h3>
-              <p className="text-gray-600">
-                Learn through actual sales, client handling, and business operations that prepare you for real entrepreneurial challenges.
-              </p>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-lg">
-              <div className="w-12 h-12 bg-[#007BFF] rounded-lg flex items-center justify-center mb-4">
-                <span className="text-white text-xl">🤝</span>
-              </div>
-              <h3 className="text-xl font-semibold text-[#007BFF] mb-3">Supportive Community</h3>
-              <p className="text-gray-600">
-                Connect with like-minded individuals, share experiences, and build lasting relationships with fellow entrepreneurs.
-              </p>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-lg">
-              <div className="w-12 h-12 bg-[#FFC107] rounded-lg flex items-center justify-center mb-4">
-                <span className="text-black text-xl">🎓</span>
-              </div>
-              <h3 className="text-xl font-semibold text-[#007BFF] mb-3">Structured Learning</h3>
-              <p className="text-gray-600">
-                Follow a structured 3-month program with clear milestones, challenges, and evaluation criteria for steady progress.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Code of Conduct */}
       <section className="py-24 bg-white">
@@ -191,13 +129,8 @@ export default function AboutPage() {
             Take the first step towards building your entrepreneurial dream.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/challenges">
-              <Button size="lg" className="bg-[#FFC107] text-black hover:bg-[#FFC107]/90 font-bold text-lg px-8 py-3">
-                View Challenges
-              </Button>
-            </Link>
             <Link href="/login">
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-[#007BFF] font-semibold text-lg px-8 py-3">
+              <Button size="lg" className="bg-[#FFC107] text-black hover:bg-[#FFC107]/90 font-bold text-lg px-8 py-3">
                 Register Now
               </Button>
             </Link>

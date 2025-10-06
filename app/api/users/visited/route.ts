@@ -16,7 +16,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ ok: true })
   } catch (error) {
-    console.error("[v0] Update visited error:", error)
+    console.error("[Launchpad] Update visited error:", error)
     return NextResponse.json({ ok: false, message: "Internal server error" }, { status: 500 })
   }
 }

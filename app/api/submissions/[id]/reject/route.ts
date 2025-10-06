@@ -19,7 +19,7 @@ export async function POST(req: NextRequest, { params }: { params: { id: string 
 
     return NextResponse.json({ ok: true })
   } catch (error) {
-    console.error("[v0] Reject submission error:", error)
+    console.error("[Launchpad] Reject submission error:", error)
     return NextResponse.json({ ok: false, message: "Internal server error" }, { status: 500 })
   }
 }

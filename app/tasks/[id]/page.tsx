@@ -7,6 +7,7 @@ import Image from "next/image"
 import { useApp, type Task, type Submission } from "@/components/state/auth-context"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import Link from "next/link"
 
@@ -15,6 +16,7 @@ export default function TaskDetailPage() {
   const router = useRouter()
   const { currentUser, submitTask, setVisited, fetchTask, fetchSubmissions } = useApp()
   const [file, setFile] = useState<File | null>(null)
+  const [message, setMessage] = useState("")
   const [task, setTask] = useState<Task | null>(null)
   const [submissions, setSubmissions] = useState<Submission[]>([])
   const [loading, setLoading] = useState(true)
@@ -55,12 +57,27 @@ export default function TaskDetailPage() {
 
   const mySubs = submissions.filter((s) => s.userEmail === currentUser.email)
 
+  const formatDate = (timestamp: number) => {
+    return new Date(timestamp).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    })
+  }
+
+  const isExpired = (timestamp: number) => {
+    return new Date(timestamp) < new Date()
+  }
+
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!file) return
-    const res = await submitTask(task.id, file)
+    const res = await submitTask(task.id, file, message)
     if (res.ok) {
       setFile(null)
+      setMessage("")
       // Refresh submissions
       const subsData = await fetchSubmissions()
       setSubmissions(subsData.filter((s) => s.taskId === id))
@@ -74,27 +91,68 @@ export default function TaskDetailPage() {
       </Link>
       <Card className="border-primary/40 shadow-[0_0_24px_-10px] shadow-primary/40">
         <CardHeader>
-          <CardTitle className="text-balance">{task.title}</CardTitle>
+          <div className="flex items-start justify-between gap-4">
+            <CardTitle className="text-balance text-xl">{task.challengeName}</CardTitle>
+            <div className="flex items-center gap-2">
+              <span className={`px-3 py-1 rounded-full text-sm font-medium ${
+                task.category === "basic" 
+                  ? "bg-blue-100 text-blue-800" 
+                  : "bg-yellow-100 text-yellow-800"
+              }`}>
+                {task.category}
+              </span>
+            </div>
+          </div>
         </CardHeader>
-        <CardContent className="grid gap-4">
-          <Image
-            src={task.image || "/placeholder.svg?height=240&width=640&query=neon%20task%20detail"}
-            alt={task.title}
-            width={960}
-            height={480}
-            className="rounded-md w-full h-56 object-cover"
-          />
-          <p className="text-muted-foreground leading-relaxed">{task.details}</p>
-          <div className="text-sm">
-            <span className="text-muted-foreground">Points: </span>
-            <span className="text-primary font-medium">{task.points}</span>
+        <CardContent className="grid gap-6">
+          <div className="grid grid-cols-2 gap-4 text-sm">
+            <div className="flex items-center justify-between">
+              <span className="text-muted-foreground">Points:</span>
+              <span className="text-primary font-semibold">{task.points}</span>
+            </div>
+            <div className="flex items-center justify-between">
+              <span className="text-muted-foreground">Deadline:</span>
+              <span className={`font-medium ${isExpired(task.lastDate) ? 'text-red-600' : 'text-green-600'}`}>
+                {formatDate(task.lastDate)}
+              </span>
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            <div>
+              <h3 className="font-semibold mb-2">Description</h3>
+              <p className="text-muted-foreground leading-relaxed">{task.description}</p>
+            </div>
+
+            <div>
+              <h3 className="font-semibold mb-2">Guidelines</h3>
+              <p className="text-muted-foreground leading-relaxed">{task.guidelines}</p>
+            </div>
+
+            <div>
+              <h3 className="font-semibold mb-2">Submission Guidelines</h3>
+              <p className="text-muted-foreground leading-relaxed">{task.submissionGuidelines}</p>
+            </div>
           </div>
         </CardContent>
       </Card>
 
       <form onSubmit={onSubmit} className="grid gap-3 rounded-lg border border-primary/40 p-4">
-        <label className="text-sm">Upload file</label>
-        <Input type="file" onChange={(e) => setFile(e.target.files?.[0] || null)} />
+        <div className="grid gap-2">
+          <label className="text-sm font-medium">Upload file</label>
+          <Input type="file" onChange={(e) => setFile(e.target.files?.[0] || null)} />
+        </div>
+        <div className="grid gap-2">
+          <label className="text-sm font-medium">Message (Optional)</label>
+          <Textarea 
+            placeholder="Add a message to explain your submission or provide additional context..."
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            rows={3}
+            maxLength={500}
+          />
+          <p className="text-xs text-muted-foreground">{message.length}/500 characters</p>
+        </div>
         <Button type="submit" className="bg-primary text-primary-foreground">
           Submit
         </Button>

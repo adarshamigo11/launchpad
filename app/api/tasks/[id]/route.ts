@@ -25,7 +25,7 @@ export async function DELETE(req: NextRequest, { params }: { params: { id: strin
 
     return NextResponse.json({ ok: true })
   } catch (error) {
-    console.error("[v0] Delete task error:", error)
+    console.error("[Launchpad] Delete task error:", error)
     return NextResponse.json({ ok: false, message: "Internal server error" }, { status: 500 })
   }
 }
@@ -46,15 +46,18 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
       ok: true,
       task: {
         id: task._id.toString(),
-        title: task.title,
-        details: task.details,
-        image: task.image,
-        points: task.points,
+        challengeName: task.challengeName || task.title || "Untitled Challenge",
+        description: task.description || task.details || "No description provided.",
+        guidelines: task.guidelines || "No guidelines provided.",
+        submissionGuidelines: task.submissionGuidelines || "No submission guidelines provided.",
+        points: task.points || 0,
+        lastDate: task.lastDate ? task.lastDate.getTime() : new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).getTime(),
+        category: task.category || "basic",
         status: task.status,
       },
     })
   } catch (error) {
-    console.error("[v0] Get task error:", error)
+    console.error("[Launchpad] Get task error:", error)
     return NextResponse.json({ ok: false, message: "Internal server error" }, { status: 500 })
   }
 }

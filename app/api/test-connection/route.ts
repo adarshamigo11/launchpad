@@ -13,7 +13,7 @@ export async function GET(req: NextRequest) {
     }
 
     const uri = process.env.MongoDBuri
-    console.log("Connection test - URI:", uri)
+    // console.log("Connection test - URI:", uri)
     
     // Test with very basic connection options
     client = new MongoClient(uri, {
@@ -21,13 +21,13 @@ export async function GET(req: NextRequest) {
       connectTimeoutMS: 5000,
     })
     
-    console.log("Connection test - Attempting to connect...")
+    // console.log("Connection test - Attempting to connect...")
     await client.connect()
-    console.log("Connection test - Connected successfully!")
+    // console.log("Connection test - Connected successfully!")
     
     // Test ping
     await client.db("admin").admin().ping()
-    console.log("Connection test - Ping successful!")
+    // console.log("Connection test - Ping successful!")
     
     return NextResponse.json({ 
       ok: true, 
@@ -58,7 +58,7 @@ export async function GET(req: NextRequest) {
     if (client) {
       try {
         await client.close()
-        console.log("Connection test - Client closed")
+        // console.log("Connection test - Client closed")
       } catch (closeError) {
         console.error("Connection test - Error closing client:", closeError)
       }

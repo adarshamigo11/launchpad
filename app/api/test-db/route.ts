@@ -13,22 +13,22 @@ export async function GET(req: NextRequest) {
     }
 
     const uri = process.env.MongoDBuri
-    console.log("MongoDB URI length:", uri.length)
-    console.log("MongoDB URI preview:", uri.substring(0, 50) + "...")
+    // console.log("MongoDB URI length:", uri.length)
+    // console.log("MongoDB URI preview:", uri.substring(0, 50) + "...")
 
     // Try to connect to database
-    console.log("Attempting to connect to database...")
+    // console.log("Attempting to connect to database...")
     const db = await getDb()
-    console.log("Database connection successful")
+    // console.log("Database connection successful")
     
     // Try to ping the database
     await db.admin().ping()
-    console.log("Database ping successful")
+    // console.log("Database ping successful")
     
     // Try to access the users collection
     const usersCollection = db.collection("users")
     const userCount = await usersCollection.countDocuments()
-    console.log("User count:", userCount)
+    // console.log("User count:", userCount)
     
     return NextResponse.json({ 
       ok: true, 

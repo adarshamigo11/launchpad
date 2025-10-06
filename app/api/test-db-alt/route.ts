@@ -15,8 +15,8 @@ export async function GET(req: NextRequest) {
     }
 
     const uri = process.env.MongoDBuri
-    console.log("Alternative connection test - URI length:", uri.length)
-    console.log("Alternative connection test - URI preview:", uri.substring(0, 50) + "...")
+    // console.log("Alternative connection test - URI length:", uri.length)
+    // console.log("Alternative connection test - URI preview:", uri.substring(0, 50) + "...")
 
     // Create a new client with minimal options
     client = new MongoClient(uri, {
@@ -26,17 +26,17 @@ export async function GET(req: NextRequest) {
 
     // Try to connect
     await client.connect()
-    console.log("Alternative connection successful")
+    // console.log("Alternative connection successful")
     
     // Try to ping
     await client.db("admin").admin().ping()
-    console.log("Alternative ping successful")
+    // console.log("Alternative ping successful")
     
     // Try to access the Launchpad database
     const db = client.db("Launchpad")
     const usersCollection = db.collection("users")
     const userCount = await usersCollection.countDocuments()
-    console.log("Alternative user count:", userCount)
+    // console.log("Alternative user count:", userCount)
     
     return NextResponse.json({ 
       ok: true, 

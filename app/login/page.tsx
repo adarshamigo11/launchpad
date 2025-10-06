@@ -99,7 +99,7 @@ export default function LoginPage() {
             <img 
               src="/logo.png" 
               alt="Launchpad Logo" 
-              className="h-12 sm:h-16 w-auto mx-auto mb-3 sm:mb-4"
+              className="h-48 sm:h-56 md:h-64 w-auto mx-auto mb-1 sm:mb-2"
             />
             <h1 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2">
               {tab === "login" ? "Sign in to Launchpad" : "Join Launchpad"}

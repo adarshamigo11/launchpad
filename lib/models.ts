@@ -16,10 +16,13 @@ export interface UserDoc {
 
 export interface TaskDoc {
   _id?: ObjectId
-  title: string
-  details: string
-  image: string
+  challengeName: string
+  description: string
+  guidelines: string
+  submissionGuidelines: string
   points: number
+  lastDate: Date
+  category: "basic" | "advanced"
   status: "draft" | "published"
   createdAt: Date
 }
@@ -30,6 +33,7 @@ export interface SubmissionDoc {
   userEmail: string
   fileName: string
   dataUrl: string
+  message: string
   status: SubmissionStatus
   createdAt: Date
 }
@@ -57,10 +61,13 @@ export type User = {
 
 export type Task = {
   id: string
-  title: string
-  details: string
-  image: string
+  challengeName: string
+  description: string
+  guidelines: string
+  submissionGuidelines: string
   points: number
+  lastDate: number
+  category: "basic" | "advanced"
   status: "draft" | "published"
 }
 
@@ -70,6 +77,7 @@ export type Submission = {
   userEmail: string
   fileName: string
   dataUrl: string
+  message: string
   status: SubmissionStatus
   createdAt: number
 }

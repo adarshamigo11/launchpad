@@ -39,7 +39,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ ok: true, message: "User created successfully" })
   } catch (error) {
-    console.error("[v0] Signup error:", error)
+    console.error("[Launchpad] Signup error:", error)
     return NextResponse.json({ ok: false, message: "Internal server error" }, { status: 500 })
   }
 }

@@ -10,19 +10,24 @@ export async function GET() {
 
     const tasks = await tasksCollection.find({ status: "published" }).sort({ createdAt: -1 }).toArray()
 
+    const mappedTasks = tasks.map((t) => ({
+      id: t._id?.toString(),
+      challengeName: t.challengeName || t.title || "Untitled Challenge",
+      description: t.description || t.details || "No description provided.",
+      guidelines: t.guidelines || "No guidelines provided.",
+      submissionGuidelines: t.submissionGuidelines || "No submission guidelines provided.",
+      points: t.points || 0,
+      lastDate: t.lastDate ? t.lastDate.getTime() : new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).getTime(), // 30 days from now if no date
+      category: t.category || "basic",
+      status: t.status,
+    }))
+
     return NextResponse.json({
       ok: true,
-      tasks: tasks.map((t) => ({
-        id: t._id?.toString(),
-        title: t.title,
-        details: t.details,
-        image: t.image,
-        points: t.points,
-        status: t.status,
-      })),
+      tasks: mappedTasks,
     })
   } catch (error) {
-    console.error("[v0] Get tasks error:", error)
+    console.error("[Launchpad] Get tasks error:", error)
     return NextResponse.json({ ok: false, message: "Internal server error" }, { status: 500 })
   }
 }
@@ -30,7 +35,7 @@ export async function GET() {
 // POST create new task (admin only)
 export async function POST(req: NextRequest) {
   try {
-    const { title, details, image, points, userEmail } = await req.json()
+    const { challengeName, description, guidelines, submissionGuidelines, points, lastDate, category, userEmail } = await req.json()
 
     // Simple admin check
     if (userEmail !== "admin@admin.com") {
@@ -41,10 +46,13 @@ export async function POST(req: NextRequest) {
     const tasksCollection = db.collection<TaskDoc>("tasks")
 
     const newTask: TaskDoc = {
-      title,
-      details,
-      image,
+      challengeName,
+      description,
+      guidelines,
+      submissionGuidelines,
       points,
+      lastDate: new Date(lastDate),
+      category,
       status: "published",
       createdAt: new Date(),
     }
@@ -55,15 +63,18 @@ export async function POST(req: NextRequest) {
       ok: true,
       task: {
         id: result.insertedId.toString(),
-        title,
-        details,
-        image,
+        challengeName,
+        description,
+        guidelines,
+        submissionGuidelines,
         points,
+        lastDate: newTask.lastDate.getTime(),
+        category,
         status: "published",
       },
     })
   } catch (error) {
-    console.error("[v0] Create task error:", error)
+    console.error("[Launchpad] Create task error:", error)
     return NextResponse.json({ ok: false, message: "Internal server error" }, { status: 500 })
   }
 }

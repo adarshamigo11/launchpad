@@ -14,7 +14,7 @@ export async function GET(req: NextRequest) {
     }
 
     const uri = process.env.MongoDBuri
-    console.log("Atlas test - Starting connection test")
+    // console.log("Atlas test - Starting connection test")
     
     // Test with different connection options
     const options = {
@@ -28,18 +28,18 @@ export async function GET(req: NextRequest) {
     
     client = new MongoClient(uri, options)
     
-    console.log("Atlas test - Attempting connection with options:", options)
+    // console.log("Atlas test - Attempting connection with options:", options)
     await client.connect()
-    console.log("Atlas test - Connection successful")
+    // console.log("Atlas test - Connection successful")
     
     // Test server info
     const serverInfo = await client.db("admin").admin().serverStatus()
-    console.log("Atlas test - Server info retrieved")
+    // console.log("Atlas test - Server info retrieved")
     
     // Test database access
     const db = client.db("Launchpad")
     const stats = await db.stats()
-    console.log("Atlas test - Database stats retrieved")
+    // console.log("Atlas test - Database stats retrieved")
     
     return NextResponse.json({ 
       ok: true, 
@@ -70,7 +70,7 @@ export async function GET(req: NextRequest) {
     if (client) {
       try {
         await client.close()
-        console.log("Atlas test - Client closed")
+        // console.log("Atlas test - Client closed")
       } catch (closeError) {
         console.error("Atlas test - Error closing client:", closeError)
       }

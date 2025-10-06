@@ -83,7 +83,7 @@ export default function AdminSubmissionsPage() {
                         {user?.uniqueId}
                       </span>
                       <span className="text-xs text-muted-foreground">
-                        Task: {task?.title} ({task?.points} pts)
+                        Task: {task?.challengeName} ({task?.points} pts)
                       </span>
                     </div>
                   </div>
@@ -91,6 +91,12 @@ export default function AdminSubmissionsPage() {
                     Download
                   </a>
                 </div>
+                {s.message && (
+                  <div className="mt-2 p-3 bg-muted/50 rounded-md">
+                    <p className="text-xs font-medium text-muted-foreground mb-1">Message:</p>
+                    <p className="text-sm">{s.message}</p>
+                  </div>
+                )}
                 <div className="mt-3 flex items-center gap-2">
                   <Button
                     size="sm"

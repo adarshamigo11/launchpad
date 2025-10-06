@@ -25,7 +25,7 @@ export async function GET() {
       })),
     })
   } catch (error) {
-    console.error("[v0] Get leaderboard error:", error)
+    console.error("[Launchpad] Get leaderboard error:", error)
     return NextResponse.json({ ok: false, message: "Internal server error" }, { status: 500 })
   }
 }

@@ -18,14 +18,14 @@ export async function GET(req: NextRequest) {
     // Test with the most basic connection
     client = new MongoClient(uri)
     
-    console.log("Testing basic MongoDB connection...")
+    // console.log("Testing basic MongoDB connection...")
     await client.connect()
-    console.log("Basic connection successful")
+    // console.log("Basic connection successful")
     
     // Test database access
     const db = client.db("Launchpad")
     const collections = await db.listCollections().toArray()
-    console.log("Collections found:", collections.length)
+    // console.log("Collections found:", collections.length)
     
     return NextResponse.json({ 
       ok: true, 

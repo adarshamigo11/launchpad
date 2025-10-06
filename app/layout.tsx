@@ -10,9 +10,34 @@ import { Toaster } from "@/components/ui/toaster"
 import { Suspense } from "react"
 
 export const metadata: Metadata = {
-  title: "v0 App",
-  description: "Created with v0",
-  generator: "v0.app",
+  metadataBase: new URL('https://launchpad-platform.vercel.app'),
+  title: "Launchpad - Aim for Innovation, Win with Execution",
+  description: "A platform that supports aspiring solopreneurs, youth, and startups in building their own agencies and brands. Through mentorship, ready-to-sell services, and healthy competition, transform your ambition into sustainable businesses.",
+  keywords: "entrepreneurship, startup, mentorship, business, competition, solopreneur, agency, brand building",
+  authors: [{ name: "Launchpad Team" }],
+  openGraph: {
+    title: "Launchpad - Aim for Innovation, Win with Execution",
+    description: "A platform that supports aspiring solopreneurs, youth, and startups in building their own agencies and brands.",
+    type: "website",
+    images: [
+      {
+        url: "/logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Launchpad Logo",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Launchpad - Aim for Innovation, Win with Execution",
+    description: "A platform that supports aspiring solopreneurs, youth, and startups in building their own agencies and brands.",
+    images: ["/logo.png"],
+  },
+  icons: {
+    icon: "/logo.png",
+    apple: "/logo.png",
+  },
 }
 
 export default function RootLayout({

@@ -14,10 +14,13 @@ export type User = {
 
 export type Task = {
   id: string
-  title: string
-  details: string
-  image: string
+  challengeName: string
+  description: string
+  guidelines: string
+  submissionGuidelines: string
   points: number
+  lastDate: number
+  category: "basic" | "advanced"
   status: "draft" | "published"
 }
 
@@ -27,6 +30,7 @@ export type Submission = {
   userEmail: string
   fileName: string
   dataUrl: string
+  message: string
   status: "pending" | "approved" | "rejected"
   createdAt: number
 }
@@ -42,7 +46,7 @@ type Ctx = {
   fetchTask: (id: string) => Promise<Task | null>
   publishTask: (payload: Omit<Task, "id" | "status">) => Promise<void>
   deleteTask: (id: string) => Promise<void>
-  submitTask: (taskId: string, file: File) => Promise<{ ok: boolean; message?: string }>
+  submitTask: (taskId: string, file: File, message: string) => Promise<{ ok: boolean; message?: string }>
   setVisited: (taskId: string) => Promise<void>
   fetchSubmissions: () => Promise<Submission[]>
   approveSubmission: (submissionId: string) => Promise<void>
@@ -52,34 +56,13 @@ type Ctx = {
 
 const AppContext = createContext<Ctx | null>(null)
 
-const STORAGE_KEY = "neon-tasks-user-email"
-
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [currentUser, setCurrentUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
 
-  // Load user from localStorage on mount
+  // No persistent login - users must login each time
   useEffect(() => {
-    const storedEmail = localStorage.getItem(STORAGE_KEY)
-    if (storedEmail) {
-      fetch("/api/auth/me", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: storedEmail }),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.ok) {
-            setCurrentUser(data.user)
-          } else {
-            localStorage.removeItem(STORAGE_KEY)
-          }
-        })
-        .catch(() => localStorage.removeItem(STORAGE_KEY))
-        .finally(() => setLoading(false))
-    } else {
-      setLoading(false)
-    }
+    setLoading(false)
   }, [])
 
   const isAdmin = currentUser?.email === "admin@admin.com"
@@ -94,7 +77,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const data = await res.json()
       return data
     } catch (error) {
-      console.error("[v0] Signup error:", error)
+      console.error("[Launchpad] Signup error:", error)
       return { ok: false, message: "Network error" }
     }
   }, [])
@@ -109,18 +92,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const data = await res.json()
       if (data.ok) {
         setCurrentUser(data.user)
-        localStorage.setItem(STORAGE_KEY, email)
+        // No localStorage - session only
       }
       return data
     } catch (error) {
-      console.error("[v0] Login error:", error)
+      console.error("[Launchpad] Login error:", error)
       return { ok: false, message: "Network error" }
     }
   }, [])
 
   const logout = useCallback(() => {
     setCurrentUser(null)
-    localStorage.removeItem(STORAGE_KEY)
+    // No localStorage to clear - session only
   }, [])
 
   const refreshUser = useCallback(async () => {
@@ -136,7 +119,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         setCurrentUser(data.user)
       }
     } catch (error) {
-      console.error("[v0] Refresh user error:", error)
+      console.error("[Launchpad] Refresh user error:", error)
     }
   }, [currentUser])
 
@@ -146,7 +129,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const data = await res.json()
       return data.ok ? data.tasks : []
     } catch (error) {
-      console.error("[v0] Fetch tasks error:", error)
+      console.error("[Launchpad] Fetch tasks error:", error)
       return []
     }
   }, [])
@@ -157,22 +140,25 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const data = await res.json()
       return data.ok ? data.task : null
     } catch (error) {
-      console.error("[v0] Fetch task error:", error)
+        console.error("[Launchpad] Fetch task error:", error)
       return null
     }
   }, [])
 
   const publishTask: Ctx["publishTask"] = useCallback(
     async (payload) => {
-      if (!currentUser) return
+      if (!currentUser) return { ok: false, message: "Not logged in" }
       try {
-        await fetch("/api/tasks", {
+        const response = await fetch("/api/tasks", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ ...payload, userEmail: currentUser.email }),
         })
+        const result = await response.json()
+        return result
       } catch (error) {
-        console.error("[v0] Publish task error:", error)
+        console.error("[Launchpad] Publish task error:", error)
+        return { ok: false, message: "Network error" }
       }
     },
     [currentUser],
@@ -188,7 +174,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           body: JSON.stringify({ userEmail: currentUser.email }),
         })
       } catch (error) {
-        console.error("[v0] Delete task error:", error)
+        console.error("[Launchpad] Delete task error:", error)
       }
     },
     [currentUser],
@@ -203,7 +189,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     })
 
   const submitTask: Ctx["submitTask"] = useCallback(
-    async (taskId, file) => {
+    async (taskId, file, message) => {
       if (!currentUser) return { ok: false, message: "Not logged in" }
       try {
         const dataUrl = await fileToDataUrl(file)
@@ -215,12 +201,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             userEmail: currentUser.email,
             fileName: file.name,
             dataUrl,
+            message: message || "",
           }),
         })
         const data = await res.json()
         return data
       } catch (error) {
-        console.error("[v0] Submit task error:", error)
+        console.error("[Launchpad] Submit task error:", error)
         return { ok: false, message: "Network error" }
       }
     },
@@ -238,7 +225,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         })
         await refreshUser()
       } catch (error) {
-        console.error("[v0] Set visited error:", error)
+        console.error("[Launchpad] Set visited error:", error)
       }
     },
     [currentUser, refreshUser],
@@ -251,7 +238,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const data = await res.json()
       return data.ok ? data.submissions : []
     } catch (error) {
-      console.error("[v0] Fetch submissions error:", error)
+      console.error("[Launchpad] Fetch submissions error:", error)
       return []
     }
   }, [currentUser])
@@ -266,7 +253,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           body: JSON.stringify({ userEmail: currentUser.email }),
         })
       } catch (error) {
-        console.error("[v0] Approve submission error:", error)
+        console.error("[Launchpad] Approve submission error:", error)
       }
     },
     [currentUser],
@@ -282,7 +269,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           body: JSON.stringify({ userEmail: currentUser.email }),
         })
       } catch (error) {
-        console.error("[v0] Reject submission error:", error)
+        console.error("[Launchpad] Reject submission error:", error)
       }
     },
     [currentUser],
@@ -294,7 +281,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const data = await res.json()
       return data.ok ? data.users : []
     } catch (error) {
-      console.error("[v0] Fetch leaderboard error:", error)
+      console.error("[Launchpad] Fetch leaderboard error:", error)
       return []
     }
   }, [])

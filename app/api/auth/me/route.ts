@@ -32,7 +32,7 @@ export async function POST(req: NextRequest) {
       },
     })
   } catch (error) {
-    console.error("[v0] Get user error:", error)
+    console.error("[Launchpad] Get user error:", error)
     return NextResponse.json({ ok: false, message: "Internal server error" }, { status: 500 })
   }
 }

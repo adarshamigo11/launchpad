@@ -14,36 +14,36 @@ export async function GET(req: NextRequest) {
     }
 
     const uri = process.env.MongoDBuri
-    console.log("Diagnosis - Starting comprehensive test")
-    console.log("Diagnosis - URI length:", uri.length)
-    console.log("Diagnosis - URI preview:", uri.substring(0, 50) + "...")
+    // console.log("Diagnosis - Starting comprehensive test")
+    // console.log("Diagnosis - URI length:", uri.length)
+    // console.log("Diagnosis - URI preview:", uri.substring(0, 50) + "...")
     
     // Step 1: Test basic connection
-    console.log("Diagnosis - Step 1: Testing basic connection...")
+    // console.log("Diagnosis - Step 1: Testing basic connection...")
     client = new MongoClient(uri, {
       serverSelectionTimeoutMS: 10000,
       connectTimeoutMS: 10000,
     })
     
     await client.connect()
-    console.log("Diagnosis - Step 1: Connection successful!")
+    // console.log("Diagnosis - Step 1: Connection successful!")
     
     // Step 2: Test ping
-    console.log("Diagnosis - Step 2: Testing ping...")
+    // console.log("Diagnosis - Step 2: Testing ping...")
     await client.db("admin").admin().ping()
-    console.log("Diagnosis - Step 2: Ping successful!")
+    // console.log("Diagnosis - Step 2: Ping successful!")
     
     // Step 3: Test database access
-    console.log("Diagnosis - Step 3: Testing database access...")
+    // console.log("Diagnosis - Step 3: Testing database access...")
     const db = client.db("Launchpad")
     const collections = await db.listCollections().toArray()
-    console.log("Diagnosis - Step 3: Database access successful!")
+    // console.log("Diagnosis - Step 3: Database access successful!")
     
     // Step 4: Test user collection
-    console.log("Diagnosis - Step 4: Testing users collection...")
+    // console.log("Diagnosis - Step 4: Testing users collection...")
     const usersCollection = db.collection("users")
     const userCount = await usersCollection.countDocuments()
-    console.log("Diagnosis - Step 4: Users collection access successful!")
+    // console.log("Diagnosis - Step 4: Users collection access successful!")
     
     return NextResponse.json({ 
       ok: true, 
@@ -82,7 +82,7 @@ export async function GET(req: NextRequest) {
     if (client) {
       try {
         await client.close()
-        console.log("Diagnosis - Client closed")
+        // console.log("Diagnosis - Client closed")
       } catch (closeError) {
         console.error("Diagnosis - Error closing client:", closeError)
       }
