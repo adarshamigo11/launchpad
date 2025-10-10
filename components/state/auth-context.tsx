@@ -292,7 +292,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const fetchLeaderboard: Ctx["fetchLeaderboard"] = useCallback(async () => {
     try {
-      const res = await fetch("/api/leaderboard")
+      // Add cache busting parameter to ensure fresh data
+      const timestamp = Date.now()
+      const res = await fetch(`/api/leaderboard?t=${timestamp}`, {
+        cache: 'no-store',
+        headers: {
+          'Cache-Control': 'no-cache, no-store, must-revalidate',
+          'Pragma': 'no-cache',
+          'Expires': '0'
+        }
+      })
       const data = await res.json()
       return data.ok ? data.users : []
     } catch (error) {

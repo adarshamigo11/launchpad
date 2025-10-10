@@ -18,11 +18,13 @@ export async function GET() {
         id: u._id?.toString(),
         email: u.email,
         name: u.name,
+        phone: u.phone,
         profilePhoto: u.profilePhoto,
         points: u.points,
         visitedTaskIds: u.visitedTaskIds,
         uniqueId: u.uniqueId || "LP000", // Fallback for users without uniqueId
       })),
+      timestamp: new Date().toISOString(),
     })
   } catch (error) {
     console.error("[Launchpad] Get leaderboard error:", error)

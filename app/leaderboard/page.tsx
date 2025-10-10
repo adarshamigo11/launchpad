@@ -1,5 +1,5 @@
 "use client"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import { useRouter } from "next/navigation"
 import Image from "next/image"
 import { useApp, type User } from "@/components/state/auth-context"
@@ -10,39 +10,70 @@ export default function LeaderboardPage() {
   const [ranked, setRanked] = useState<User[]>([])
   const [loading, setLoading] = useState(true)
   const [updating, setUpdating] = useState(false)
+  const [lastUpdate, setLastUpdate] = useState<Date>(new Date())
+  const intervalRef = useRef<NodeJS.Timeout | null>(null)
 
   useEffect(() => {
     if (!currentUser) router.push("/login")
     if (currentUser?.email === "admin@admin.com") router.push("/admin/tasks")
   }, [currentUser, router])
 
+  const loadLeaderboard = async (silent = false) => {
+    if (!silent) setLoading(true)
+    else setUpdating(true)
+    
+    try {
+      const users = await fetchLeaderboard()
+      setRanked(users)
+      setLastUpdate(new Date())
+    } catch (error) {
+      console.error("Failed to load leaderboard:", error)
+    } finally {
+      setLoading(false)
+      setUpdating(false)
+    }
+  }
+
   useEffect(() => {
     if (currentUser && currentUser.email !== "admin@admin.com") {
-      fetchLeaderboard().then((users) => {
-        setRanked(users)
-        setLoading(false)
-      })
+      loadLeaderboard()
+      
+      // Set up polling every 5 seconds for real-time updates
+      intervalRef.current = setInterval(() => {
+        loadLeaderboard(true) // Silent refresh
+      }, 5000)
+    }
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current)
+      }
     }
   }, [currentUser, fetchLeaderboard])
 
-  // Listen for leaderboard update events from admin actions
+  // Listen for leaderboard update events from admin actions (immediate updates)
   useEffect(() => {
     const handleLeaderboardUpdate = () => {
-      console.log("Leaderboard update event received")
-      setUpdating(true)
-      // Refresh leaderboard immediately when admin approves/rejects submissions
-      fetchLeaderboard().then((users) => {
-        setRanked(users)
-        setUpdating(false)
-      })
+      console.log("Leaderboard update event received - immediate refresh")
+      loadLeaderboard(true) // Silent refresh
+    }
+
+    // Refresh when user returns to tab (in case they missed updates)
+    const handleVisibilityChange = () => {
+      if (!document.hidden) {
+        console.log("Tab became visible - refreshing leaderboard")
+        loadLeaderboard(true)
+      }
     }
 
     window.addEventListener('leaderboard-updated', handleLeaderboardUpdate)
+    document.addEventListener('visibilitychange', handleVisibilityChange)
     
     return () => {
       window.removeEventListener('leaderboard-updated', handleLeaderboardUpdate)
+      document.removeEventListener('visibilitychange', handleVisibilityChange)
     }
-  }, [fetchLeaderboard])
+  }, [])
 
   if (!currentUser || currentUser.email === "admin@admin.com") return null
 
@@ -55,10 +86,7 @@ export default function LeaderboardPage() {
   }
 
   const refreshLeaderboard = async () => {
-    setLoading(true)
-    const users = await fetchLeaderboard()
-    setRanked(users)
-    setLoading(false)
+    await loadLeaderboard()
   }
 
   return (
@@ -74,9 +102,10 @@ export default function LeaderboardPage() {
       <div className="flex items-center justify-between mb-6">
         <div>
           <h1 className="text-2xl font-semibold">Leaderboard</h1>
-          {updating && (
-            <p className="text-sm text-muted-foreground">Updating...</p>
-          )}
+          <p className="text-sm text-muted-foreground">
+            Last updated: {lastUpdate.toLocaleTimeString()}
+            {updating && " • Updating..."}
+          </p>
         </div>
         <button
           onClick={refreshLeaderboard}
