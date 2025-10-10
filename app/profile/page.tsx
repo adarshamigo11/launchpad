@@ -104,6 +104,7 @@ export default function ProfilePage() {
         <div>
           <h1 className="text-2xl font-semibold">{currentUser.name}</h1>
           <p className="text-muted-foreground">{currentUser.email}</p>
+          <p className="text-muted-foreground">{currentUser.phone}</p>
           <p className="text-sm font-medium text-primary bg-primary/10 px-2 py-1 rounded-md inline-block mt-1">
             {currentUser.uniqueId}
           </p>

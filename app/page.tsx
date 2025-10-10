@@ -40,7 +40,7 @@ export default function HomePage() {
                 </Button>
               </Link>
               <Link href="/about" className="w-full sm:w-auto">
-                <Button size="lg" variant="outline" className="w-full sm:w-auto border-white text-white hover:bg-white hover:text-[#007BFF] font-semibold text-base sm:text-lg px-6 sm:px-8 py-3">
+                <Button size="lg" variant="outline" className="w-full sm:w-auto border-white text-white hover:bg-white hover:text-[#007BFF] font-semibold text-base sm:text-lg px-6 sm:px-8 py-3 !bg-transparent !border-white !text-white hover:!bg-white hover:!text-[#007BFF]">
                   Learn More
                 </Button>
               </Link>
@@ -72,41 +72,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-12 sm:py-16 bg-gray-50">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center text-[#007BFF] mb-8 sm:mb-12">Why Choose Launchpad?</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-            <div className="text-center p-4 sm:p-6 bg-white rounded-lg shadow-lg">
-              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-[#007BFF] rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
-                <span className="text-white text-xl sm:text-2xl font-bold">🎯</span>
-              </div>
-              <h3 className="text-lg sm:text-xl font-semibold text-[#007BFF] mb-2 sm:mb-3">Mentorship</h3>
-              <p className="text-sm sm:text-base text-gray-600">
-                Get guidance from industry experts who will help you navigate the entrepreneurial journey and avoid common pitfalls.
-              </p>
-            </div>
-            <div className="text-center p-4 sm:p-6 bg-white rounded-lg shadow-lg">
-              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-[#FFC107] rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
-                <span className="text-black text-xl sm:text-2xl font-bold">🚀</span>
-              </div>
-              <h3 className="text-lg sm:text-xl font-semibold text-[#007BFF] mb-2 sm:mb-3">Ready-to-Sell Services</h3>
-              <p className="text-sm sm:text-base text-gray-600">
-                Access curated services that you can immediately start selling to build your agency and generate revenue.
-              </p>
-            </div>
-            <div className="text-center p-4 sm:p-6 bg-white rounded-lg shadow-lg">
-              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-[#007BFF] rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
-                <span className="text-white text-xl sm:text-2xl font-bold">🏆</span>
-              </div>
-              <h3 className="text-lg sm:text-xl font-semibold text-[#007BFF] mb-2 sm:mb-3">Competition & Recognition</h3>
-              <p className="text-sm sm:text-base text-gray-600">
-                Compete with peers, climb the leaderboard, and get recognized for your achievements at the Launchpad Award Night.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* What We Offer Section */}
       <section className="py-16 sm:py-20 md:py-24 bg-gray-50">
@@ -210,7 +175,7 @@ export default function HomePage() {
                 Early registration may provide bonus points or early access to mentorship.
               </p>
               <Link href="/login">
-                <Button className="bg-white text-[#007BFF] hover:bg-gray-100 font-semibold">
+                <Button className="bg-white text-[#007BFF] hover:bg-gray-100 font-semibold !bg-white !text-[#007BFF] hover:!bg-gray-100">
                   Register Now
                 </Button>
               </Link>
@@ -266,7 +231,7 @@ export default function HomePage() {
             Join thousands of aspiring entrepreneurs who are building their dreams with Launchpad.
           </p>
           <Link href="/login">
-            <Button size="lg" className="bg-[#FFC107] text-black hover:bg-[#FFC107]/90 font-bold text-lg px-8 py-3">
+            <Button size="lg" className="bg-[#FFC107] text-black hover:bg-[#FFC107]/90 font-bold text-lg px-8 py-3 !bg-[#FFC107] !text-black hover:!bg-[#FFC107]/90">
               Get Started Today
             </Button>
           </Link>

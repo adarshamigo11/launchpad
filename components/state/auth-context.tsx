@@ -1,11 +1,13 @@
 "use client"
 import { createContext, useCallback, useContext, useEffect, useState } from "react"
+import { useTheme } from "next-themes"
 import type React from "react"
 
 export type User = {
   id: string
   email: string
   name: string
+  phone: string
   profilePhoto: string
   points: number
   visitedTaskIds: string[]
@@ -39,7 +41,7 @@ type Ctx = {
   currentUser: User | null
   isAdmin: boolean
   login: (email: string, password: string) => Promise<{ ok: boolean; message?: string }>
-  signup: (email: string, password: string, name: string) => Promise<{ ok: boolean; message?: string }>
+  signup: (email: string, password: string, name: string, phone: string) => Promise<{ ok: boolean; message?: string }>
   logout: () => void
   refreshUser: () => Promise<void>
   fetchTasks: () => Promise<Task[]>
@@ -59,6 +61,7 @@ const AppContext = createContext<Ctx | null>(null)
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [currentUser, setCurrentUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
+  const { setTheme } = useTheme()
 
   // No persistent login - users must login each time
   useEffect(() => {
@@ -67,12 +70,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const isAdmin = currentUser?.email === "admin@admin.com"
 
-  const signup: Ctx["signup"] = useCallback(async (email, password, name) => {
+  const signup: Ctx["signup"] = useCallback(async (email, password, name, phone) => {
     try {
       const res = await fetch("/api/auth/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password, name }),
+        body: JSON.stringify({ email, password, name, phone }),
       })
       const data = await res.json()
       return data
@@ -103,8 +106,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const logout = useCallback(() => {
     setCurrentUser(null)
+    // Automatically switch to dark mode when user logs out
+    setTheme("dark")
     // No localStorage to clear - session only
-  }, [])
+  }, [setTheme])
 
   const refreshUser = useCallback(async () => {
     if (!currentUser) return

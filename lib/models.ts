@@ -7,6 +7,7 @@ export interface UserDoc {
   email: string
   password: string
   name: string
+  phone: string
   profilePhoto: string
   points: number
   visitedTaskIds: string[]
@@ -53,6 +54,7 @@ export type User = {
   id: string
   email: string
   name: string
+  phone: string
   profilePhoto: string
   points: number
   visitedTaskIds: string[]

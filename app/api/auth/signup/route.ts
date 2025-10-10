@@ -5,9 +5,9 @@ import { generateUniqueId } from "@/lib/server-utils"
 
 export async function POST(req: NextRequest) {
   try {
-    const { email, password, name } = await req.json()
+    const { email, password, name, phone } = await req.json()
 
-    if (!email || !password || !name) {
+    if (!email || !password || !name || !phone) {
       return NextResponse.json({ ok: false, message: "Missing required fields" }, { status: 400 })
     }
 
@@ -28,6 +28,7 @@ export async function POST(req: NextRequest) {
       email,
       password, // In production, hash this password!
       name,
+      phone,
       profilePhoto: "/placeholder-user.jpg",
       points: 0,
       visitedTaskIds: [],

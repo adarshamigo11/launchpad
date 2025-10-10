@@ -4,7 +4,8 @@ import { GeistSans } from "geist/font/sans"
 import { GeistMono } from "geist/font/mono"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
-import { Providers } from "@/components/providers"
+import { AuthProvider } from "@/components/state/auth-context"
+import { ThemeProvider } from "@/components/theme-provider"
 import { Navbar } from "@/components/navbar"
 import { Toaster } from "@/components/ui/toaster"
 import { Suspense } from "react"
@@ -48,12 +49,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
-        <Providers>
-          <Suspense fallback={<div>Loading...</div>}>
-            <Navbar />
-            <main className="min-h-[calc(100dvh-64px)]">{children}</main>
-          </Suspense>
-        </Providers>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem={false}
+          disableTransitionOnChange
+        >
+          <AuthProvider>
+            <Suspense fallback={<div>Loading...</div>}>
+              <Navbar />
+              <main className="min-h-[calc(100dvh-64px)]">{children}</main>
+            </Suspense>
+          </AuthProvider>
+        </ThemeProvider>
         <Toaster />
         <Analytics />
       </body>

@@ -15,6 +15,7 @@ export default function LoginPage() {
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
   const [name, setName] = useState("")
+  const [phone, setPhone] = useState("")
   const [error, setError] = useState<string | null>(null)
   const [tab, setTab] = useState<"login" | "signup">("login")
   const [loading, setLoading] = useState(false)
@@ -70,7 +71,14 @@ export default function LoginPage() {
       return
     }
 
-    const res = await signup(email.trim(), password, name.trim())
+    // Validate phone number
+    if (!phone.trim()) {
+      setError("Phone number is required")
+      setLoading(false)
+      return
+    }
+
+    const res = await signup(email.trim(), password, name.trim(), phone.trim())
     setLoading(false)
     if (!res.ok) {
       setError(res.message || "Signup failed")
@@ -211,6 +219,21 @@ export default function LoginPage() {
                   placeholder="Email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  className="pl-10 h-10 sm:h-12 bg-white !bg-white border-gray-200 focus:border-[#FFC107] focus:ring-[#FFC107] rounded-xl text-black text-sm sm:text-base"
+                  required
+                />
+            </div>
+              
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <span className="text-gray-400">📱</span>
+                </div>
+                <Input
+                  id="signup-phone"
+                  type="tel"
+                  placeholder="Phone Number"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
                   className="pl-10 h-10 sm:h-12 bg-white !bg-white border-gray-200 focus:border-[#FFC107] focus:ring-[#FFC107] rounded-xl text-black text-sm sm:text-base"
                   required
                 />
