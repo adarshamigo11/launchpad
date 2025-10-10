@@ -252,11 +252,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     async (submissionId) => {
       if (!currentUser) return
       try {
-        await fetch(`/api/submissions/${submissionId}/approve`, {
+        const response = await fetch(`/api/submissions/${submissionId}/approve`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ userEmail: currentUser.email }),
         })
+        
+        if (response.ok) {
+          // Dispatch custom event to update leaderboard immediately
+          window.dispatchEvent(new CustomEvent('leaderboard-updated'))
+        }
       } catch (error) {
         console.error("[Launchpad] Approve submission error:", error)
       }
@@ -268,11 +273,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     async (submissionId) => {
       if (!currentUser) return
       try {
-        await fetch(`/api/submissions/${submissionId}/reject`, {
+        const response = await fetch(`/api/submissions/${submissionId}/reject`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ userEmail: currentUser.email }),
         })
+        
+        if (response.ok) {
+          // Dispatch custom event to update leaderboard immediately
+          window.dispatchEvent(new CustomEvent('leaderboard-updated'))
+        }
       } catch (error) {
         console.error("[Launchpad] Reject submission error:", error)
       }
