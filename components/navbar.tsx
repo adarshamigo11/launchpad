@@ -5,6 +5,7 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { useApp } from "@/components/state/auth-context"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { ProfileDropdown } from "@/components/profile-dropdown"
 import { cn } from "@/lib/utils"
 
 export function Navbar() {
@@ -23,7 +24,7 @@ export function Navbar() {
       : currentUser
         ? [
             { href: "/tasks", label: "Tasks" },
-            { href: "/profile", label: "Profile" },
+            { href: "/resources", label: "Resources" },
             { href: "/leaderboard", label: "Leaderboard" },
           ]
         : [
@@ -35,7 +36,7 @@ export function Navbar() {
   return (
     <header className="absolute top-0 left-0 right-0 z-30 bg-transparent">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 pt-4 sm:pt-6">
-        <div className="bg-black/20 dark:bg-black/20 backdrop-blur-md rounded-2xl border border-white/20 dark:border-white/20 shadow-lg">
+        <div className="bg-white/90 dark:bg-black/20 backdrop-blur-md rounded-2xl border border-black/20 dark:border-white/20 shadow-lg">
           <div className="h-16 sm:h-20 flex items-center justify-between px-6 sm:px-8">
             <Link href="/" className="flex items-center">
               <img 
@@ -51,7 +52,7 @@ export function Navbar() {
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    "text-white dark:text-white text-base font-medium transition-colors hover:text-[#FFC107] relative group",
+                    "text-black dark:text-white text-base font-medium transition-colors hover:text-[#FFC107] relative group",
                     pathname === link.href && "text-[#FFC107]"
                   )}
                 >
@@ -65,7 +66,7 @@ export function Navbar() {
               <Button
                 variant="ghost"
                 size="sm"
-                className="text-white dark:text-white hover:text-white/80 hover:bg-white/10"
+                className="text-black dark:text-white hover:text-black/80 dark:hover:text-white/80 hover:bg-black/10 dark:hover:bg-white/10"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               >
                 {isMobileMenuOpen ? (
@@ -84,26 +85,12 @@ export function Navbar() {
             <div className="hidden md:flex items-center gap-4">
               {currentUser && <ThemeToggle />}
               {currentUser ? (
-                <div className="flex items-center gap-3">
-                  <span className="text-white dark:text-white text-sm font-medium bg-white/20 dark:bg-white/20 px-3 py-1 rounded-lg">
-                    {currentUser.uniqueId}
-                  </span>
-                  <Button
-                    variant="outline"
-                    className="border-white text-white hover:bg-white hover:text-black bg-transparent rounded-lg px-4 sm:px-6 py-2 sm:py-3 font-medium text-base"
-                    onClick={() => {
-                      logout()
-                      router.push("/")
-                    }}
-                  >
-                    Logout
-                  </Button>
-                </div>
+                <ProfileDropdown />
               ) : (
                 <Link href="/login">
                   <Button 
                     variant="outline" 
-                    className="border-white text-white hover:bg-white hover:text-black bg-transparent rounded-lg px-6 sm:px-8 py-2 sm:py-3 font-medium uppercase tracking-wide text-base"
+                    className="border-black dark:border-white text-black dark:text-white hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black bg-transparent rounded-lg px-6 sm:px-8 py-2 sm:py-3 font-medium uppercase tracking-wide text-base"
                   >
                     Login
                   </Button>
@@ -115,7 +102,7 @@ export function Navbar() {
         
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-2 bg-black/20 dark:bg-black/20 backdrop-blur-md rounded-2xl border border-white/20 dark:border-white/20 shadow-lg">
+          <div className="md:hidden mt-2 bg-white/90 dark:bg-black/20 backdrop-blur-md rounded-2xl border border-black/20 dark:border-white/20 shadow-lg">
             <div className="px-6 py-4 space-y-4">
               {/* Navigation Links */}
               <nav className="space-y-3">
@@ -124,7 +111,7 @@ export function Navbar() {
                     key={link.href}
                     href={link.href}
                     className={cn(
-                      "block text-white dark:text-white text-base font-medium transition-colors hover:text-[#FFC107] py-2",
+                      "block text-black dark:text-white text-base font-medium transition-colors hover:text-[#FFC107] py-2",
                       pathname === link.href && "text-[#FFC107]"
                     )}
                     onClick={() => setIsMobileMenuOpen(false)}
@@ -135,10 +122,10 @@ export function Navbar() {
               </nav>
               
               {/* Mobile Auth Section */}
-              <div className="pt-4 border-t border-white/20">
+              <div className="pt-4 border-t border-black/20 dark:border-white/20">
                 {currentUser && (
                   <div className="flex items-center justify-between mb-3">
-                    <span className="text-white dark:text-white text-sm font-medium bg-white/20 dark:bg-white/20 px-3 py-1 rounded-lg">
+                    <span className="text-black dark:text-white text-sm font-medium bg-black/10 dark:bg-white/20 px-3 py-1 rounded-lg">
                       {currentUser.uniqueId}
                     </span>
                     <ThemeToggle />
@@ -146,22 +133,12 @@ export function Navbar() {
                 )}
                 
                 {currentUser ? (
-                  <Button
-                    variant="outline"
-                    className="w-full border-white text-white hover:bg-white hover:text-black bg-transparent rounded-lg py-2"
-                    onClick={() => {
-                      logout()
-                      router.push("/")
-                      setIsMobileMenuOpen(false)
-                    }}
-                  >
-                    Logout
-                  </Button>
+                  <ProfileDropdown isMobile={true} />
                 ) : (
                   <Link href="/login" className="block" onClick={() => setIsMobileMenuOpen(false)}>
                     <Button 
                       variant="outline" 
-                      className="w-full border-white text-white hover:bg-white hover:text-black bg-transparent rounded-lg py-2"
+                      className="w-full border-black dark:border-white text-black dark:text-white hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black bg-transparent rounded-lg py-2"
                     >
                       Login
                     </Button>

@@ -19,7 +19,7 @@ export function ThemeToggle() {
       <Button 
         variant="outline" 
         size="icon" 
-        className="border-white/20 dark:border-white/20 text-white dark:text-white hover:bg-white/10 dark:hover:bg-white/10 bg-transparent rounded-lg"
+        className="border-black/20 dark:border-white/20 text-black dark:text-white hover:bg-black/10 dark:hover:bg-white/10 bg-transparent rounded-lg"
       >
         <Sun className="h-4 w-4" />
         <span className="sr-only">Toggle theme</span>
@@ -31,7 +31,7 @@ export function ThemeToggle() {
     <Button
       variant="outline"
       size="icon"
-      className="border-white/20 dark:border-white/20 text-white dark:text-white hover:bg-white/10 dark:hover:bg-white/10 bg-transparent rounded-lg"
+      className="border-black/20 dark:border-white/20 text-black dark:text-white hover:bg-black/10 dark:hover:bg-white/10 bg-transparent rounded-lg"
       onClick={() => setTheme(theme === "light" ? "dark" : "light")}
     >
       {theme === "light" ? (
