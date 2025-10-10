@@ -20,8 +20,6 @@ export default function ProfilePage() {
 
   if (!currentUser || currentUser.email === "admin@admin.com") return null
 
-  // Debug: Log current user data
-  console.log('Current user profile photo:', currentUser.profilePhoto)
 
   const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
@@ -68,10 +66,8 @@ export default function ProfilePage() {
         if (fileInputRef.current) {
           fileInputRef.current.value = ''
         }
-        console.log('Profile photo updated successfully:', result.photoUrl)
         alert('Profile photo updated successfully!')
       } else {
-        console.error('Failed to update profile photo:', result.message)
         alert(result.message || 'Failed to update profile photo')
       }
     } catch (error) {

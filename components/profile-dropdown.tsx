@@ -44,8 +44,6 @@ export function ProfileDropdown({ className, isMobile = false }: ProfileDropdown
 
   if (!currentUser) return null
 
-  // Debug: Log current user data
-  console.log('ProfileDropdown - Current user profile photo:', currentUser.profilePhoto)
 
   return (
     <div className={cn("relative", className)} ref={dropdownRef}>
@@ -60,7 +58,7 @@ export function ProfileDropdown({ className, isMobile = false }: ProfileDropdown
         <div className="flex items-center gap-3">
           {/* User Avatar */}
           <div className="w-8 h-8 rounded-full overflow-hidden bg-black/10 dark:bg-white/20 flex items-center justify-center">
-            {currentUser.profilePhoto && currentUser.profilePhoto !== "/placeholder-user.jpg" ? (
+            {currentUser.profilePhoto && currentUser.profilePhoto !== "/placeholder-user.jpg" && !currentUser.profilePhoto.startsWith("/placeholder") ? (
               <Image
                 src={currentUser.profilePhoto}
                 alt={`${currentUser.name}'s profile`}

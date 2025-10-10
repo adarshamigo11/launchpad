@@ -63,7 +63,7 @@ export default function LeaderboardPage() {
               
               {/* Profile Photo */}
               <div className="w-12 h-12 rounded-full overflow-hidden bg-muted flex items-center justify-center">
-                {u.profilePhoto && u.profilePhoto !== "/placeholder-user.jpg" ? (
+                {u.profilePhoto && u.profilePhoto !== "/placeholder-user.jpg" && !u.profilePhoto.startsWith("/placeholder") ? (
                   <Image
                     src={u.profilePhoto}
                     alt={`${u.name}'s profile`}

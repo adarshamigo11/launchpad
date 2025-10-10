@@ -1,7 +1,4 @@
 import { NextRequest, NextResponse } from "next/server"
-import { writeFile, mkdir } from "fs/promises"
-import { join } from "path"
-import { existsSync } from "fs"
 import { getDb } from "@/lib/mongodb"
 import type { UserDoc } from "@/lib/models"
 
@@ -25,24 +22,11 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ ok: false, message: "File size must be less than 5MB" }, { status: 400 })
     }
 
-    // Create uploads directory if it doesn't exist
-    const uploadsDir = join(process.cwd(), "public", "uploads", "profile-photos")
-    if (!existsSync(uploadsDir)) {
-      await mkdir(uploadsDir, { recursive: true })
-    }
-
-    // Generate unique filename
-    const fileExtension = file.name.split('.').pop()
-    const fileName = `${userEmail.replace(/[^a-zA-Z0-9]/g, '_')}_${Date.now()}.${fileExtension}`
-    const filePath = join(uploadsDir, fileName)
-
-    // Convert file to buffer and save
+    // Convert file to base64 data URL
     const bytes = await file.arrayBuffer()
     const buffer = Buffer.from(bytes)
-    await writeFile(filePath, buffer)
-
-    // Generate the public URL
-    const publicUrl = `/uploads/profile-photos/${fileName}`
+    const base64 = buffer.toString('base64')
+    const dataUrl = `data:${file.type};base64,${base64}`
 
     // Update the user's profile photo in the database
     const db = await getDb()
@@ -50,7 +34,7 @@ export async function POST(req: NextRequest) {
     
     const updateResult = await usersCollection.updateOne(
       { email: userEmail },
-      { $set: { profilePhoto: publicUrl } }
+      { $set: { profilePhoto: dataUrl } }
     )
 
     if (updateResult.matchedCount === 0) {
@@ -63,7 +47,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ 
       ok: true, 
       message: "Profile photo updated successfully",
-      photoUrl: publicUrl 
+      photoUrl: dataUrl 
     })
 
   } catch (error) {
