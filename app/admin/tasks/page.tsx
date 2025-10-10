@@ -98,14 +98,14 @@ export default function AdminTasksPage() {
 
   if (loading) {
     return (
-      <section className="mx-auto max-w-5xl px-4 py-8">
+      <section className="mx-auto max-w-5xl px-4 pt-32 pb-8">
         <p className="text-muted-foreground">Loading...</p>
       </section>
     )
   }
 
   return (
-    <section className="mx-auto max-w-5xl px-4 py-8 grid gap-8">
+    <section className="mx-auto max-w-5xl px-4 pt-32 pb-8 grid gap-8">
       <Card className="border-primary/40">
         <CardHeader>
           <CardTitle>Create Task</CardTitle>

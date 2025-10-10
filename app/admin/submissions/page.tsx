@@ -36,7 +36,7 @@ export default function AdminSubmissionsPage() {
 
   if (loading) {
     return (
-      <section className="mx-auto max-w-5xl px-4 py-8">
+      <section className="mx-auto max-w-5xl px-4 pt-32 pb-8">
         <p className="text-muted-foreground">Loading submissions...</p>
       </section>
     )
@@ -53,7 +53,7 @@ export default function AdminSubmissionsPage() {
   }
 
   return (
-    <section className="mx-auto max-w-5xl px-4 py-8 grid gap-6">
+    <section className="mx-auto max-w-5xl px-4 pt-32 pb-8 grid gap-6">
       <h1 className="text-2xl font-semibold">Submissions</h1>
       {submissions.length === 0 ? (
         <p className="text-sm text-muted-foreground">No submissions yet.</p>

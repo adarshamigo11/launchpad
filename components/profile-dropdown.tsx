@@ -1,6 +1,7 @@
 "use client"
 import { useState, useRef, useEffect } from "react"
 import { useRouter } from "next/navigation"
+import Image from "next/image"
 import { useApp } from "@/components/state/auth-context"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
@@ -43,6 +44,9 @@ export function ProfileDropdown({ className, isMobile = false }: ProfileDropdown
 
   if (!currentUser) return null
 
+  // Debug: Log current user data
+  console.log('ProfileDropdown - Current user profile photo:', currentUser.profilePhoto)
+
   return (
     <div className={cn("relative", className)} ref={dropdownRef}>
       {/* Profile Button */}
@@ -55,10 +59,21 @@ export function ProfileDropdown({ className, isMobile = false }: ProfileDropdown
       >
         <div className="flex items-center gap-3">
           {/* User Avatar */}
-          <div className="w-8 h-8 bg-black/10 dark:bg-white/20 rounded-full flex items-center justify-center">
-            <span className="text-sm font-medium text-black dark:text-white">
-              {currentUser.name.charAt(0).toUpperCase()}
-            </span>
+          <div className="w-8 h-8 rounded-full overflow-hidden bg-black/10 dark:bg-white/20 flex items-center justify-center">
+            {currentUser.profilePhoto && currentUser.profilePhoto !== "/placeholder-user.jpg" ? (
+              <Image
+                src={currentUser.profilePhoto}
+                alt={`${currentUser.name}'s profile`}
+                width={32}
+                height={32}
+                className="w-full h-full object-cover"
+                unoptimized
+              />
+            ) : (
+              <span className="text-sm font-medium text-black dark:text-white">
+                {currentUser.name.charAt(0).toUpperCase()}
+              </span>
+            )}
           </div>
           
           {/* User Info */}
@@ -92,6 +107,9 @@ export function ProfileDropdown({ className, isMobile = false }: ProfileDropdown
           <div className="px-4 py-4 border-b border-gray-200 dark:border-gray-700">
             <div className="font-semibold text-gray-900 dark:text-white text-base">{currentUser.name}</div>
             <div className="text-sm text-gray-500 dark:text-gray-300 mt-1">{currentUser.email}</div>
+            <div className="text-xs text-primary dark:text-primary font-medium mt-2 bg-primary/10 dark:bg-primary/20 px-2 py-1 rounded-md inline-block">
+              ID: {currentUser.uniqueId}
+            </div>
           </div>
           
           {/* Menu Items */}

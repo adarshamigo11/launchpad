@@ -94,31 +94,31 @@ export default function AdminMessagesPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#007BFF] mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading messages...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-muted-foreground">Loading messages...</p>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="container mx-auto px-4 py-8">
+    <div className="min-h-screen bg-background">
+      <div className="container mx-auto px-4 pt-32 pb-8">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-[#007BFF] mb-2">Messages Dashboard</h1>
-          <p className="text-gray-600">Manage and respond to customer inquiries</p>
+          <h1 className="text-4xl font-bold text-primary mb-2">Messages Dashboard</h1>
+          <p className="text-muted-foreground">Manage and respond to customer inquiries</p>
         </div>
 
         {/* Filter and Stats */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <Card className="bg-gradient-to-r from-[#007BFF] to-[#007BFF]/80 text-white">
+          <Card className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-white/80">Total Messages</p>
+                  <p className="text-primary-foreground/80">Total Messages</p>
                   <p className="text-3xl font-bold">{messages.length}</p>
                 </div>
                 <span className="text-4xl">📧</span>
@@ -190,8 +190,8 @@ export default function AdminMessagesPage() {
             <Card>
               <CardContent className="p-12 text-center">
                 <div className="text-6xl mb-4">📭</div>
-                <h3 className="text-xl font-semibold text-gray-600 mb-2">No messages found</h3>
-                <p className="text-gray-500">
+                <h3 className="text-xl font-semibold text-muted-foreground mb-2">No messages found</h3>
+                <p className="text-muted-foreground">
                   {filter === "all" 
                     ? "No messages have been received yet." 
                     : `No ${filter} messages found.`
@@ -206,10 +206,10 @@ export default function AdminMessagesPage() {
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-2">
-                        <h3 className="text-xl font-bold text-[#007BFF]">{message.name}</h3>
+                        <h3 className="text-xl font-bold text-primary">{message.name}</h3>
                         {getStatusBadge(message.status)}
                       </div>
-                      <div className="flex items-center gap-4 text-sm text-gray-600">
+                      <div className="flex items-center gap-4 text-sm text-muted-foreground">
                         <span>📧 {message.email}</span>
                         <span>📱 {message.mobile}</span>
                         <span>🕒 {formatDate(message.createdAt)}</span>
@@ -238,9 +238,9 @@ export default function AdminMessagesPage() {
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <div className="bg-gray-50 p-4 rounded-lg">
-                    <h4 className="font-semibold text-gray-700 mb-2">Message:</h4>
-                    <p className="text-gray-600 whitespace-pre-wrap">{message.message}</p>
+                  <div className="bg-muted p-4 rounded-lg">
+                    <h4 className="font-semibold text-foreground mb-2">Message:</h4>
+                    <p className="text-muted-foreground whitespace-pre-wrap">{message.message}</p>
                   </div>
                 </CardContent>
               </Card>
