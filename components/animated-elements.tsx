@@ -1,5 +1,6 @@
 "use client"
 import { useEffect, useState } from "react"
+import { usePathname } from "next/navigation"
 
 interface AnimatedElement {
   id: string
@@ -14,6 +15,14 @@ interface AnimatedElement {
 
 export default function AnimatedElements() {
   const [elements, setElements] = useState<AnimatedElement[]>([])
+  const pathname = usePathname()
+
+  // Don't show animations on admin or user dashboard pages
+  const shouldShowAnimations = !pathname.startsWith('/admin') && 
+                              !pathname.startsWith('/tasks') && 
+                              !pathname.startsWith('/leaderboard') && 
+                              !pathname.startsWith('/profile') &&
+                              !pathname.startsWith('/login')
 
   useEffect(() => {
     const generateElements = () => {
@@ -117,6 +126,11 @@ export default function AnimatedElements() {
       default:
         return null
     }
+  }
+
+  // Don't render anything if animations should be hidden
+  if (!shouldShowAnimations) {
+    return null
   }
 
   return (
