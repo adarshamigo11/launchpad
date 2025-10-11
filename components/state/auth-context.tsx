@@ -3,6 +3,14 @@ import { createContext, useCallback, useContext, useEffect, useState } from "rea
 import { useTheme } from "next-themes"
 import type React from "react"
 
+export type Category = {
+  id: string
+  name: string
+  description: string
+  photo: string
+  status: "active" | "inactive"
+}
+
 export type User = {
   id: string
   email: string
@@ -22,7 +30,8 @@ export type Task = {
   submissionGuidelines: string
   points: number
   lastDate: number
-  category: "basic" | "advanced"
+  categoryId: string
+  subcategory: "basic" | "advanced"
   status: "draft" | "published"
 }
 
@@ -44,9 +53,13 @@ type Ctx = {
   signup: (email: string, password: string, name: string, phone: string) => Promise<{ ok: boolean; message?: string }>
   logout: () => void
   refreshUser: () => Promise<void>
+  fetchCategories: () => Promise<Category[]>
+  createCategory: (payload: Omit<Category, "id">) => Promise<void>
+  updateCategory: (id: string, payload: Omit<Category, "id">) => Promise<void>
+  deleteCategory: (id: string) => Promise<void>
   fetchTasks: () => Promise<Task[]>
   fetchTask: (id: string) => Promise<Task | null>
-  publishTask: (payload: Omit<Task, "id" | "status">) => Promise<void>
+  publishTask: (payload: Omit<Task, "id" | "status">) => Promise<{ ok: boolean; message?: string }>
   deleteTask: (id: string) => Promise<void>
   submitTask: (taskId: string, file: File, message: string) => Promise<{ ok: boolean; message?: string }>
   setVisited: (taskId: string) => Promise<void>
@@ -56,6 +69,7 @@ type Ctx = {
   fetchLeaderboard: () => Promise<User[]>
   forceRefreshLeaderboard: () => Promise<User[]>
   resetDatabase: () => Promise<{ ok: boolean; message?: string; deletedSubmissions?: number; resetUsers?: number }>
+  migrateTasks: () => Promise<{ ok: boolean; message?: string; createdTasks?: number; categoryId?: string }>
 }
 
 const AppContext = createContext<Ctx | null>(null)
@@ -131,6 +145,68 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       console.error("[Launchpad] Refresh user error:", error)
     }
   }, [currentUser])
+
+  const fetchCategories: Ctx["fetchCategories"] = useCallback(async () => {
+    try {
+      const res = await fetch("/api/categories")
+      const data = await res.json()
+      return data.ok ? data.categories : []
+    } catch (error) {
+      console.error("[Launchpad] Fetch categories error:", error)
+      return []
+    }
+  }, [])
+
+  const createCategory: Ctx["createCategory"] = useCallback(
+    async (payload) => {
+      if (!currentUser) return
+      try {
+        const response = await fetch("/api/categories", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ ...payload, userEmail: currentUser.email }),
+        })
+        const result = await response.json()
+        return result
+      } catch (error) {
+        console.error("[Launchpad] Create category error:", error)
+        return { ok: false, message: "Network error" }
+      }
+    },
+    [currentUser],
+  )
+
+  const updateCategory: Ctx["updateCategory"] = useCallback(
+    async (id, payload) => {
+      if (!currentUser) return
+      try {
+        await fetch(`/api/categories/${id}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ ...payload, userEmail: currentUser.email }),
+        })
+      } catch (error) {
+        console.error("[Launchpad] Update category error:", error)
+      }
+    },
+    [currentUser],
+  )
+
+  const deleteCategory: Ctx["deleteCategory"] = useCallback(
+    async (id) => {
+      if (!currentUser) return
+      try {
+        await fetch(`/api/categories/${id}`, {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ userEmail: currentUser.email }),
+        })
+      } catch (error) {
+        console.error("[Launchpad] Delete category error:", error)
+      }
+    },
+    [currentUser],
+  )
 
   const fetchTasks: Ctx["fetchTasks"] = useCallback(async () => {
     try {
@@ -355,6 +431,22 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   }, [currentUser])
 
+  const migrateTasks: Ctx["migrateTasks"] = useCallback(async () => {
+    if (!currentUser) return { ok: false, message: "Not logged in" }
+    try {
+      const response = await fetch("/api/migrate-tasks", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userEmail: currentUser.email }),
+      })
+      const data = await response.json()
+      return data
+    } catch (error) {
+      console.error("[Launchpad] Migrate tasks error:", error)
+      return { ok: false, message: "Network error" }
+    }
+  }, [currentUser])
+
   const value: Ctx = {
     currentUser,
     isAdmin: !!isAdmin,
@@ -362,6 +454,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     signup,
     logout,
     refreshUser,
+    fetchCategories,
+    createCategory,
+    updateCategory,
+    deleteCategory,
     fetchTasks,
     fetchTask,
     publishTask,
@@ -374,6 +470,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     fetchLeaderboard,
     forceRefreshLeaderboard,
     resetDatabase,
+    migrateTasks,
   }
 
   if (loading) {

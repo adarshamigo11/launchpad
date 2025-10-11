@@ -52,7 +52,8 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
         submissionGuidelines: task.submissionGuidelines || "No submission guidelines provided.",
         points: task.points || 0,
         lastDate: task.lastDate ? task.lastDate.getTime() : new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).getTime(),
-        category: task.category || "basic",
+        categoryId: task.categoryId || "",
+        subcategory: task.subcategory || "basic",
         status: task.status,
       },
     })

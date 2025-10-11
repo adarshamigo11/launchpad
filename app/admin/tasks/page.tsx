@@ -1,15 +1,16 @@
 "use client"
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
-import { useApp, type Task } from "@/components/state/auth-context"
+import { useApp, type Task, type Category } from "@/components/state/auth-context"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 export default function AdminTasksPage() {
-  const { currentUser, isAdmin, publishTask, fetchTasks, deleteTask } = useApp()
+  const { currentUser, isAdmin, publishTask, fetchTasks, deleteTask, fetchCategories, migrateTasks } = useApp()
   const router = useRouter()
   const [challengeName, setChallengeName] = useState("")
   const [description, setDescription] = useState("")
@@ -17,8 +18,10 @@ export default function AdminTasksPage() {
   const [submissionGuidelines, setSubmissionGuidelines] = useState("")
   const [points, setPoints] = useState<number>(10)
   const [lastDate, setLastDate] = useState("")
-  const [category, setCategory] = useState<"basic" | "advanced">("basic")
+  const [categoryId, setCategoryId] = useState("")
+  const [subcategory, setSubcategory] = useState<"basic" | "advanced">("basic")
   const [tasks, setTasks] = useState<Task[]>([])
+  const [categories, setCategories] = useState<Category[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -28,13 +31,14 @@ export default function AdminTasksPage() {
 
   useEffect(() => {
     if (currentUser && isAdmin) {
-      loadTasks()
+      loadData()
     }
   }, [currentUser, isAdmin])
 
-  const loadTasks = async () => {
-    const data = await fetchTasks()
-    setTasks(data)
+  const loadData = async () => {
+    const [tasksData, categoriesData] = await Promise.all([fetchTasks(), fetchCategories()])
+    setTasks(tasksData)
+    setCategories(categoriesData)
     setLoading(false)
   }
 
@@ -49,6 +53,10 @@ export default function AdminTasksPage() {
       alert("Please select a deadline")
       return
     }
+    if (!categoryId) {
+      alert("Please select a category")
+      return
+    }
     
     try {
       const result = await publishTask({
@@ -57,8 +65,9 @@ export default function AdminTasksPage() {
         guidelines: guidelines.trim() || "No guidelines provided.",
         submissionGuidelines: submissionGuidelines.trim() || "No submission guidelines provided.",
         points: Number(points) || 0,
-        lastDate: lastDate,
-        category: category,
+        lastDate: new Date(lastDate).getTime(),
+        categoryId: categoryId,
+        subcategory: subcategory,
       })
       
       if (result.ok) {
@@ -73,8 +82,9 @@ export default function AdminTasksPage() {
       setSubmissionGuidelines("")
       setPoints(10)
       setLastDate("")
-      setCategory("basic")
-      await loadTasks()
+      setCategoryId("")
+      setSubcategory("basic")
+      await loadData()
     } catch (error) {
       console.error("Error publishing task:", error)
       alert("Failed to publish task. Please try again.")
@@ -88,12 +98,25 @@ export default function AdminTasksPage() {
     setSubmissionGuidelines("")
     setPoints(10)
     setLastDate("")
-    setCategory("basic")
+    setCategoryId("")
+    setSubcategory("basic")
   }
 
   const onDelete = async (id: string) => {
     await deleteTask(id)
-    await loadTasks()
+    await loadData()
+  }
+
+  const onMigrateTasks = async () => {
+    if (confirm("This will create sample tasks and categories for testing. Continue?")) {
+      const result = await migrateTasks()
+      if (result.ok) {
+        alert(`✅ Sample tasks created successfully!\n\nCreated ${result.createdTasks} tasks\nCategory ID: ${result.categoryId}`)
+        await loadData()
+      } else {
+        alert(`❌ Error: ${result.message}`)
+      }
+    }
   }
 
   if (loading) {
@@ -148,17 +171,34 @@ export default function AdminTasksPage() {
               />
             </div>
           </div>
-          <div className="grid gap-2">
-            <Label htmlFor="category">Category</Label>
-            <select
-              id="category"
-              value={category}
-              onChange={(e) => setCategory(e.target.value as "basic" | "advanced")}
-              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-            >
-              <option value="basic">Basic</option>
-              <option value="advanced">Advanced</option>
-            </select>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="grid gap-2">
+              <Label htmlFor="category">Category</Label>
+              <Select value={categoryId} onValueChange={setCategoryId}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select a category" />
+                </SelectTrigger>
+                <SelectContent>
+                  {categories.map((category) => (
+                    <SelectItem key={category.id} value={category.id}>
+                      {category.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="subcategory">Subcategory</Label>
+              <Select value={subcategory} onValueChange={(value: "basic" | "advanced") => setSubcategory(value)}>
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="basic">Basic</SelectItem>
+                  <SelectItem value="advanced">Advanced</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
           </div>
           <div className="flex items-center gap-3">
             <Button onClick={onPublish} className="bg-primary text-primary-foreground">
@@ -166,6 +206,13 @@ export default function AdminTasksPage() {
             </Button>
             <Button variant="outline" onClick={onDiscard} className="border-primary/40 bg-transparent">
               Discard
+            </Button>
+            <Button 
+              variant="outline" 
+              onClick={onMigrateTasks} 
+              className="border-green-500 text-green-600 hover:bg-green-50"
+            >
+              🚀 Create Sample Tasks
             </Button>
           </div>
         </CardContent>
@@ -177,25 +224,37 @@ export default function AdminTasksPage() {
           <p className="text-sm text-muted-foreground">No tasks yet.</p>
         ) : (
           <ul className="grid gap-2">
-            {tasks.map((t) => (
-              <li
-                key={t.id}
-                className="flex items-center justify-between rounded-md border border-primary/40 px-4 py-3"
-              >
-                <div className="flex items-center gap-3">
-                  <span className="font-medium">{t.challengeName}</span>
-                  <span className="text-xs text-muted-foreground">({t.points} pts)</span>
-                  <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-md">{t.category}</span>
-                </div>
-                <Button
-                  variant="outline"
-                  className="border-destructive/50 text-destructive hover:bg-destructive hover:text-destructive-foreground bg-transparent"
-                  onClick={() => onDelete(t.id)}
+            {tasks.map((t) => {
+              const category = categories.find(c => c.id === t.categoryId)
+              return (
+                <li
+                  key={t.id}
+                  className="flex items-center justify-between rounded-md border border-primary/40 px-4 py-3"
                 >
-                  Delete
-                </Button>
-              </li>
-            ))}
+                  <div className="flex items-center gap-3">
+                    <span className="font-medium">{t.challengeName}</span>
+                    <span className="text-xs text-muted-foreground">({t.points} pts)</span>
+                    <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-md">
+                      {category?.name || 'Unknown Category'}
+                    </span>
+                    <span className={`text-xs px-2 py-1 rounded-md ${
+                      t.subcategory === "basic" 
+                        ? "bg-green-100 text-green-800" 
+                        : "bg-yellow-100 text-yellow-800"
+                    }`}>
+                      {t.subcategory}
+                    </span>
+                  </div>
+                  <Button
+                    variant="outline"
+                    className="border-destructive/50 text-destructive hover:bg-destructive hover:text-destructive-foreground bg-transparent"
+                    onClick={() => onDelete(t.id)}
+                  >
+                    Delete
+                  </Button>
+                </li>
+              )
+            })}
           </ul>
         )}
       </div>

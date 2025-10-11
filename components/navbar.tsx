@@ -17,6 +17,7 @@ export function Navbar() {
     currentUser && isAdmin
       ? [
           { href: "/admin/tasks", label: "Tasks" },
+          { href: "/admin/categories", label: "Categories" },
           { href: "/admin/submissions", label: "Submissions" },
           { href: "/admin/messages", label: "Messages" },
           { href: "/leaderboard", label: "Leaderboard" },

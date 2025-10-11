@@ -23,7 +23,8 @@ export interface TaskDoc {
   submissionGuidelines: string
   points: number
   lastDate: Date
-  category: "basic" | "advanced"
+  categoryId: string
+  subcategory: "basic" | "advanced"
   status: "draft" | "published"
   createdAt: Date
 }
@@ -49,6 +50,15 @@ export interface MessageDoc {
   createdAt: Date
 }
 
+export interface CategoryDoc {
+  _id?: ObjectId
+  name: string
+  description: string
+  photo: string
+  status: "active" | "inactive"
+  createdAt: Date
+}
+
 // Client-side types (without _id)
 export type User = {
   id: string
@@ -69,7 +79,8 @@ export type Task = {
   submissionGuidelines: string
   points: number
   lastDate: number
-  category: "basic" | "advanced"
+  categoryId: string
+  subcategory: "basic" | "advanced"
   status: "draft" | "published"
 }
 
@@ -92,4 +103,12 @@ export type Message = {
   message: string
   status: "unread" | "read" | "replied"
   createdAt: number
+}
+
+export type Category = {
+  id: string
+  name: string
+  description: string
+  photo: string
+  status: "active" | "inactive"
 }
