@@ -54,6 +54,7 @@ type Ctx = {
   approveSubmission: (submissionId: string) => Promise<void>
   rejectSubmission: (submissionId: string) => Promise<void>
   fetchLeaderboard: () => Promise<User[]>
+  resetDatabase: () => Promise<{ ok: boolean; message?: string; deletedSubmissions?: number; resetUsers?: number }>
 }
 
 const AppContext = createContext<Ctx | null>(null)
@@ -263,9 +264,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         if (response.ok) {
           // Dispatch custom event to update leaderboard immediately
           window.dispatchEvent(new CustomEvent('leaderboard-updated'))
-          // Also trigger cross-tab communication via localStorage
-          localStorage.setItem('leaderboard-updated', Date.now().toString())
-          localStorage.removeItem('leaderboard-updated')
         }
       } catch (error) {
         console.error("[Launchpad] Approve submission error:", error)
@@ -287,9 +285,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         if (response.ok) {
           // Dispatch custom event to update leaderboard immediately
           window.dispatchEvent(new CustomEvent('leaderboard-updated'))
-          // Also trigger cross-tab communication via localStorage
-          localStorage.setItem('leaderboard-updated', Date.now().toString())
-          localStorage.removeItem('leaderboard-updated')
         }
       } catch (error) {
         console.error("[Launchpad] Reject submission error:", error)
@@ -318,6 +313,22 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   }, [])
 
+  const resetDatabase: Ctx["resetDatabase"] = useCallback(async () => {
+    if (!currentUser) return { ok: false, message: "Not logged in" }
+    try {
+      const response = await fetch("/api/reset-database", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userEmail: currentUser.email }),
+      })
+      const data = await response.json()
+      return data
+    } catch (error) {
+      console.error("[Launchpad] Reset database error:", error)
+      return { ok: false, message: "Network error" }
+    }
+  }, [currentUser])
+
   const value: Ctx = {
     currentUser,
     isAdmin: !!isAdmin,
@@ -335,6 +346,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     approveSubmission,
     rejectSubmission,
     fetchLeaderboard,
+    resetDatabase,
   }
 
   if (loading) {

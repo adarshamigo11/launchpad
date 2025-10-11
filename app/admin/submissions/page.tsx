@@ -5,7 +5,7 @@ import { useApp, type Submission, type Task, type User } from "@/components/stat
 import { Button } from "@/components/ui/button"
 
 export default function AdminSubmissionsPage() {
-  const { currentUser, isAdmin, approveSubmission, rejectSubmission, fetchSubmissions, fetchTasks, fetchLeaderboard } =
+  const { currentUser, isAdmin, approveSubmission, rejectSubmission, fetchSubmissions, fetchTasks, fetchLeaderboard, resetDatabase } =
     useApp()
   const router = useRouter()
   const [submissions, setSubmissions] = useState<Submission[]>([])
@@ -52,9 +52,30 @@ export default function AdminSubmissionsPage() {
     await loadData()
   }
 
+  const onResetDatabase = async () => {
+    if (confirm("⚠️ WARNING: This will delete ALL submissions and reset ALL user points to 0. This action cannot be undone. Are you sure?")) {
+      const result = await resetDatabase()
+      if (result.ok) {
+        alert(`✅ Database reset successfully!\n\nDeleted ${result.deletedSubmissions} submissions\nReset ${result.resetUsers} users`)
+        await loadData()
+      } else {
+        alert(`❌ Error: ${result.message}`)
+      }
+    }
+  }
+
   return (
     <section className="mx-auto max-w-5xl px-4 pt-32 pb-8 grid gap-6">
-      <h1 className="text-2xl font-semibold">Submissions</h1>
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-semibold">Submissions</h1>
+        <Button
+          onClick={onResetDatabase}
+          variant="destructive"
+          className="bg-red-600 hover:bg-red-700 text-white"
+        >
+          🗑️ Reset Database
+        </Button>
+      </div>
       {submissions.length === 0 ? (
         <p className="text-sm text-muted-foreground">No submissions yet.</p>
       ) : (

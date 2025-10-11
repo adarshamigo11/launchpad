@@ -17,6 +17,15 @@ export async function POST(req: NextRequest, { params }: { params: { id: string 
 
     await submissionsCollection.updateOne({ _id: new ObjectId(submissionId) }, { $set: { status: "rejected" } })
 
+    // Update leaderboard timestamp
+    try {
+      await fetch(`${process.env.NEXTAUTH_URL || 'http://localhost:3000'}/api/leaderboard/last-updated`, {
+        method: 'POST',
+      })
+    } catch (error) {
+      console.error("Failed to update leaderboard timestamp:", error)
+    }
+
     return NextResponse.json({ ok: true })
   } catch (error) {
     console.error("[Launchpad] Reject submission error:", error)

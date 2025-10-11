@@ -10,6 +10,7 @@ export default function LeaderboardPage() {
   const [ranked, setRanked] = useState<User[]>([])
   const [loading, setLoading] = useState(true)
   const intervalRef = useRef<NodeJS.Timeout | null>(null)
+  const lastUpdateRef = useRef<number>(0)
 
   useEffect(() => {
     if (!currentUser) router.push("/login")
@@ -28,15 +29,40 @@ export default function LeaderboardPage() {
     }
   }
 
+  const checkForUpdates = async () => {
+    try {
+      const response = await fetch('/api/leaderboard/last-updated', {
+        cache: 'no-store',
+        headers: {
+          'Cache-Control': 'no-cache, no-store, must-revalidate',
+          'Pragma': 'no-cache',
+          'Expires': '0'
+        }
+      })
+      const data = await response.json()
+      
+      if (data.lastUpdated > lastUpdateRef.current) {
+        console.log("Leaderboard update detected, refreshing...")
+        lastUpdateRef.current = data.lastUpdated
+        await loadLeaderboard(true) // Silent refresh
+      }
+    } catch (error) {
+      console.error("Failed to check for updates:", error)
+    }
+  }
+
   useEffect(() => {
     if (currentUser) {
-      loadLeaderboard()
+      loadLeaderboard().then(() => {
+        // Initialize the last update timestamp after first load
+        lastUpdateRef.current = Date.now()
+      })
       
-      // Set up polling every 3 seconds for real-time updates (only for non-admin users)
+      // Set up polling every 2 seconds for real-time updates (only for non-admin users)
       if (!isAdmin) {
         intervalRef.current = setInterval(() => {
-          loadLeaderboard(true) // Silent refresh
-        }, 3000)
+          checkForUpdates() // Check for server-side updates
+        }, 2000)
       }
     }
 
@@ -47,19 +73,18 @@ export default function LeaderboardPage() {
     }
   }, [currentUser, fetchLeaderboard, isAdmin])
 
-  // Listen for leaderboard update events from admin actions (immediate updates)
+  // Listen for leaderboard update events and tab visibility changes
   useEffect(() => {
     const handleLeaderboardUpdate = () => {
-      console.log("Leaderboard update event received - immediate refresh")
-      // Force immediate refresh without delay
-      loadLeaderboard(true) // Silent refresh
+      console.log("Leaderboard update event received - checking for updates")
+      checkForUpdates()
     }
 
     // Refresh when user returns to tab (in case they missed updates)
     const handleVisibilityChange = () => {
       if (!document.hidden) {
-        console.log("Tab became visible - refreshing leaderboard")
-        loadLeaderboard(true)
+        console.log("Tab became visible - checking for updates")
+        checkForUpdates()
       }
     }
 
@@ -74,8 +99,8 @@ export default function LeaderboardPage() {
     document.addEventListener('visibilitychange', handleVisibilityChange)
     // Also refresh when window gains focus (user switches back to tab)
     window.addEventListener('focus', () => {
-      console.log("Window focused - refreshing leaderboard")
-      loadLeaderboard(true)
+      console.log("Window focused - checking for updates")
+      checkForUpdates()
     })
     
     return () => {
