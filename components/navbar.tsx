@@ -23,7 +23,7 @@ export function Navbar() {
         ]
       : currentUser
         ? [
-            { href: "/tasks", label: "Tasks" },
+            { href: "/tasks", label: "Challenges" },
             { href: "/resources", label: "Resources" },
             { href: "/leaderboard", label: "Leaderboard" },
           ]

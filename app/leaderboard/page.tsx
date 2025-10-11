@@ -10,7 +10,6 @@ export default function LeaderboardPage() {
   const [ranked, setRanked] = useState<User[]>([])
   const [loading, setLoading] = useState(true)
   const [updating, setUpdating] = useState(false)
-  const [lastUpdate, setLastUpdate] = useState<Date>(new Date())
   const intervalRef = useRef<NodeJS.Timeout | null>(null)
 
   useEffect(() => {
@@ -25,7 +24,6 @@ export default function LeaderboardPage() {
     try {
       const users = await fetchLeaderboard()
       setRanked(users)
-      setLastUpdate(new Date())
     } catch (error) {
       console.error("Failed to load leaderboard:", error)
     } finally {
@@ -38,10 +36,10 @@ export default function LeaderboardPage() {
     if (currentUser && currentUser.email !== "admin@admin.com") {
       loadLeaderboard()
       
-      // Set up polling every 5 seconds for real-time updates
+      // Set up polling every 3 seconds for real-time updates
       intervalRef.current = setInterval(() => {
         loadLeaderboard(true) // Silent refresh
-      }, 5000)
+      }, 3000)
     }
 
     return () => {
@@ -55,6 +53,7 @@ export default function LeaderboardPage() {
   useEffect(() => {
     const handleLeaderboardUpdate = () => {
       console.log("Leaderboard update event received - immediate refresh")
+      // Force immediate refresh without delay
       loadLeaderboard(true) // Silent refresh
     }
 
@@ -66,12 +65,26 @@ export default function LeaderboardPage() {
       }
     }
 
+    // Listen for both custom events and storage events (for cross-tab communication)
     window.addEventListener('leaderboard-updated', handleLeaderboardUpdate)
+    window.addEventListener('storage', (e) => {
+      if (e.key === 'leaderboard-updated') {
+        console.log("Cross-tab leaderboard update detected")
+        handleLeaderboardUpdate()
+      }
+    })
     document.addEventListener('visibilitychange', handleVisibilityChange)
+    // Also refresh when window gains focus (user switches back to tab)
+    window.addEventListener('focus', () => {
+      console.log("Window focused - refreshing leaderboard")
+      loadLeaderboard(true)
+    })
     
     return () => {
       window.removeEventListener('leaderboard-updated', handleLeaderboardUpdate)
+      window.removeEventListener('storage', handleLeaderboardUpdate)
       document.removeEventListener('visibilitychange', handleVisibilityChange)
+      window.removeEventListener('focus', handleLeaderboardUpdate)
     }
   }, [])
 
@@ -102,10 +115,11 @@ export default function LeaderboardPage() {
       <div className="flex items-center justify-between mb-6">
         <div>
           <h1 className="text-2xl font-semibold">Leaderboard</h1>
-          <p className="text-sm text-muted-foreground">
-            Last updated: {lastUpdate.toLocaleTimeString()}
-            {updating && " • Updating..."}
-          </p>
+          {updating && (
+            <p className="text-sm text-muted-foreground">
+              Updating...
+            </p>
+          )}
         </div>
         <button
           onClick={refreshLeaderboard}

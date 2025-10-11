@@ -41,7 +41,7 @@ export default function TaskDetailPage() {
 
   if (loading) {
     return (
-      <section className="mx-auto max-w-3xl px-4 py-8">
+      <section className="mx-auto max-w-3xl px-4 pt-32 pb-8">
         <p className="text-muted-foreground">Loading task...</p>
       </section>
     )
@@ -49,7 +49,7 @@ export default function TaskDetailPage() {
 
   if (!task) {
     return (
-      <section className="mx-auto max-w-3xl px-4 py-8">
+      <section className="mx-auto max-w-3xl px-4 pt-32 pb-8">
         <p className="text-muted-foreground">Task not found.</p>
       </section>
     )
@@ -85,7 +85,7 @@ export default function TaskDetailPage() {
   }
 
   return (
-    <section className="mx-auto max-w-3xl px-4 py-8 grid gap-6">
+    <section className="mx-auto max-w-3xl px-4 pt-32 pb-8 grid gap-6">
       <Link href="/tasks" className="text-sm hover:underline text-muted-foreground">
         ← Back to tasks
       </Link>

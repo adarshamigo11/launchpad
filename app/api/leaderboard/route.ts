@@ -12,7 +12,7 @@ export async function GET() {
       .sort({ points: -1 })
       .toArray()
 
-    return NextResponse.json({
+    const response = NextResponse.json({
       ok: true,
       users: users.map((u) => ({
         id: u._id?.toString(),
@@ -26,6 +26,14 @@ export async function GET() {
       })),
       timestamp: new Date().toISOString(),
     })
+
+    // Ensure no caching for real-time updates
+    response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate')
+    response.headers.set('Pragma', 'no-cache')
+    response.headers.set('Expires', '0')
+    response.headers.set('Surrogate-Control', 'no-store')
+
+    return response
   } catch (error) {
     console.error("[Launchpad] Get leaderboard error:", error)
     return NextResponse.json({ ok: false, message: "Internal server error" }, { status: 500 })

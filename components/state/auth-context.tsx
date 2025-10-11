@@ -261,6 +261,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         if (response.ok) {
           // Dispatch custom event to update leaderboard immediately
           window.dispatchEvent(new CustomEvent('leaderboard-updated'))
+          // Also trigger cross-tab communication via localStorage
+          localStorage.setItem('leaderboard-updated', Date.now().toString())
+          localStorage.removeItem('leaderboard-updated')
         }
       } catch (error) {
         console.error("[Launchpad] Approve submission error:", error)
@@ -282,6 +285,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         if (response.ok) {
           // Dispatch custom event to update leaderboard immediately
           window.dispatchEvent(new CustomEvent('leaderboard-updated'))
+          // Also trigger cross-tab communication via localStorage
+          localStorage.setItem('leaderboard-updated', Date.now().toString())
+          localStorage.removeItem('leaderboard-updated')
         }
       } catch (error) {
         console.error("[Launchpad] Reject submission error:", error)
