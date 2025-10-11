@@ -5,7 +5,7 @@ import Image from "next/image"
 import { useApp, type User } from "@/components/state/auth-context"
 
 export default function LeaderboardPage() {
-  const { currentUser, fetchLeaderboard, isAdmin } = useApp()
+  const { currentUser, fetchLeaderboard, forceRefreshLeaderboard, isAdmin } = useApp()
   const router = useRouter()
   const [ranked, setRanked] = useState<User[]>([])
   const [loading, setLoading] = useState(true)
@@ -31,21 +31,10 @@ export default function LeaderboardPage() {
 
   const checkForUpdates = async () => {
     try {
-      const response = await fetch('/api/leaderboard/last-updated', {
-        cache: 'no-store',
-        headers: {
-          'Cache-Control': 'no-cache, no-store, must-revalidate',
-          'Pragma': 'no-cache',
-          'Expires': '0'
-        }
-      })
-      const data = await response.json()
-      
-      if (data.lastUpdated > lastUpdateRef.current) {
-        console.log("Leaderboard update detected, refreshing...")
-        lastUpdateRef.current = data.lastUpdated
-        await loadLeaderboard(true) // Silent refresh
-      }
+      // Always refresh the leaderboard data directly instead of checking timestamps
+      // This is more reliable in production environments
+      console.log("Checking for leaderboard updates...")
+      await loadLeaderboard(true) // Silent refresh
     } catch (error) {
       console.error("Failed to check for updates:", error)
     }
@@ -53,16 +42,14 @@ export default function LeaderboardPage() {
 
   useEffect(() => {
     if (currentUser) {
-      loadLeaderboard().then(() => {
-        // Initialize the last update timestamp after first load
-        lastUpdateRef.current = Date.now()
-      })
+      loadLeaderboard()
       
-      // Set up polling every 2 seconds for real-time updates (only for non-admin users)
+      // Set up aggressive polling for real-time updates (only for non-admin users)
       if (!isAdmin) {
+        // Poll every 1 second for more responsive updates
         intervalRef.current = setInterval(() => {
-          checkForUpdates() // Check for server-side updates
-        }, 2000)
+          checkForUpdates()
+        }, 1000)
       }
     }
 
@@ -123,7 +110,18 @@ export default function LeaderboardPage() {
 
 
   const refreshLeaderboard = async () => {
-    await loadLeaderboard()
+    console.log("Manual refresh triggered by admin")
+    setLoading(true) // Show loading state for admin
+    try {
+      // Use force refresh for admin users
+      const users = await forceRefreshLeaderboard()
+      setRanked(users)
+      console.log("Manual refresh completed")
+    } catch (error) {
+      console.error("Manual refresh failed:", error)
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (

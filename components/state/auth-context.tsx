@@ -54,6 +54,7 @@ type Ctx = {
   approveSubmission: (submissionId: string) => Promise<void>
   rejectSubmission: (submissionId: string) => Promise<void>
   fetchLeaderboard: () => Promise<User[]>
+  forceRefreshLeaderboard: () => Promise<User[]>
   resetDatabase: () => Promise<{ ok: boolean; message?: string; deletedSubmissions?: number; resetUsers?: number }>
 }
 
@@ -264,6 +265,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         if (response.ok) {
           // Dispatch custom event to update leaderboard immediately
           window.dispatchEvent(new CustomEvent('leaderboard-updated'))
+          // Also trigger a delayed update to ensure database is updated
+          setTimeout(() => {
+            window.dispatchEvent(new CustomEvent('leaderboard-updated'))
+          }, 1000)
         }
       } catch (error) {
         console.error("[Launchpad] Approve submission error:", error)
@@ -285,6 +290,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         if (response.ok) {
           // Dispatch custom event to update leaderboard immediately
           window.dispatchEvent(new CustomEvent('leaderboard-updated'))
+          // Also trigger a delayed update to ensure database is updated
+          setTimeout(() => {
+            window.dispatchEvent(new CustomEvent('leaderboard-updated'))
+          }, 1000)
         }
       } catch (error) {
         console.error("[Launchpad] Reject submission error:", error)
@@ -312,6 +321,23 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       return []
     }
   }, [])
+
+  const forceRefreshLeaderboard: Ctx["forceRefreshLeaderboard"] = useCallback(async () => {
+    if (!currentUser) return []
+    try {
+      const res = await fetch("/api/leaderboard/force-refresh", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userEmail: currentUser.email }),
+        cache: 'no-store',
+      })
+      const data = await res.json()
+      return data.ok ? data.users : []
+    } catch (error) {
+      console.error("[Launchpad] Force refresh leaderboard error:", error)
+      return []
+    }
+  }, [currentUser])
 
   const resetDatabase: Ctx["resetDatabase"] = useCallback(async () => {
     if (!currentUser) return { ok: false, message: "Not logged in" }
@@ -346,6 +372,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     approveSubmission,
     rejectSubmission,
     fetchLeaderboard,
+    forceRefreshLeaderboard,
     resetDatabase,
   }
 
