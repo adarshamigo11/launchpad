@@ -8,6 +8,8 @@ import { AuthProvider } from "@/components/state/auth-context"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Navbar } from "@/components/navbar"
 import { Toaster } from "@/components/ui/toaster"
+import AppWrapper from "@/components/app-wrapper"
+import AnimatedElements from "@/components/animated-elements"
 import { Suspense } from "react"
 
 export const metadata: Metadata = {
@@ -57,10 +59,15 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <AuthProvider>
-            <Suspense fallback={<div>Loading...</div>}>
-              <Navbar />
-              <main className="min-h-[calc(100dvh-64px)]">{children}</main>
-            </Suspense>
+            <AppWrapper>
+              <Suspense fallback={<div>Loading...</div>}>
+                <Navbar />
+                <main className="min-h-[calc(100dvh-64px)] relative">
+                  {children}
+                  <AnimatedElements />
+                </main>
+              </Suspense>
+            </AppWrapper>
           </AuthProvider>
         </ThemeProvider>
         <Toaster />

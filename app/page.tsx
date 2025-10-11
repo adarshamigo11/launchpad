@@ -53,7 +53,7 @@ export default function HomePage() {
       <section className="pt-16 sm:pt-20 md:pt-24 pb-12 sm:pb-16 bg-white">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-center">
-            <div className="order-2 lg:order-1">
+            <div className="order-2 lg:order-1 animate-slide-in-left">
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#007BFF] mb-4 sm:mb-6 text-center lg:text-left">What is Launchpad?</h2>
               <p className="text-base sm:text-lg text-gray-600 leading-relaxed text-center lg:text-left">
                 Launchpad is a platform that supports aspiring solopreneurs, youth, and startups in building their own agencies and brands. 
@@ -61,7 +61,7 @@ export default function HomePage() {
                 participants gain recognition and transform their ambition into sustainable businesses.
               </p>
             </div>
-            <div className="flex justify-center lg:justify-end order-1 lg:order-2">
+            <div className="flex justify-center lg:justify-end order-1 lg:order-2 animate-slide-in-right">
               <img 
                 src="/logo.png" 
                 alt="Launchpad Platform" 
