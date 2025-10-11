@@ -25,10 +25,10 @@ export function Navbar() {
         ? [
             { href: "/", label: "Home" },
             { href: "/about", label: "About" },
-            { href: "/contact", label: "Contact" },
             { href: "/tasks", label: "Challenges" },
             { href: "/resources", label: "Resources" },
             { href: "/leaderboard", label: "Leaderboard" },
+            { href: "/contact", label: "Contact" },
           ]
         : [
             { href: "/", label: "Home" },
