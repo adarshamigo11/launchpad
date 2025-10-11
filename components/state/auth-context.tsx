@@ -95,6 +95,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const data = await res.json()
       if (data.ok) {
         setCurrentUser(data.user)
+        // Set theme to light when user logs in
+        setTheme("light")
         // No localStorage - session only
       }
       return data
@@ -102,12 +104,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       console.error("[Launchpad] Login error:", error)
       return { ok: false, message: "Network error" }
     }
-  }, [])
+  }, [setTheme])
 
   const logout = useCallback(() => {
     setCurrentUser(null)
-    // Automatically switch to dark mode when user logs out
-    setTheme("dark")
+    // Automatically switch to light mode when user logs out
+    setTheme("light")
     // No localStorage to clear - session only
   }, [setTheme])
 

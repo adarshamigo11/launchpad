@@ -4,7 +4,6 @@ import { usePathname, useRouter } from "next/navigation"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { useApp } from "@/components/state/auth-context"
-import { ThemeToggle } from "@/components/theme-toggle"
 import { ProfileDropdown } from "@/components/profile-dropdown"
 import { cn } from "@/lib/utils"
 
@@ -20,9 +19,13 @@ export function Navbar() {
           { href: "/admin/tasks", label: "Tasks" },
           { href: "/admin/submissions", label: "Submissions" },
           { href: "/admin/messages", label: "Messages" },
+          { href: "/leaderboard", label: "Leaderboard" },
         ]
       : currentUser
         ? [
+            { href: "/", label: "Home" },
+            { href: "/about", label: "About" },
+            { href: "/contact", label: "Contact" },
             { href: "/tasks", label: "Challenges" },
             { href: "/resources", label: "Resources" },
             { href: "/leaderboard", label: "Leaderboard" },
@@ -83,7 +86,6 @@ export function Navbar() {
             
             {/* Desktop Auth Buttons */}
             <div className="hidden md:flex items-center gap-4">
-              {currentUser && <ThemeToggle />}
               {currentUser ? (
                 <ProfileDropdown />
               ) : (
@@ -128,7 +130,6 @@ export function Navbar() {
                     <span className="text-black dark:text-white text-sm font-medium bg-black/10 dark:bg-white/20 px-3 py-1 rounded-lg">
                       {currentUser.uniqueId}
                     </span>
-                    <ThemeToggle />
                   </div>
                 )}
                 
