@@ -1,7 +1,10 @@
+"use client"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import { useApp } from "@/components/state/auth-context"
 
 export default function HomePage() {
+  const { currentUser } = useApp()
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -33,18 +36,20 @@ export default function HomePage() {
               A platform that supports aspiring solopreneurs, youth, and startups in building their own agencies and brands. 
               Through mentorship, ready-to-sell services, and healthy competition, transform your ambition into sustainable businesses.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
-              <Link href="/login" className="w-full sm:w-auto">
-                <Button size="lg" className="w-full sm:w-auto bg-[#FFC107] text-black hover:bg-[#FFC107]/90 font-bold text-base sm:text-lg px-6 sm:px-8 py-3">
-                  Start Your Journey
-                </Button>
-              </Link>
-              <Link href="/about" className="w-full sm:w-auto">
-                <Button size="lg" variant="outline" className="w-full sm:w-auto border-white text-white hover:bg-white hover:text-[#007BFF] font-semibold text-base sm:text-lg px-6 sm:px-8 py-3 !bg-transparent !border-white !text-white hover:!bg-white hover:!text-[#007BFF]">
-                  Learn More
-                </Button>
-              </Link>
-            </div>
+            {!currentUser && (
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
+                <Link href="/login" className="w-full sm:w-auto">
+                  <Button size="lg" className="w-full sm:w-auto bg-[#FFC107] text-black hover:bg-[#FFC107]/90 font-bold text-base sm:text-lg px-6 sm:px-8 py-3">
+                    Start Your Journey
+                  </Button>
+                </Link>
+                <Link href="/about" className="w-full sm:w-auto">
+                  <Button size="lg" variant="outline" className="w-full sm:w-auto border-white text-white hover:bg-white hover:text-[#007BFF] font-semibold text-base sm:text-lg px-6 sm:px-8 py-3 !bg-transparent !border-white !text-white hover:!bg-white hover:!text-[#007BFF]">
+                    Learn More
+                  </Button>
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -78,59 +83,89 @@ export default function HomePage() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center text-[#007BFF] mb-8 sm:mb-12">What We Offer</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg">
+            <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
               <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#FFC107] rounded-lg flex items-center justify-center mb-3 sm:mb-4">
                 <span className="text-black text-lg sm:text-xl">👥</span>
               </div>
               <h3 className="text-lg sm:text-xl font-semibold text-[#007BFF] mb-2 sm:mb-3">Expert Mentorship</h3>
-              <p className="text-sm sm:text-base text-gray-600">
+              <p className="text-sm sm:text-base text-gray-600 mb-4">
                 Industry experts guide you throughout the competition, advising on what to do and what to avoid, helping you make informed decisions.
               </p>
+              <Link href="/services/expert-mentorship">
+                <Button className="w-full bg-[#007BFF] text-white hover:bg-[#007BFF]/90 text-sm font-medium">
+                  Learn More
+                </Button>
+              </Link>
             </div>
-            <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg">
+            <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
               <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#FFC107] rounded-lg flex items-center justify-center mb-3 sm:mb-4">
                 <span className="text-black text-lg sm:text-xl">💼</span>
               </div>
               <h3 className="text-lg sm:text-xl font-semibold text-[#007BFF] mb-2 sm:mb-3">Ready-to-Sell Services</h3>
-              <p className="text-sm sm:text-base text-gray-600">
+              <p className="text-sm sm:text-base text-gray-600 mb-4">
                 Access curated services that you can immediately start selling to build your agency and generate revenue from day one.
               </p>
+              <Link href="/services/ready-to-sell-services">
+                <Button className="w-full bg-[#007BFF] text-white hover:bg-[#007BFF]/90 text-sm font-medium">
+                  Learn More
+                </Button>
+              </Link>
             </div>
-            <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg">
+            <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
               <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#007BFF] rounded-lg flex items-center justify-center mb-3 sm:mb-4">
                 <span className="text-white text-lg sm:text-xl">🏆</span>
               </div>
               <h3 className="text-lg sm:text-xl font-semibold text-[#007BFF] mb-2 sm:mb-3">Competition & Awards</h3>
-              <p className="text-sm sm:text-base text-gray-600">
+              <p className="text-sm sm:text-base text-gray-600 mb-4">
                 Compete with peers and get recognized for achievements including highest turnover, best branding, and more at the Award Night.
               </p>
+              <Link href="/services/competition-awards">
+                <Button className="w-full bg-[#007BFF] text-white hover:bg-[#007BFF]/90 text-sm font-medium">
+                  Learn More
+                </Button>
+              </Link>
             </div>
-            <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg">
+            <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
               <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#FFC107] rounded-lg flex items-center justify-center mb-3 sm:mb-4">
                 <span className="text-black text-lg sm:text-xl">📈</span>
               </div>
               <h3 className="text-lg sm:text-xl font-semibold text-[#007BFF] mb-2 sm:mb-3">Real-World Experience</h3>
-              <p className="text-sm sm:text-base text-gray-600">
+              <p className="text-sm sm:text-base text-gray-600 mb-4">
                 Learn through actual sales, client handling, and business operations that prepare you for real entrepreneurial challenges.
               </p>
+              <Link href="/services/real-world-experience">
+                <Button className="w-full bg-[#007BFF] text-white hover:bg-[#007BFF]/90 text-sm font-medium">
+                  Learn More
+                </Button>
+              </Link>
             </div>
-            <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg">
+            <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
               <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#007BFF] rounded-lg flex items-center justify-center mb-3 sm:mb-4">
                 <span className="text-white text-lg sm:text-xl">🤝</span>
               </div>
               <h3 className="text-lg sm:text-xl font-semibold text-[#007BFF] mb-2 sm:mb-3">Supportive Community</h3>
-              <p className="text-sm sm:text-base text-gray-600">
+              <p className="text-sm sm:text-base text-gray-600 mb-4">
                 Connect with like-minded individuals, share experiences, and build lasting relationships with fellow entrepreneurs.
               </p>
+              <Link href="/services/supportive-community">
+                <Button className="w-full bg-[#007BFF] text-white hover:bg-[#007BFF]/90 text-sm font-medium">
+                  Learn More
+                </Button>
+              </Link>
             </div>
-            <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg">
+            <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
               <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#FFC107] rounded-lg flex items-center justify-center mb-3 sm:mb-4">
                 <span className="text-black text-lg sm:text-xl">🎓</span>
               </div>
               <h3 className="text-lg sm:text-xl font-semibold text-[#007BFF] mb-2 sm:mb-3">Structured Learning</h3>
-              <p className="text-sm sm:text-base text-gray-600">
+              <p className="text-sm sm:text-base text-gray-600 mb-4">
                 Follow a structured 3-month program with clear milestones, challenges, and evaluation criteria for steady progress.
               </p>
+              <Link href="/services/structured-learning">
+                <Button className="w-full bg-[#007BFF] text-white hover:bg-[#007BFF]/90 text-sm font-medium">
+                  Learn More
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
@@ -174,11 +209,13 @@ export default function HomePage() {
               <p className="text-white/90 mb-6">
                 Early registration may provide bonus points or early access to mentorship.
               </p>
-              <Link href="/login">
-                <Button className="bg-white text-[#007BFF] hover:bg-gray-100 font-semibold !bg-white !text-[#007BFF] hover:!bg-gray-100">
-                  Register Now
-                </Button>
-              </Link>
+              {!currentUser && (
+                <Link href="/login">
+                  <Button className="bg-white text-[#007BFF] hover:bg-gray-100 font-semibold !bg-white !text-[#007BFF] hover:!bg-gray-100">
+                    Register Now
+                  </Button>
+                </Link>
+              )}
             </div>
           </div>
         </div>
@@ -230,11 +267,13 @@ export default function HomePage() {
           <p className="text-xl text-white/90 mb-8">
             Join thousands of aspiring entrepreneurs who are building their dreams with Launchpad.
           </p>
-          <Link href="/login">
-            <Button size="lg" className="bg-[#FFC107] text-black hover:bg-[#FFC107]/90 font-bold text-lg px-8 py-3 !bg-[#FFC107] !text-black hover:!bg-[#FFC107]/90">
-              Get Started Today
-            </Button>
-          </Link>
+          {!currentUser && (
+            <Link href="/login">
+              <Button size="lg" className="bg-[#FFC107] text-black hover:bg-[#FFC107]/90 font-bold text-lg px-8 py-3 !bg-[#FFC107] !text-black hover:!bg-[#FFC107]/90">
+                Get Started Today
+              </Button>
+            </Link>
+          )}
         </div>
       </section>
     </div>

@@ -1,7 +1,10 @@
+"use client"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import { useApp } from "@/components/state/auth-context"
 
 export default function AboutPage() {
+  const { currentUser } = useApp()
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -128,13 +131,15 @@ export default function AboutPage() {
           <p className="text-xl text-white/90 mb-8">
             Take the first step towards building your entrepreneurial dream.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/login">
-              <Button size="lg" className="bg-[#FFC107] text-black hover:bg-[#FFC107]/90 font-bold text-lg px-8 py-3 !bg-[#FFC107] !text-black hover:!bg-[#FFC107]/90">
-                Register Now
-              </Button>
-            </Link>
-          </div>
+          {!currentUser && (
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/login">
+                <Button size="lg" className="bg-[#FFC107] text-black hover:bg-[#FFC107]/90 font-bold text-lg px-8 py-3 !bg-[#FFC107] !text-black hover:!bg-[#FFC107]/90">
+                  Register Now
+                </Button>
+              </Link>
+            </div>
+          )}
         </div>
     </section>
     </div>
