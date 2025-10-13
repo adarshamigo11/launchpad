@@ -78,7 +78,7 @@ export default function AnimatedElements() {
             className={`${animationClass} border-2 border-dashed`}
             style={{
               ...baseStyle,
-              borderColor: element.color,
+              borderColor: element.color + '40',
               backgroundColor: 'transparent',
             }}
           />
@@ -91,7 +91,7 @@ export default function AnimatedElements() {
             className={`${animationClass} border-2 border-dashed rounded-full`}
             style={{
               ...baseStyle,
-              borderColor: element.color,
+              borderColor: element.color + '40',
               backgroundColor: 'transparent',
             }}
           />
@@ -105,7 +105,7 @@ export default function AnimatedElements() {
             style={{
               ...baseStyle,
               backgroundColor: element.color,
-              opacity: 0.6,
+              opacity: 0.2,
             }}
           />
         )
@@ -118,7 +118,7 @@ export default function AnimatedElements() {
             style={{
               ...baseStyle,
               backgroundColor: element.color,
-              opacity: 0.6,
+              opacity: 0.2,
             }}
           />
         )
