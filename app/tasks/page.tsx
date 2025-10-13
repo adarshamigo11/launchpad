@@ -78,8 +78,10 @@ export default function TasksPage() {
 
   if (loading) {
     return (
-      <section className="mx-auto max-w-6xl px-4 pt-32 pb-8">
-        <p className="text-muted-foreground">Loading challenges...</p>
+      <section className="mx-auto max-w-6xl px-4 sm:px-6 pt-32 pb-8">
+        <div className="text-center">
+          <p className="text-muted-foreground">Loading challenges...</p>
+        </div>
       </section>
     )
   }
@@ -91,18 +93,23 @@ export default function TasksPage() {
     const subcategoryName = selectedSubcategory === "basic" ? "Basic" : "Advanced"
     
     return (
-      <section className="mx-auto max-w-6xl px-4 pt-32 pb-8">
-        <div className="flex items-center gap-4 mb-6">
+      <section className="mx-auto max-w-6xl px-4 sm:px-6 pt-32 pb-8">
+        <div className="flex flex-col gap-3 mb-6">
           <Button 
             variant="outline" 
             onClick={handleBackToSubcategories}
-            className="flex items-center gap-2"
+            className="flex items-center gap-2 w-full sm:w-auto text-sm sm:text-base self-start"
           >
-            ← Back to {selectedCategory.name}
+            ← Back to Categories
           </Button>
-          <h1 className="text-2xl font-semibold">
-            {selectedCategory.name} - {subcategoryName} Challenges
-          </h1>
+          <div className="text-center sm:text-left">
+            <h2 className="text-lg sm:text-xl font-semibold text-muted-foreground mb-1 break-words">
+              {selectedCategory.name}
+            </h2>
+            <h1 className="text-xl sm:text-2xl md:text-3xl font-bold break-words leading-tight">
+              {subcategoryName} Challenges
+            </h1>
+          </div>
         </div>
         
         {subcategoryTasks.length === 0 ? (
@@ -115,30 +122,30 @@ export default function TasksPage() {
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {subcategoryTasks.map((task) => (
               <Link key={task.id} href={`/tasks/${task.id}`}>
-                <Card className="border-primary/40 hover:border-primary transition-colors shadow-lg hover:shadow-xl h-full">
-                  <CardHeader>
-                    <div className="flex items-start justify-between gap-2">
-                      <CardTitle className="text-lg font-semibold line-clamp-2">
+                <Card className="border-primary/40 hover:border-primary transition-colors shadow-lg hover:shadow-xl h-full overflow-hidden">
+                  <CardHeader className="pb-3">
+                    <div className="flex flex-col sm:flex-row items-start justify-between gap-2">
+                      <CardTitle className="text-base sm:text-lg font-semibold line-clamp-2 flex-1 min-w-0">
                         {task.challengeName}
                       </CardTitle>
                       <Badge 
                         variant={task.subcategory === "basic" ? "default" : "secondary"}
-                        className={task.subcategory === "basic" ? "bg-blue-100 text-blue-800" : "bg-yellow-100 text-yellow-800"}
+                        className={`text-xs whitespace-nowrap ${task.subcategory === "basic" ? "bg-blue-100 text-blue-800" : "bg-yellow-100 text-yellow-800"}`}
                       >
                         {task.subcategory}
                       </Badge>
                     </div>
                   </CardHeader>
-                  <CardContent className="space-y-3">
-                    <p className="text-sm text-muted-foreground line-clamp-3">
+                  <CardContent className="space-y-3 pt-0">
+                    <p className="text-sm text-muted-foreground line-clamp-3 break-words">
                       {task.description}
                     </p>
                     
-                    <div className="flex items-center justify-between text-sm">
-                      <div className="flex items-center gap-2">
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-sm">
+                      <div className="flex items-center gap-2 flex-wrap">
                         <span className="font-medium text-primary">{task.points} pts</span>
                         {isExpired(task.lastDate) && (
                           <Badge variant="destructive" className="text-xs">
@@ -146,7 +153,7 @@ export default function TasksPage() {
                           </Badge>
                         )}
                       </div>
-                      <span className="text-muted-foreground">
+                      <span className="text-muted-foreground text-xs sm:text-sm">
                         Due: {formatDate(task.lastDate)}
                       </span>
                     </div>
@@ -167,16 +174,20 @@ export default function TasksPage() {
     const advancedTasks = categoryTasks.filter(task => task.subcategory === "advanced")
     
     return (
-      <section className="mx-auto max-w-6xl px-4 pt-32 pb-8">
-        <div className="flex items-center gap-4 mb-6">
+      <section className="mx-auto max-w-6xl px-4 sm:px-6 pt-32 pb-8">
+        <div className="flex flex-col gap-3 mb-6">
           <Button 
             variant="outline" 
             onClick={handleBackToCategories}
-            className="flex items-center gap-2"
+            className="flex items-center gap-2 w-full sm:w-auto text-sm sm:text-base self-start"
           >
             ← Back to Categories
           </Button>
-          <h1 className="text-2xl font-semibold">{selectedCategory.name}</h1>
+          <div className="text-center sm:text-left">
+            <h1 className="text-xl sm:text-2xl md:text-3xl font-bold break-words leading-tight">
+              {selectedCategory.name}
+            </h1>
+          </div>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
@@ -230,8 +241,8 @@ export default function TasksPage() {
 
   // Show category selection (main view)
   return (
-    <section className="mx-auto max-w-6xl px-4 pt-32 pb-8">
-      <h1 className="text-2xl font-semibold mb-6">Challenge Categories</h1>
+    <section className="mx-auto max-w-6xl px-4 sm:px-6 pt-32 pb-8">
+      <h1 className="text-xl sm:text-2xl font-semibold mb-6 text-center sm:text-left">Challenge Categories</h1>
       
       {categories.length === 0 ? (
         <div className="text-center py-12">
@@ -241,7 +252,7 @@ export default function TasksPage() {
           </p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {categories.map((category) => {
             const categoryTasks = tasks.filter(task => task.categoryId === category.id)
             const basicTasks = categoryTasks.filter(task => task.subcategory === "basic")
@@ -260,21 +271,21 @@ export default function TasksPage() {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <CardHeader>
-                  <CardTitle className="text-xl">{category.name}</CardTitle>
+                <CardHeader className="pb-3">
+                  <CardTitle className="text-lg sm:text-xl line-clamp-2">{category.name}</CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground mb-4 line-clamp-3">{category.description}</p>
-                  <div className="flex items-center justify-between text-sm">
-                    <div className="flex gap-2">
-                      <Badge variant="outline" className="border-blue-200 text-blue-800">
+                <CardContent className="pt-0">
+                  <p className="text-muted-foreground mb-4 line-clamp-3 break-words text-sm sm:text-base">{category.description}</p>
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-sm">
+                    <div className="flex gap-2 flex-wrap">
+                      <Badge variant="outline" className="border-blue-200 text-blue-800 text-xs">
                         {basicTasks.length} Basic
                       </Badge>
-                      <Badge variant="outline" className="border-yellow-200 text-yellow-800">
+                      <Badge variant="outline" className="border-yellow-200 text-yellow-800 text-xs">
                         {advancedTasks.length} Advanced
                       </Badge>
                     </div>
-                    <span className="text-muted-foreground">
+                    <span className="text-muted-foreground text-xs sm:text-sm">
                       {categoryTasks.length} Total
                     </span>
                   </div>

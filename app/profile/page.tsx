@@ -86,9 +86,9 @@ export default function ProfilePage() {
   }
 
   return (
-    <section className="mx-auto max-w-xl px-4 pt-32 pb-12 grid gap-6">
+    <section className="mx-auto max-w-xl px-4 sm:px-6 pt-32 pb-12 grid gap-6">
       {/* Profile Header */}
-      <div className="flex items-center gap-4">
+      <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 text-center sm:text-left">
         <div className="relative">
           <Image
             src={previewUrl || currentUser.profilePhoto || "/placeholder-user.jpg"}
@@ -101,11 +101,11 @@ export default function ProfilePage() {
             <span className="text-white text-xs font-medium">Change</span>
           </div>
         </div>
-        <div>
-          <h1 className="text-2xl font-semibold">{currentUser.name}</h1>
-          <p className="text-muted-foreground">{currentUser.email}</p>
-          <p className="text-muted-foreground">{currentUser.phone}</p>
-          <p className="text-sm font-medium text-primary bg-primary/10 px-2 py-1 rounded-md inline-block mt-1">
+        <div className="flex-1 min-w-0">
+          <h1 className="text-xl sm:text-2xl font-semibold break-words">{currentUser.name}</h1>
+          <p className="text-muted-foreground text-sm sm:text-base break-all">{currentUser.email}</p>
+          <p className="text-muted-foreground text-sm sm:text-base">{currentUser.phone}</p>
+          <p className="text-xs sm:text-sm font-medium text-primary bg-primary/10 px-2 py-1 rounded-md inline-block mt-1 break-all">
             {currentUser.uniqueId}
           </p>
         </div>
@@ -114,7 +114,7 @@ export default function ProfilePage() {
       {/* Profile Photo Update Card */}
       <Card>
         <CardHeader>
-          <CardTitle>Update Profile Photo</CardTitle>
+          <CardTitle className="text-center sm:text-left">Update Profile Photo</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div>
@@ -132,15 +132,15 @@ export default function ProfilePage() {
             >
               Choose Photo
             </Button>
-            <p className="text-xs text-muted-foreground mt-2">
+            <p className="text-xs text-muted-foreground mt-2 text-center sm:text-left">
               Supported formats: JPG, PNG, GIF. Max size: 5MB
             </p>
           </div>
 
           {previewUrl && (
             <div className="space-y-3">
-              <div className="text-sm font-medium">Preview:</div>
-              <div className="flex items-center gap-4">
+              <div className="text-sm font-medium text-center sm:text-left">Preview:</div>
+              <div className="flex flex-col sm:flex-row items-center gap-4">
                 <Image
                   src={previewUrl}
                   alt="Preview"
@@ -148,11 +148,12 @@ export default function ProfilePage() {
                   height={60}
                   className="rounded-full"
                 />
-                <div className="flex gap-2">
+                <div className="flex gap-2 w-full sm:w-auto">
                   <Button
                     onClick={handleUpload}
                     disabled={isUploading}
                     size="sm"
+                    className="flex-1 sm:flex-none"
                   >
                     {isUploading ? "Uploading..." : "Upload"}
                   </Button>
@@ -160,6 +161,7 @@ export default function ProfilePage() {
                     variant="outline"
                     onClick={handleCancel}
                     size="sm"
+                    className="flex-1 sm:flex-none"
                   >
                     Cancel
                   </Button>
@@ -172,9 +174,9 @@ export default function ProfilePage() {
 
       {/* Points Card */}
       <Card>
-        <CardContent className="p-4">
-          <p className="text-sm">
-            Total Points: <span className="text-primary font-medium">{currentUser.points}</span>
+        <CardContent className="p-4 text-center sm:text-left">
+          <p className="text-sm sm:text-base">
+            Total Points: <span className="text-primary font-medium text-lg sm:text-xl">{currentUser.points}</span>
           </p>
         </CardContent>
       </Card>
