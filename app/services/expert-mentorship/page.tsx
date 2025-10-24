@@ -65,36 +65,6 @@ export default function ExpertMentorshipPage() {
         </div>
       </section>
 
-      {/* Mentor Spotlight Section */}
-      <section className="py-16 sm:py-20 md:py-24 bg-gray-50">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-center">
-            <div className="order-2 lg:order-1">
-              <img 
-                src="/prashant_sir.jpg" 
-                alt="Prashant Kulkarni" 
-                className="w-full max-w-md mx-auto lg:mx-0 rounded-lg shadow-lg"
-              />
-            </div>
-            <div className="order-1 lg:order-2">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#007BFF] mb-6">Meet Our Expert Mentor</h2>
-              <div className="prose prose-lg max-w-none">
-                <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                  Prashant Kulkarni is a visionary entrepreneur with a dynamic portfolio of ventures that span the food industry and beyond. As a Parallel Entrepreneur, he excels in managing multiple businesses simultaneously, leveraging his expertise, innovation, and strategic thinking to drive success.
-                </p>
-                
-                <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                  In his role as the Director of Tasty Alphabets, Prashant has revolutionized the field of food, foodtech, food education, packaging standards, food standardization. Tasty Alphabets is an innovative platform that combines culinary education with language learning, providing a unique and engaging experience for children.
-                </p>
-                
-                <p className="text-lg text-gray-700 leading-relaxed">
-                  Prashant serves as the CEO of Food Franchise India and Food Business India, two leading organizations dedicated to nurturing growth and innovation in the food franchise industry. Under his guidance, these platforms have become invaluable resources for aspiring entrepreneurs, offering comprehensive guidance, industry insights, and networking opportunities.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* CTA Section */}
       <section className="py-16 bg-[#007BFF]">
