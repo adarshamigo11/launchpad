@@ -1,23 +1,58 @@
-import { type NextRequest, NextResponse } from "next/server"
-import { getDb } from "@/lib/mongodb"
-import type { UserDoc } from "@/lib/models"
-import { generateUniqueId } from "@/lib/server-utils"
 import nodemailer from 'nodemailer'
 
-async function sendWelcomeEmail(userEmail: string, userName: string): Promise<void> {
-  try {
-    console.log("Sending welcome email to:", userEmail)
-    
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: process.env.GMAIL_USER,
-        pass: process.env.GMAIL_APP_PASSWORD,
-      },
-    })
+interface EmailOptions {
+  to: string
+  subject: string
+  html: string
+}
 
+class EmailService {
+  private transporter: nodemailer.Transporter | null = null
+
+  private getTransporter(): nodemailer.Transporter {
+    if (!this.transporter) {
+      this.transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: process.env.GMAIL_USER,
+          pass: process.env.GMAIL_APP_PASSWORD,
+        },
+      })
+    }
+    return this.transporter
+  }
+
+  async sendEmail({ to, subject, html }: EmailOptions): Promise<boolean> {
+    try {
+      const mailOptions = {
+        from: process.env.GMAIL_USER,
+        to,
+        subject,
+        html,
+      }
+
+      await this.getTransporter().sendMail(mailOptions)
+      console.log(`Email sent successfully to ${to}`)
+      return true
+    } catch (error) {
+      console.error('Error sending email:', error)
+      return false
+    }
+  }
+
+  async sendWelcomeEmail(userEmail: string, userName: string): Promise<boolean> {
     const subject = 'Welcome to Launchpad Platform! 🚀'
-    const html = `
+    const html = this.getWelcomeEmailTemplate(userName)
+
+    return await this.sendEmail({
+      to: userEmail,
+      subject,
+      html,
+    })
+  }
+
+  private getWelcomeEmailTemplate(userName: string): string {
+    return `
       <!DOCTYPE html>
       <html lang="en">
       <head>
@@ -144,66 +179,7 @@ async function sendWelcomeEmail(userEmail: string, userName: string): Promise<vo
       </body>
       </html>
     `
-
-    const mailOptions = {
-      from: process.env.GMAIL_USER,
-      to: userEmail,
-      subject,
-      html,
-    }
-
-    await transporter.sendMail(mailOptions)
-    console.log(`Welcome email sent successfully to ${userEmail}`)
-  } catch (error) {
-    console.error('Error sending welcome email:', error)
-    throw error
   }
 }
 
-export async function POST(req: NextRequest) {
-  try {
-    const { email, password, name, phone } = await req.json()
-
-    if (!email || !password || !name || !phone) {
-      return NextResponse.json({ ok: false, message: "Missing required fields" }, { status: 400 })
-    }
-
-    const db = await getDb()
-    const usersCollection = db.collection<UserDoc>("users")
-
-    // Check if user already exists
-    const existingUser = await usersCollection.findOne({ email })
-    if (existingUser) {
-      return NextResponse.json({ ok: false, message: "User already exists" }, { status: 400 })
-    }
-
-    // Generate unique ID for new user
-    const uniqueId = await generateUniqueId()
-
-    // Create new user
-    const newUser: UserDoc = {
-      email,
-      password, // In production, hash this password!
-      name,
-      phone,
-      profilePhoto: "/placeholder-user.jpg",
-      points: 0,
-      visitedTaskIds: [],
-      uniqueId,
-      createdAt: new Date(),
-    }
-
-    await usersCollection.insertOne(newUser)
-
-    // Send welcome email (don't wait for it to complete)
-    sendWelcomeEmail(email, name).catch((error) => {
-      console.error("Failed to send welcome email:", error)
-      // Don't fail the signup if email fails
-    })
-
-    return NextResponse.json({ ok: true, message: "User created successfully" })
-  } catch (error) {
-    console.error("[Launchpad] Signup error:", error)
-    return NextResponse.json({ ok: false, message: "Internal server error" }, { status: 500 })
-  }
-}
+export const emailService = new EmailService()
