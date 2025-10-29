@@ -3,6 +3,7 @@ import { useState } from "react"
 import type React from "react"
 
 import { useRouter } from "next/navigation"
+import Link from "next/link"
 import { useApp } from "@/components/state/auth-context"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -192,6 +193,15 @@ export default function LoginPage() {
             >
               {loading ? "Signing in..." : "Login"}
             </Button>
+            
+            <div className="text-center">
+              <Link 
+                href="/forgot-password" 
+                className="text-xs sm:text-sm text-[#007BFF] hover:text-[#007BFF]/80 font-medium"
+              >
+                Forgot your password?
+              </Link>
+            </div>
           </form>
         ) : (
           <form onSubmit={onSignup} className="space-y-4 sm:space-y-6">

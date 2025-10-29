@@ -59,6 +59,15 @@ export interface CategoryDoc {
   createdAt: Date
 }
 
+export interface PasswordResetDoc {
+  _id?: ObjectId
+  email: string
+  token: string
+  expiresAt: Date
+  used: boolean
+  createdAt: Date
+}
+
 // Client-side types (without _id)
 export type User = {
   id: string
