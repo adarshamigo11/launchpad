@@ -178,11 +178,6 @@ export default function LoginPage() {
               </div>
             </div>
             
-            <div className="flex items-center justify-end">
-              <button type="button" className="text-xs sm:text-sm text-[#007BFF] hover:text-[#007BFF]/80">
-                Forgot password?
-              </button>
-            </div>
             
             {error && <p className="text-xs sm:text-sm text-red-600 text-center">{error}</p>}
             
