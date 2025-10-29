@@ -128,7 +128,7 @@ async function sendWelcomeEmail(userEmail: string, userName: string): Promise<vo
             </div>
             
             <div style="text-align: center;">
-              <a href="${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/tasks" class="cta-button">
+              <a href="https://launchpad.expert/tasks" class="cta-button">
                 Start Your First Challenge
               </a>
             </div>

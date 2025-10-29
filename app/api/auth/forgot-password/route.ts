@@ -16,7 +16,7 @@ async function sendPasswordResetEmail(userEmail: string, userName: string, reset
       },
     })
 
-    const resetUrl = `${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/reset-password?token=${resetToken}`
+    const resetUrl = `https://launchpad.expert/reset-password?token=${resetToken}`
     const subject = 'Reset Your Password - Launchpad Platform'
     const html = `
       <!DOCTYPE html>
