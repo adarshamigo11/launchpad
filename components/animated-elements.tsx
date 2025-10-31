@@ -22,7 +22,8 @@ export default function AnimatedElements() {
                               !pathname.startsWith('/tasks') && 
                               !pathname.startsWith('/leaderboard') && 
                               !pathname.startsWith('/profile') &&
-                              !pathname.startsWith('/login')
+                              !pathname.startsWith('/login') &&
+                              !pathname.startsWith('/forgot-password')
 
   useEffect(() => {
     const generateElements = () => {

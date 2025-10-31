@@ -4,16 +4,14 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card"
 import { Alert, AlertDescription } from "@/components/ui/alert"
-import { ArrowLeft, Mail, User, Phone } from "lucide-react"
+import { ArrowLeft, Mail } from "lucide-react"
 import Link from "next/link"
 
 export default function ForgotPasswordPage() {
   const [formData, setFormData] = useState({
-    email: "",
-    name: "",
-    phone: ""
+    email: ""
   })
   const [isLoading, setIsLoading] = useState(false)
   const [message, setMessage] = useState("")
@@ -70,17 +68,11 @@ export default function ForgotPasswordPage() {
             Forgot Password
           </h2>
           <p className="mt-2 text-sm text-gray-600">
-            Enter your account details to receive a password reset link
+            Enter your email address to receive a password reset link
           </p>
         </div>
 
         <Card>
-          <CardHeader>
-            <CardTitle className="text-center">Reset Your Password</CardTitle>
-            <CardDescription className="text-center">
-              We'll send you a secure link to reset your password
-            </CardDescription>
-          </CardHeader>
           <CardContent>
             {message && (
               <Alert className={`mb-4 ${isSuccess ? "border-green-200 bg-green-50" : "border-red-200 bg-red-50"}`}>
@@ -109,40 +101,6 @@ export default function ForgotPasswordPage() {
                   />
                 </div>
 
-                <div>
-                  <Label htmlFor="name" className="flex items-center text-sm font-medium text-gray-700">
-                    <User className="w-4 h-4 mr-2" />
-                    Full Name
-                  </Label>
-                  <Input
-                    id="name"
-                    name="name"
-                    type="text"
-                    required
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    className="mt-1"
-                    placeholder="Enter your full name"
-                  />
-                </div>
-
-                <div>
-                  <Label htmlFor="phone" className="flex items-center text-sm font-medium text-gray-700">
-                    <Phone className="w-4 h-4 mr-2" />
-                    Phone Number
-                  </Label>
-                  <Input
-                    id="phone"
-                    name="phone"
-                    type="tel"
-                    required
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    className="mt-1"
-                    placeholder="Enter your phone number"
-                  />
-                </div>
-
                 <Button
                   type="submit"
                   disabled={isLoading}
@@ -153,9 +111,6 @@ export default function ForgotPasswordPage() {
               </form>
             ) : (
               <div className="text-center space-y-4">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
-                  <Mail className="w-8 h-8 text-green-600" />
-                </div>
                 <div>
                   <h3 className="text-lg font-medium text-gray-900">Check Your Email</h3>
                   <p className="text-sm text-gray-600 mt-2">
@@ -169,7 +124,7 @@ export default function ForgotPasswordPage() {
                     onClick={() => {
                       setIsSuccess(false)
                       setMessage("")
-                      setFormData({ email: "", name: "", phone: "" })
+                      setFormData({ email: "" })
                     }}
                     className="flex-1"
                   >

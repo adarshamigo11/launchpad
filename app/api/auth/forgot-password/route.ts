@@ -163,29 +163,27 @@ async function sendPasswordResetEmail(userEmail: string, userName: string, reset
 
 export async function POST(req: NextRequest) {
   try {
-    const { email, name, phone } = await req.json()
+    const { email } = await req.json()
 
-    if (!email || !name || !phone) {
+    if (!email) {
       return NextResponse.json({ 
         ok: false, 
-        message: "Email, name, and phone are required" 
+        message: "Email is required" 
       }, { status: 400 })
     }
 
     const db = await getDb()
     const usersCollection = db.collection<UserDoc>("users")
 
-    // Check if user exists with matching details
+    // Check if user exists by email only
     const user = await usersCollection.findOne({ 
-      email: email.toLowerCase(),
-      name: { $regex: new RegExp(name, 'i') }, // Case-insensitive name match
-      phone: phone
+      email: email.toLowerCase()
     })
 
     if (!user) {
       return NextResponse.json({ 
         ok: false, 
-        message: "No account found with the provided details. Please check your email, name, and phone number." 
+        message: "No account found with the provided email address. Please check your email and try again." 
       }, { status: 404 })
     }
 
@@ -208,8 +206,9 @@ export async function POST(req: NextRequest) {
       createdAt: new Date()
     })
 
-    // Send password reset email
-    await sendPasswordResetEmail(email, name, resetToken)
+    // Send password reset email (get user name from database)
+    const userName = user.name || user.email.split('@')[0]
+    await sendPasswordResetEmail(email, userName, resetToken)
 
     return NextResponse.json({ 
       ok: true, 

@@ -96,28 +96,48 @@ export default function AboutPage() {
         <div className="mx-auto max-w-4xl px-4">
           <h2 className="text-6xl font-bold text-center text-[#007BFF] mb-8">Guidelines</h2>
           <div className="bg-gray-50 p-8 rounded-lg">
-            <p className="text-lg text-gray-700 leading-relaxed mb-6">
-              Participants are expected to act professionally, maintain integrity, and follow platform rules. 
-              Any malpractice or violation of rules may lead to disqualification.
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <h4 className="font-semibold text-[#007BFF] mb-2">✅ Expected Behavior</h4>
-                <ul className="text-gray-600 space-y-1">
-                  <li>• Professional communication</li>
-                  <li>• Honest business practices</li>
-                  <li>• Respect for fellow participants</li>
-                  <li>• Adherence to platform guidelines</li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-semibold text-[#007BFF] mb-2">❌ Prohibited Actions</h4>
-                <ul className="text-gray-600 space-y-1">
-                  <li>• Fraudulent activities</li>
-                  <li>• Plagiarism or cheating</li>
-                  <li>• Harassment or discrimination</li>
-                  <li>• Violation of terms of service</li>
-                </ul>
+            <div>
+              <h3 className="text-2xl font-bold text-[#007BFF] mb-4">Competition Guidelines</h3>
+              <div className="space-y-4 text-gray-700">
+                <div>
+                  <h4 className="font-semibold text-[#007BFF] mb-2">Registration</h4>
+                  <ul className="space-y-2 text-gray-600">
+                    <li>• <strong>Individual Registration:</strong> Participants can register individually to take part in the competition and work on their own agency or brand.</li>
+                    <li>• <strong>Group Registration:</strong> Teams can also participate in a group, with a maximum of 3 members allowed per team. Group members will collaborate to complete challenges and build their agency together.</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold text-[#007BFF] mb-2">Competition Structure</h4>
+                  <ul className="space-y-2 text-gray-600">
+                    <li>• Launchpad is a three-month-long competition designed to help participants build, manage, and scale their own agencies or personal brands through real-world business challenges.</li>
+                    <li>• Participants who do not already have an established agency must first complete the Basic Challenges, which are specifically designed to help newcomers establish their foundation.</li>
+                    <li>• The Basic Challenges will help participants create and formalise their agency setup, while completing weekly Advanced Challenges will earn points that contribute towards the leaderboard rankings.</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold text-[#007BFF] mb-2">Requirements</h4>
+                  <ul className="space-y-2 text-gray-600">
+                    <li>• The minimum age limit for participation is 15 years.</li>
+                    <li>• The completion of any service and its corresponding transaction during the competition will be considered valid only when the contestant uses the resources provided on the Launchpad platform itself.</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold text-[#007BFF] mb-2">Deadlines and Duration</h4>
+                  <ul className="space-y-2 text-gray-600">
+                    <li>• All deadlines are mandatory and must be strictly followed by every participant and team.</li>
+                    <li>• The competition duration will be three months from the official start date.</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold text-[#007BFF] mb-2">Awards</h4>
+                  <ul className="space-y-2 text-gray-600">
+                    <li>• The Best Branding Category Award will be presented to the agency that demonstrates outstanding creativity, consistency, and effectiveness in its branding throughout the competition.</li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
