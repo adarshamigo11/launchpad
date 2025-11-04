@@ -9,7 +9,7 @@ export default function RealWorldExperiencePage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-[#007BFF] to-[#FFC107] py-20 sm:py-24 md:py-32 lg:py-40 min-h-[60vh] flex items-center">
+      <section className="bg-gradient-to-br from-[#144449] to-[#BF9B30] py-20 sm:py-24 md:py-32 lg:py-40 min-h-[60vh] flex items-center">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 text-center">
           <div className="w-20 h-20 sm:w-24 sm:h-24 bg-white/20 rounded-lg flex items-center justify-center mx-auto mb-6 sm:mb-8">
             <span className="text-white text-3xl sm:text-4xl">📈</span>
@@ -37,23 +37,23 @@ export default function RealWorldExperiencePage() {
               This isn't a simulation — it's your first real taste of the business world. Every challenge you take, every sale you close, and every project you deliver contributes to your personal and professional growth.
             </p>
 
-            <h2 className="text-3xl font-bold text-[#007BFF] mb-6">What Makes It Real</h2>
+            <h2 className="text-3xl font-bold text-[#144449] mb-6">What Makes It Real</h2>
             
             <ul className="space-y-4 mb-8">
               <li className="flex items-start">
-                <span className="text-[#FFC107] text-xl mr-3">•</span>
+                <span className="text-[#BF9B30] text-xl mr-3">•</span>
                 <span className="text-lg text-gray-700">Work on actual client projects that teach you how to deliver value under real market conditions.</span>
               </li>
               <li className="flex items-start">
-                <span className="text-[#FFC107] text-xl mr-3">•</span>
+                <span className="text-[#BF9B30] text-xl mr-3">•</span>
                 <span className="text-lg text-gray-700">Collaborate with peers and mentors just like in a professional startup environment.</span>
               </li>
               <li className="flex items-start">
-                <span className="text-[#FFC107] text-xl mr-3">•</span>
+                <span className="text-[#BF9B30] text-xl mr-3">•</span>
                 <span className="text-lg text-gray-700">Develop key entrepreneurial skills — communication, sales, problem-solving, time management, and leadership.</span>
               </li>
               <li className="flex items-start">
-                <span className="text-[#FFC107] text-xl mr-3">•</span>
+                <span className="text-[#BF9B30] text-xl mr-3">•</span>
                 <span className="text-lg text-gray-700">Experience business challenges firsthand, from negotiation to execution.</span>
               </li>
             </ul>
@@ -70,7 +70,7 @@ export default function RealWorldExperiencePage() {
               At Launchpad, every experience is real, every challenge is meaningful, and every win brings you closer to becoming a true entrepreneur.
             </p>
 
-            <p className="text-lg text-gray-700 leading-relaxed mb-8 font-semibold text-[#007BFF]">
+            <p className="text-lg text-gray-700 leading-relaxed mb-8 font-semibold text-[#144449]">
               Because the best classroom for entrepreneurship is the real world.
             </p>
           </div>
@@ -78,7 +78,7 @@ export default function RealWorldExperiencePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-[#007BFF]">
+      <section className="py-16 bg-[#144449]">
         <div className="mx-auto max-w-4xl px-4 text-center">
           <h2 className="text-3xl font-bold text-white mb-4">Ready for Real Experience?</h2>
           <p className="text-xl text-white/90 mb-8">
@@ -86,7 +86,7 @@ export default function RealWorldExperiencePage() {
           </p>
           {!currentUser && (
             <Link href="/login">
-              <Button size="lg" className="bg-[#FFC107] text-black hover:bg-[#FFC107]/90 font-bold text-lg px-8 py-3 !bg-[#FFC107] !text-black hover:!bg-[#FFC107]/90">
+              <Button size="lg" className="bg-[#BF9B30] text-black hover:bg-[#BF9B30]/90 font-bold text-lg px-8 py-3 !bg-[#BF9B30] !text-black hover:!bg-[#BF9B30]/90">
                 Get Started
               </Button>
             </Link>

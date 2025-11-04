@@ -86,7 +86,7 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-[#007BFF] to-[#FFC107] py-20 sm:py-24 md:py-32 lg:py-40 min-h-[60vh] flex items-center">
+      <section className="bg-gradient-to-br from-[#144449] to-[#BF9B30] py-20 sm:py-24 md:py-32 lg:py-40 min-h-[60vh] flex items-center">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white mb-6 sm:mb-8">Contact Us</h1>
           <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-white/90 max-w-4xl mx-auto mb-6 sm:mb-8 leading-relaxed px-2">
@@ -95,12 +95,12 @@ export default function ContactPage() {
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
             <Button 
               size="lg" 
-              className="w-full sm:w-auto bg-white text-[#007BFF] hover:bg-gray-100 font-bold text-base sm:text-lg px-6 sm:px-8 py-3"
+              className="w-full sm:w-auto bg-white text-[#144449] hover:bg-gray-100 font-bold text-base sm:text-lg px-6 sm:px-8 py-3"
               onClick={scrollToContactForm}
             >
               Contact Support
             </Button>
-            <Button size="lg" variant="outline" className="w-full sm:w-auto border-white text-white hover:bg-white hover:text-[#007BFF] font-semibold text-base sm:text-lg px-6 sm:px-8 py-3 !bg-transparent !border-white !text-white hover:!bg-white hover:!text-[#007BFF]">
+            <Button size="lg" variant="outline" className="w-full sm:w-auto border-white text-white hover:bg-white hover:text-[#144449] font-semibold text-base sm:text-lg px-6 sm:px-8 py-3 !bg-transparent !border-white !text-white hover:!bg-white hover:!text-[#144449]">
               View FAQ
             </Button>
           </div>
@@ -111,14 +111,14 @@ export default function ContactPage() {
       <section id="contact-form" className="py-16 sm:py-20 md:py-24 bg-gray-50">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#007BFF] mb-4 sm:mb-6">Send Us a Message</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#144449] mb-4 sm:mb-6">Send Us a Message</h2>
             <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-2">
               Fill out the form below and our team will get back to you within 24 hours. We're here to support your entrepreneurial journey.
             </p>
           </div>
 
-          <Card className="shadow-2xl border-2 border-[#007BFF]/20 bg-white">
-            <CardHeader className="bg-gradient-to-r from-[#007BFF] to-[#007BFF]/80 text-white">
+          <Card className="shadow-2xl border-2 border-[#144449]/20 bg-white">
+            <CardHeader className="bg-gradient-to-r from-[#144449] to-[#144449]/80 text-white">
               <CardTitle className="text-lg sm:text-xl lg:text-2xl text-center">Contact Us</CardTitle>
             </CardHeader>
             <CardContent className="p-4 sm:p-6 lg:p-8">
@@ -135,7 +135,7 @@ export default function ContactPage() {
                       required
                       value={formData.name}
                       onChange={handleInputChange}
-                      className="h-10 sm:h-12 text-base sm:text-lg border-2 border-gray-300 focus:border-[#007BFF] focus:ring-[#007BFF] bg-white !bg-white"
+                      className="h-10 sm:h-12 text-base sm:text-lg border-2 border-gray-300 focus:border-[#144449] focus:ring-[#144449] bg-white !bg-white"
                       placeholder="Enter your full name"
                     />
                   </div>
@@ -151,7 +151,7 @@ export default function ContactPage() {
                       required
                       value={formData.mobile}
                       onChange={handleInputChange}
-                      className="h-10 sm:h-12 text-base sm:text-lg border-2 border-gray-300 focus:border-[#007BFF] focus:ring-[#007BFF] bg-white !bg-white"
+                      className="h-10 sm:h-12 text-base sm:text-lg border-2 border-gray-300 focus:border-[#144449] focus:ring-[#144449] bg-white !bg-white"
                       placeholder="Enter your mobile number"
                     />
                   </div>
@@ -168,7 +168,7 @@ export default function ContactPage() {
                     required
                     value={formData.email}
                     onChange={handleInputChange}
-                    className="h-10 sm:h-12 text-base sm:text-lg border-2 border-gray-300 focus:border-[#007BFF] focus:ring-[#007BFF] bg-white !bg-white"
+                    className="h-10 sm:h-12 text-base sm:text-lg border-2 border-gray-300 focus:border-[#144449] focus:ring-[#144449] bg-white !bg-white"
                     placeholder="Enter your email address"
                   />
                 </div>
@@ -183,7 +183,7 @@ export default function ContactPage() {
                     required
                     value={formData.message}
                     onChange={handleInputChange}
-                    className="min-h-24 sm:min-h-32 text-base sm:text-lg border-2 border-gray-300 focus:border-[#007BFF] focus:ring-[#007BFF] resize-none bg-white !bg-white"
+                    className="min-h-24 sm:min-h-32 text-base sm:text-lg border-2 border-gray-300 focus:border-[#144449] focus:ring-[#144449] resize-none bg-white !bg-white"
                     placeholder="Tell us how we can help you..."
                   />
                 </div>
@@ -192,7 +192,7 @@ export default function ContactPage() {
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full sm:w-auto bg-gradient-to-r from-[#007BFF] to-[#FFC107] hover:from-[#007BFF]/90 hover:to-[#FFC107]/90 text-white font-bold text-base sm:text-lg px-8 sm:px-12 py-3 sm:py-4 h-12 sm:h-14 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 !bg-gradient-to-r !from-[#007BFF] !to-[#FFC107] hover:!from-[#007BFF]/90 hover:!to-[#FFC107]/90 !text-white"
+                    className="w-full sm:w-auto bg-gradient-to-r from-[#144449] to-[#BF9B30] hover:from-[#144449]/90 hover:to-[#BF9B30]/90 text-white font-bold text-base sm:text-lg px-8 sm:px-12 py-3 sm:py-4 h-12 sm:h-14 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 !bg-gradient-to-r !from-[#144449] !to-[#BF9B30] hover:!from-[#144449]/90 hover:!to-[#BF9B30]/90 !text-white"
                   >
                     {isSubmitting ? "Sending..." : "Send Message"}
                   </Button>
@@ -207,11 +207,11 @@ export default function ContactPage() {
               href="mailto:launchpad.xpert@gmail.com?subject=Inquiry from Launchpad Website&body=Hello, I would like to get in touch regarding..."
               className="block"
             >
-              <Card className="text-center p-4 sm:p-6 border-2 border-[#007BFF]/20 hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer bg-white">
-                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-[#007BFF] to-[#007BFF]/80 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+              <Card className="text-center p-4 sm:p-6 border-2 border-[#144449]/20 hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer bg-white">
+                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-[#144449] to-[#144449]/80 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
                   <span className="text-white text-lg sm:text-2xl">📧</span>
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold text-[#007BFF] mb-2">Email Us</h3>
+                <h3 className="text-lg sm:text-xl font-bold text-[#144449] mb-2">Email Us</h3>
                 <p className="text-sm sm:text-base text-gray-600">launchpad.xpert@gmail.com</p>
                 <p className="text-xs text-gray-500 mt-2">Click to send email</p>
               </Card>
@@ -221,11 +221,11 @@ export default function ContactPage() {
               href="tel:+919039654155"
               className="block"
             >
-              <Card className="text-center p-4 sm:p-6 border-2 border-[#FFC107]/20 hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer bg-white">
-                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-[#FFC107] to-[#FFC107]/80 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+              <Card className="text-center p-4 sm:p-6 border-2 border-[#BF9B30]/20 hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer bg-white">
+                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-[#BF9B30] to-[#BF9B30]/80 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
                   <span className="text-black text-lg sm:text-2xl">📱</span>
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold text-[#FFC107] mb-2">Call Us</h3>
+                <h3 className="text-lg sm:text-xl font-bold text-[#BF9B30] mb-2">Call Us</h3>
                 <p className="text-sm sm:text-base text-gray-600">+91 9039654155</p>
                 <p className="text-xs text-gray-500 mt-2">Click to call</p>
               </Card>

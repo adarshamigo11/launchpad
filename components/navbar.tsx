@@ -56,8 +56,8 @@ export function Navbar() {
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    "text-black dark:text-white text-base font-medium transition-colors hover:text-[#FFC107] relative group",
-                    pathname === link.href && "text-[#FFC107]"
+                    "text-black dark:text-white text-base font-medium transition-colors hover:text-[#BF9B30] relative group",
+                    pathname === link.href && "text-[#BF9B30]"
                   )}
                 >
                   {link.label}
@@ -114,8 +114,8 @@ export function Navbar() {
                     key={link.href}
                     href={link.href}
                     className={cn(
-                      "block text-black dark:text-white text-base font-medium transition-colors hover:text-[#FFC107] py-2",
-                      pathname === link.href && "text-[#FFC107]"
+                      "block text-black dark:text-white text-base font-medium transition-colors hover:text-[#BF9B30] py-2",
+                      pathname === link.href && "text-[#BF9B30]"
                     )}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >

@@ -9,7 +9,7 @@ export default function ExpertMentorshipPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-[#007BFF] to-[#FFC107] py-20 sm:py-24 md:py-32 lg:py-40 min-h-[60vh] flex items-center">
+      <section className="bg-gradient-to-br from-[#144449] to-[#BF9B30] py-20 sm:py-24 md:py-32 lg:py-40 min-h-[60vh] flex items-center">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 text-center">
           <div className="w-20 h-20 sm:w-24 sm:h-24 bg-white/20 rounded-lg flex items-center justify-center mx-auto mb-6 sm:mb-8">
             <span className="text-white text-3xl sm:text-4xl">👥</span>
@@ -33,23 +33,23 @@ export default function ExpertMentorshipPage() {
               We connect you with seasoned industry experts, successful entrepreneurs, and business leaders who've been there and done that. These mentors become your personal growth partners — helping you refine your ideas, design strong business models, and build strategies that actually work in the real market.
             </p>
 
-            <h2 className="text-3xl font-bold text-[#007BFF] mb-6">Through one-on-one mentorship, interactive group learning, and real-world challenges, you'll gain:</h2>
+            <h2 className="text-3xl font-bold text-[#144449] mb-6">Through one-on-one mentorship, interactive group learning, and real-world challenges, you'll gain:</h2>
             
             <ul className="space-y-4 mb-8">
               <li className="flex items-start">
-                <span className="text-[#FFC107] text-xl mr-3">•</span>
+                <span className="text-[#BF9B30] text-xl mr-3">•</span>
                 <span className="text-lg text-gray-700">Hands-on insights into branding, marketing, and business operations.</span>
               </li>
               <li className="flex items-start">
-                <span className="text-[#FFC107] text-xl mr-3">•</span>
+                <span className="text-[#BF9B30] text-xl mr-3">•</span>
                 <span className="text-lg text-gray-700">Personalised guidance to overcome roadblocks and fast-track your growth.</span>
               </li>
               <li className="flex items-start">
-                <span className="text-[#FFC107] text-xl mr-3">•</span>
+                <span className="text-[#BF9B30] text-xl mr-3">•</span>
                 <span className="text-lg text-gray-700">Strategic direction to convert your ideas into profitable ventures.</span>
               </li>
               <li className="flex items-start">
-                <span className="text-[#FFC107] text-xl mr-3">•</span>
+                <span className="text-[#BF9B30] text-xl mr-3">•</span>
                 <span className="text-lg text-gray-700">Networking opportunities with mentors, industry professionals, and like-minded peers.</span>
               </li>
             </ul>
@@ -67,7 +67,7 @@ export default function ExpertMentorshipPage() {
 
 
       {/* CTA Section */}
-      <section className="py-16 bg-[#007BFF]">
+      <section className="py-16 bg-[#144449]">
         <div className="mx-auto max-w-4xl px-4 text-center">
           <h2 className="text-3xl font-bold text-white mb-4">Ready to Get Expert Guidance?</h2>
           <p className="text-xl text-white/90 mb-8">
@@ -75,7 +75,7 @@ export default function ExpertMentorshipPage() {
           </p>
           {!currentUser && (
             <Link href="/login">
-              <Button size="lg" className="bg-[#FFC107] text-black hover:bg-[#FFC107]/90 font-bold text-lg px-8 py-3 !bg-[#FFC107] !text-black hover:!bg-[#FFC107]/90">
+              <Button size="lg" className="bg-[#BF9B30] text-black hover:bg-[#BF9B30]/90 font-bold text-lg px-8 py-3 !bg-[#BF9B30] !text-black hover:!bg-[#BF9B30]/90">
                 Get Started
               </Button>
             </Link>

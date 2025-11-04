@@ -28,7 +28,7 @@ export default function AnimatedElements() {
   useEffect(() => {
     const generateElements = () => {
       const newElements: AnimatedElement[] = []
-      const colors = ['#007BFF', '#FFC107', '#28a745', '#dc3545', '#6f42c1', '#fd7e14']
+      const colors = ['#144449', '#BF9B30', '#36454F', '#28a745', '#6f42c1', '#fd7e14']
       const types: AnimatedElement['type'][] = ['hollow-square', 'hollow-circle', 'solid-square', 'solid-circle']
       const animations: AnimatedElement['animation'][] = ['rotate', 'rotate-reverse', 'float', 'pulse']
 

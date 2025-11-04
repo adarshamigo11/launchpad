@@ -96,9 +96,9 @@ export default function LoginPage() {
         <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100 flex items-center justify-center relative overflow-hidden">
           {/* Background decorative elements */}
           <div className="absolute inset-0 overflow-hidden">
-            <div className="absolute -top-40 -right-40 w-80 h-80 bg-[#007BFF]/3 rounded-full blur-3xl"></div>
-            <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-[#FFC107]/3 rounded-full blur-3xl"></div>
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-[#007BFF]/2 to-[#FFC107]/2 rounded-full blur-3xl"></div>
+            <div className="absolute -top-40 -right-40 w-80 h-80 bg-[#144449]/3 rounded-full blur-3xl"></div>
+            <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-[#BF9B30]/3 rounded-full blur-3xl"></div>
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-[#144449]/2 to-[#BF9B30]/2 rounded-full blur-3xl"></div>
           </div>
           
           <section className="mx-auto max-w-md px-4 sm:px-6 py-8 sm:py-12 w-full relative z-10">
@@ -126,8 +126,8 @@ export default function LoginPage() {
           <button
               className={`flex-1 px-3 sm:px-4 py-2 rounded-md text-xs sm:text-sm font-semibold transition-all duration-200 ${
                 tab === "login" 
-                  ? "bg-white text-[#007BFF] shadow-sm" 
-                  : "text-gray-600 hover:text-[#007BFF]"
+                  ? "bg-white text-[#144449] shadow-sm" 
+                  : "text-gray-600 hover:text-[#144449]"
               }`}
               onClick={() => setTab("login")}
             >
@@ -136,8 +136,8 @@ export default function LoginPage() {
             <button
               className={`flex-1 px-3 sm:px-4 py-2 rounded-md text-xs sm:text-sm font-semibold transition-all duration-200 ${
                 tab === "signup" 
-                  ? "bg-white text-[#FFC107] shadow-sm" 
-                  : "text-gray-600 hover:text-[#FFC107]"
+                  ? "bg-white text-[#BF9B30] shadow-sm" 
+                  : "text-gray-600 hover:text-[#BF9B30]"
               }`}
               onClick={() => setTab("signup")}
             >
@@ -157,7 +157,7 @@ export default function LoginPage() {
                   placeholder="Email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="pl-10 h-10 sm:h-12 bg-white !bg-white border-gray-200 focus:border-[#007BFF] focus:ring-[#007BFF] rounded-xl text-black text-sm sm:text-base"
+                  className="pl-10 h-10 sm:h-12 bg-white !bg-white border-gray-200 focus:border-[#144449] focus:ring-[#144449] rounded-xl text-black text-sm sm:text-base"
                   required
                 />
             </div>
@@ -172,7 +172,7 @@ export default function LoginPage() {
                   placeholder="Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="pl-10 h-10 sm:h-12 bg-white !bg-white border-gray-200 focus:border-[#007BFF] focus:ring-[#007BFF] rounded-xl text-black text-sm sm:text-base"
+                  className="pl-10 h-10 sm:h-12 bg-white !bg-white border-gray-200 focus:border-[#144449] focus:ring-[#144449] rounded-xl text-black text-sm sm:text-base"
                   required
                 />
               </div>
@@ -183,7 +183,7 @@ export default function LoginPage() {
             
             <Button 
               type="submit" 
-              className="w-full h-10 sm:h-12 bg-gradient-to-r from-[#007BFF] to-[#007BFF]/90 text-white hover:from-[#007BFF]/90 hover:to-[#007BFF]/80 font-semibold rounded-xl shadow-lg text-sm sm:text-base" 
+              className="w-full h-10 sm:h-12 bg-gradient-to-r from-[#144449] to-[#144449]/90 text-white hover:from-[#144449]/90 hover:to-[#144449]/80 font-semibold rounded-xl shadow-lg text-sm sm:text-base" 
               disabled={loading}
             >
               {loading ? "Signing in..." : "Login"}
@@ -192,7 +192,7 @@ export default function LoginPage() {
             <div className="text-center">
               <Link 
                 href="/forgot-password" 
-                className="text-xs sm:text-sm text-[#007BFF] hover:text-[#007BFF]/80 font-medium"
+                className="text-xs sm:text-sm text-[#144449] hover:text-[#144449]/80 font-medium"
               >
                 Forgot your password?
               </Link>
@@ -210,7 +210,7 @@ export default function LoginPage() {
                   placeholder="Full Name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="pl-10 h-10 sm:h-12 bg-white !bg-white border-gray-200 focus:border-[#FFC107] focus:ring-[#FFC107] rounded-xl text-black text-sm sm:text-base"
+                  className="pl-10 h-10 sm:h-12 bg-white !bg-white border-gray-200 focus:border-[#BF9B30] focus:ring-[#BF9B30] rounded-xl text-black text-sm sm:text-base"
                   required
                 />
             </div>
@@ -224,7 +224,7 @@ export default function LoginPage() {
                   placeholder="Email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="pl-10 h-10 sm:h-12 bg-white !bg-white border-gray-200 focus:border-[#FFC107] focus:ring-[#FFC107] rounded-xl text-black text-sm sm:text-base"
+                  className="pl-10 h-10 sm:h-12 bg-white !bg-white border-gray-200 focus:border-[#BF9B30] focus:ring-[#BF9B30] rounded-xl text-black text-sm sm:text-base"
                   required
                 />
             </div>
@@ -239,7 +239,7 @@ export default function LoginPage() {
                   placeholder="Phone Number"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
-                  className="pl-10 h-10 sm:h-12 bg-white !bg-white border-gray-200 focus:border-[#FFC107] focus:ring-[#FFC107] rounded-xl text-black text-sm sm:text-base"
+                  className="pl-10 h-10 sm:h-12 bg-white !bg-white border-gray-200 focus:border-[#BF9B30] focus:ring-[#BF9B30] rounded-xl text-black text-sm sm:text-base"
                   required
                 />
             </div>
@@ -254,7 +254,7 @@ export default function LoginPage() {
                   placeholder="Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="pl-10 h-10 sm:h-12 bg-white !bg-white border-gray-200 focus:border-[#FFC107] focus:ring-[#FFC107] rounded-xl text-black text-sm sm:text-base"
+                  className="pl-10 h-10 sm:h-12 bg-white !bg-white border-gray-200 focus:border-[#BF9B30] focus:ring-[#BF9B30] rounded-xl text-black text-sm sm:text-base"
                   required
                 />
               </div>
@@ -269,7 +269,7 @@ export default function LoginPage() {
                   placeholder="Confirm Password"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  className="pl-10 h-10 sm:h-12 bg-white !bg-white border-gray-200 focus:border-[#FFC107] focus:ring-[#FFC107] rounded-xl text-black text-sm sm:text-base"
+                  className="pl-10 h-10 sm:h-12 bg-white !bg-white border-gray-200 focus:border-[#BF9B30] focus:ring-[#BF9B30] rounded-xl text-black text-sm sm:text-base"
                   required
                 />
               </div>
@@ -308,7 +308,7 @@ export default function LoginPage() {
             
             <Button 
               type="submit" 
-              className="w-full h-10 sm:h-12 bg-gradient-to-r from-[#FFC107] to-[#FFC107]/90 text-black hover:from-[#FFC107]/90 hover:to-[#FFC107]/80 font-semibold rounded-xl shadow-lg text-sm sm:text-base" 
+              className="w-full h-10 sm:h-12 bg-gradient-to-r from-[#BF9B30] to-[#BF9B30]/90 text-white hover:from-[#BF9B30]/90 hover:to-[#BF9B30]/80 font-semibold rounded-xl shadow-lg text-sm sm:text-base" 
               disabled={loading}
             >
               {loading ? "Creating account..." : "Sign Up"}

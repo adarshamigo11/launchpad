@@ -8,7 +8,7 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-[#007BFF] to-[#FFC107] py-20 sm:py-24 md:py-32 lg:py-40 min-h-[60vh] flex items-center">
+      <section className="bg-gradient-to-br from-[#144449] to-[#BF9B30] py-20 sm:py-24 md:py-32 lg:py-40 min-h-[60vh] flex items-center">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white mb-6 sm:mb-8">About Launchpad</h1>
           <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-white/90 max-w-4xl mx-auto leading-relaxed px-2">
@@ -22,7 +22,7 @@ export default function AboutPage() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-center">
             <div className="order-2 lg:order-1">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#007BFF] mb-4 sm:mb-6 text-center lg:text-left">Our Mission</h2>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#144449] mb-4 sm:mb-6 text-center lg:text-left">Our Mission</h2>
               <p className="text-base sm:text-lg text-gray-600 leading-relaxed mb-4 sm:mb-6 text-center lg:text-left">
                 Our mission is to build a supportive ecosystem where ambitious individuals can learn, compete, and thrive—helping them take the first step into entrepreneurship, transform ideas into ventures, and turn effort into sustainable growth.
               </p>
@@ -30,12 +30,12 @@ export default function AboutPage() {
                 We believe that every aspiring entrepreneur deserves access to quality mentorship, practical tools, and a community that supports their journey from idea to successful business.
               </p>
             </div>
-            <div className="bg-gradient-to-br from-[#007BFF]/10 to-[#FFC107]/10 p-6 sm:p-8 rounded-lg order-1 lg:order-2">
+            <div className="bg-gradient-to-br from-[#144449]/10 to-[#BF9B30]/10 p-6 sm:p-8 rounded-lg order-1 lg:order-2">
               <div className="text-center">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-[#007BFF] rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-[#144449] rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
                   <span className="text-white text-2xl sm:text-3xl">🚀</span>
                 </div>
-                <h3 className="text-lg sm:text-xl font-semibold text-[#007BFF] mb-2">Mission-Driven</h3>
+                <h3 className="text-lg sm:text-xl font-semibold text-[#144449] mb-2">Mission-Driven</h3>
                 <p className="text-sm sm:text-base text-gray-600">
                   Every feature and program is designed to support your entrepreneurial journey.
                 </p>
@@ -54,7 +54,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-center">
             <div className="bg-white/10 backdrop-blur-sm border border-white/20 p-6 sm:p-8 rounded-lg order-2 lg:order-1">
               <div className="text-center">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-[#FFC107] rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-[#BF9B30] rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
                   <span className="text-black text-2xl sm:text-3xl">🚀</span>
                 </div>
                 <h3 className="text-lg sm:text-xl font-semibold text-white mb-2">Vision-Focused</h3>
@@ -80,7 +80,7 @@ export default function AboutPage() {
       <section className="py-16 sm:py-20 md:py-24 bg-white">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#007BFF] mb-4 sm:mb-6">What is Launchpad?</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#144449] mb-4 sm:mb-6">What is Launchpad?</h2>
             <p className="text-base sm:text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed px-2">
               Launchpad is a platform that supports aspiring solopreneurs, youth, and startups in building their own agencies and brands. 
               It provides mentorship, ready-to-sell services, and a community to learn and grow. Through real-world sales and healthy competition, 
@@ -94,13 +94,13 @@ export default function AboutPage() {
       {/* Code of Conduct */}
       <section className="py-24 bg-white">
         <div className="mx-auto max-w-4xl px-4">
-          <h2 className="text-6xl font-bold text-center text-[#007BFF] mb-8">Guidelines</h2>
+          <h2 className="text-6xl font-bold text-center text-[#144449] mb-8">Guidelines</h2>
           <div className="bg-gray-50 p-8 rounded-lg">
             <div>
-              <h3 className="text-2xl font-bold text-[#007BFF] mb-4">Competition Guidelines</h3>
+              <h3 className="text-2xl font-bold text-[#144449] mb-4">Competition Guidelines</h3>
               <div className="space-y-4 text-gray-700">
                 <div>
-                  <h4 className="font-semibold text-[#007BFF] mb-2">Registration</h4>
+                  <h4 className="font-semibold text-[#144449] mb-2">Registration</h4>
                   <ul className="space-y-2 text-gray-600">
                     <li>• <strong>Individual Registration:</strong> Participants can register individually to take part in the competition and work on their own agency or brand.</li>
                     <li>• <strong>Group Registration:</strong> Teams can also participate in a group, with a maximum of 3 members allowed per team. Group members will collaborate to complete challenges and build their agency together.</li>
@@ -108,7 +108,7 @@ export default function AboutPage() {
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-[#007BFF] mb-2">Competition Structure</h4>
+                  <h4 className="font-semibold text-[#144449] mb-2">Competition Structure</h4>
                   <ul className="space-y-2 text-gray-600">
                     <li>• Launchpad is a three-month-long competition designed to help participants build, manage, and scale their own agencies or personal brands through real-world business challenges.</li>
                     <li>• Participants who do not already have an established agency must first complete the Basic Challenges, which are specifically designed to help newcomers establish their foundation.</li>
@@ -117,7 +117,7 @@ export default function AboutPage() {
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-[#007BFF] mb-2">Requirements</h4>
+                  <h4 className="font-semibold text-[#144449] mb-2">Requirements</h4>
                   <ul className="space-y-2 text-gray-600">
                     <li>• The minimum age limit for participation is 15 years.</li>
                     <li>• The completion of any service and its corresponding transaction during the competition will be considered valid only when the contestant uses the resources provided on the Launchpad platform itself.</li>
@@ -125,7 +125,7 @@ export default function AboutPage() {
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-[#007BFF] mb-2">Deadlines and Duration</h4>
+                  <h4 className="font-semibold text-[#144449] mb-2">Deadlines and Duration</h4>
                   <ul className="space-y-2 text-gray-600">
                     <li>• All deadlines are mandatory and must be strictly followed by every participant and team.</li>
                     <li>• The competition duration will be three months from the official start date.</li>
@@ -133,7 +133,7 @@ export default function AboutPage() {
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-[#007BFF] mb-2">Awards</h4>
+                  <h4 className="font-semibold text-[#144449] mb-2">Awards</h4>
                   <ul className="space-y-2 text-gray-600">
                     <li>• The Best Branding Category Award will be presented to the agency that demonstrates outstanding creativity, consistency, and effectiveness in its branding throughout the competition.</li>
                   </ul>
@@ -145,7 +145,7 @@ export default function AboutPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-[#007BFF]">
+      <section className="py-24 bg-[#144449]">
         <div className="mx-auto max-w-4xl px-4 text-center">
           <h2 className="text-3xl font-bold text-white mb-4">Ready to Join Launchpad?</h2>
           <p className="text-xl text-white/90 mb-8">
@@ -154,7 +154,7 @@ export default function AboutPage() {
           {!currentUser && (
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/login">
-                <Button size="lg" className="bg-[#FFC107] text-black hover:bg-[#FFC107]/90 font-bold text-lg px-8 py-3 !bg-[#FFC107] !text-black hover:!bg-[#FFC107]/90">
+                <Button size="lg" className="bg-[#BF9B30] text-white hover:bg-[#BF9B30]/90 font-bold text-lg px-8 py-3 !bg-[#BF9B30] !text-white hover:!bg-[#BF9B30]/90">
                   Register Now
                 </Button>
               </Link>

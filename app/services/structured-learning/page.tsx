@@ -9,7 +9,7 @@ export default function StructuredLearningPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-[#007BFF] to-[#FFC107] py-20 sm:py-24 md:py-32 lg:py-40 min-h-[60vh] flex items-center">
+      <section className="bg-gradient-to-br from-[#144449] to-[#BF9B30] py-20 sm:py-24 md:py-32 lg:py-40 min-h-[60vh] flex items-center">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 text-center">
           <div className="w-20 h-20 sm:w-24 sm:h-24 bg-white/20 rounded-lg flex items-center justify-center mx-auto mb-6 sm:mb-8">
             <span className="text-white text-3xl sm:text-4xl">🎓</span>
@@ -33,21 +33,21 @@ export default function StructuredLearningPage() {
               The programme is thoughtfully designed to take you step-by-step — from understanding business fundamentals to building and managing your own venture. Each stage focuses on hands-on learning, supported by expert mentorship, real-world projects, and continuous feedback.
             </p>
 
-            <h2 className="text-3xl font-bold text-[#007BFF] mb-6">How Our Structured Learning Works</h2>
+            <h2 className="text-3xl font-bold text-[#144449] mb-6">How Our Structured Learning Works</h2>
             
             <div className="space-y-6 mb-8">
               <div>
-                <h3 className="text-xl font-semibold text-[#007BFF] mb-2">Practical Application:</h3>
+                <h3 className="text-xl font-semibold text-[#144449] mb-2">Practical Application:</h3>
                 <p className="text-lg text-gray-700">Apply every concept in real-world scenarios through ready-to-sell services and live challenges.</p>
               </div>
               
               <div>
-                <h3 className="text-xl font-semibold text-[#007BFF] mb-2">Guided Mentorship:</h3>
+                <h3 className="text-xl font-semibold text-[#144449] mb-2">Guided Mentorship:</h3>
                 <p className="text-lg text-gray-700">Receive constant guidance from industry mentors who help you refine your approach and stay on track.</p>
               </div>
               
               <div>
-                <h3 className="text-xl font-semibold text-[#007BFF] mb-2">Performance Tracking:</h3>
+                <h3 className="text-xl font-semibold text-[#144449] mb-2">Performance Tracking:</h3>
                 <p className="text-lg text-gray-700">Monitor your growth through regular evaluations, leaderboards, and milestones.</p>
               </div>
             </div>
@@ -60,7 +60,7 @@ export default function StructuredLearningPage() {
               With Launchpad's Structured Learning, you gain more than just knowledge — you gain clarity, confidence, and the capability to execute your ideas effectively.
             </p>
 
-            <p className="text-lg text-gray-700 leading-relaxed mb-8 font-semibold text-[#007BFF]">
+            <p className="text-lg text-gray-700 leading-relaxed mb-8 font-semibold text-[#144449]">
               Because learning is most powerful when it's structured for success.
             </p>
           </div>
@@ -68,7 +68,7 @@ export default function StructuredLearningPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-[#007BFF]">
+      <section className="py-16 bg-[#144449]">
         <div className="mx-auto max-w-4xl px-4 text-center">
           <h2 className="text-3xl font-bold text-white mb-4">Ready for Structured Learning?</h2>
           <p className="text-xl text-white/90 mb-8">
@@ -76,7 +76,7 @@ export default function StructuredLearningPage() {
           </p>
           {!currentUser && (
             <Link href="/login">
-              <Button size="lg" className="bg-[#FFC107] text-black hover:bg-[#FFC107]/90 font-bold text-lg px-8 py-3 !bg-[#FFC107] !text-black hover:!bg-[#FFC107]/90">
+              <Button size="lg" className="bg-[#BF9B30] text-black hover:bg-[#BF9B30]/90 font-bold text-lg px-8 py-3 !bg-[#BF9B30] !text-black hover:!bg-[#BF9B30]/90">
                 Get Started
               </Button>
             </Link>
