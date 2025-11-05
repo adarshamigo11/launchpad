@@ -20,7 +20,6 @@ export default function TasksPage() {
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(null)
   const [selectedSubcategory, setSelectedSubcategory] = useState<"basic" | "advanced" | null>(null)
   const [accessMap, setAccessMap] = useState<Record<string, boolean>>({})
-  const [paymentLoading, setPaymentLoading] = useState<string | null>(null)
 
   useEffect(() => {
     if (!currentUser) router.push("/login")
@@ -96,61 +95,17 @@ export default function TasksPage() {
       setSelectedCategory(category)
       setSelectedSubcategory(null)
     } else {
-      // Show payment dialog or initiate payment
-      await initiatePayment(category)
-    }
-  }
-
-  const initiatePayment = async (category: Category) => {
-    if (!currentUser) {
-      toast({
-        title: "Login Required",
-        description: "Please login to purchase access to this category.",
-        variant: "destructive",
-      })
-      return
-    }
-
-    try {
-      setPaymentLoading(category.id)
-      const res = await fetch("/api/payments/initiate", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          userId: currentUser.id,
-          userEmail: currentUser.email,
-          categoryId: category.id,
-        }),
-      })
-
-      const data = await res.json()
-
-      if (data.ok && data.paymentUrl) {
-        // Redirect to PhonePe payment page
-        window.location.href = data.paymentUrl
-      } else if (data.ok && data.hasAccess) {
-        // Free category, access granted
+      // Redirect to checkout page
+      if (!currentUser) {
         toast({
-          title: "Access Granted",
-          description: "You now have access to this category.",
-        })
-        loadData()
-      } else {
-        toast({
-          title: "Payment Failed",
-          description: data.message || "Failed to initiate payment. Please try again.",
+          title: "Login Required",
+          description: "Please login to purchase access to this category.",
           variant: "destructive",
         })
+        router.push("/login")
+        return
       }
-    } catch (error) {
-      console.error("Payment initiation error:", error)
-      toast({
-        title: "Error",
-        description: "Something went wrong. Please try again.",
-        variant: "destructive",
-      })
-    } finally {
-      setPaymentLoading(null)
+      router.push(`/checkout?categoryId=${category.id}`)
     }
   }
 
@@ -368,7 +323,6 @@ export default function TasksPage() {
             const isFree = !category.price || category.price === 0
             const hasAccess = accessMap[category.id] || false
             const isLocked = !isFree && !hasAccess
-            const isLoading = paymentLoading === category.id
             
             return (
               <Card 
@@ -431,11 +385,6 @@ export default function TasksPage() {
                       )}
                     </div>
                   </div>
-                  {isLoading && (
-                    <div className="mt-2 text-center text-sm text-muted-foreground">
-                      Processing payment...
-                    </div>
-                  )}
                 </CardContent>
               </Card>
             )

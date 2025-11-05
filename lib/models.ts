@@ -168,3 +168,35 @@ export type CategoryAccess = {
   accessGranted: boolean
   accessGrantedAt: number
 }
+
+export interface PromoCodeDoc {
+  _id?: ObjectId
+  code: string // Unique promo code (e.g., "SAVE20")
+  description: string
+  discountType: "percentage" | "fixed" // Percentage or fixed amount
+  discountValue: number // Discount percentage (0-100) or fixed amount in INR
+  minAmount?: number // Minimum purchase amount to use this code
+  maxDiscount?: number // Maximum discount amount (for percentage discounts)
+  validFrom: Date
+  validUntil: Date
+  usageLimit?: number // Total number of times this code can be used
+  usedCount: number // Number of times this code has been used
+  isActive: boolean
+  createdAt: Date
+  updatedAt: Date
+}
+
+export type PromoCode = {
+  id: string
+  code: string
+  description: string
+  discountType: "percentage" | "fixed"
+  discountValue: number
+  minAmount?: number
+  maxDiscount?: number
+  validFrom: number
+  validUntil: number
+  usageLimit?: number
+  usedCount: number
+  isActive: boolean
+}

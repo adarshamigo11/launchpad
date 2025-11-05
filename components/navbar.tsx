@@ -20,6 +20,7 @@ export function Navbar() {
           { href: "/admin/categories", label: "Categories" },
           { href: "/admin/submissions", label: "Submissions" },
           { href: "/admin/messages", label: "Messages" },
+          { href: "/admin/payments", label: "Payments" },
           { href: "/leaderboard", label: "Leaderboard" },
         ]
       : currentUser

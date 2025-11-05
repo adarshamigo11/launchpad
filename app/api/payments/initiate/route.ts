@@ -19,7 +19,7 @@ function generateXVerify(payload: string, endpoint: string): string {
 
 export async function POST(req: NextRequest) {
   try {
-    const { userId, userEmail, categoryId } = await req.json()
+    const { userId, userEmail, categoryId, promoCode } = await req.json()
 
     if (!userId || !userEmail || !categoryId) {
       return NextResponse.json({ ok: false, message: "Missing required fields" }, { status: 400 })
@@ -29,6 +29,7 @@ export async function POST(req: NextRequest) {
     const categoriesCollection = db.collection<CategoryDoc>("categories")
     const categoryAccessCollection = db.collection("categoryAccess")
     const paymentsCollection = db.collection<PaymentDoc>("payments")
+    const promoCodesCollection = db.collection("promoCodes")
 
     // Check if category exists and get price
     const category = await categoriesCollection.findOne({ _id: new ObjectId(categoryId) })
@@ -62,6 +63,47 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ ok: true, message: "Access granted (free category)", hasAccess: true })
     }
 
+    // Calculate final amount with promo code
+    let finalAmount = category.price
+    let discount = 0
+    let appliedPromoCode = null
+
+    if (promoCode) {
+      // Validate and apply promo code
+      const promo = await promoCodesCollection.findOne({
+        code: { $regex: new RegExp(`^${promoCode}$`, "i") },
+        isActive: true,
+      })
+
+      if (promo) {
+        const now = new Date()
+        if (now >= promo.validFrom && now <= promo.validUntil) {
+          if (!promo.minAmount || category.price >= promo.minAmount) {
+            if (!promo.usageLimit || promo.usedCount < promo.usageLimit) {
+              // Calculate discount
+              if (promo.discountType === "percentage") {
+                discount = (category.price * promo.discountValue) / 100
+                if (promo.maxDiscount) {
+                  discount = Math.min(discount, promo.maxDiscount)
+                }
+              } else {
+                discount = promo.discountValue
+              }
+              discount = Math.min(discount, category.price)
+              finalAmount = Math.max(0, category.price - discount)
+              appliedPromoCode = promo.code
+
+              // Increment usage count
+              await promoCodesCollection.updateOne(
+                { _id: promo._id },
+                { $inc: { usedCount: 1 }, $set: { updatedAt: new Date() } }
+              )
+            }
+          }
+        }
+      }
+    }
+
     // Generate transaction ID
     const transactionId = `TXN${Date.now()}${Math.random().toString(36).substr(2, 9)}`
 
@@ -70,7 +112,7 @@ export async function POST(req: NextRequest) {
       userId,
       userEmail,
       categoryId,
-      amount: category.price,
+      amount: finalAmount,
       transactionId,
       status: "pending",
       paymentMethod: "phonepe",
@@ -88,7 +130,7 @@ export async function POST(req: NextRequest) {
     const payload = {
       merchantId: PHONEPE_MERCHANT_ID,
       merchantTransactionId: transactionId,
-      amount: category.price * 100, // Convert to paise
+      amount: Math.round(finalAmount * 100), // Convert to paise
       merchantUserId: userId,
       redirectUrl,
       redirectMode: "REDIRECT",
