@@ -20,6 +20,7 @@ export async function GET() {
         description: c.description,
         photo: c.photo,
         status: c.status,
+        price: c.price || 0,
       })),
     })
   } catch (error) {
@@ -30,7 +31,7 @@ export async function GET() {
 
 export async function POST(req: Request) {
   try {
-    const { name, description, photo, status, userEmail } = await req.json()
+    const { name, description, photo, status, price, userEmail } = await req.json()
 
     if (userEmail !== "admin@admin.com") {
       return NextResponse.json({ ok: false, message: "Unauthorized" }, { status: 403 })
@@ -44,6 +45,7 @@ export async function POST(req: Request) {
       description,
       photo,
       status: status || "active",
+      price: price || 0,
       createdAt: new Date(),
     }
 
@@ -57,6 +59,7 @@ export async function POST(req: Request) {
         description,
         photo,
         status: status || "active",
+        price: price || 0,
       },
     })
   } catch (error) {

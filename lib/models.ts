@@ -56,6 +56,7 @@ export interface CategoryDoc {
   description: string
   photo: string
   status: "active" | "inactive"
+  price: number // Price in INR (0 means free)
   createdAt: Date
 }
 
@@ -114,10 +115,56 @@ export type Message = {
   createdAt: number
 }
 
+export interface PaymentDoc {
+  _id?: ObjectId
+  userId: string
+  userEmail: string
+  categoryId: string
+  amount: number
+  transactionId: string // PhonePe transaction ID
+  phonepeTransactionId?: string // PhonePe's transaction ID
+  status: "pending" | "success" | "failed" | "cancelled"
+  paymentMethod: string
+  createdAt: Date
+  updatedAt: Date
+}
+
+export interface CategoryAccessDoc {
+  _id?: ObjectId
+  userId: string
+  userEmail: string
+  categoryId: string
+  paymentId: string // Reference to PaymentDoc
+  accessGranted: boolean
+  accessGrantedAt: Date
+  createdAt: Date
+}
+
 export type Category = {
   id: string
   name: string
   description: string
   photo: string
   status: "active" | "inactive"
+  price: number
+}
+
+export type Payment = {
+  id: string
+  userId: string
+  userEmail: string
+  categoryId: string
+  amount: number
+  transactionId: string
+  status: "pending" | "success" | "failed" | "cancelled"
+  createdAt: number
+}
+
+export type CategoryAccess = {
+  id: string
+  userId: string
+  userEmail: string
+  categoryId: string
+  accessGranted: boolean
+  accessGrantedAt: number
 }

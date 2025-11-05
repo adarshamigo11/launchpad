@@ -7,6 +7,7 @@ import "./globals.css"
 import { AuthProvider } from "@/components/state/auth-context"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Navbar } from "@/components/navbar"
+import { Footer } from "@/components/footer"
 import { Toaster } from "@/components/ui/toaster"
 import AppWrapper from "@/components/app-wrapper"
 import AnimatedElements from "@/components/animated-elements"
@@ -62,10 +63,11 @@ export default function RootLayout({
             <AppWrapper>
               <Suspense fallback={<div>Loading...</div>}>
                 <Navbar />
-                <main className="min-h-[calc(100dvh-64px)] relative">
+                <main className="min-h-[calc(100dvh-64px)] relative flex flex-col">
                   {children}
                   <AnimatedElements />
                 </main>
+                <Footer />
               </Suspense>
             </AppWrapper>
           </AuthProvider>

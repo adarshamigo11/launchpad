@@ -22,7 +22,8 @@ export default function AdminCategoriesPage() {
     name: "",
     description: "",
     photo: "",
-    status: "active" as "active" | "inactive"
+    status: "active" as "active" | "inactive",
+    price: 0
   })
 
   useEffect(() => {
@@ -54,7 +55,7 @@ export default function AdminCategoriesPage() {
       
       setIsDialogOpen(false)
       setEditingCategory(null)
-      setFormData({ name: "", description: "", photo: "", status: "active" })
+      setFormData({ name: "", description: "", photo: "", status: "active", price: 0 })
       await loadCategories()
     } catch (error) {
       console.error("Error saving category:", error)
@@ -67,7 +68,8 @@ export default function AdminCategoriesPage() {
       name: category.name,
       description: category.description,
       photo: category.photo,
-      status: category.status
+      status: category.status,
+      price: category.price || 0
     })
     setIsDialogOpen(true)
   }
@@ -97,7 +99,7 @@ export default function AdminCategoriesPage() {
           <DialogTrigger asChild>
             <Button onClick={() => {
               setEditingCategory(null)
-              setFormData({ name: "", description: "", photo: "", status: "active" })
+              setFormData({ name: "", description: "", photo: "", status: "active", price: 0 })
             }}>
               Add Category
             </Button>
@@ -136,6 +138,22 @@ export default function AdminCategoriesPage() {
                   placeholder="https://example.com/image.jpg"
                   required
                 />
+              </div>
+              <div>
+                <Label htmlFor="price">Price (INR)</Label>
+                <Input
+                  id="price"
+                  type="number"
+                  min="0"
+                  step="0.01"
+                  value={formData.price}
+                  onChange={(e) => setFormData({ ...formData, price: parseFloat(e.target.value) || 0 })}
+                  placeholder="0.00"
+                  required
+                />
+                <p className="text-xs text-muted-foreground mt-1">
+                  Set 0 for free categories, or enter amount in INR
+                </p>
               </div>
               <div>
                 <Label htmlFor="status">Status</Label>

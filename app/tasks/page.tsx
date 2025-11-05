@@ -1,20 +1,26 @@
 "use client"
 import { useEffect, useState } from "react"
-import { useRouter } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 import Link from "next/link"
 import { useApp, type Task, type Category } from "@/components/state/auth-context"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import { useToast } from "@/hooks/use-toast"
 
 export default function TasksPage() {
   const { currentUser, fetchTasks, fetchCategories } = useApp()
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const { toast } = useToast()
   const [tasks, setTasks] = useState<Task[]>([])
   const [categories, setCategories] = useState<Category[]>([])
   const [loading, setLoading] = useState(true)
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(null)
   const [selectedSubcategory, setSelectedSubcategory] = useState<"basic" | "advanced" | null>(null)
+  const [accessMap, setAccessMap] = useState<Record<string, boolean>>({})
+  const [paymentLoading, setPaymentLoading] = useState<string | null>(null)
 
   useEffect(() => {
     if (!currentUser) router.push("/login")
@@ -33,6 +39,27 @@ export default function TasksPage() {
       const [tasksData, categoriesData] = await Promise.all([fetchTasks(), fetchCategories()])
       setTasks(tasksData)
       setCategories(categoriesData)
+
+      // Load access status for all categories
+      if (currentUser && categoriesData.length > 0) {
+        const categoryIds = categoriesData.map((c) => c.id)
+        try {
+          const res = await fetch("/api/payments/access-status", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              userId: currentUser.id,
+              categoryIds,
+            }),
+          })
+          const data = await res.json()
+          if (data.ok) {
+            setAccessMap(data.accessMap || {})
+          }
+        } catch (error) {
+          console.error("Error loading access status:", error)
+        }
+      }
     } catch (error) {
       console.error("Error loading data:", error)
     } finally {
@@ -40,10 +67,91 @@ export default function TasksPage() {
     }
   }
 
-  const handleCategoryClick = (category: Category) => {
-    console.log("Category clicked:", category.name)
-    setSelectedCategory(category)
-    setSelectedSubcategory(null)
+  // Check payment status from URL params
+  useEffect(() => {
+    const paymentStatus = searchParams.get("payment")
+    if (paymentStatus === "success") {
+      toast({
+        title: "Payment Successful!",
+        description: "You now have access to the category.",
+      })
+      loadData() // Reload to refresh access status
+      router.replace("/tasks")
+    } else if (paymentStatus === "failed") {
+      toast({
+        title: "Payment Failed",
+        description: "Please try again or contact support.",
+        variant: "destructive",
+      })
+      router.replace("/tasks")
+    }
+  }, [searchParams, router, toast])
+
+  const handleCategoryClick = async (category: Category) => {
+    // Check if category is free or user has access
+    const isFree = !category.price || category.price === 0
+    const hasAccess = accessMap[category.id] || false
+
+    if (isFree || hasAccess) {
+      setSelectedCategory(category)
+      setSelectedSubcategory(null)
+    } else {
+      // Show payment dialog or initiate payment
+      await initiatePayment(category)
+    }
+  }
+
+  const initiatePayment = async (category: Category) => {
+    if (!currentUser) {
+      toast({
+        title: "Login Required",
+        description: "Please login to purchase access to this category.",
+        variant: "destructive",
+      })
+      return
+    }
+
+    try {
+      setPaymentLoading(category.id)
+      const res = await fetch("/api/payments/initiate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          userId: currentUser.id,
+          userEmail: currentUser.email,
+          categoryId: category.id,
+        }),
+      })
+
+      const data = await res.json()
+
+      if (data.ok && data.paymentUrl) {
+        // Redirect to PhonePe payment page
+        window.location.href = data.paymentUrl
+      } else if (data.ok && data.hasAccess) {
+        // Free category, access granted
+        toast({
+          title: "Access Granted",
+          description: "You now have access to this category.",
+        })
+        loadData()
+      } else {
+        toast({
+          title: "Payment Failed",
+          description: data.message || "Failed to initiate payment. Please try again.",
+          variant: "destructive",
+        })
+      }
+    } catch (error) {
+      console.error("Payment initiation error:", error)
+      toast({
+        title: "Error",
+        description: "Something went wrong. Please try again.",
+        variant: "destructive",
+      })
+    } finally {
+      setPaymentLoading(null)
+    }
   }
 
   const handleSubcategoryClick = (subcategory: "basic" | "advanced") => {
@@ -257,19 +365,46 @@ export default function TasksPage() {
             const categoryTasks = tasks.filter(task => task.categoryId === category.id)
             const basicTasks = categoryTasks.filter(task => task.subcategory === "basic")
             const advancedTasks = categoryTasks.filter(task => task.subcategory === "advanced")
+            const isFree = !category.price || category.price === 0
+            const hasAccess = accessMap[category.id] || false
+            const isLocked = !isFree && !hasAccess
+            const isLoading = paymentLoading === category.id
             
             return (
               <Card 
                 key={category.id}
-                className="border-primary/20 hover:border-primary/40 transition-colors cursor-pointer shadow-lg hover:shadow-xl overflow-hidden"
+                className={`${
+                  isLocked 
+                    ? "border-gray-300 opacity-75 cursor-pointer" 
+                    : "border-primary/20 hover:border-primary/40"
+                } transition-colors cursor-pointer shadow-lg hover:shadow-xl overflow-hidden relative`}
                 onClick={() => handleCategoryClick(category)}
               >
+                {isLocked && (
+                  <div className="absolute inset-0 bg-black/50 z-10 flex items-center justify-center">
+                    <div className="text-center text-white">
+                      <div className="text-4xl mb-2">🔒</div>
+                      <div className="font-semibold">Locked</div>
+                      <div className="text-sm mt-1">₹{category.price.toFixed(2)}</div>
+                    </div>
+                  </div>
+                )}
                 <div className="aspect-video relative">
                   <img
                     src={category.photo}
                     alt={category.name}
                     className="w-full h-full object-cover"
                   />
+                  {hasAccess && (
+                    <div className="absolute top-2 right-2">
+                      <Badge className="bg-green-500 text-white">Unlocked</Badge>
+                    </div>
+                  )}
+                  {isFree && (
+                    <div className="absolute top-2 right-2">
+                      <Badge className="bg-blue-500 text-white">Free</Badge>
+                    </div>
+                  )}
                 </div>
                 <CardHeader className="pb-3">
                   <CardTitle className="text-lg sm:text-xl line-clamp-2">{category.name}</CardTitle>
@@ -285,10 +420,22 @@ export default function TasksPage() {
                         {advancedTasks.length} Advanced
                       </Badge>
                     </div>
-                    <span className="text-muted-foreground text-xs sm:text-sm">
-                      {categoryTasks.length} Total
-                    </span>
+                    <div className="flex flex-col items-end gap-1">
+                      <span className="text-muted-foreground text-xs sm:text-sm">
+                        {categoryTasks.length} Total
+                      </span>
+                      {!isFree && (
+                        <span className="text-primary font-semibold text-xs sm:text-sm">
+                          ₹{category.price.toFixed(2)}
+                        </span>
+                      )}
+                    </div>
                   </div>
+                  {isLoading && (
+                    <div className="mt-2 text-center text-sm text-muted-foreground">
+                      Processing payment...
+                    </div>
+                  )}
                 </CardContent>
               </Card>
             )

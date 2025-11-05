@@ -14,12 +14,13 @@ import Link from "next/link"
 export default function TaskDetailPage() {
   const { id } = useParams<{ id: string }>()
   const router = useRouter()
-  const { currentUser, submitTask, setVisited, fetchTask, fetchSubmissions } = useApp()
+  const { currentUser, submitTask, setVisited, fetchTask, fetchSubmissions, fetchCategories } = useApp()
   const [file, setFile] = useState<File | null>(null)
   const [message, setMessage] = useState("")
   const [task, setTask] = useState<Task | null>(null)
   const [submissions, setSubmissions] = useState<Submission[]>([])
   const [loading, setLoading] = useState(true)
+  const [hasAccess, setHasAccess] = useState<boolean | null>(null)
 
   useEffect(() => {
     if (!currentUser) router.push("/login")
@@ -28,14 +29,42 @@ export default function TaskDetailPage() {
 
   useEffect(() => {
     if (currentUser && currentUser.email !== "admin@admin.com") {
-      Promise.all([fetchTask(id), fetchSubmissions()]).then(([taskData, subsData]) => {
+      Promise.all([fetchTask(id), fetchSubmissions(), fetchCategories()]).then(([taskData, subsData, categoriesData]) => {
         setTask(taskData)
         setSubmissions(subsData.filter((s) => s.taskId === id))
+        
+        // Check access to category
+        if (taskData) {
+          const category = categoriesData.find((c) => c.id === taskData.categoryId)
+          if (category) {
+            const isFree = !category.price || category.price === 0
+            if (!isFree) {
+              // Check access status
+              fetch("/api/payments/check-access", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  userId: currentUser.id,
+                  categoryId: category.id,
+                }),
+              })
+                .then((res) => res.json())
+                .then((data) => {
+                  setHasAccess(data.ok && data.hasAccess)
+                })
+                .catch(() => setHasAccess(false))
+            } else {
+              setHasAccess(true) // Free category
+            }
+          } else {
+            setHasAccess(true) // Category not found, allow access
+          }
+          setVisited(id)
+        }
         setLoading(false)
-        if (taskData) setVisited(id)
       })
     }
-  }, [id, currentUser, fetchTask, fetchSubmissions, setVisited])
+  }, [id, currentUser, fetchTask, fetchSubmissions, fetchCategories, setVisited])
 
   if (!currentUser || currentUser.email === "admin@admin.com") return null
 
@@ -51,6 +80,27 @@ export default function TaskDetailPage() {
     return (
       <section className="mx-auto max-w-3xl px-4 pt-32 pb-8">
         <p className="text-muted-foreground">Task not found.</p>
+      </section>
+    )
+  }
+
+  // Check access - show locked message if user doesn't have access
+  if (hasAccess === false) {
+    return (
+      <section className="mx-auto max-w-3xl px-4 pt-32 pb-8">
+        <Card className="border-destructive/40">
+          <CardHeader>
+            <CardTitle className="text-destructive">🔒 Access Restricted</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-muted-foreground mb-4">
+              You need to purchase access to this category to view and submit tasks.
+            </p>
+            <Link href="/tasks">
+              <Button>Go Back to Categories</Button>
+            </Link>
+          </CardContent>
+        </Card>
       </section>
     )
   }

@@ -5,7 +5,7 @@ import type { CategoryDoc } from "@/lib/models"
 
 export async function PUT(req: Request, { params }: { params: { id: string } }) {
   try {
-    const { name, description, photo, status, userEmail } = await req.json()
+    const { name, description, photo, status, price, userEmail } = await req.json()
 
     if (userEmail !== "admin@admin.com") {
       return NextResponse.json({ ok: false, message: "Unauthorized" }, { status: 403 })
@@ -16,7 +16,7 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
 
     const result = await categoriesCollection.updateOne(
       { _id: new ObjectId(params.id) },
-      { $set: { name, description, photo, status } }
+      { $set: { name, description, photo, status, price: price || 0 } }
     )
 
     if (result.matchedCount === 0) {

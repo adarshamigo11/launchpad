@@ -9,6 +9,8 @@ export type Category = {
   description: string
   photo: string
   status: "active" | "inactive"
+  price: number
+  isUnlocked?: boolean // Client-side computed field
 }
 
 export type User = {
