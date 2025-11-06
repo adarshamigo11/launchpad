@@ -45,7 +45,7 @@ export function Footer() {
               alt="Launchpad Logo" 
               className="h-48 w-auto mb-1"
             />
-            <h3 className="text-black dark:text-white font-bold text-xl mb-1">Launchpad</h3>
+            <h3 className="text-black dark:text-white font-bold text-xl mb-1">Launchpad.expert</h3>
             <p className="text-black/70 dark:text-white/70 text-sm max-w-xs">
               Aim for Innovation, Win with Execution
             </p>
@@ -87,7 +87,7 @@ export function Footer() {
         {/* Copyright */}
         <div className="border-t border-black/20 dark:border-white/20 pt-8">
           <p className="text-center text-black/60 dark:text-white/60 text-sm">
-            © {new Date().getFullYear()} Launchpad. All rights reserved.
+            © {new Date().getFullYear()} Launchpad.expert. All rights reserved.
           </p>
         </div>
       </div>
