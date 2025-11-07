@@ -47,7 +47,7 @@ export default function RefundPolicyPage() {
                 <div>
                   <h3 className="text-xl sm:text-2xl font-bold text-[#144449] mb-3">4. Review Process</h3>
                   <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
-                    Verified technical errors will be reviewed within 7–10 business days, and eligible refunds will be initiated through the original payment method.
+                    Verified technical errors will be reviewed within 7–10 business days, and eligible refunds will be initiated through the original payment method within 7-10 business days.
                   </p>
                 </div>
 
