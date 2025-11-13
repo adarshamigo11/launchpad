@@ -142,8 +142,11 @@ export default function CheckoutPage() {
 
       const data = await res.json()
       console.log("Payment initiation response:", data)
+      console.log("Response status:", res.status)
+      console.log("Response ok:", res.ok)
 
       if (data.ok && data.paymentUrl) {
+        console.log("Redirecting to PhonePe:", data.paymentUrl)
         // Redirect to PhonePe payment page
         window.location.href = data.paymentUrl
       } else if (data.ok && data.hasAccess) {
@@ -155,7 +158,11 @@ export default function CheckoutPage() {
         router.push("/tasks")
       } else {
         const errorMessage = data.message || "Failed to initiate payment. Please try again."
-        console.error("Payment initiation failed:", errorMessage)
+        console.error("Payment initiation failed:", {
+          status: res.status,
+          errorMessage,
+          fullResponse: data,
+        })
         toast({
           title: "Payment Failed",
           description: errorMessage,

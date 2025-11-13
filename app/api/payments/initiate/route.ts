@@ -15,6 +15,14 @@ const PHONEPE_CLIENT_SECRET = process.env.PHONEPE_CLIENT_SECRET || ""
 export async function POST(req: NextRequest) {
   try {
     // Validate PhonePe configuration
+    console.log("[Launchpad] Environment check:", {
+      hasClientId: !!PHONEPE_CLIENT_ID,
+      hasClientSecret: !!PHONEPE_CLIENT_SECRET,
+      clientIdLength: PHONEPE_CLIENT_ID?.length,
+      env: process.env.PHONEPE_ENV,
+      baseUrl: process.env.NEXT_PUBLIC_BASE_URL,
+    })
+
     if (!PHONEPE_CLIENT_ID || !PHONEPE_CLIENT_SECRET) {
       console.error("[Launchpad] PhonePe configuration missing:", {
         hasClientId: !!PHONEPE_CLIENT_ID,
