@@ -1,24 +1,34 @@
 import { NextRequest, NextResponse } from "next/server"
 import { getDb } from "@/lib/mongodb"
 import { ObjectId } from "mongodb"
-import type { CategoryDoc, PaymentDoc } from "@/lib/models"
-import crypto from "crypto"
+import type { CategoryDoc, PaymentDoc, PhonePeMetaInfo } from "@/lib/models"
+import { randomUUID } from "crypto"
+import {
+  buildPhonePeMetaInfo,
+  initiateStandardCheckoutPayment,
+  PHONEPE_ENV,
+} from "@/lib/phonepe"
 
-// PhonePe Configuration
-const PHONEPE_MERCHANT_ID = process.env.PHONEPE_MERCHANT_ID || ""
-const PHONEPE_SALT_KEY = process.env.PHONEPE_SALT_KEY || ""
-const PHONEPE_SALT_INDEX = process.env.PHONEPE_SALT_INDEX || "1"
-const PHONEPE_BASE_URL = process.env.PHONEPE_BASE_URL || "https://api.phonepe.com/apis/hermes"
-
-// Generate PhonePe X-VERIFY header
-function generateXVerify(payload: string, endpoint: string): string {
-  const stringToHash = payload + endpoint + PHONEPE_SALT_KEY
-  const hash = crypto.createHash("sha256").update(stringToHash).digest("hex")
-  return hash + "###" + PHONEPE_SALT_INDEX
-}
+const PHONEPE_CLIENT_ID = process.env.PHONEPE_CLIENT_ID || ""
+const PHONEPE_CLIENT_SECRET = process.env.PHONEPE_CLIENT_SECRET || ""
 
 export async function POST(req: NextRequest) {
   try {
+    // Validate PhonePe configuration
+    if (!PHONEPE_CLIENT_ID || !PHONEPE_CLIENT_SECRET) {
+      console.error("[Launchpad] PhonePe configuration missing:", {
+        hasClientId: !!PHONEPE_CLIENT_ID,
+        hasClientSecret: !!PHONEPE_CLIENT_SECRET,
+      })
+      return NextResponse.json(
+        { 
+          ok: false, 
+          message: "Payment gateway not configured. Please contact support." 
+        }, 
+        { status: 500 }
+      )
+    }
+
     const { userId, userEmail, categoryId, promoCode } = await req.json()
 
     if (!userId || !userEmail || !categoryId) {
@@ -104,8 +114,26 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    // Generate transaction ID
-    const transactionId = `TXN${Date.now()}${Math.random().toString(36).substr(2, 9)}`
+    if (finalAmount <= 0) {
+      const accessDoc = {
+        userId,
+        userEmail,
+        categoryId,
+        paymentId: "",
+        accessGranted: true,
+        accessGrantedAt: new Date(),
+        createdAt: new Date(),
+      }
+      await categoryAccessCollection.insertOne(accessDoc)
+      return NextResponse.json({
+        ok: true,
+        message: "Access granted via promo code",
+        hasAccess: true,
+      })
+    }
+
+    // Generate unique merchant order ID (transaction ID)
+    const merchantOrderId = randomUUID()
 
     // Create payment record
     const paymentDoc: PaymentDoc = {
@@ -113,7 +141,7 @@ export async function POST(req: NextRequest) {
       userEmail,
       categoryId,
       amount: finalAmount,
-      transactionId,
+      transactionId: merchantOrderId,
       status: "pending",
       paymentMethod: "phonepe",
       createdAt: new Date(),
@@ -123,57 +151,130 @@ export async function POST(req: NextRequest) {
     const paymentResult = await paymentsCollection.insertOne(paymentDoc)
     const paymentId = paymentResult.insertedId.toString()
 
-    // Prepare PhonePe payment request
-    const redirectUrl = `${process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"}/api/payments/callback`
-    const callbackUrl = `${process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"}/api/payments/callback`
+    // Prepare redirect URL
+    const redirectUrl = `${process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"}/api/payments/callback?transactionId=${merchantOrderId}`
 
-    const payload = {
-      merchantId: PHONEPE_MERCHANT_ID,
-      merchantTransactionId: transactionId,
-      amount: Math.round(finalAmount * 100), // Convert to paise
-      merchantUserId: userId,
-      redirectUrl,
-      redirectMode: "REDIRECT",
-      callbackUrl,
-      paymentInstrument: {
-        type: "PAY_PAGE",
-      },
+    // Build meta info with additional details
+    const phonePeMetaInfo: PhonePeMetaInfo = {
+      udf1: userId,
+      udf2: categoryId,
+      udf3: paymentId,
+    }
+    if (appliedPromoCode) {
+      phonePeMetaInfo.udf4 = appliedPromoCode
     }
 
-    const base64Payload = Buffer.from(JSON.stringify(payload)).toString("base64")
-    const endpoint = "/pg/v1/pay"
-    const xVerify = generateXVerify(base64Payload, endpoint)
+    const metaInfo = buildPhonePeMetaInfo(phonePeMetaInfo)
+    const amountInPaise = Math.round(finalAmount * 100)
 
-    // Make request to PhonePe
-    const response = await fetch(`${PHONEPE_BASE_URL}${endpoint}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-VERIFY": xVerify,
-      },
-      body: JSON.stringify({ request: base64Payload }),
+    console.log("[Launchpad] Initiating PhonePe payment:", {
+      merchantOrderId,
+      amount: amountInPaise,
+      redirectUrl,
+      env: PHONEPE_ENV,
     })
 
-    const responseData = await response.json()
+    let response
+    try {
+      response = await initiateStandardCheckoutPayment({
+        merchantOrderId,
+        amountInPaise,
+        redirectUrl,
+        metaInfo,
+      })
+    } catch (sdkError) {
+      console.error("[Launchpad] PhonePe SDK error:", sdkError)
+      await paymentsCollection.updateOne(
+        { _id: paymentResult.insertedId },
+        {
+          $set: {
+            status: "failed",
+            updatedAt: new Date(),
+          },
+        }
+      )
+      throw sdkError
+    }
 
-    if (responseData.success && responseData.data?.instrumentResponse?.redirectInfo?.url) {
+    // Check if payment was initiated successfully
+    if (response.redirectUrl) {
+      console.log("[Launchpad] PhonePe payment initiated successfully:", {
+        orderId: response.orderId,
+        state: response.state,
+        expireAt: response.expireAt,
+      })
+
+      const paymentUpdate: Partial<PaymentDoc> = {
+        phonepeState: response.state,
+        phonepeMetaInfo: phonePeMetaInfo,
+        phonepePayload: JSON.parse(JSON.stringify(response)),
+        updatedAt: new Date(),
+      }
+
+      if (response.orderId) {
+        paymentUpdate.phonepeOrderId = response.orderId
+      }
+
+      await paymentsCollection.updateOne(
+        { _id: paymentResult.insertedId },
+        { $set: paymentUpdate }
+      )
+
       return NextResponse.json({
         ok: true,
-        paymentUrl: responseData.data.instrumentResponse.redirectInfo.url,
-        transactionId,
+        paymentUrl: response.redirectUrl,
+        transactionId: merchantOrderId,
         paymentId,
+        orderId: response.orderId,
       })
     } else {
       // Update payment status to failed
+      console.error("[Launchpad] PhonePe payment initiation failed - no redirect URL")
       await paymentsCollection.updateOne(
         { _id: new ObjectId(paymentId) },
         { $set: { status: "failed", updatedAt: new Date() } }
       )
-      return NextResponse.json({ ok: false, message: "Failed to initiate payment" }, { status: 500 })
+      return NextResponse.json(
+        { 
+          ok: false, 
+          message: "Failed to initiate payment. Please try again." 
+        }, 
+        { status: 500 }
+      )
     }
   } catch (error) {
     console.error("[Launchpad] Initiate payment error:", error)
-    return NextResponse.json({ ok: false, message: "Internal server error" }, { status: 500 })
+    
+    // Provide more specific error messages
+    if (error instanceof Error) {
+      if (error.message.includes("credentials") || error.message.includes("configured")) {
+        return NextResponse.json(
+          { 
+            ok: false, 
+            message: "Payment gateway configuration error. Please contact support." 
+          }, 
+          { status: 500 }
+        )
+      }
+      
+      if (error.message.includes("amount") || error.message.includes("minimum")) {
+        return NextResponse.json(
+          { 
+            ok: false, 
+            message: "Invalid payment amount. Minimum amount is ₹1." 
+          }, 
+          { status: 400 }
+        )
+      }
+    }
+    
+    return NextResponse.json(
+      { 
+        ok: false, 
+        message: error instanceof Error ? error.message : "Internal server error. Please try again." 
+      }, 
+      { status: 500 }
+    )
   }
 }
 

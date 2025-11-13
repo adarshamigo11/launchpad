@@ -115,6 +115,14 @@ export type Message = {
   createdAt: number
 }
 
+export interface PhonePeMetaInfo {
+  udf1?: string
+  udf2?: string
+  udf3?: string
+  udf4?: string
+  udf5?: string
+}
+
 export interface PaymentDoc {
   _id?: ObjectId
   userId: string
@@ -123,6 +131,10 @@ export interface PaymentDoc {
   amount: number
   transactionId: string // PhonePe transaction ID
   phonepeTransactionId?: string // PhonePe's transaction ID
+  phonepeOrderId?: string // PhonePe's order ID
+  phonepeState?: string
+  phonepeMetaInfo?: PhonePeMetaInfo
+  phonepePayload?: Record<string, unknown>
   status: "pending" | "success" | "failed" | "cancelled"
   paymentMethod: string
   createdAt: Date

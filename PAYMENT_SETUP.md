@@ -15,10 +15,12 @@ This document describes the payment-based access system implemented for categori
    - Unlocked categories show an "Unlocked" badge
    - Free categories show a "Free" badge
 
-3. **PhonePe Payment Integration**
-   - Payment initiation API endpoint
+3. **PhonePe Payment Integration (Using Official SDK)**
+   - Payment initiation using PhonePe Node.js SDK (`pg-sdk-node`)
    - Payment callback handler for verifying successful payments
    - Automatic access granting after successful payment
+   - Secure payment flow with proper error handling
+   - Centralized helper utilities in `lib/phonepe.ts` for initiating payments, creating mobile SDK orders, checking order status, processing refunds, and validating callbacks
 
 4. **Access Control**
    - Users cannot access tasks in locked categories
@@ -49,22 +51,25 @@ This document describes the payment-based access system implemented for categori
 Add these to your `.env` file:
 
 ```env
-# PhonePe Configuration
-PHONEPE_MERCHANT_ID=your_merchant_id
-PHONEPE_SALT_KEY=your_salt_key
-PHONEPE_SALT_INDEX=1
-PHONEPE_BASE_URL=https://api.phonepe.com/apis/hermes
+# PhonePe SDK Configuration
+PHONEPE_CLIENT_ID=your_client_id
+PHONEPE_CLIENT_SECRET=your_client_secret
+PHONEPE_CLIENT_VERSION=1.0
+PHONEPE_ENV=SANDBOX
+# For production, change to: PHONEPE_ENV=PRODUCTION
 
-# For production, use:
-# PHONEPE_BASE_URL=https://api.phonepe.com/apis/hermes
-
-# For sandbox/testing, use:
-# PHONEPE_BASE_URL=https://api-preprod.phonepe.com/apis/pg-sandbox
-
-# Base URL for callbacks
+# Base URL for callbacks and redirects
 NEXT_PUBLIC_BASE_URL=http://localhost:3000
 # For production: https://yourdomain.com
 ```
+
+### Environment Variable Details
+
+- **PHONEPE_CLIENT_ID**: Your unique client ID from PhonePe (Integer)
+- **PHONEPE_CLIENT_SECRET**: Secret key provided by PhonePe (Integer)
+- **PHONEPE_CLIENT_VERSION**: Client version for secure communication (String, default: "1.0")
+- **PHONEPE_ENV**: Environment setting - use `SANDBOX` for testing or `PRODUCTION` for live payments
+- **NEXT_PUBLIC_BASE_URL**: Public URL of your deployment. Used for redirect/callback URLs.
 
 ## API Endpoints
 
@@ -109,16 +114,26 @@ NEXT_PUBLIC_BASE_URL=http://localhost:3000
 1. **Register with PhonePe**
    - Sign up at PhonePe for Business
    - Complete merchant verification
-   - Get your Merchant ID, Salt Key, and Salt Index
+   - Get your Client ID, Client Secret, and Client Version
 
-2. **Configure Webhook**
+2. **Install Dependencies**
+   - The project uses `pg-sdk-node` package (already installed)
+   - No additional setup required
+
+3. **Configure Environment Variables**
+   - Add all required environment variables to your `.env` file
+   - Use `PHONEPE_ENV=SANDBOX` for testing
+   - Switch to `PHONEPE_ENV=PRODUCTION` when going live
+
+4. **Configure Webhook**
    - Set callback URL: `https://yourdomain.com/api/payments/callback`
    - Configure in PhonePe merchant dashboard
 
-3. **Test in Sandbox**
+5. **Test in Sandbox**
    - Use sandbox credentials for testing
    - Test payment flow with test cards
    - Verify callback handling
+   - Minimum payment amount is ₹1 (100 paise)
 
 ## Payment Flow
 
@@ -130,7 +145,7 @@ NEXT_PUBLIC_BASE_URL=http://localhost:3000
    - Redirect user to PhonePe payment page
 4. User completes payment on PhonePe
 5. PhonePe sends callback to `/api/payments/callback`
-6. System verifies payment signature
+6. System fetches the latest order status from PhonePe to verify the payment outcome
 7. If payment successful:
    - Update payment record (status: success)
    - Create categoryAccess record
@@ -141,9 +156,10 @@ NEXT_PUBLIC_BASE_URL=http://localhost:3000
 ## Security Considerations
 
 1. **Payment Verification**
-   - All callbacks are verified using X-VERIFY header
-   - SHA-256 hash verification with salt key
-   - Prevents unauthorized payment confirmations
+   - Payment initiation uses PhonePe official SDK with secure authentication
+   - Every callback triggers an authenticated order-status lookup using the PhonePe SDK (no salt keys required)
+   - Prevents unauthorized payment confirmations by cross-checking with PhonePe's status API
+   - Client credentials are securely stored in environment variables
 
 2. **Access Control**
    - Access is checked on both frontend and backend

@@ -112,10 +112,23 @@ export default function CheckoutPage() {
   }
 
   const handleBuyNow = async () => {
-    if (!category || !currentUser) return
+    if (!category || !currentUser) {
+      toast({
+        title: "Error",
+        description: "Missing category or user information. Please refresh the page.",
+        variant: "destructive",
+      })
+      return
+    }
 
     setProcessingPayment(true)
     try {
+      console.log("Initiating payment:", {
+        userId: currentUser.id,
+        categoryId: category.id,
+        amount: category.price,
+      })
+
       const res = await fetch("/api/payments/initiate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -128,6 +141,7 @@ export default function CheckoutPage() {
       })
 
       const data = await res.json()
+      console.log("Payment initiation response:", data)
 
       if (data.ok && data.paymentUrl) {
         // Redirect to PhonePe payment page
@@ -140,9 +154,11 @@ export default function CheckoutPage() {
         })
         router.push("/tasks")
       } else {
+        const errorMessage = data.message || "Failed to initiate payment. Please try again."
+        console.error("Payment initiation failed:", errorMessage)
         toast({
           title: "Payment Failed",
-          description: data.message || "Failed to initiate payment. Please try again.",
+          description: errorMessage,
           variant: "destructive",
         })
       }
@@ -150,7 +166,7 @@ export default function CheckoutPage() {
       console.error("Payment initiation error:", error)
       toast({
         title: "Error",
-        description: "Something went wrong. Please try again.",
+        description: error instanceof Error ? error.message : "Something went wrong. Please try again.",
         variant: "destructive",
       })
     } finally {
