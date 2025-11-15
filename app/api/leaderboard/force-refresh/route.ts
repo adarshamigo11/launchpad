@@ -11,6 +11,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ ok: false, message: "Unauthorized" }, { status: 403 })
     }
 
+    console.log("[Force Refresh] Admin triggered leaderboard refresh")
     const db = await getDb()
     const usersCollection = db.collection<UserDoc>("users")
 
@@ -19,6 +20,18 @@ export async function POST(req: Request) {
       .find({ email: { $ne: "admin@admin.com" } })
       .sort({ points: -1 })
       .toArray()
+
+    console.log("[Force Refresh] Found", users.length, "users")
+
+    // Trigger timestamp update to notify all clients
+    try {
+      await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/leaderboard/last-updated`, {
+        method: 'POST',
+      })
+      console.log("[Force Refresh] Timestamp updated successfully")
+    } catch (error) {
+      console.error("[Force Refresh] Failed to update timestamp:", error)
+    }
 
     const response = NextResponse.json({
       ok: true,

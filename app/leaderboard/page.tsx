@@ -31,10 +31,18 @@ export default function LeaderboardPage() {
 
   const checkForUpdates = async () => {
     try {
-      // Always refresh the leaderboard data directly instead of checking timestamps
-      // This is more reliable in production environments
-      console.log("Checking for leaderboard updates...")
-      await loadLeaderboard(true) // Silent refresh
+      // Check if leaderboard was updated
+      const res = await fetch('/api/leaderboard/last-updated')
+      const data = await res.json()
+      
+      if (data.lastUpdated > lastUpdateRef.current) {
+        console.log("[Leaderboard] New update detected, refreshing...", {
+          lastKnown: new Date(lastUpdateRef.current).toISOString(),
+          newUpdate: new Date(data.lastUpdated).toISOString(),
+        })
+        lastUpdateRef.current = data.lastUpdated
+        await loadLeaderboard(true) // Silent refresh
+      }
     } catch (error) {
       console.error("Failed to check for updates:", error)
     }
@@ -42,14 +50,21 @@ export default function LeaderboardPage() {
 
   useEffect(() => {
     if (currentUser) {
+      // Initialize last update timestamp
+      fetch('/api/leaderboard/last-updated')
+        .then(res => res.json())
+        .then(data => {
+          lastUpdateRef.current = data.lastUpdated
+        })
+        .catch(console.error)
+      
       loadLeaderboard()
       
-      // Set up aggressive polling for real-time updates (only for non-admin users)
+      // Set up polling for updates (check every 2 seconds for non-admin users)
       if (!isAdmin) {
-        // Poll every 1 second for more responsive updates
         intervalRef.current = setInterval(() => {
           checkForUpdates()
-        }, 1000)
+        }, 2000) // Check every 2 seconds
       }
     }
 
@@ -58,7 +73,7 @@ export default function LeaderboardPage() {
         clearInterval(intervalRef.current)
       }
     }
-  }, [currentUser, fetchLeaderboard, isAdmin])
+  }, [currentUser, isAdmin])
 
   // Listen for leaderboard update events and tab visibility changes
   useEffect(() => {
@@ -112,15 +127,19 @@ export default function LeaderboardPage() {
 
 
   const refreshLeaderboard = async () => {
-    console.log("Manual refresh triggered by admin")
-    setLoading(true) // Show loading state for admin
+    console.log("[Admin] Manual refresh triggered")
+    setLoading(true)
     try {
       // Use force refresh for admin users
       const users = await forceRefreshLeaderboard()
       setRanked(users)
-      console.log("Manual refresh completed")
+      // Update local timestamp
+      const res = await fetch('/api/leaderboard/last-updated')
+      const data = await res.json()
+      lastUpdateRef.current = data.lastUpdated
+      console.log("[Admin] Manual refresh completed, timestamp updated")
     } catch (error) {
-      console.error("Manual refresh failed:", error)
+      console.error("[Admin] Manual refresh failed:", error)
     } finally {
       setLoading(false)
     }
