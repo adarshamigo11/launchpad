@@ -4,13 +4,17 @@ import type { UserDoc } from "@/lib/models"
 
 export async function GET() {
   try {
+    console.log("[Leaderboard API] Attempting to connect to database...")
     const db = await getDb()
+    console.log("[Leaderboard API] Database connection successful")
     const usersCollection = db.collection<UserDoc>("users")
 
     const users = await usersCollection
       .find({ email: { $ne: "admin@admin.com" } })
       .sort({ points: -1 })
       .toArray()
+    
+    console.log("[Leaderboard API] Found", users.length, "users")
 
     const response = NextResponse.json({
       ok: true,
@@ -36,6 +40,10 @@ export async function GET() {
     return response
   } catch (error) {
     console.error("[Launchpad] Get leaderboard error:", error)
+    console.error("[Launchpad] Error details:", {
+      message: error instanceof Error ? error.message : "Unknown error",
+      stack: error instanceof Error ? error.stack : "No stack",
+    })
     return NextResponse.json({ ok: false, message: "Internal server error" }, { status: 500 })
   }
 }

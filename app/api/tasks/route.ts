@@ -5,15 +5,18 @@ import type { TaskDoc } from "@/lib/models"
 // GET all published tasks
 export async function GET() {
   try {
+    console.log("[Tasks API] Attempting to connect to database...")
     const db = await getDb()
+    console.log("[Tasks API] Database connection successful")
     const tasksCollection = db.collection<TaskDoc>("tasks")
 
     const tasks = await tasksCollection.find({ status: "published" }).sort({ createdAt: -1 }).toArray()
+    console.log("[Tasks API] Found", tasks.length, "published tasks")
 
     const mappedTasks = tasks.map((t) => ({
       id: t._id?.toString(),
-      challengeName: t.challengeName || t.title || "Untitled Challenge",
-      description: t.description || t.details || "No description provided.",
+      challengeName: t.challengeName || "Untitled Challenge",
+      description: t.description || "No description provided.",
       guidelines: t.guidelines || "No guidelines provided.",
       submissionGuidelines: t.submissionGuidelines || "No submission guidelines provided.",
       points: t.points || 0,
@@ -29,6 +32,10 @@ export async function GET() {
     })
   } catch (error) {
     console.error("[Launchpad] Get tasks error:", error)
+    console.error("[Launchpad] Error details:", {
+      message: error instanceof Error ? error.message : "Unknown error",
+      stack: error instanceof Error ? error.stack : "No stack",
+    })
     return NextResponse.json({ ok: false, message: "Internal server error" }, { status: 500 })
   }
 }

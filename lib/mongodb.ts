@@ -2,8 +2,12 @@ import { MongoClient, type Db } from "mongodb"
 
 const options = {
   maxPoolSize: 10,
-  serverSelectionTimeoutMS: 5000,
+  serverSelectionTimeoutMS: 30000,
   socketTimeoutMS: 45000,
+  connectTimeoutMS: 30000,
+  tls: true,
+  tlsAllowInvalidCertificates: true, // Temporarily allow for development
+  tlsAllowInvalidHostnames: true, // Temporarily allow for development
 }
 
 let client: MongoClient
