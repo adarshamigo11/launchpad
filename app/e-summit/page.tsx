@@ -448,6 +448,165 @@ export default function ESummitPage() {
           </div>
         </div>
       </section>
+
+      {/* Pricing Section */}
+      <section className="py-16 sm:py-20 bg-white">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#144449] mb-4">PRICING SECTION</h2>
+            <div className="w-20 h-1 bg-[#BF9B30] mx-auto"></div>
+          </div>
+          
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse border border-gray-200 text-sm sm:text-base">
+              <thead>
+                <tr className="bg-gray-100">
+                  <th className="border border-gray-200 p-3 text-left font-semibold">Feature</th>
+                  <th className="border border-gray-200 p-3 text-center font-semibold">
+                    <div className="flex flex-col items-center">
+                      <span>GENERA</span>
+                      <span>L PASS</span>
+                      <span className="text-xs text-gray-500">(Student)</span>
+                      <div className="mt-2 w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
+                        <span className="text-lg">👤</span>
+                      </div>
+                      <Button className="mt-2 bg-gray-300 text-gray-800 hover:bg-gray-400 font-semibold text-sm px-3 py-1 border border-gray-400">
+                        Get Basic Pass
+                      </Button>
+                    </div>
+                  </th>
+                  <th className="border border-gray-200 p-3 text-center font-semibold">
+                    <div className="flex flex-col items-center">
+                      <span>PREMIU</span>
+                      <span>M PASS</span>
+                      <span className="text-xs text-gray-500">(Student Hero)</span>
+                      <div className="mt-2 w-8 h-8 bg-[#BF9B30] rounded-full flex items-center justify-center">
+                        <span className="text-lg">👑</span>
+                      </div>
+                      <Button className="mt-2 bg-[#BF9B30] text-black hover:bg-[#BF9B30]/90 font-semibold text-sm px-3 py-1">
+                        GET PREMIUM ACCESS
+                      </Button>
+                    </div>
+                  </th>
+                  <th className="border border-gray-200 p-3 text-center font-semibold">
+                    <div className="flex flex-col items-center">
+                      <span>ROUNDTABL</span>
+                      <span>E</span>
+                      <span className="text-xs text-gray-500">(Founder Experience)</span>
+                      <div className="mt-2 w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center border border-blue-300">
+                        <span className="text-lg">🎙️</span>
+                      </div>
+                      <Button className="mt-2 bg-white text-blue-600 hover:bg-blue-50 font-semibold text-sm px-3 py-1 border border-blue-300">
+                        Join Roundtable
+                      </Button>
+                    </div>
+                  </th>
+                  <th className="border border-gray-200 p-3 text-center font-semibold">
+                    <div className="flex flex-col items-center">
+                      <span>SHARK</span>
+                      <span>TANK</span>
+                      <span className="text-xs text-gray-500">(Startup Team)</span>
+                      <div className="mt-2 w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                        <span className="text-lg text-white">🦈</span>
+                      </div>
+                      <Button className="mt-2 bg-blue-600 text-white hover:bg-blue-700 font-semibold text-sm px-3 py-1">
+                        Register Startup
+                      </Button>
+                    </div>
+                  </th>
+                  <th className="border border-gray-200 p-3 text-center font-semibold">
+                    <div className="flex flex-col items-center">
+                      <span>STARTU</span>
+                      <span>P EXPO</span>
+                      <span className="text-xs text-gray-500">(Exhibitor)</span>
+                      <div className="mt-2 w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                        <span className="text-lg text-white">🎪</span>
+                      </div>
+                      <Button className="mt-2 bg-blue-600 text-white hover:bg-blue-700 font-semibold text-sm px-3 py-1">
+                        Book Booth
+                      </Button>
+                    </div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="border border-gray-200 p-3 font-semibold">Early Bird Price</td>
+                  <td className="border border-gray-200 p-3 text-center">₹499</td>
+                  <td className="border border-gray-200 p-3 text-center">₹999</td>
+                  <td className="border border-gray-200 p-3 text-center">₹1,999<br/><span className="text-xs">(Team)</span></td>
+                  <td className="border border-gray-200 p-3 text-center">₹2,999<br/><span className="text-xs">(Team)</span></td>
+                  <td className="border border-gray-200 p-3 text-center">₹6,000 /<br/>₹8,000</td>
+                </tr>
+                <tr className="bg-gray-50">
+                  <td className="border border-gray-200 p-3 font-semibold">Regular Price</td>
+                  <td className="border border-gray-200 p-3 text-center">₹799</td>
+                  <td className="border border-gray-200 p-3 text-center">₹1,199</td>
+                  <td className="border border-gray-200 p-3 text-center">₹2,999</td>
+                  <td className="border border-gray-200 p-3 text-center">₹3,999</td>
+                  <td className="border border-gray-200 p-3 text-center">Standard /<br/>Premium Booth</td>
+                </tr>
+                <tr>
+                  <td className="border border-gray-200 p-3 font-semibold">Who is it for?</td>
+                  <td className="border border-gray-200 p-3 text-center">Attendees</td>
+                  <td className="border border-gray-200 p-3 text-center">Serious Aspirants</td>
+                  <td className="border border-gray-200 p-3 text-center">Founder Networking</td>
+                  <td className="border border-gray-200 p-3 text-center">Early-Stage Startups</td>
+                  <td className="border border-gray-200 p-3 text-center">Brands & Exhibitors</td>
+                </tr>
+                <tr className="bg-gray-50">
+                  <td className="border border-gray-200 p-3 font-semibold">Speaker Sessions</td>
+                  <td className="border border-gray-200 p-3 text-center">Panel Access</td>
+                  <td className="border border-gray-200 p-3 text-center">Full Panel Access</td>
+                  <td className="border border-gray-200 p-3 text-center">Full Access</td>
+                  <td className="border border-gray-200 p-3 text-center">Full Access</td>
+                  <td className="border border-gray-200 p-3 text-center">Shark Tank</td>
+                </tr>
+                <tr>
+                  <td className="border border-gray-200 p-3 font-semibold">Shark Tank</td>
+                  <td className="border border-gray-200 p-3 text-center">❌</td>
+                  <td className="border border-gray-200 p-3 text-center">✅ Audience Access</td>
+                  <td className="border border-gray-200 p-3 text-center">✅ Audience Access</td>
+                  <td className="border border-gray-200 p-3 text-center">✅ Participant (Pitch)</td>
+                  <td className="border border-gray-200 p-3 text-center">✅ Audience Access</td>
+                </tr>
+                <tr className="bg-gray-50">
+                  <td className="border border-gray-200 p-3 font-semibold">Competitions</td>
+                  <td className="border border-gray-200 p-3 text-center">❌</td>
+                  <td className="border border-gray-200 p-3 text-center">✅ 1 Entry<br/><span className="text-xs">Free (Any Event)</span></td>
+                  <td className="border border-gray-200 p-3 text-center">❌</td>
+                  <td className="border border-gray-200 p-3 text-center">❌</td>
+                  <td className="border border-gray-200 p-3 text-center">❌</td>
+                </tr>
+                <tr>
+                  <td className="border border-gray-200 p-3 font-semibold">Expo Access</td>
+                  <td className="border border-gray-200 p-3 text-center">Entry Only</td>
+                  <td className="border border-gray-200 p-3 text-center">Entry Only</td>
+                  <td className="border border-gray-200 p-3 text-center">Entry Only</td>
+                  <td className="border border-gray-200 p-3 text-center">Entry Only</td>
+                  <td className="border border-gray-200 p-3 text-center">✅ Own Booth<br/><span className="text-xs">(3x2m)</span></td>
+                </tr>
+                <tr className="bg-gray-50">
+                  <td className="border border-gray-200 p-3 font-semibold">Learning</td>
+                  <td className="border border-gray-200 p-3 text-center">❌</td>
+                  <td className="border border-gray-200 p-3 text-center">✅ 1 Premium Workshop</td>
+                  <td className="border border-gray-200 p-3 text-center">Peer Experience Exchange</td>
+                  <td className="border border-gray-200 p-3 text-center">✅ 1-on-1 Mentorship</td>
+                  <td className="border border-gray-200 p-3 text-center">Investor Alley Access</td>
+                </tr>
+                <tr>
+                  <td className="border border-gray-200 p-3 font-semibold">Team Size</td>
+                  <td className="border border-gray-200 p-3 text-center">Individual</td>
+                  <td className="border border-gray-200 p-3 text-center">Individual</td>
+                  <td className="border border-gray-200 p-3 text-center">Per Team</td>
+                  <td className="border border-gray-200 p-3 text-center">4 Members</td>
+                  <td className="border border-gray-200 p-3 text-center">Exhibitor Pass</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
