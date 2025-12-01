@@ -212,6 +212,68 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Entrepreneurship Summit Section */}
+      <section className="py-16 sm:py-20 md:py-24 bg-gradient-to-br from-[#144449] to-[#0a2a2d] text-white relative overflow-hidden">
+        {/* Decorative elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute -top-20 -right-20 w-60 h-60 bg-[#BF9B30]/10 rounded-full blur-3xl"></div>
+          <div className="absolute -bottom-20 -left-20 w-60 h-60 bg-[#BF9B30]/10 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
+              <span className="text-white">BE THE FIRST TO </span>
+              <span className="text-[#BF9B30]">BREAK THE MOLD.</span>
+            </h2>
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-6 sm:mb-8 max-w-4xl mx-auto">
+              The Inaugural Entrepreneurship Summit. 2 Days. 3 Tracks. Infinite Possibilities.
+            </h3>
+            <p className="text-base sm:text-lg md:text-xl text-white/90 mb-8 sm:mb-12 max-w-4xl mx-auto leading-relaxed">
+              History isn't watched. It's written. Join the first-ever cohort of Launchpad to ditch the lectures for live simulations. 
+              Pitch to investors, negotiate deals, and build your network before you graduate.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center mb-12 sm:mb-16">
+              <Link href="/e-summit">
+                <Button className="bg-[#BF9B30] text-black hover:bg-[#BF9B30]/90 font-bold text-base sm:text-lg px-6 sm:px-8 py-3 w-full sm:w-auto transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl">
+                  GET ACCESS PASS
+                </Button>
+              </Link>
+              <Button variant="outline" className="border-white text-white hover:bg-white hover:text-[#144449] font-semibold text-base sm:text-lg px-6 sm:px-8 py-3 w-full sm:w-auto transition-all duration-300 hover:scale-105 !bg-transparent !border-white !text-white hover:!bg-white hover:!text-[#144449] shadow-lg hover:shadow-xl">
+                VIEW THE TRAILER
+              </Button>
+            </div>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+            <div className="bg-white/10 backdrop-blur-sm p-6 sm:p-8 rounded-lg border border-white/20 hover:bg-white/20 transition-all duration-300 group">
+              <div className="w-12 h-12 bg-[#BF9B30] rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 mx-auto">
+                <span className="text-black text-xl font-bold">🚀</span>
+              </div>
+              <h3 className="text-xl font-bold text-center mb-3 text-[#BF9B30]">Venture Vault</h3>
+              <p className="text-white/90 text-center">Shark Tank for the next Unicorn.</p>
+            </div>
+            
+            <div className="bg-white/10 backdrop-blur-sm p-6 sm:p-8 rounded-lg border border-white/20 hover:bg-white/20 transition-all duration-300 group">
+              <div className="w-12 h-12 bg-[#BF9B30] rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 mx-auto">
+                <span className="text-black text-xl font-bold">🎮</span>
+              </div>
+              <h3 className="text-xl font-bold text-center mb-3 text-[#BF9B30]">Entrepreneur Olympics</h3>
+              <p className="text-white/90 text-center">Business Gamified.</p>
+            </div>
+            
+            <div className="bg-white/10 backdrop-blur-sm p-6 sm:p-8 rounded-lg border border-white/20 hover:bg-white/20 transition-all duration-300 group">
+              <div className="w-12 h-12 bg-[#BF9B30] rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 mx-auto">
+                <span className="text-black text-xl font-bold">🏪</span>
+              </div>
+              <h3 className="text-xl font-bold text-center mb-3 text-[#BF9B30]">Startup Expo</h3>
+              <p className="text-white/90 text-center">The Innovation Market.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Competition Timeline */}
       <section className="py-16 bg-white">
         <div className="mx-auto max-w-6xl px-4">
