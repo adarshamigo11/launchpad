@@ -8,12 +8,6 @@ export default function ESummitPage() {
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 bg-gradient-to-br from-[#144449] to-[#0a2a2d] text-white overflow-hidden">
-        {/* Decorative elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-20 -right-20 w-60 h-60 bg-[#BF9B30]/10 rounded-full blur-3xl"></div>
-          <div className="absolute -bottom-20 -left-20 w-60 h-60 bg-[#BF9B30]/10 rounded-full blur-3xl"></div>
-        </div>
-        
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
@@ -378,7 +372,7 @@ export default function ESummitPage() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12">
-            <div className="bg-white/10 backdrop-blur-sm p-6 sm:p-8 rounded-xl border border-white/20">
+            <div className="bg-white/10 p-6 sm:p-8 rounded-xl border border-white/20">
               <div className="flex items-start mb-4">
                 <span className="text-2xl mr-3">👨‍🏫</span>
                 <h3 className="text-xl font-semibold">Mentorship, Not Just Judgement</h3>
@@ -388,7 +382,7 @@ export default function ESummitPage() {
               </p>
             </div>
             
-            <div className="bg-white/10 backdrop-blur-sm p-6 sm:p-8 rounded-xl border border-white/20">
+            <div className="bg-white/10 p-6 sm:p-8 rounded-xl border border-white/20">
               <div className="flex items-start mb-4">
                 <span className="text-2xl mr-3">🤝</span>
                 <h3 className="text-xl font-semibold">Network with the 1%</h3>
@@ -398,7 +392,7 @@ export default function ESummitPage() {
               </p>
             </div>
             
-            <div className="bg-white/10 backdrop-blur-sm p-6 sm:p-8 rounded-xl border border-white/20">
+            <div className="bg-white/10 p-6 sm:p-8 rounded-xl border border-white/20">
               <div className="flex items-start mb-4">
                 <span className="text-2xl mr-3">📜</span>
                 <h3 className="text-xl font-semibold">Certificate of Recognition</h3>
@@ -408,7 +402,7 @@ export default function ESummitPage() {
               </p>
             </div>
             
-            <div className="bg-white/10 backdrop-blur-sm p-6 sm:p-8 rounded-xl border border-white/20">
+            <div className="bg-white/10 p-6 sm:p-8 rounded-xl border border-white/20">
               <div className="flex items-start mb-4">
                 <span className="text-2xl mr-3">🎒</span>
                 <h3 className="text-xl font-semibold">The "Starter Pack"</h3>
@@ -441,7 +435,7 @@ export default function ESummitPage() {
               </div>
             </div>
             
-            <div className="mt-8 inline-flex items-center bg-red-500/20 px-4 py-2 rounded-full">
+            <div className="mt-8 inline-flex items-center bg-red-500/20 px-4 py-2">
               <span className="text-red-300 font-semibold">⚠️ Urgency:</span>
               <span className="ml-2 text-white">Selling Fast - 80% Sold</span>
             </div>
@@ -467,7 +461,7 @@ export default function ESummitPage() {
                       <span>GENERA</span>
                       <span>L PASS</span>
                       <span className="text-xs text-gray-500">(Student)</span>
-                      <div className="mt-2 w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
+                      <div className="mt-2 w-8 h-8 bg-gray-300 flex items-center justify-center">
                         <span className="text-lg">👤</span>
                       </div>
                       <Button className="mt-2 bg-gray-300 text-gray-800 hover:bg-gray-400 font-semibold text-sm px-3 py-1 border border-gray-400">
@@ -480,7 +474,7 @@ export default function ESummitPage() {
                       <span>PREMIU</span>
                       <span>M PASS</span>
                       <span className="text-xs text-gray-500">(Student Hero)</span>
-                      <div className="mt-2 w-8 h-8 bg-[#BF9B30] rounded-full flex items-center justify-center">
+                      <div className="mt-2 w-8 h-8 bg-[#BF9B30] flex items-center justify-center">
                         <span className="text-lg">👑</span>
                       </div>
                       <Button className="mt-2 bg-[#BF9B30] text-black hover:bg-[#BF9B30]/90 font-semibold text-sm px-3 py-1">
@@ -493,7 +487,7 @@ export default function ESummitPage() {
                       <span>ROUNDTABL</span>
                       <span>E</span>
                       <span className="text-xs text-gray-500">(Founder Experience)</span>
-                      <div className="mt-2 w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center border border-blue-300">
+                      <div className="mt-2 w-8 h-8 bg-blue-100 flex items-center justify-center border border-blue-300">
                         <span className="text-lg">🎙️</span>
                       </div>
                       <Button className="mt-2 bg-white text-blue-600 hover:bg-blue-50 font-semibold text-sm px-3 py-1 border border-blue-300">
@@ -506,7 +500,7 @@ export default function ESummitPage() {
                       <span>SHARK</span>
                       <span>TANK</span>
                       <span className="text-xs text-gray-500">(Startup Team)</span>
-                      <div className="mt-2 w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                      <div className="mt-2 w-8 h-8 bg-blue-600 flex items-center justify-center">
                         <span className="text-lg text-white">🦈</span>
                       </div>
                       <Button className="mt-2 bg-blue-600 text-white hover:bg-blue-700 font-semibold text-sm px-3 py-1">
@@ -519,7 +513,7 @@ export default function ESummitPage() {
                       <span>STARTU</span>
                       <span>P EXPO</span>
                       <span className="text-xs text-gray-500">(Exhibitor)</span>
-                      <div className="mt-2 w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                      <div className="mt-2 w-8 h-8 bg-blue-600 flex items-center justify-center">
                         <span className="text-lg text-white">🎪</span>
                       </div>
                       <Button className="mt-2 bg-blue-600 text-white hover:bg-blue-700 font-semibold text-sm px-3 py-1">
