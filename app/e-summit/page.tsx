@@ -1,19 +1,58 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 
 export default function ESummitPage() {
+  const [passPrices, setPassPrices] = useState<Record<string, number>>({})
+
+  // Define pass types and their display names
+  const PASS_TYPES: Record<string, string> = {
+    "venture-vault": "Venture Vault Pass",
+    "premium-pass": "Premium Pass",
+    "roundtable": "Roundtable Pass",
+    "booth": "Expo Booth Pass",
+    "access-pass": "Access Pass",
+    "general": "General Pass",
+    "team": "Team Pass",
+    "premium": "Premium Access Pass",
+    "shark-tank": "Shark Tank Registration",
+    "expo": "Expo Booth Booking"
+  }
+
+  useEffect(() => {
+    loadPassPrices()
+  }, [])
+
+  const loadPassPrices = async () => {
+    try {
+      const res = await fetch("/api/e-summit/pass-prices")
+      const data = await res.json()
+      
+      if (data.ok) {
+        setPassPrices(data.prices)
+      }
+    } catch (error) {
+      console.error("Error loading pass prices:", error)
+    }
+  }
+
+  // Helper function to get price for a pass type
+  const getPrice = (passType: string): number => {
+    return passPrices[passType] || 0
+  }
+
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 bg-gradient-to-br from-[#144449] to-[#0a2a2d] text-white overflow-hidden">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
               Launchpad E-Summit 2025: <span className="text-[#BF9B30]">The Blueprint for Your Empire.</span>
             </h1>
-            <p className="text-lg sm:text-xl md:text-2xl text-white/90 mb-8 leading-relaxed">
+            <p className="text-lg sm:text-xl md:text-2xl text-white/90 mb-8 leading-relaxed max-w-3xl mx-auto">
               This is not a conference where you sit in the back and take notes. This is a 2-day simulation
               of the high-stakes business world. Whether you are a student with a rough idea, a founder
               with a prototype, or a creator looking to scale, Launchpad provides the specific frameworks,
@@ -68,8 +107,8 @@ export default function ESummitPage() {
                 Who It's For: Early-stage startups (1–4 members) with a prototype or MVP.
               </p>
               
-              <Button className="bg-[#BF9B30] text-black hover:bg-[#BF9B30]/90 font-bold text-base sm:text-lg px-6 sm:px-8 py-3 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl">
-                APPLY FOR VENTURE VAULT
+              <Button className="bg-[#BF9B30] text-black hover:bg-[#BF9B30]/90 font-bold text-base sm:text-lg px-6 sm:px-8 py-3 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl" onClick={() => window.location.href = '/e-summit/checkout?pass=venture-vault'}>
+                APPLY FOR VENTURE VAULT - ₹{getPrice("venture-vault")}
               </Button>
             </div>
             <div className="order-1 lg:order-2 flex justify-center">
@@ -154,8 +193,8 @@ export default function ESummitPage() {
                 Who It's For: Creative students, marketing enthusiasts, and anyone who thinks faster than they talk.
               </p>
               
-              <Button className="bg-[#144449] text-white hover:bg-[#144449]/90 font-bold text-base sm:text-lg px-6 sm:px-8 py-3 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl">
-                GET PREMIUM PASS TO COMPETE
+              <Button className="bg-[#144449] text-white hover:bg-[#144449]/90 font-bold text-base sm:text-lg px-6 sm:px-8 py-3 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl" onClick={() => window.location.href = '/e-summit/checkout?pass=premium-pass'}>
+                GET PREMIUM PASS TO COMPETE - ₹{getPrice("premium-pass")}
               </Button>
             </div>
           </div>
@@ -213,8 +252,8 @@ export default function ESummitPage() {
                 A candid panel discussion followed by a "Rapid Fire" tactical tip round.
               </p>
               
-              <Button className="bg-[#BF9B30] text-black hover:bg-[#BF9B30]/90 font-bold text-base sm:text-lg px-6 sm:px-8 py-3 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl">
-                VIEW SPEAKER LINEUP
+              <Button className="bg-[#BF9B30] text-black hover:bg-[#BF9B30]/90 font-bold text-base sm:text-lg px-6 sm:px-8 py-3 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl" onClick={() => window.location.href = '/e-summit/checkout?pass=roundtable'}>
+                VIEW SPEAKER LINEUP - ₹{getPrice("roundtable")}
               </Button>
             </div>
             <div className="order-1 lg:order-2 flex justify-center">
@@ -293,8 +332,8 @@ export default function ESummitPage() {
                 3x2m Standard Booth with power and Wi-Fi access.
               </p>
               
-              <Button className="bg-[#144449] text-white hover:bg-[#144449]/90 font-bold text-base sm:text-lg px-6 sm:px-8 py-3 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl">
-                BOOK YOUR BOOTH
+              <Button className="bg-[#144449] text-white hover:bg-[#144449]/90 font-bold text-base sm:text-lg px-6 sm:px-8 py-3 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl" onClick={() => window.location.href = '/e-summit/checkout?pass=booth'}>
+                BOOK YOUR BOOTH - ₹{getPrice("booth")}
               </Button>
             </div>
           </div>
@@ -343,8 +382,8 @@ export default function ESummitPage() {
                 </li>
               </ul>
               
-              <Button className="bg-[#BF9B30] text-black hover:bg-[#BF9B30]/90 font-bold text-base sm:text-lg px-6 sm:px-8 py-3 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl">
-                GET ACCESS PASS
+              <Button className="bg-[#BF9B30] text-black hover:bg-[#BF9B30]/90 font-bold text-base sm:text-lg px-6 sm:px-8 py-3 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl" onClick={() => window.location.href = '/e-summit/checkout?pass=access-pass'}>
+                GET ACCESS PASS - ₹{getPrice("access-pass")}
               </Button>
             </div>
             <div className="order-1 lg:order-2 flex justify-center">
@@ -421,15 +460,15 @@ export default function ESummitPage() {
             
             <div className="flex flex-col sm:flex-row gap-6 sm:gap-8 justify-center items-center">
               <div className="text-center">
-                <Button className="bg-[#BF9B30] text-black hover:bg-[#BF9B30]/90 font-bold text-base sm:text-lg px-6 sm:px-8 py-3 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl w-full sm:w-auto">
-                  GET PREMIUM PASS - ₹1,199
+                <Button className="bg-[#BF9B30] text-black hover:bg-[#BF9B30]/90 font-bold text-base sm:text-lg px-6 sm:px-8 py-3 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl w-full sm:w-auto" onClick={() => window.location.href = '/e-summit/checkout?pass=general'}>
+                  GET GENERAL PASS - ₹{getPrice("general")}
                 </Button>
                 <p className="text-sm text-white/80 mt-2">Individual Access</p>
               </div>
               
               <div className="text-center">
-                <Button className="bg-gradient-to-r from-[#BF9B30] to-[#144449] text-white hover:from-[#BF9B30]/90 hover:to-[#144449]/90 font-bold text-base sm:text-lg px-6 sm:px-8 py-3 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl w-full sm:w-auto">
-                  REGISTER TEAM - ₹2,999
+                <Button className="bg-gradient-to-r from-[#BF9B30] to-[#144449] text-white hover:from-[#BF9B30]/90 hover:to-[#144449]/90 font-bold text-base sm:text-lg px-6 sm:px-8 py-3 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl w-full sm:w-auto" onClick={() => window.location.href = '/e-summit/checkout?pass=team'}>
+                  REGISTER TEAM - ₹{getPrice("team")}
                 </Button>
                 <p className="text-sm text-white/80 mt-2">Team of 4</p>
               </div>
@@ -464,8 +503,8 @@ export default function ESummitPage() {
                       <div className="mt-2 w-8 h-8 bg-gray-300 flex items-center justify-center">
                         <span className="text-lg">👤</span>
                       </div>
-                      <Button className="mt-2 bg-gray-300 text-gray-800 hover:bg-gray-400 font-semibold text-sm px-3 py-1 border border-gray-400">
-                        Get Basic Pass
+                      <Button className="mt-2 bg-gray-300 text-gray-800 hover:bg-gray-400 font-semibold text-sm px-3 py-1 border border-gray-400" onClick={() => window.location.href = '/e-summit/checkout?pass=general'}>
+                        Get Basic Pass - ₹{getPrice("general")}
                       </Button>
                     </div>
                   </th>
@@ -477,8 +516,8 @@ export default function ESummitPage() {
                       <div className="mt-2 w-8 h-8 bg-[#BF9B30] flex items-center justify-center">
                         <span className="text-lg">👑</span>
                       </div>
-                      <Button className="mt-2 bg-[#BF9B30] text-black hover:bg-[#BF9B30]/90 font-semibold text-sm px-3 py-1">
-                        GET PREMIUM ACCESS
+                      <Button className="mt-2 bg-[#BF9B30] text-black hover:bg-[#BF9B30]/90 font-semibold text-sm px-3 py-1" onClick={() => window.location.href = '/e-summit/checkout?pass=premium'}>
+                        GET PREMIUM ACCESS - ₹{getPrice("premium")}
                       </Button>
                     </div>
                   </th>
@@ -490,8 +529,8 @@ export default function ESummitPage() {
                       <div className="mt-2 w-8 h-8 bg-blue-100 flex items-center justify-center border border-blue-300">
                         <span className="text-lg">🎙️</span>
                       </div>
-                      <Button className="mt-2 bg-white text-blue-600 hover:bg-blue-50 font-semibold text-sm px-3 py-1 border border-blue-300">
-                        Join Roundtable
+                      <Button className="mt-2 bg-white text-blue-600 hover:bg-blue-50 font-semibold text-sm px-3 py-1 border border-blue-300" onClick={() => window.location.href = '/e-summit/checkout?pass=roundtable'}>
+                        Join Roundtable - ₹{getPrice("roundtable")}
                       </Button>
                     </div>
                   </th>
@@ -503,8 +542,8 @@ export default function ESummitPage() {
                       <div className="mt-2 w-8 h-8 bg-blue-600 flex items-center justify-center">
                         <span className="text-lg text-white">🦈</span>
                       </div>
-                      <Button className="mt-2 bg-blue-600 text-white hover:bg-blue-700 font-semibold text-sm px-3 py-1">
-                        Register Startup
+                      <Button className="mt-2 bg-blue-600 text-white hover:bg-blue-700 font-semibold text-sm px-3 py-1" onClick={() => window.location.href = '/e-summit/checkout?pass=shark-tank'}>
+                        Register Startup - ₹{getPrice("shark-tank")}
                       </Button>
                     </div>
                   </th>
@@ -516,8 +555,8 @@ export default function ESummitPage() {
                       <div className="mt-2 w-8 h-8 bg-blue-600 flex items-center justify-center">
                         <span className="text-lg text-white">🎪</span>
                       </div>
-                      <Button className="mt-2 bg-blue-600 text-white hover:bg-blue-700 font-semibold text-sm px-3 py-1">
-                        Book Booth
+                      <Button className="mt-2 bg-blue-600 text-white hover:bg-blue-700 font-semibold text-sm px-3 py-1" onClick={() => window.location.href = '/e-summit/checkout?pass=expo'}>
+                        Book Booth - ₹{getPrice("expo")}
                       </Button>
                     </div>
                   </th>
@@ -526,19 +565,19 @@ export default function ESummitPage() {
               <tbody>
                 <tr>
                   <td className="border border-gray-200 p-3 font-semibold">Early Bird Price</td>
-                  <td className="border border-gray-200 p-3 text-center">₹499</td>
-                  <td className="border border-gray-200 p-3 text-center">₹999</td>
-                  <td className="border border-gray-200 p-3 text-center">₹1,999<br/><span className="text-xs">(Team)</span></td>
-                  <td className="border border-gray-200 p-3 text-center">₹2,999<br/><span className="text-xs">(Team)</span></td>
-                  <td className="border border-gray-200 p-3 text-center">₹6,000 /<br/>₹8,000</td>
+                  <td className="border border-gray-200 p-3 text-center">₹{getPrice("general")}</td>
+                  <td className="border border-gray-200 p-3 text-center">₹{getPrice("premium")}</td>
+                  <td className="border border-gray-200 p-3 text-center">₹{getPrice("roundtable")}<br/><span className="text-xs">(Team)</span></td>
+                  <td className="border border-gray-200 p-3 text-center">₹{getPrice("shark-tank")}<br/><span className="text-xs">(Team)</span></td>
+                  <td className="border border-gray-200 p-3 text-center">₹{getPrice("booth")}</td>
                 </tr>
                 <tr className="bg-gray-50">
                   <td className="border border-gray-200 p-3 font-semibold">Regular Price</td>
-                  <td className="border border-gray-200 p-3 text-center">₹799</td>
-                  <td className="border border-gray-200 p-3 text-center">₹1,199</td>
-                  <td className="border border-gray-200 p-3 text-center">₹2,999</td>
-                  <td className="border border-gray-200 p-3 text-center">₹3,999</td>
-                  <td className="border border-gray-200 p-3 text-center">Standard /<br/>Premium Booth</td>
+                  <td className="border border-gray-200 p-3 text-center">₹{Math.round(getPrice("general") * 1.2)}</td>
+                  <td className="border border-gray-200 p-3 text-center">₹{Math.round(getPrice("premium") * 1.2)}</td>
+                  <td className="border border-gray-200 p-3 text-center">₹{Math.round(getPrice("roundtable") * 1.2)}</td>
+                  <td className="border border-gray-200 p-3 text-center">₹{Math.round(getPrice("shark-tank") * 1.2)}</td>
+                  <td className="border border-gray-200 p-3 text-center">₹{Math.round(getPrice("booth") * 1.2)}</td>
                 </tr>
                 <tr>
                   <td className="border border-gray-200 p-3 font-semibold">Who is it for?</td>

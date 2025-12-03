@@ -18,6 +18,7 @@ export function Navbar() {
       ? [
           { href: "/admin/tasks", label: "Tasks" },
           { href: "/admin/categories", label: "Categories" },
+          { href: "/admin/e-summit", label: "E-Summit" },
           { href: "/admin/submissions", label: "Submissions" },
           { href: "/admin/messages", label: "Messages" },
           { href: "/admin/payments", label: "Payments" },
