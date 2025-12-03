@@ -67,13 +67,15 @@ export default function AdminESummitPage() {
 
   const loadPayments = async () => {
     try {
+      setLoading(true)
       const res = await fetch("/api/e-summit/payments")
       const data = await res.json()
       
       if (data.ok) {
         setPayments(data.payments)
+        console.log("[Admin] Loaded payments:", data.payments.length)
       } else {
-        console.error("Error loading payments:", data.message)
+        console.error("Error loading payments:", data.message, data.error)
       }
     } catch (error) {
       console.error("Error loading payments:", error)
@@ -227,7 +229,9 @@ export default function AdminESummitPage() {
           <CardTitle>E-Summit Submissions</CardTitle>
         </CardHeader>
         <CardContent>
-          {payments.length === 0 ? (
+          {loading ? (
+            <p className="text-muted-foreground">Loading submissions...</p>
+          ) : payments.length === 0 ? (
             <p className="text-muted-foreground">No e-summit submissions yet.</p>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
