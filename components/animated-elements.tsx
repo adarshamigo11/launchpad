@@ -24,7 +24,8 @@ export default function AnimatedElements() {
                               !pathname.startsWith('/profile') &&
                               !pathname.startsWith('/login') &&
                               !pathname.startsWith('/forgot-password') &&
-                              !pathname.startsWith('/checkout')
+                              !pathname.startsWith('/checkout') &&
+                              !pathname.includes('/checkout')
 
   useEffect(() => {
     const generateElements = () => {

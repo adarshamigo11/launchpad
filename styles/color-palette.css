@@ -1,0 +1,33 @@
+/* Professional Color Palette for Launchpad */
+:root {
+  /* Primary Colors */
+  --neptune: #00bfff; /* Bright Blue-Green */
+  --charcoal: #36454F; /* Dark Charcoal Gray */
+  --blue: #1E90FF; /* Standard Blue */
+  --gold: #BF9B30; /* Gold/Yellow */
+  
+  /* Secondary Colors */
+  --embossed: #C0C0C0; /* Metallic Silver */
+  --crisp: #FFFFFF; /* Clean White */
+  --grey: #808080; /* Standard Grey */
+  --dark-teal: #144449; /* Dark Teal */
+  
+  /* Extended Palette */
+  --light-grey: #F5F5F5; /* Light Background */
+  --medium-grey: #D3D3D3; /* Medium Borders */
+  --dark-charcoal: #2F2F2F; /* Darker Charcoal */
+  --light-gold: #D4AF37; /* Lighter Gold */
+  --dark-blue: #00008B; /* Dark Blue */
+  
+  /* Semantic Colors */
+  --primary: var(--dark-teal); /* Main brand color */
+  --secondary: var(--gold); /* Accent color */
+  --background: var(--crisp); /* Main background */
+  --surface: var(--light-grey); /* Card surfaces */
+  --text-primary: var(--charcoal); /* Main text */
+  --text-secondary: var(--dark-charcoal); /* Secondary text */
+  --border: var(--medium-grey); /* Borders and dividers */
+  --success: #28a745; /* Success states */
+  --warning: #ffc107; /* Warning states */
+  --error: #dc3545; /* Error states */
+}

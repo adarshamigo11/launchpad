@@ -28,6 +28,7 @@ export function Navbar() {
         ? [
             { href: "/", label: "Home" },
             { href: "/about", label: "About" },
+            { href: "/e-summit", label: "E-Summit" },
             { href: "/tasks", label: "Challenges" },
             { href: "/resources", label: "Resources" },
             { href: "/leaderboard", label: "Leaderboard" },
@@ -36,6 +37,7 @@ export function Navbar() {
         : [
             { href: "/", label: "Home" },
             { href: "/about", label: "About" },
+            { href: "/e-summit", label: "E-Summit" },
             { href: "/contact", label: "Contact" },
           ]
 

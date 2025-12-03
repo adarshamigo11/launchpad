@@ -37,7 +37,7 @@ export function Footer() {
   return (
     <footer className="bg-white dark:bg-black border-t border-black/20 dark:border-white/20 mt-auto">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 py-12 sm:py-16">
-        <div className="flex flex-col md:flex-row items-start justify-center gap-12 md:gap-16 lg:gap-20 mb-10">
+        <div className="flex flex-col md:flex-row items-center md:items-start justify-center gap-12 md:gap-16 lg:gap-20 mb-10">
           {/* Brand Section */}
           <div className="flex flex-col items-center text-center">
             <img 
@@ -52,9 +52,9 @@ export function Footer() {
           </div>
 
           {/* Navigation Links */}
-          <div className="flex flex-col items-start">
+          <div className="flex flex-col items-center md:items-start">
             <h3 className="text-black dark:text-white font-bold text-lg mb-4">Quick Links</h3>
-            <nav className="flex flex-col items-start gap-3">
+            <nav className="flex flex-col items-center md:items-start gap-3">
               {allLinks.map((link) => (
                 <Link
                   key={link.href}
@@ -68,9 +68,9 @@ export function Footer() {
           </div>
 
           {/* Payments Links */}
-          <div className="flex flex-col items-start">
+          <div className="flex flex-col items-center md:items-start">
             <h3 className="text-black dark:text-white font-bold text-lg mb-4">Payments</h3>
-            <nav className="flex flex-col items-start gap-3">
+            <nav className="flex flex-col items-center md:items-start gap-3">
               {paymentLinks.map((link) => (
                 <Link
                   key={link.href}

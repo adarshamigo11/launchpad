@@ -49,10 +49,10 @@ export default function ESummitPage() {
       <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 bg-gradient-to-br from-[#144449] to-[#0a2a2d] text-white overflow-hidden">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-6 leading-tight text-display text-white animate-fade-in-up">
               Launchpad E-Summit 2025: <span className="text-[#BF9B30]">The Blueprint for Your Empire.</span>
             </h1>
-            <p className="text-lg sm:text-xl md:text-2xl text-white/90 mb-8 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-lg sm:text-xl md:text-2xl text-white/90 mb-8 leading-relaxed max-w-3xl mx-auto animate-fade-in-up-delay">
               This is not a conference where you sit in the back and take notes. This is a 2-day simulation
               of the high-stakes business world. Whether you are a student with a rough idea, a founder
               with a prototype, or a creator looking to scale, Launchpad provides the specific frameworks,
@@ -70,19 +70,19 @@ export default function ESummitPage() {
               <div className="inline-block mb-4">
                 <span className="text-4xl">🏛️</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#144449] mb-4">TRACK 1: THE VENTURE VAULT</h2>
-              <h3 className="text-xl sm:text-2xl font-semibold text-[#BF9B30] mb-6">Shark Tank</h3>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl text-[#144449] mb-4 text-heading animate-fade-in-up">TRACK 1: THE VENTURE VAULT</h2>
+              <h3 className="text-xl sm:text-2xl text-[#BF9B30] mb-6 text-subheading animate-fade-in-up-delay">Shark Tank</h3>
               
               <h4 className="text-lg sm:text-xl font-semibold text-gray-800 mb-3">The Concept:</h4>
-              <p className="text-gray-600 mb-6 leading-relaxed">
+              <p className="text-gray-600 mb-6 leading-relaxed animate-fade-in-up-delay-2">
                 Unlike standard pitch competitions, Venture Vault is designed to mirror the real investment
                 lifecycle. It is a multi-stage battleground where ideas are validated, refined, and potentially
                 funded by "Super Judges" (successful founders) and "Normal Judges" (active angel
                 investors).
               </p>
               
-              <h4 className="text-lg sm:text-xl font-semibold text-gray-800 mb-3">The Process:</h4>
-              <ol className="list-decimal pl-5 space-y-3 text-gray-600 mb-6">
+              <h4 className="text-lg sm:text-xl text-[#144449] mb-3 text-subheading">The Process:</h4>
+              <ol className="list-decimal pl-5 space-y-3 text-gray-600 mb-6 animate-fade-in-up-delay-2">
                 <li>
                   <strong>The Filter:</strong> Teams submit a 6-slide deck and a 2-minute video. Only the top 20 make the cut.
                 </li>
@@ -96,14 +96,14 @@ export default function ESummitPage() {
                 </li>
               </ol>
               
-              <h4 className="text-lg sm:text-xl font-semibold text-gray-800 mb-3">What You Win:</h4>
-              <ul className="list-disc pl-5 space-y-2 text-gray-600 mb-8">
+              <h4 className="text-lg sm:text-xl text-[#144449] mb-3 text-subheading">What You Win:</h4>
+              <ul className="list-disc pl-5 space-y-2 text-gray-600 mb-8 animate-fade-in-up-delay-2">
                 <li>Seed Grants & Incubation Slots</li>
                 <li>Critical feedback on Unit Economics and Scalability</li>
                 <li>Direct access to the "Investor Showcase"</li>
               </ul>
               
-              <p className="text-gray-700 font-semibold mb-6">
+              <p className="text-[#144449] font-semibold mb-6 text-body-semibold animate-fade-in-up-delay-2">
                 Who It's For: Early-stage startups (1–4 members) with a prototype or MVP.
               </p>
               
@@ -115,8 +115,8 @@ export default function ESummitPage() {
               <div className="bg-gradient-to-br from-[#144449] to-[#BF9B30] p-8 sm:p-12 rounded-2xl shadow-2xl w-full max-w-md">
                 <div className="text-center text-white">
                   <div className="text-6xl mb-4">🏛️</div>
-                  <h3 className="text-2xl font-bold mb-2">THE VENTURE VAULT</h3>
-                  <p className="text-lg mb-4">Shark Tank</p>
+                  <h3 className="text-2xl mb-2 text-subheading text-[#144449] animate-fade-in-up">THE VENTURE VAULT</h3>
+                  <p className="text-lg mb-4 animate-fade-in-up-delay">Shark Tank</p>
                   <div className="border-t border-white/30 pt-4 mt-4">
                     <p className="text-sm">The Ultimate Pitch Arena</p>
                   </div>
@@ -135,8 +135,8 @@ export default function ESummitPage() {
               <div className="bg-gradient-to-br from-[#BF9B30] to-[#144449] p-8 sm:p-12 rounded-2xl shadow-2xl w-full max-w-md">
                 <div className="text-center text-white">
                   <div className="text-6xl mb-4">🏅</div>
-                  <h3 className="text-2xl font-bold mb-2">ENTREPRENEUR OLYMPICS</h3>
-                  <p className="text-lg mb-4">Business is a Sport</p>
+                  <h3 className="text-2xl mb-2 text-subheading text-[#144449] animate-fade-in-up">ENTREPRENEUR OLYMPICS</h3>
+                  <p className="text-lg mb-4 animate-fade-in-up-delay">Business is a Sport</p>
                   <div className="border-t border-white/30 pt-4 mt-4">
                     <p className="text-sm">Come Play</p>
                   </div>
@@ -147,18 +147,18 @@ export default function ESummitPage() {
               <div className="inline-block mb-4">
                 <span className="text-4xl">🏅</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#144449] mb-4">TRACK 2: ENTREPRENEUR OLYMPICS</h2>
-              <h3 className="text-xl sm:text-2xl font-semibold text-[#BF9B30] mb-6">Business is a Sport. Come Play.</h3>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl text-[#144449] mb-4 text-heading animate-fade-in-up">TRACK 2: ENTREPRENEUR OLYMPICS</h2>
+              <h3 className="text-xl sm:text-2xl text-[#BF9B30] mb-6 text-subheading">Business is a Sport. Come Play.</h3>
               
               <h4 className="text-lg sm:text-xl font-semibold text-gray-800 mb-3">The Concept:</h4>
-              <p className="text-gray-600 mb-6 leading-relaxed">
+              <p className="text-gray-600 mb-6 leading-relaxed animate-fade-in-up-delay-2">
                 A high-energy, gamified series of micro-events designed to test your rapid decision-making,
                 creativity, and negotiation skills under extreme time pressure. You don't need a business
                 plan to win here—you need street smarts.
               </p>
               
-              <h4 className="text-lg sm:text-xl font-semibold text-gray-800 mb-3">The Games:</h4>
-              <ul className="space-y-4 text-gray-600 mb-8">
+              <h4 className="text-lg sm:text-xl text-[#144449] mb-3 text-subheading">The Games:</h4>
+              <ul className="space-y-4 text-gray-600 mb-8 animate-fade-in-up-delay-2">
                 <li className="flex items-start">
                   <span className="text-2xl mr-3">🎨</span>
                   <div>
@@ -189,7 +189,7 @@ export default function ESummitPage() {
                 </li>
               </ul>
               
-              <p className="text-gray-700 font-semibold mb-6">
+              <p className="text-[#144449] font-semibold mb-6 text-body-semibold animate-fade-in-up-delay-2">
                 Who It's For: Creative students, marketing enthusiasts, and anyone who thinks faster than they talk.
               </p>
               
@@ -209,18 +209,18 @@ export default function ESummitPage() {
               <div className="inline-block mb-4">
                 <span className="text-4xl">🎙️</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#144449] mb-4">TRACK 3: FOUNDERS ROUNDTABLE</h2>
-              <h3 className="text-xl sm:text-2xl font-semibold text-[#BF9B30] mb-6">Inside the Founder's Mind: Unfiltered.</h3>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl text-[#144449] mb-4 text-heading animate-fade-in-up">TRACK 3: FOUNDERS ROUNDTABLE</h2>
+              <h3 className="text-xl sm:text-2xl text-[#BF9B30] mb-6 text-subheading">Inside the Founder's Mind: Unfiltered.</h3>
               
               <h4 className="text-lg sm:text-xl font-semibold text-gray-800 mb-3">The Concept:</h4>
-              <p className="text-gray-600 mb-6 leading-relaxed">
+              <p className="text-gray-600 mb-6 leading-relaxed animate-fade-in-up-delay-2">
                 We are banning PR-friendly success stories. This session focuses on the "War Stories"—the
                 failures, the mental breakdowns, and the hard pivots that actually defined the founders'
                 journeys.
               </p>
               
-              <h4 className="text-lg sm:text-xl font-semibold text-gray-800 mb-3">The Topics:</h4>
-              <ul className="space-y-4 text-gray-600 mb-8">
+              <h4 className="text-lg sm:text-xl text-[#144449] mb-3 text-subheading">The Topics:</h4>
+              <ul className="space-y-4 text-gray-600 mb-8 animate-fade-in-up-delay-2">
                 <li className="flex items-start">
                   <span className="text-2xl mr-3">👥</span>
                   <div>
@@ -247,7 +247,7 @@ export default function ESummitPage() {
                 </li>
               </ul>
               
-              <h4 className="text-lg sm:text-xl font-semibold text-gray-800 mb-3">Format:</h4>
+              <h4 className="text-lg sm:text-xl text-[#144449] mb-3 text-subheading">Format:</h4>
               <p className="text-gray-600 mb-6">
                 A candid panel discussion followed by a "Rapid Fire" tactical tip round.
               </p>
@@ -260,8 +260,8 @@ export default function ESummitPage() {
               <div className="bg-gradient-to-br from-[#144449] to-[#BF9B30] p-8 sm:p-12 rounded-2xl shadow-2xl w-full max-w-md">
                 <div className="text-center text-white">
                   <div className="text-6xl mb-4">🎙️</div>
-                  <h3 className="text-2xl font-bold mb-2">FOUNDERS ROUNDTABLE</h3>
-                  <p className="text-lg mb-4">Inside the Founder's Mind</p>
+                  <h3 className="text-2xl mb-2 text-subheading text-[#144449] animate-fade-in-up">FOUNDERS ROUNDTABLE</h3>
+                  <p className="text-lg mb-4 animate-fade-in-up-delay">Inside the Founder's Mind</p>
                   <div className="border-t border-white/30 pt-4 mt-4">
                     <p className="text-sm">Unfiltered</p>
                   </div>
@@ -280,8 +280,8 @@ export default function ESummitPage() {
               <div className="bg-gradient-to-br from-[#BF9B30] to-[#144449] p-8 sm:p-12 rounded-2xl shadow-2xl w-full max-w-md">
                 <div className="text-center text-white">
                   <div className="text-6xl mb-4">🚀</div>
-                  <h3 className="text-2xl font-bold mb-2">STARTUP EXPO</h3>
-                  <p className="text-lg mb-4">The Innovation Market</p>
+                  <h3 className="text-2xl mb-2 text-subheading text-[#144449] animate-fade-in-up">STARTUP EXPO</h3>
+                  <p className="text-lg mb-4 animate-fade-in-up-delay">The Innovation Market</p>
                   <div className="border-t border-white/30 pt-4 mt-4">
                     <p className="text-sm">100+ Startups</p>
                   </div>
@@ -292,17 +292,17 @@ export default function ESummitPage() {
               <div className="inline-block mb-4">
                 <span className="text-4xl">🚀</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#144449] mb-4">TRACK 4: STARTUP EXPO</h2>
-              <h3 className="text-xl sm:text-2xl font-semibold text-[#BF9B30] mb-6">The Innovation Market.</h3>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl text-[#144449] mb-4 text-heading animate-fade-in-up">TRACK 4: STARTUP EXPO</h2>
+              <h3 className="text-xl sm:text-2xl text-[#BF9B30] mb-6 text-subheading">The Innovation Market.</h3>
               
               <h4 className="text-lg sm:text-xl font-semibold text-gray-800 mb-3">The Concept:</h4>
-              <p className="text-gray-600 mb-6 leading-relaxed">
+              <p className="text-gray-600 mb-6 leading-relaxed animate-fade-in-up-delay-2">
                 A bustling marketplace featuring 100+ startups organized by vertical (Deep Tech, FinTech,
                 EdTech, Consumer). This is your chance to demo your product to 2,000+ attendees,
                 recruit talent, and catch the eye of roving investors.
               </p>
               
-              <h4 className="text-lg sm:text-xl font-semibold text-gray-800 mb-3">The Zones:</h4>
+              <h4 className="text-lg sm:text-xl text-[#144449] mb-3 text-subheading">The Zones:</h4>
               <ul className="space-y-4 text-gray-600 mb-8">
                 <li className="flex items-start">
                   <span className="text-2xl mr-3">🎤</span>
@@ -327,7 +327,7 @@ export default function ESummitPage() {
                 </li>
               </ul>
               
-              <h4 className="text-lg sm:text-xl font-semibold text-gray-800 mb-3">Booth Specs:</h4>
+              <h4 className="text-lg sm:text-xl text-[#144449] mb-3 text-subheading">Booth Specs:</h4>
               <p className="text-gray-600 mb-6">
                 3x2m Standard Booth with power and Wi-Fi access.
               </p>
@@ -348,17 +348,17 @@ export default function ESummitPage() {
               <div className="inline-block mb-4">
                 <span className="text-4xl">🧠</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#144449] mb-4">TRACK 5: WORKSHOPS & MASTERCLASSES</h2>
-              <h3 className="text-xl sm:text-2xl font-semibold text-[#BF9B30] mb-6">Tactical Skill Acquisition.</h3>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl text-[#144449] mb-4 text-heading animate-fade-in-up">TRACK 5: WORKSHOPS & MASTERCLASSES</h2>
+              <h3 className="text-xl sm:text-2xl text-[#BF9B30] mb-6 text-subheading">Tactical Skill Acquisition.</h3>
               
               <h4 className="text-lg sm:text-xl font-semibold text-gray-800 mb-3">The Concept:</h4>
-              <p className="text-gray-600 mb-6 leading-relaxed">
+              <p className="text-gray-600 mb-6 leading-relaxed animate-fade-in-up-delay-2">
                 Walk away with 3–5 practical frameworks you can apply immediately. These aren't lectures;
                 they are "How-To" manuals delivered by experts.
               </p>
               
-              <h4 className="text-lg sm:text-xl font-semibold text-gray-800 mb-3">Sessions Available:</h4>
-              <ul className="space-y-4 text-gray-600 mb-8">
+              <h4 className="text-lg sm:text-xl text-[#144449] mb-3 text-subheading">Sessions Available:</h4>
+              <ul className="space-y-4 text-gray-600 mb-8 animate-fade-in-up-delay-2">
                 <li className="flex items-start">
                   <span className="text-2xl mr-3">💰</span>
                   <div>
@@ -390,8 +390,8 @@ export default function ESummitPage() {
               <div className="bg-gradient-to-br from-[#144449] to-[#BF9B30] p-8 sm:p-12 rounded-2xl shadow-2xl w-full max-w-md">
                 <div className="text-center text-white">
                   <div className="text-6xl mb-4">🧠</div>
-                  <h3 className="text-2xl font-bold mb-2">WORKSHOPS & MASTERCLASSES</h3>
-                  <p className="text-lg mb-4">Tactical Skill Acquisition</p>
+                  <h3 className="text-2xl mb-2 text-subheading text-[#144449] animate-fade-in-up">WORKSHOPS & MASTERCLASSES</h3>
+                  <p className="text-lg mb-4 animate-fade-in-up-delay">Tactical Skill Acquisition</p>
                   <div className="border-t border-white/30 pt-4 mt-4">
                     <p className="text-sm">Practical Frameworks</p>
                   </div>
@@ -406,7 +406,7 @@ export default function ESummitPage() {
       <section className="py-16 sm:py-20 bg-gradient-to-br from-[#144449] to-[#0a2a2d] text-white">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">⚡ WHY ATTEND? (The Value Stack)</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl text-[#144496] mb-4 text-heading animate-fade-in-up">⚡ WHY ATTEND? (The Value Stack)</h2>
             <div className="w-20 h-1 bg-[#BF9B30] mx-auto"></div>
           </div>
           
@@ -414,9 +414,9 @@ export default function ESummitPage() {
             <div className="bg-white/10 p-6 sm:p-8 rounded-xl border border-white/20">
               <div className="flex items-start mb-4">
                 <span className="text-2xl mr-3">👨‍🏫</span>
-                <h3 className="text-xl font-semibold">Mentorship, Not Just Judgement</h3>
+                <h3 className="text-xl text-[#144496] text-subheading animate-fade-in-up-delay">Mentorship, Not Just Judgement</h3>
               </div>
-              <p className="text-white/90">
+              <p className="text-white/90 animate-fade-in-up-delay-2">
                 Unlike other events, our judges act as mentors first. You get feedback, not just a score.
               </p>
             </div>
@@ -424,9 +424,9 @@ export default function ESummitPage() {
             <div className="bg-white/10 p-6 sm:p-8 rounded-xl border border-white/20">
               <div className="flex items-start mb-4">
                 <span className="text-2xl mr-3">🤝</span>
-                <h3 className="text-xl font-semibold">Network with the 1%</h3>
+                <h3 className="text-xl text-[#144496] text-subheading animate-fade-in-up-delay">Network with the 1%</h3>
               </div>
-              <p className="text-white/90">
+              <p className="text-white/90 animate-fade-in-up-delay-2">
                 Rub shoulders with "Super Judges" (Founders/CEOs) and "Normal Judges" (Angel Investors) in a structured environment.
               </p>
             </div>
@@ -434,9 +434,9 @@ export default function ESummitPage() {
             <div className="bg-white/10 p-6 sm:p-8 rounded-xl border border-white/20">
               <div className="flex items-start mb-4">
                 <span className="text-2xl mr-3">📜</span>
-                <h3 className="text-xl font-semibold">Certificate of Recognition</h3>
+                <h3 className="text-xl text-[#144496] text-subheading animate-fade-in-up-delay">Certificate of Recognition</h3>
               </div>
-              <p className="text-white/90">
+              <p className="text-white/90 animate-fade-in-up-delay-2">
                 All participants receive a digital certificate officially recognizing their involvement in the E-Summit.
               </p>
             </div>
@@ -444,17 +444,17 @@ export default function ESummitPage() {
             <div className="bg-white/10 p-6 sm:p-8 rounded-xl border border-white/20">
               <div className="flex items-start mb-4">
                 <span className="text-2xl mr-3">🎒</span>
-                <h3 className="text-xl font-semibold">The "Starter Pack"</h3>
+                <h3 className="text-xl text-[#144496] text-subheading animate-fade-in-up-delay">The "Starter Pack"</h3>
               </div>
-              <p className="text-white/90">
+              <p className="text-white/90 animate-fade-in-up-delay-2">
                 Walk away with a PDF of hiring templates, fundraising checklists, and resource guides shared by our speakers.
               </p>
             </div>
           </div>
           
           <div className="text-center mt-16 sm:mt-20">
-            <h3 className="text-xl sm:text-2xl font-bold mb-6">Ready to Launch?</h3>
-            <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
+            <h3 className="text-xl sm:text-2xl text-[#144496] mb-6 text-subheading animate-fade-in-up">Ready to Launch?</h3>
+            <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto animate-fade-in-up-delay">
               Most tracks have limited capacity. Secure your spot before the cohort fills up.
             </p>
             
@@ -474,7 +474,7 @@ export default function ESummitPage() {
               </div>
             </div>
             
-            <div className="mt-8 inline-flex items-center bg-red-500/20 px-4 py-2">
+            <div className="mt-8 inline-flex items-center bg-red-500/20 px-4 py-2 animate-pulse">
               <span className="text-red-300 font-semibold">⚠️ Urgency:</span>
               <span className="ml-2 text-white">Selling Fast - 80% Sold</span>
             </div>
@@ -486,157 +486,254 @@ export default function ESummitPage() {
       <section className="py-16 sm:py-20 bg-white">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#144449] mb-4">PRICING SECTION</h2>
-            <div className="w-20 h-1 bg-[#BF9B30] mx-auto"></div>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl text-[#144496] mb-4 text-heading animate-fade-in-up">PRICING PLANS</h2>
+            <p className="text-lg text-[var(--text-secondary)] max-w-2xl mx-auto mb-6">
+              Choose the perfect plan to unlock your entrepreneurial potential
+            </p>
+            <div className="w-20 h-1 bg-[var(--secondary)] mx-auto"></div>
           </div>
           
-          <div className="overflow-x-auto">
-            <table className="w-full border-collapse border border-gray-200 text-sm sm:text-base">
-              <thead>
-                <tr className="bg-gray-100">
-                  <th className="border border-gray-200 p-3 text-left font-semibold">Feature</th>
-                  <th className="border border-gray-200 p-3 text-center font-semibold">
-                    <div className="flex flex-col items-center">
-                      <span>GENERA</span>
-                      <span>L PASS</span>
-                      <span className="text-xs text-gray-500">(Student)</span>
-                      <div className="mt-2 w-8 h-8 bg-gray-300 flex items-center justify-center">
-                        <span className="text-lg">👤</span>
-                      </div>
-                      <Button className="mt-2 bg-gray-300 text-gray-800 hover:bg-gray-400 font-semibold text-sm px-3 py-1 border border-gray-400" onClick={() => window.location.href = '/e-summit/checkout?pass=general'}>
-                        Get Basic Pass - ₹{getPrice("general")}
-                      </Button>
-                    </div>
-                  </th>
-                  <th className="border border-gray-200 p-3 text-center font-semibold">
-                    <div className="flex flex-col items-center">
-                      <span>PREMIU</span>
-                      <span>M PASS</span>
-                      <span className="text-xs text-gray-500">(Student Hero)</span>
-                      <div className="mt-2 w-8 h-8 bg-[#BF9B30] flex items-center justify-center">
-                        <span className="text-lg">👑</span>
-                      </div>
-                      <Button className="mt-2 bg-[#BF9B30] text-black hover:bg-[#BF9B30]/90 font-semibold text-sm px-3 py-1" onClick={() => window.location.href = '/e-summit/checkout?pass=premium'}>
-                        GET PREMIUM ACCESS - ₹{getPrice("premium")}
-                      </Button>
-                    </div>
-                  </th>
-                  <th className="border border-gray-200 p-3 text-center font-semibold">
-                    <div className="flex flex-col items-center">
-                      <span>ROUNDTABL</span>
-                      <span>E</span>
-                      <span className="text-xs text-gray-500">(Founder Experience)</span>
-                      <div className="mt-2 w-8 h-8 bg-blue-100 flex items-center justify-center border border-blue-300">
-                        <span className="text-lg">🎙️</span>
-                      </div>
-                      <Button className="mt-2 bg-white text-blue-600 hover:bg-blue-50 font-semibold text-sm px-3 py-1 border border-blue-300" onClick={() => window.location.href = '/e-summit/checkout?pass=roundtable'}>
-                        Join Roundtable - ₹{getPrice("roundtable")}
-                      </Button>
-                    </div>
-                  </th>
-                  <th className="border border-gray-200 p-3 text-center font-semibold">
-                    <div className="flex flex-col items-center">
-                      <span>SHARK</span>
-                      <span>TANK</span>
-                      <span className="text-xs text-gray-500">(Startup Team)</span>
-                      <div className="mt-2 w-8 h-8 bg-blue-600 flex items-center justify-center">
-                        <span className="text-lg text-white">🦈</span>
-                      </div>
-                      <Button className="mt-2 bg-blue-600 text-white hover:bg-blue-700 font-semibold text-sm px-3 py-1" onClick={() => window.location.href = '/e-summit/checkout?pass=shark-tank'}>
-                        Register Startup - ₹{getPrice("shark-tank")}
-                      </Button>
-                    </div>
-                  </th>
-                  <th className="border border-gray-200 p-3 text-center font-semibold">
-                    <div className="flex flex-col items-center">
-                      <span>STARTU</span>
-                      <span>P EXPO</span>
-                      <span className="text-xs text-gray-500">(Exhibitor)</span>
-                      <div className="mt-2 w-8 h-8 bg-blue-600 flex items-center justify-center">
-                        <span className="text-lg text-white">🎪</span>
-                      </div>
-                      <Button className="mt-2 bg-blue-600 text-white hover:bg-blue-700 font-semibold text-sm px-3 py-1" onClick={() => window.location.href = '/e-summit/checkout?pass=expo'}>
-                        Book Booth - ₹{getPrice("expo")}
-                      </Button>
-                    </div>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className="border border-gray-200 p-3 font-semibold">Early Bird Price</td>
-                  <td className="border border-gray-200 p-3 text-center">₹{getPrice("general")}</td>
-                  <td className="border border-gray-200 p-3 text-center">₹{getPrice("premium")}</td>
-                  <td className="border border-gray-200 p-3 text-center">₹{getPrice("roundtable")}<br/><span className="text-xs">(Team)</span></td>
-                  <td className="border border-gray-200 p-3 text-center">₹{getPrice("shark-tank")}<br/><span className="text-xs">(Team)</span></td>
-                  <td className="border border-gray-200 p-3 text-center">₹{getPrice("booth")}</td>
-                </tr>
-                <tr className="bg-gray-50">
-                  <td className="border border-gray-200 p-3 font-semibold">Regular Price</td>
-                  <td className="border border-gray-200 p-3 text-center">₹{Math.round(getPrice("general") * 1.2)}</td>
-                  <td className="border border-gray-200 p-3 text-center">₹{Math.round(getPrice("premium") * 1.2)}</td>
-                  <td className="border border-gray-200 p-3 text-center">₹{Math.round(getPrice("roundtable") * 1.2)}</td>
-                  <td className="border border-gray-200 p-3 text-center">₹{Math.round(getPrice("shark-tank") * 1.2)}</td>
-                  <td className="border border-gray-200 p-3 text-center">₹{Math.round(getPrice("booth") * 1.2)}</td>
-                </tr>
-                <tr>
-                  <td className="border border-gray-200 p-3 font-semibold">Who is it for?</td>
-                  <td className="border border-gray-200 p-3 text-center">Attendees</td>
-                  <td className="border border-gray-200 p-3 text-center">Serious Aspirants</td>
-                  <td className="border border-gray-200 p-3 text-center">Founder Networking</td>
-                  <td className="border border-gray-200 p-3 text-center">Early-Stage Startups</td>
-                  <td className="border border-gray-200 p-3 text-center">Brands & Exhibitors</td>
-                </tr>
-                <tr className="bg-gray-50">
-                  <td className="border border-gray-200 p-3 font-semibold">Speaker Sessions</td>
-                  <td className="border border-gray-200 p-3 text-center">Panel Access</td>
-                  <td className="border border-gray-200 p-3 text-center">Full Panel Access</td>
-                  <td className="border border-gray-200 p-3 text-center">Full Access</td>
-                  <td className="border border-gray-200 p-3 text-center">Full Access</td>
-                  <td className="border border-gray-200 p-3 text-center">Shark Tank</td>
-                </tr>
-                <tr>
-                  <td className="border border-gray-200 p-3 font-semibold">Shark Tank</td>
-                  <td className="border border-gray-200 p-3 text-center">❌</td>
-                  <td className="border border-gray-200 p-3 text-center">✅ Audience Access</td>
-                  <td className="border border-gray-200 p-3 text-center">✅ Audience Access</td>
-                  <td className="border border-gray-200 p-3 text-center">✅ Participant (Pitch)</td>
-                  <td className="border border-gray-200 p-3 text-center">✅ Audience Access</td>
-                </tr>
-                <tr className="bg-gray-50">
-                  <td className="border border-gray-200 p-3 font-semibold">Competitions</td>
-                  <td className="border border-gray-200 p-3 text-center">❌</td>
-                  <td className="border border-gray-200 p-3 text-center">✅ 1 Entry<br/><span className="text-xs">Free (Any Event)</span></td>
-                  <td className="border border-gray-200 p-3 text-center">❌</td>
-                  <td className="border border-gray-200 p-3 text-center">❌</td>
-                  <td className="border border-gray-200 p-3 text-center">❌</td>
-                </tr>
-                <tr>
-                  <td className="border border-gray-200 p-3 font-semibold">Expo Access</td>
-                  <td className="border border-gray-200 p-3 text-center">Entry Only</td>
-                  <td className="border border-gray-200 p-3 text-center">Entry Only</td>
-                  <td className="border border-gray-200 p-3 text-center">Entry Only</td>
-                  <td className="border border-gray-200 p-3 text-center">Entry Only</td>
-                  <td className="border border-gray-200 p-3 text-center">✅ Own Booth<br/><span className="text-xs">(3x2m)</span></td>
-                </tr>
-                <tr className="bg-gray-50">
-                  <td className="border border-gray-200 p-3 font-semibold">Learning</td>
-                  <td className="border border-gray-200 p-3 text-center">❌</td>
-                  <td className="border border-gray-200 p-3 text-center">✅ 1 Premium Workshop</td>
-                  <td className="border border-gray-200 p-3 text-center">Peer Experience Exchange</td>
-                  <td className="border border-gray-200 p-3 text-center">✅ 1-on-1 Mentorship</td>
-                  <td className="border border-gray-200 p-3 text-center">Investor Alley Access</td>
-                </tr>
-                <tr>
-                  <td className="border border-gray-200 p-3 font-semibold">Team Size</td>
-                  <td className="border border-gray-200 p-3 text-center">Individual</td>
-                  <td className="border border-gray-200 p-3 text-center">Individual</td>
-                  <td className="border border-gray-200 p-3 text-center">Per Team</td>
-                  <td className="border border-gray-200 p-3 text-center">4 Members</td>
-                  <td className="border border-gray-200 p-3 text-center">Exhibitor Pass</td>
-                </tr>
-              </tbody>
-            </table>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            {/* General Pass */}
+            <div className="bg-white rounded-xl shadow-lg border border-[#144496] overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 animate-fade-in-up">
+              <div className="p-6 bg-gradient-to-r from-[#144496] to-white text-white text-center">
+                <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl text-white">👤</span>
+                </div>
+                <h3 className="text-xl mb-2 text-subheading text-white animate-fade-in-up">GENERAL PASS</h3>
+                <p className="text-sm opacity-90 mb-4 animate-fade-in-up-delay text-white">Perfect for students</p>
+                <div className="text-3xl font-bold mb-2 animate-fade-in-up-delay text-white">₹{getPrice("general")}</div>
+                <p className="text-sm opacity-90 animate-fade-in-up-delay text-white">Early Bird Price</p>
+              </div>
+              <div className="p-6">
+                <ul className="space-y-3 mb-6 animate-fade-in-up-delay-2">
+                  <li className="flex items-center">
+                    <span className="text-[#144496] mr-2">✓</span>
+                    <span>Panel Access</span>
+                  </li>
+                  <li className="flex items-center text-gray-400">
+                    <span className="mr-2">✗</span>
+                    <span>Shark Tank Participation</span>
+                  </li>
+                  <li className="flex items-center text-gray-400">
+                    <span className="mr-2">✗</span>
+                    <span>Competitions Entry</span>
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-[#144496] mr-2">✓</span>
+                    <span>Expo Entry Only</span>
+                  </li>
+                  <li className="flex items-center text-gray-400">
+                    <span className="mr-2">✗</span>
+                    <span>Premium Workshops</span>
+                  </li>
+                </ul>
+                <Button 
+                  className="w-full bg-gradient-to-r from-[#144496] to-white hover:from-[#144496] hover:to-white text-white font-semibold py-3 transition-all duration-300 border border-[#144496]"
+                  onClick={() => window.location.href = '/e-summit/checkout?pass=general'}
+                >
+                  Get Basic Pass
+                </Button>
+              </div>
+            </div>
+            
+            {/* Premium Pass */}
+            <div className="bg-white rounded-xl shadow-lg border-2 border-[#144496] overflow-hidden hover:shadow-xl transition-all duration-300 relative transform hover:-translate-y-2 animate-fade-in-up-delay">
+              <div className="absolute top-0 right-0 bg-[#144496] text-white text-xs font-bold px-4 py-1 rounded-bl-lg animate-pulse-slow">
+                MOST POPULAR
+              </div>
+              <div className="p-6 bg-gradient-to-r from-[#144496] to-white text-white text-center">
+                <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl text-white">👑</span>
+                </div>
+                <h3 className="text-xl mb-2 text-subheading text-white animate-fade-in-up">PREMIUM PASS</h3>
+                <p className="text-sm opacity-90 mb-4 animate-fade-in-up-delay text-white">For serious aspirants</p>
+                <div className="text-3xl font-bold mb-2 animate-fade-in-up-delay text-white">₹{getPrice("premium")}</div>
+                <p className="text-sm opacity-90 animate-fade-in-up-delay text-white">Early Bird Price</p>
+              </div>
+              <div className="p-6">
+                <ul className="space-y-3 mb-6">
+                  <li className="flex items-center">
+                    <span className="text-[#144496] mr-2">✓</span>
+                    <span>Full Panel Access</span>
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-[#144496] mr-2">✓</span>
+                    <span>Shark Tank Audience Access</span>
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-[#144496] mr-2">✓</span>
+                    <span>1 Competition Entry</span>
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-[#144496] mr-2">✓</span>
+                    <span>Expo Entry Only</span>
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-[#144496] mr-2">✓</span>
+                    <span>1 Premium Workshop</span>
+                  </li>
+                </ul>
+                <Button 
+                  className="w-full bg-gradient-to-r from-[#144496] to-white hover:from-[#144496] hover:to-white text-white font-semibold py-3 transition-all duration-300 border border-[#144496]"
+                  onClick={() => window.location.href = '/e-summit/checkout?pass=premium'}
+                >
+                  GET PREMIUM ACCESS
+                </Button>
+              </div>
+            </div>
+            
+            {/* Roundtable Pass */}
+            <div className="bg-white rounded-xl shadow-lg border border-[#144496] overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 animate-fade-in-up">
+              <div className="p-6 bg-gradient-to-r from-[#144496] to-white text-white text-center">
+                <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 border border-white/30">
+                  <span className="text-2xl text-white">🎙️</span>
+                </div>
+                <h3 className="text-xl mb-2 text-subheading text-white animate-fade-in-up">ROUNDTABLE</h3>
+                <p className="text-sm opacity-90 mb-4 animate-fade-in-up-delay text-white">Founder Experience</p>
+                <div className="text-3xl font-bold mb-2 animate-fade-in-up-delay text-white">₹{getPrice("roundtable")}</div>
+                <p className="text-sm opacity-90 animate-fade-in-up-delay text-white">Early Bird Price</p>
+              </div>
+              <div className="p-6">
+                <ul className="space-y-3 mb-6 animate-fade-in-up-delay-2">
+                  <li className="flex items-center">
+                    <span className="text-[#144496] mr-2">✓</span>
+                    <span>Full Access to All Sessions</span>
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-[#144496] mr-2">✓</span>
+                    <span>Shark Tank Audience Access</span>
+                  </li>
+                  <li className="flex items-center text-gray-400">
+                    <span className="mr-2">✗</span>
+                    <span>Competitions Entry</span>
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-[#144496] mr-2">✓</span>
+                    <span>Peer Experience Exchange</span>
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-[#144496] mr-2">✓</span>
+                    <span>Entry Only to Expo</span>
+                  </li>
+                </ul>
+                <Button 
+                  className="w-full bg-gradient-to-r from-[#144496] to-white hover:from-[#144496] hover:to-white text-white font-semibold py-3 transition-all duration-300 border border-[#144496]"
+                  onClick={() => window.location.href = '/e-summit/checkout?pass=roundtable'}
+                >
+                  Join Roundtable
+                </Button>
+              </div>
+            </div>
+            
+            {/* Shark Tank Pass */}
+            <div className="bg-white rounded-xl shadow-lg border border-blue-500 overflow-hidden hover:shadow-xl transition-all duration-300 md:col-span-2 lg:col-span-1 lg:col-start-2 transform hover:-translate-y-2 animate-fade-in-up-delay">
+              <div className="p-6 bg-gradient-to-r from-blue-600 to-blue-400 text-white text-center">
+                <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl text-white">🦈</span>
+                </div>
+                <h3 className="text-xl mb-2 text-subheading text-white animate-fade-in-up">SHARK TANK</h3>
+                <p className="text-sm opacity-90 mb-4 animate-fade-in-up-delay text-white">Startup Team</p>
+                <div className="text-3xl font-bold mb-2 animate-fade-in-up-delay text-white">₹{getPrice("shark-tank")}</div>
+                <p className="text-sm opacity-90 animate-fade-in-up-delay text-white">Early Bird Price</p>
+              </div>
+              <div className="p-6">
+                <ul className="space-y-3 mb-6 animate-fade-in-up-delay-2">
+                  <li className="flex items-center">
+                    <span className="text-[#144496] mr-2">✓</span>
+                    <span>Full Access to All Sessions</span>
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-[#144496] mr-2">✓</span>
+                    <span>Participant in Shark Tank</span>
+                  </li>
+                  <li className="flex items-center text-gray-400">
+                    <span className="mr-2">✗</span>
+                    <span>Competitions Entry</span>
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-[#144496] mr-2">✓</span>
+                    <span>Entry Only to Expo</span>
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-[#144496] mr-2">✓</span>
+                    <span>1-on-1 Mentorship</span>
+                  </li>
+                </ul>
+                <Button 
+                  className="w-full bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-700 hover:to-blue-500 text-white font-semibold py-3 transition-all duration-300 border border-blue-500"
+                  onClick={() => window.location.href = '/e-summit/checkout?pass=shark-tank'}
+                >
+                  Register Startup
+                </Button>
+              </div>
+            </div>
+            
+            {/* Expo Booth Pass */}
+            <div className="bg-white rounded-xl shadow-lg border border-blue-500 overflow-hidden hover:shadow-xl transition-all duration-300 md:col-span-2 lg:col-span-3 transform hover:-translate-y-2 animate-fade-in-up">
+              <div className="p-6 bg-gradient-to-r from-blue-600 to-blue-400 text-white text-center">
+                <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl text-white">🎪</span>
+                </div>
+                <h3 className="text-xl mb-2 text-subheading text-white animate-fade-in-up">STARTUP EXPO</h3>
+                <p className="text-sm opacity-90 mb-4 animate-fade-in-up-delay text-white">Exhibitor</p>
+                <div className="text-3xl font-bold mb-2 animate-fade-in-up-delay text-white">₹{getPrice("expo")}</div>
+                <p className="text-sm opacity-90 animate-fade-in-up-delay text-white">Early Bird Price</p>
+              </div>
+              <div className="p-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <h4 className="font-bold text-lg mb-3 text-[#144496] text-subheading animate-fade-in-up-delay">What's Included:</h4>
+                    <ul className="space-y-2 animate-fade-in-up-delay-2">
+                      <li className="flex items-center">
+                        <span className="text-[#144496] mr-2">✓</span>
+                        <span>3x2m Booth Space</span>
+                      </li>
+                      <li className="flex items-center">
+                        <span className="text-[#144496] mr-2">✓</span>
+                        <span>Power & Wi-Fi Access</span>
+                      </li>
+                      <li className="flex items-center">
+                        <span className="text-[#144496] mr-2">✓</span>
+                        <span>Shark Tank Audience Access</span>
+                      </li>
+                      <li className="flex items-center">
+                        <span className="text-[#144496] mr-2">✓</span>
+                        <span>Investor Alley Access</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-lg mb-3 text-[#144496] text-subheading animate-fade-in-up-delay">Additional Benefits:</h4>
+                    <ul className="space-y-2 animate-fade-in-up-delay-2">
+                      <li className="flex items-center">
+                        <span className="text-[#144496] mr-2">✓</span>
+                        <span>Promotional Materials Display</span>
+                      </li>
+                      <li className="flex items-center">
+                        <span className="text-[#144496] mr-2">✓</span>
+                        <span>Demo Stage Booking</span>
+                      </li>
+                      <li className="flex items-center">
+                        <span className="text-[#144496] mr-2">✓</span>
+                        <span>Networking Opportunities</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <Button 
+                  className="w-full mt-6 bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-700 hover:to-blue-500 text-white font-semibold py-3 transition-all duration-300 border border-blue-500"
+                  onClick={() => window.location.href = '/e-summit/checkout?pass=expo'}
+                >
+                  Book Booth
+                </Button>
+              </div>
+            </div>
+          </div>
+          
+          <div className="mt-8 text-center text-sm text-gray-600 animate-fade-in-up">
+            <p>* Regular prices are 20% higher than early bird prices</p>
+            <p className="mt-2">All passes include certificate of recognition and digital resources</p>
           </div>
         </div>
       </section>

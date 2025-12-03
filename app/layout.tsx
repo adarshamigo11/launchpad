@@ -2,7 +2,15 @@ import type React from "react"
 import type { Metadata } from "next"
 import { GeistSans } from "geist/font/sans"
 import { GeistMono } from "geist/font/mono"
+import { Inter } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
+
+// Initialize Inter font for headings
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+})
 import "./globals.css"
 import { AuthProvider } from "@/components/state/auth-context"
 import { ThemeProvider } from "@/components/theme-provider"
@@ -51,7 +59,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
+      <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable} ${inter.variable}`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
