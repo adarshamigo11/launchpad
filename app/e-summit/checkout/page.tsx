@@ -188,6 +188,18 @@ export default function ESummitCheckoutPage() {
 
     setProcessingPayment(true)
     try {
+      // Log the data being sent
+      console.log("Sending payment data:", {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        senderName: formData.senderName,
+        passType: passType,
+        passName: passInfo?.name,
+        amount: passInfo ? Math.max(0, passInfo.price - discount) : 0,
+        promoCode: appliedPromoCode || undefined
+      });
+
       // Call the e-summit payment initiation API
       const response = await fetch("/api/e-summit/payments/initiate", {
         method: "POST",
@@ -204,10 +216,15 @@ export default function ESummitCheckoutPage() {
         }),
       })
 
+      console.log("Payment API response status:", response.status);
+      console.log("Payment API response headers:", [...response.headers.entries()]);
+
       const data = await response.json()
+      console.log("Payment API response data:", data);
 
       if (data.ok && data.paymentUrl) {
         // Redirect to PhonePe payment page
+        console.log("Redirecting to PhonePe payment page:", data.paymentUrl);
         window.location.href = data.paymentUrl
       } else {
         const errorMessage = data.message || "Failed to initiate payment. Please try again."

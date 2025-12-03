@@ -34,25 +34,45 @@ function parseClientVersion(): number {
 
 export function getPhonePeClient(): StandardCheckoutClient {
   if (phonePeClient) {
+    console.log("[PhonePe] Using existing client instance");
     return phonePeClient
   }
 
+  console.log("[PhonePe] Creating new client instance with config:", {
+    hasClientId: !!PHONEPE_CLIENT_ID,
+    hasClientSecret: !!PHONEPE_CLIENT_SECRET,
+    clientIdPrefix: PHONEPE_CLIENT_ID.substring(0, 10) + "...",
+    env: PHONEPE_ENVIRONMENT,
+  });
+
   if (!PHONEPE_CLIENT_ID || !PHONEPE_CLIENT_SECRET) {
+    console.error("[PhonePe] Client credentials missing");
     throw new Error("PhonePe client credentials are not configured.")
   }
 
   const clientVersion = parseClientVersion()
+  console.log("[PhonePe] Parsed client version:", clientVersion);
 
   const env =
     PHONEPE_ENVIRONMENT === "PRODUCTION" ? Env.PRODUCTION : Env.SANDBOX
+  console.log("[PhonePe] Environment:", env);
 
-  phonePeClient = StandardCheckoutClient.getInstance(
-    PHONEPE_CLIENT_ID,
-    PHONEPE_CLIENT_SECRET,
-    clientVersion,
-    env
-  )
-  return phonePeClient
+  try {
+    phonePeClient = StandardCheckoutClient.getInstance(
+      PHONEPE_CLIENT_ID,
+      PHONEPE_CLIENT_SECRET,
+      clientVersion,
+      env
+    )
+    console.log("[PhonePe] Client created successfully");
+    return phonePeClient
+  } catch (error: any) {
+    console.error("[PhonePe] Failed to create client:", {
+      message: error.message,
+      stack: error.stack
+    });
+    throw error;
+  }
 }
 
 export type PhonePeMetaInfoInput = Partial<{
@@ -96,6 +116,15 @@ export async function initiateStandardCheckoutPayment(params: {
     metaInfo,
   } = params
 
+  console.log("[PhonePe] Initiating standard checkout payment:", {
+    merchantOrderId,
+    amountInPaise,
+    hasRedirectUrl: !!redirectUrl,
+    hasMessage: !!message,
+    expireAfterSeconds,
+    hasMetaInfo: !!metaInfo,
+  });
+
   if (amountInPaise < 100) {
     throw new Error(
       "PhonePe payment amount must be at least 100 paise (₹1.00)."
@@ -120,8 +149,27 @@ export async function initiateStandardCheckoutPayment(params: {
   }
 
   const payRequest = builder.build()
+  console.log("[PhonePe] Pay request built successfully");
+
   const client = getPhonePeClient()
-  return client.pay(payRequest)
+  console.log("[PhonePe] Got client, calling pay method");
+
+  try {
+    const response = await client.pay(payRequest)
+    console.log("[PhonePe] Pay method response received:", {
+      hasRedirectUrl: !!(response as any).redirectUrl,
+      orderId: response.orderId,
+      state: response.state,
+    });
+    return response
+  } catch (error: any) {
+    console.error("[PhonePe] Pay method error:", {
+      message: error.message,
+      stack: error.stack,
+      name: error.name
+    });
+    throw error;
+  }
 }
 
 export async function createStandardCheckoutSdkOrder(params: {
@@ -133,6 +181,14 @@ export async function createStandardCheckoutSdkOrder(params: {
 }): Promise<CreateSdkOrderResponse> {
   const { merchantOrderId, amountInPaise, redirectUrl, message, expireAfterSeconds } =
     params
+
+  console.log("[PhonePe] Creating standard checkout SDK order:", {
+    merchantOrderId,
+    amountInPaise,
+    redirectUrl,
+    hasMessage: !!message,
+    expireAfterSeconds,
+  });
 
   if (amountInPaise < 100) {
     throw new Error(
@@ -153,16 +209,53 @@ export async function createStandardCheckoutSdkOrder(params: {
   }
 
   const sdkRequest = builder.build()
+  console.log("[PhonePe] SDK order request built successfully");
+
   const client = getPhonePeClient()
-  return client.createSdkOrder(sdkRequest)
+  console.log("[PhonePe] Got client, calling createSdkOrder method");
+
+  try {
+    const response = await client.createSdkOrder(sdkRequest)
+    console.log("[PhonePe] Create SDK order response received:", {
+      hasRedirectUrl: !!(response as any).redirectUrl,
+      orderId: response.orderId,
+      state: response.state,
+    });
+    return response
+  } catch (error: any) {
+    console.error("[PhonePe] Create SDK order error:", {
+      message: error.message,
+      stack: error.stack,
+      name: error.name
+    });
+    throw error;
+  }
 }
 
 export async function getStandardCheckoutOrderStatus(
   merchantOrderId: string,
   includeAllAttempts = false
 ): Promise<OrderStatusResponse> {
+  console.log("[PhonePe] Getting order status:", {
+    merchantOrderId,
+    includeAllAttempts,
+  });
+
   const client = getPhonePeClient()
-  return client.getOrderStatus(merchantOrderId, includeAllAttempts)
+  console.log("[PhonePe] Got client, calling getOrderStatus method");
+
+  try {
+    const response = await client.getOrderStatus(merchantOrderId, includeAllAttempts)
+    console.log("[PhonePe] Get order status response received");
+    return response
+  } catch (error: any) {
+    console.error("[PhonePe] Get order status error:", {
+      message: error.message,
+      stack: error.stack,
+      name: error.name
+    });
+    throw error;
+  }
 }
 
 export async function initiatePhonePeRefund(params: {
@@ -171,6 +264,12 @@ export async function initiatePhonePeRefund(params: {
   amountInPaise: number
 }): Promise<RefundResponse> {
   const { merchantOrderId, refundId, amountInPaise } = params
+
+  console.log("[PhonePe] Initiating refund:", {
+    merchantOrderId,
+    refundId,
+    amountInPaise,
+  });
 
   if (amountInPaise < 100) {
     throw new Error("PhonePe refund amount must be at least 100 paise.")
@@ -182,16 +281,45 @@ export async function initiatePhonePeRefund(params: {
     .amount(amountInPaise)
 
   const refundRequest = builder.build()
+  console.log("[PhonePe] Refund request built successfully");
+
   const client = getPhonePeClient()
-  return client.refund(refundRequest)
+  console.log("[PhonePe] Got client, calling refund method");
+
+  try {
+    const response = await client.refund(refundRequest)
+    console.log("[PhonePe] Refund response received");
+    return response
+  } catch (error: any) {
+    console.error("[PhonePe] Refund error:", {
+      message: error.message,
+      stack: error.stack,
+      name: error.name
+    });
+    throw error;
+  }
 }
 
 export async function getPhonePeRefundStatus(
   refundId: string
 ): Promise<RefundStatusResponse> {
+  console.log("[PhonePe] Getting refund status:", { refundId });
+
   const client = getPhonePeClient()
-  return client.getRefundStatus(refundId)
+  console.log("[PhonePe] Got client, calling getRefundStatus method");
+
+  try {
+    const response = await client.getRefundStatus(refundId)
+    console.log("[PhonePe] Get refund status response received");
+    return response
+  } catch (error: any) {
+    console.error("[PhonePe] Get refund status error:", {
+      message: error.message,
+      stack: error.stack,
+      name: error.name
+    });
+    throw error;
+  }
 }
 
 export const PHONEPE_ENV = PHONEPE_ENVIRONMENT
-
