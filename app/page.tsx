@@ -49,14 +49,14 @@ export default function HomePage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative pt-32 pb-32 md:pt-40 md:pb-40 overflow-hidden min-h-screen flex items-center bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)]">
+      <section className="relative pt-32 pb-32 md:pt-40 md:pb-40 overflow-hidden min-h-screen flex items-center bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] animate-background-shift">
         {/* Background Video */}
         <video
           autoPlay
           muted
           loop
           playsInline
-          className="absolute inset-0 w-full h-full object-cover z-0 opacity-20"
+          className="absolute inset-0 w-full h-full object-cover z-0 opacity-20 animate-pulse-slow"
         >
           <source src="/workvideo.mp4" type="video/mp4" />
         </video>
@@ -64,25 +64,28 @@ export default function HomePage() {
         {/* Content */}
         <div className="relative z-20 w-full h-full flex items-center justify-center">
           <div className="text-center max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 animate-fade-in-up">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white mb-4 sm:mb-6 animate-slide-in-down text-display">
-              <span className="text-[var(--crisp)] drop-shadow-lg">LAUNCH</span><span className="text-[var(--gold)] drop-shadow-lg">PAD</span>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white mb-4 sm:mb-6 text-display animate-text-bounce">
+              <span className="inline-block animate-text-pop-in" style={{ animationDelay: '0.3s' }}>
+                <span className="text-[var(--crisp)] drop-shadow-lg animate-text-glow" style={{ animationDelay: '0.1s' }}>LAUNCH</span>
+                <span className="animate-text-glow animate-text-gradient bg-gradient-to-r from-[var(--gold)] to-[var(--crisp)]" style={{ animationDelay: '0.2s' }}>PAD</span>
+              </span>
             </h1>
-            <p className="text-lg sm:text-xl md:text-2xl text-white/90 mb-3 sm:mb-4 font-medium animate-fade-in">
+            <p className="text-lg sm:text-xl md:text-2xl text-white/90 mb-3 sm:mb-4 font-medium animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
               Aim for Innovation, Win with Execution
             </p>
-            <p className="text-sm sm:text-base md:text-lg text-white/80 mb-6 sm:mb-8 max-w-3xl mx-auto leading-relaxed px-2 animate-fade-in-delay">
+            <p className="text-sm sm:text-base md:text-lg text-white/80 mb-6 sm:mb-8 max-w-3xl mx-auto leading-relaxed px-2 animate-fade-in-up" style={{ animationDelay: '0.8s' }}>
               A platform that supports aspiring solopreneurs, youth, and startups in building their own agencies and brands. 
               Through mentorship, ready-to-sell services, and healthy competition, transform your ambition into sustainable businesses.
             </p>
             {!currentUser && (
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4 animate-fade-in-delay-2">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4 animate-fade-in-up" style={{ animationDelay: '1s' }}>
                 <Link href="/login" className="w-full sm:w-auto">
-                  <Button size="lg" className="w-full sm:w-auto bg-[var(--secondary)] text-black hover:bg-[var(--secondary)]/90 font-bold text-base sm:text-lg px-6 sm:px-8 py-3 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl">
+                  <Button size="lg" className="w-full sm:w-auto bg-[var(--secondary)] text-black hover:bg-[var(--secondary)]/90 font-bold text-base sm:text-lg px-6 sm:px-8 py-3 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl animate-text-pop-in" style={{ animationDelay: '1.2s' }}>
                     Start Your Journey
                   </Button>
                 </Link>
                 <Link href="/about" className="w-full sm:w-auto">
-                  <Button size="lg" variant="outline" className="w-full sm:w-auto border-white text-white hover:bg-white hover:text-[var(--primary)] font-semibold text-base sm:text-lg px-6 sm:px-8 py-3 transition-all duration-300 hover:scale-105 !bg-transparent !border-white !text-white hover:!bg-white hover:!text-[var(--primary)] shadow-lg hover:shadow-xl">
+                  <Button size="lg" variant="outline" className="w-full sm:w-auto border-white text-white hover:bg-white hover:text-[var(--primary)] font-semibold text-base sm:text-lg px-6 sm:px-8 py-3 transition-all duration-300 hover:scale-105 !bg-transparent !border-white !text-white hover:!bg-white hover:!text-[var(--primary)] shadow-lg hover:shadow-xl animate-text-pop-in" style={{ animationDelay: '1.4s' }}>
                     Learn More
                   </Button>
                 </Link>
@@ -104,14 +107,15 @@ export default function HomePage() {
                 participants gain recognition and transform their ambition into sustainable businesses.
               </p>
               <div className="flex justify-center lg:justify-start">
-                <Button className="bg-[var(--secondary)] text-black hover:bg-[var(--secondary)]/90 font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:scale-105 shadow-md hover:shadow-lg">
-                  Discover Our Mission
-                </Button>
+                <Link href="/about">
+                  <Button className="bg-[var(--secondary)] text-black hover:bg-[var(--secondary)]/90 font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:scale-105 shadow-md hover:shadow-lg">
+                    Discover Our Mission
+                  </Button>
+                </Link>
               </div>
             </div>
             <div className="flex justify-center lg:justify-end order-1 lg:order-2 animate-slide-in-right">
               <div className="relative">
-                <div className="absolute -inset-4 bg-[var(--secondary)] rounded-2xl opacity-20 blur-lg animate-pulse"></div>
                 <img 
                   src="/logo.png" 
                   alt="Launchpad Platform" 
@@ -224,13 +228,7 @@ export default function HomePage() {
       </section>
 
       {/* Entrepreneurship Summit Section */}
-      <section className="py-16 sm:py-20 md:py-24 bg-gradient-to-br from-[var(--primary)] to-[var(--dark-teal)] text-white relative overflow-hidden">
-        {/* Decorative elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-20 -right-20 w-60 h-60 bg-[var(--secondary)]/10 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute -bottom-20 -left-20 w-60 h-60 bg-[var(--secondary)]/10 rounded-full blur-3xl animate-pulse"></div>
-        </div>
-        
+      <section className="py-16 sm:py-20 md:py-24 bg-gradient-to-br from-[var(--primary)] to-[var(--dark-teal)] text-white relative">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-12 sm:mb-16 animate-fade-in-up">
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 sm:mb-6 text-display">
@@ -377,14 +375,7 @@ export default function HomePage() {
       </section>
 
       {/* Launchpad Award Night Section */}
-      <section className="py-16 sm:py-20 md:py-24 bg-gradient-to-br from-[var(--surface)] via-white to-[var(--light-grey)] relative overflow-hidden">
-        {/* Background decorative elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-20 -right-20 w-40 h-40 bg-[var(--secondary)]/5 rounded-full blur-2xl animate-pulse"></div>
-          <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-[var(--primary)]/5 rounded-full blur-2xl animate-pulse"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-60 h-60 bg-gradient-to-r from-[var(--secondary)]/3 to-[var(--primary)]/3 rounded-full blur-3xl animate-pulse"></div>
-        </div>
-        
+      <section className="py-16 sm:py-20 md:py-24 bg-gradient-to-br from-[var(--surface)] via-white to-[var(--light-grey)] relative">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-8 sm:mb-12 animate-fade-in-up">
             <div className="inline-block mb-4 sm:mb-6">
@@ -454,12 +445,7 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-[var(--primary)] relative overflow-hidden">
-        {/* Decorative elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-20 -right-20 w-60 h-60 bg-[var(--secondary)]/10 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute -bottom-20 -left-20 w-60 h-60 bg-[var(--secondary)]/10 rounded-full blur-3xl animate-pulse"></div>
-        </div>
+      <section className="py-16 bg-[var(--primary)] relative">
         <div className="mx-auto max-w-4xl px-4 text-center relative z-10">
           <h2 className="text-3xl font-bold text-white mb-4 animate-fade-in-up text-heading">Ready to Launch Your Business?</h2>
           <p className="text-xl text-white/90 mb-8 animate-fade-in-up-delay">

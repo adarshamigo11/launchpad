@@ -8,12 +8,7 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] py-20 sm:py-24 md:py-32 lg:py-40 min-h-[60vh] flex items-center relative overflow-hidden">
-        {/* Decorative elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-20 -right-20 w-60 h-60 bg-[var(--secondary)]/10 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute -bottom-20 -left-20 w-60 h-60 bg-[var(--secondary)]/10 rounded-full blur-3xl animate-pulse"></div>
-        </div>
+      <section className="bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] py-20 sm:py-24 md:py-32 lg:py-40 min-h-[60vh] flex items-center relative">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-white mb-6 sm:mb-8 animate-fade-in-up text-display">About Launchpad</h1>
           <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-white/90 max-w-4xl mx-auto leading-relaxed px-2 animate-fade-in-up-delay">
@@ -157,12 +152,7 @@ export default function AboutPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-[var(--primary)] relative overflow-hidden">
-        {/* Decorative elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-20 -right-20 w-60 h-60 bg-[var(--secondary)]/10 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute -bottom-20 -left-20 w-60 h-60 bg-[var(--secondary)]/10 rounded-full blur-3xl animate-pulse"></div>
-        </div>
+      <section className="py-24 bg-[var(--primary)] relative">
         <div className="mx-auto max-w-4xl px-4 text-center relative z-10">
           <h2 className="text-3xl font-bold text-white mb-4 animate-fade-in-up">Ready to Join Launchpad?</h2>
           <p className="text-xl text-white/90 mb-8 animate-fade-in-up-delay">

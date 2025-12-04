@@ -93,14 +93,7 @@ export default function LoginPage() {
   }
 
   return (
-        <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100 flex items-center justify-center relative overflow-hidden">
-          {/* Background decorative elements */}
-          <div className="absolute inset-0 overflow-hidden">
-            <div className="absolute -top-40 -right-40 w-80 h-80 bg-[#144449]/3 rounded-full blur-3xl"></div>
-            <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-[#BF9B30]/3 rounded-full blur-3xl"></div>
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-[#144449]/2 to-[#BF9B30]/2 rounded-full blur-3xl"></div>
-          </div>
-          
+        <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100 flex items-center justify-center relative">
           <section className="mx-auto max-w-md px-4 sm:px-6 py-8 sm:py-12 w-full relative z-10">
             <div className="backdrop-blur-md bg-white/80 rounded-2xl border border-white/20 p-6 sm:p-8 shadow-2xl">
           {/* Logo/Icon */}

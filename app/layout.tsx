@@ -18,7 +18,6 @@ import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { Toaster } from "@/components/ui/toaster"
 import AppWrapper from "@/components/app-wrapper"
-import AnimatedElements from "@/components/animated-elements"
 import { Suspense } from "react"
 
 export const metadata: Metadata = {
@@ -73,7 +72,6 @@ export default function RootLayout({
                 <Navbar />
                 <main className="min-h-[calc(100dvh-64px)] relative flex flex-col">
                   {children}
-                  <AnimatedElements />
                 </main>
                 <Footer />
               </Suspense>
