@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useToast } from "@/hooks/use-toast"
+import PromoCodesSection from "./components/promo-codes-section"
 
 type ESummitPayment = {
   id: string
@@ -51,128 +52,128 @@ export default function AdminESummitPage() {
       return
     }
     
-    if (currentUser && !isAdmin) {
-      router.push("/tasks")
+    if (!isAdmin) {
+      router.push("/")
       return
     }
     
-    if (currentUser && isAdmin) {
-      loadPayments()
-    }
+    loadPayments()
   }, [currentUser, isAdmin, router])
 
   const loadPayments = async () => {
     try {
-      setLoading(true)
       const res = await fetch("/api/e-summit/payments")
       const data = await res.json()
       
       if (data.ok) {
-        setPayments(data.payments)
-        console.log("[Admin] Loaded payments:", data.payments.length)
-      } else {
-        console.error("Error loading payments:", data.message, data.error)
+        // Sort payments by date (newest first)
+        const sortedPayments = data.payments.sort((a: ESummitPayment, b: ESummitPayment) => 
+          b.createdAt - a.createdAt
+        )
+        setPayments(sortedPayments)
       }
     } catch (error) {
       console.error("Error loading payments:", error)
+      toast({
+        title: "Error",
+        description: "Failed to load payments",
+        variant: "destructive",
+      })
     } finally {
       setLoading(false)
     }
   }
 
-  if (!currentUser || !isAdmin) return null
-
   if (loading) {
     return (
-      <section className="mx-auto max-w-6xl px-4 pt-32 pb-8">
-        <p className="text-muted-foreground">Loading e-summit submissions...</p>
-      </section>
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-muted-foreground">Loading...</p>
+      </div>
     )
   }
 
   return (
-    <section className="mx-auto max-w-6xl px-4 pt-32 pb-8">
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-semibold">E-Summit Management</h1>
-        <div className="flex gap-2">
-          <Button onClick={loadPayments}>Refresh Payments</Button>
-        </div>
-      </div>
-      
-      {/* Payment Submissions */}
-      <Card>
-        <CardHeader>
-          <CardTitle>E-Summit Submissions</CardTitle>
-        </CardHeader>
-        <CardContent>
-          {loading ? (
-            <p className="text-muted-foreground">Loading submissions...</p>
-          ) : payments.length === 0 ? (
-            <p className="text-muted-foreground">No e-summit submissions yet.</p>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {payments.map((payment) => (
-                <Card key={payment.id} className="overflow-hidden">
-                  <CardHeader className="bg-gray-50">
-                    <CardTitle className="text-lg flex items-center justify-between">
-                      <span>{payment.passName}</span>
-                      <span className={`px-2 py-1 rounded-full text-xs ${
+    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto">
+        <h1 className="text-3xl font-bold text-gray-900 mb-8">E-Summit Admin Dashboard</h1>
+        
+        {/* Payments Section */}
+        <section>
+          <Card>
+            <CardHeader>
+              <CardTitle>E-Summit Payments</CardTitle>
+            </CardHeader>
+            <CardContent>
+              {payments.length === 0 ? (
+                <p className="text-muted-foreground text-center py-8">
+                  No payments found.
+                </p>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {payments.map((payment) => (
+                    <Card key={payment.id} className="overflow-hidden">
+                      <div className={`p-4 ${
                         payment.status === "success" 
-                          ? "bg-green-100 text-green-800" 
-                          : payment.status === "pending"
-                            ? "bg-yellow-100 text-yellow-800"
-                            : "bg-red-100 text-red-800"
-                      }`}>
-                        {payment.status}
-                      </span>
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="pt-4">
-                    <div className="space-y-2">
-                      <div className="flex justify-between">
-                        <span className="text-sm text-gray-500">Name:</span>
-                        <span className="text-sm font-medium">{payment.name}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-sm text-gray-500">Email:</span>
-                        <span className="text-sm font-medium">{payment.email}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-sm text-gray-500">Phone:</span>
-                        <span className="text-sm font-medium">{payment.phone}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-sm text-gray-500">Sender:</span>
-                        <span className="text-sm font-medium">{payment.senderName}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-sm text-gray-500">Amount:</span>
-                        <span className="text-sm font-medium">₹{payment.amount.toFixed(2)}</span>
-                      </div>
-                      {payment.promoCode && (
-                        <div className="flex justify-between">
-                          <span className="text-sm text-gray-500">Promo Code:</span>
-                          <span className="text-sm font-medium">{payment.promoCode}</span>
+                          ? "bg-green-50 border-green-200" 
+                          : payment.status === "failed" 
+                            ? "bg-red-50 border-red-200" 
+                            : "bg-yellow-50 border-yellow-200"
+                      } border-b`}>
+                        <div className="flex justify-between items-start">
+                          <div>
+                            <h3 className="font-semibold text-lg">{payment.name}</h3>
+                            <p className="text-sm text-gray-600">{payment.email}</p>
+                          </div>
+                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                            payment.status === "success" 
+                              ? "bg-green-100 text-green-800" 
+                              : payment.status === "failed" 
+                                ? "bg-red-100 text-red-800" 
+                                : "bg-yellow-100 text-yellow-800"
+                          }`}>
+                            {payment.status.charAt(0).toUpperCase() + payment.status.slice(1)}
+                          </span>
                         </div>
-                      )}
-                      <div className="flex justify-between">
-                        <span className="text-sm text-gray-500">Transaction ID:</span>
-                        <span className="text-sm font-medium text-xs">{payment.transactionId}</span>
                       </div>
-                      <div className="flex justify-between">
-                        <span className="text-sm text-gray-500">Date:</span>
-                        <span className="text-sm font-medium">
-                          {new Date(payment.createdAt).toLocaleDateString()}
-                        </span>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          )}
-        </CardContent>
-      </Card>
-    </section>
+                      <CardContent className="pt-4">
+                        <div className="space-y-2">
+                          <div className="flex justify-between">
+                            <span className="text-sm text-gray-500">Pass:</span>
+                            <span className="text-sm font-medium">{PASS_TYPES[payment.passType as keyof typeof PASS_TYPES] || payment.passName}</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-sm text-gray-500">Amount:</span>
+                            <span className="text-sm font-medium">₹{payment.amount.toFixed(2)}</span>
+                          </div>
+                          {payment.promoCode && (
+                            <div className="flex justify-between">
+                              <span className="text-sm text-gray-500">Promo Code:</span>
+                              <span className="text-sm font-medium">{payment.promoCode}</span>
+                            </div>
+                          )}
+                          <div className="flex justify-between">
+                            <span className="text-sm text-gray-500">Transaction ID:</span>
+                            <span className="text-sm font-medium text-xs">{payment.transactionId}</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-sm text-gray-500">Date:</span>
+                            <span className="text-sm font-medium">
+                              {new Date(payment.createdAt).toLocaleDateString()}
+                            </span>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        </section>
+
+        {/* Promo Codes Section */}
+        <PromoCodesSection />
+      </div>
+    </div>
   )
 }
