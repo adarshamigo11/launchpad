@@ -6,7 +6,8 @@
     "build": "next build",
     "dev": "next dev",
     "lint": "next lint",
-    "start": "next start"
+    "start": "next start",
+    "verify-production": "npx ts-node scripts/verify-production-setup.ts"
   },
   "dependencies": {
     "@aws-sdk/credential-providers": "latest",

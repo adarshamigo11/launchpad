@@ -6,8 +6,9 @@ const options = {
   socketTimeoutMS: 45000,
   connectTimeoutMS: 30000,
   tls: true,
-  tlsAllowInvalidCertificates: true, // Temporarily allow for development
-  tlsAllowInvalidHostnames: true, // Temporarily allow for development
+  // Remove development-only settings for production
+  // tlsAllowInvalidCertificates: true, // Remove for production
+  // tlsAllowInvalidHostnames: true, // Remove for production
 }
 
 let client: MongoClient
@@ -25,20 +26,26 @@ function getClientPromise(): Promise<MongoClient> {
   }
 
   const uri = process.env.MongoDBuri
-  console.log("MongoDB URI length:", uri.length)
-  console.log("MongoDB URI starts with:", uri.substring(0, 20))
+  // Removed sensitive logging of MongoDB URI
 
   try {
     if (process.env.NODE_ENV === "development") {
       // In development mode, use a global variable so that the value
       // is preserved across module reloads caused by HMR (Hot Module Replacement).
       if (!global._mongoClientPromise) {
-        client = new MongoClient(uri, options)
+        // For development, we might need to allow invalid certificates
+        const devOptions = {
+          ...options,
+          tlsAllowInvalidCertificates: true, // Temporarily allow for development
+          tlsAllowInvalidHostnames: true, // Temporarily allow for development
+        }
+        client = new MongoClient(uri, devOptions)
         global._mongoClientPromise = client.connect()
       }
       return global._mongoClientPromise
     } else {
       // In production mode, it's best to not use a global variable.
+      // Use strict TLS settings for production
       client = new MongoClient(uri, options)
       return client.connect()
     }

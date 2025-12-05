@@ -148,6 +148,8 @@ export default function ESummitCheckoutPage() {
 
     setValidatingPromo(true)
     try {
+      console.log("[Checkout] Validating promo code:", promoCode);
+      
       // Call the actual promo code validation API
       const response = await fetch("/api/promo-codes/validate", {
         method: "POST",
@@ -158,14 +160,32 @@ export default function ESummitCheckoutPage() {
         }),
       })
 
-      const data = await response.json()
+      console.log("[Checkout] Promo code validation response status:", response.status);
+      
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error("[Checkout] Promo code validation HTTP error:", errorText);
+        throw new Error(`Failed to validate promo code. Server responded with status ${response.status}`);
+      }
 
-      if (data.valid) {
+      const contentType = response.headers.get("content-type");
+      if (!contentType || !contentType.includes("application/json")) {
+        const text = await response.text();
+        console.error("[Checkout] Unexpected promo code response content type:", contentType);
+        console.error("[Checkout] Response text:", text);
+        throw new Error(`Unexpected response format from promo code validation`);
+      }
+
+      const data = await response.json()
+      console.log("[Checkout] Promo code validation response data:", data);
+
+      // Adjust for API response structure - it returns { ok: true } instead of { valid: true }
+      if (data.ok) {
         setDiscount(data.discount)
         setAppliedPromoCode(promoCode)
         toast({
           title: "Promo Code Applied",
-          description: data.message || `Discount applied! You saved ₹${data.discount.toFixed(2)}`,
+          description: data.promoCode?.description || `Discount applied! You saved ₹${data.discount.toFixed(2)}`,
         })
       } else {
         toast({
@@ -177,10 +197,10 @@ export default function ESummitCheckoutPage() {
         setDiscount(0)
       }
     } catch (error) {
-      console.error("Error validating promo code:", error)
+      console.error("[Checkout] Error validating promo code:", error)
       toast({
         title: "Error",
-        description: "Failed to validate promo code. Please try again.",
+        description: error instanceof Error ? error.message : "Failed to validate promo code. Please try again.",
         variant: "destructive",
       })
       setAppliedPromoCode(null)
@@ -231,10 +251,12 @@ export default function ESummitCheckoutPage() {
       return
     }
 
+    console.log("[Checkout] Starting payment process...");
     setProcessingPayment(true)
+    
     try {
       // Log the data being sent
-      console.log("Sending payment data:", {
+      console.log("[Checkout] Sending payment data:", {
         name: formData.name,
         email: formData.email,
         phone: formData.phone,
@@ -242,45 +264,64 @@ export default function ESummitCheckoutPage() {
         passType: passType,
         passName: passInfo?.name,
         amount: passInfo ? Math.max(0, passInfo.price - discount) : 0,
-        promoCode: appliedPromoCode || undefined
+        finalAmount: passInfo ? Math.max(0, passInfo.price - discount) : 0,
+        discount: discount,
+        promoCode: appliedPromoCode || undefined,
+        boothType: passType === "expo" ? boothType : undefined
       });
 
       // Call the e-summit payment initiation API
-      console.log("Making request to /api/e-summit/payments/initiate");
+      console.log("[Checkout] Making request to /api/e-summit/payments/initiate");
+      
+      const requestData = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        senderName: formData.senderName,
+        passType: passType,
+        passName: passInfo?.name,
+        amount: passInfo ? Math.max(0, passInfo.price - discount) : 0,
+        promoCode: appliedPromoCode || undefined,
+        boothType: passType === "expo" ? boothType : undefined
+      };
+      
+      console.log("[Checkout] Request data:", requestData);
+      
       const response = await fetch("/api/e-summit/payments/initiate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          senderName: formData.senderName,
-          passType: passType,
-          passName: passInfo?.name,
-          amount: passInfo ? Math.max(0, passInfo.price - discount) : 0,
-          promoCode: appliedPromoCode || undefined,
-          boothType: passType === "expo" ? boothType : undefined
-        }),
+        body: JSON.stringify(requestData),
       })
 
-      console.log("Payment API response status:", response.status);
-      console.log("Payment API response headers:", [...response.headers.entries()]);
+      console.log("[Checkout] Payment API response received:");
+      console.log("[Checkout] Response status:", response.status);
+      console.log("[Checkout] Response headers:", [...response.headers.entries()]);
       
       // Check if response is OK
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        const errorText = await response.text();
+        console.error("[Checkout] HTTP error response body:", errorText);
+        throw new Error(`HTTP error! status: ${response.status}, body: ${errorText}`);
+      }
+
+      const contentType = response.headers.get("content-type");
+      if (!contentType || !contentType.includes("application/json")) {
+        const text = await response.text();
+        console.error("[Checkout] Unexpected response content type:", contentType);
+        console.error("[Checkout] Response text:", text);
+        throw new Error(`Unexpected response format. Expected JSON, got: ${contentType}`);
       }
 
       const data = await response.json()
-      console.log("Payment API response data:", data);
+      console.log("[Checkout] Payment API response data:", data);
 
       if (data.ok && data.paymentUrl) {
         // Redirect to PhonePe payment page
-        console.log("Redirecting to PhonePe payment page:", data.paymentUrl);
+        console.log("[Checkout] Redirecting to PhonePe payment page:", data.paymentUrl);
         window.location.href = data.paymentUrl
       } else {
         const errorMessage = data.message || "Failed to initiate payment. Please try again."
-        console.error("Payment initiation failed:", {
+        console.error("[Checkout] Payment initiation failed:", {
           status: response.status,
           errorMessage,
           fullResponse: data,
@@ -292,8 +333,8 @@ export default function ESummitCheckoutPage() {
         })
         setProcessingPayment(false)
       }
-    } catch (error) {
-      console.error("Payment initiation error:", error)
+    } catch (error: any) {
+      console.error("[Checkout] Payment initiation error:", error)
       toast({
         title: "Error",
         description: error instanceof Error ? error.message : "Something went wrong. Please try again.",
