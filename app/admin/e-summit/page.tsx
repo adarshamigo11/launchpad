@@ -44,9 +44,6 @@ export default function AdminESummitPage() {
   const { toast } = useToast()
   const [payments, setPayments] = useState<ESummitPayment[]>([])
   const [loading, setLoading] = useState(true)
-  const [passPrices, setPassPrices] = useState<Record<string, number>>({})
-  const [editingPrice, setEditingPrice] = useState<string | null>(null)
-  const [newPrice, setNewPrice] = useState<number>(0)
 
   useEffect(() => {
     if (!currentUser) {
@@ -61,7 +58,6 @@ export default function AdminESummitPage() {
     
     if (currentUser && isAdmin) {
       loadPayments()
-      loadPassPrices()
     }
   }, [currentUser, isAdmin, router])
 
@@ -84,73 +80,6 @@ export default function AdminESummitPage() {
     }
   }
 
-  const loadPassPrices = async () => {
-    try {
-      const res = await fetch("/api/e-summit/pass-prices")
-      const data = await res.json()
-      
-      if (data.ok) {
-        setPassPrices(data.prices)
-      } else {
-        console.error("Error loading pass prices:", data.message)
-      }
-    } catch (error) {
-      console.error("Error loading pass prices:", error)
-    }
-  }
-
-  const startEditingPrice = (passType: string, currentPrice: number) => {
-    setEditingPrice(passType)
-    setNewPrice(currentPrice)
-  }
-
-  const savePrice = async (passType: string) => {
-    try {
-      const res = await fetch("/api/e-summit/pass-prices", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ passType, amount: newPrice })
-      })
-      
-      const data = await res.json()
-      
-      if (data.ok) {
-        // Update local state
-        setPassPrices(prev => ({
-          ...prev,
-          [passType]: newPrice
-        }))
-        
-        // Reset editing state
-        setEditingPrice(null)
-        setNewPrice(0)
-        
-        toast({
-          title: "Success",
-          description: "Pass price updated successfully"
-        })
-      } else {
-        toast({
-          title: "Error",
-          description: data.message || "Failed to update pass price",
-          variant: "destructive"
-        })
-      }
-    } catch (error) {
-      console.error("Error updating pass price:", error)
-      toast({
-        title: "Error",
-        description: "Failed to update pass price",
-        variant: "destructive"
-      })
-    }
-  }
-
-  const cancelEditing = () => {
-    setEditingPrice(null)
-    setNewPrice(0)
-  }
-
   if (!currentUser || !isAdmin) return null
 
   if (loading) {
@@ -167,61 +96,8 @@ export default function AdminESummitPage() {
         <h1 className="text-2xl font-semibold">E-Summit Management</h1>
         <div className="flex gap-2">
           <Button onClick={loadPayments}>Refresh Payments</Button>
-          <Button onClick={loadPassPrices} variant="outline">Refresh Prices</Button>
         </div>
       </div>
-      
-      {/* Pass Price Management */}
-      <Card className="mb-8">
-        <CardHeader>
-          <CardTitle>Pass Prices</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {Object.entries(PASS_TYPES).map(([passType, displayName]) => (
-              <div key={passType} className="border rounded-lg p-4">
-                <div className="flex justify-between items-start mb-2">
-                  <h3 className="font-medium">{displayName}</h3>
-                  {editingPrice === passType ? (
-                    <div className="flex gap-1">
-                      <Button size="sm" onClick={() => savePrice(passType)}>Save</Button>
-                      <Button size="sm" variant="outline" onClick={cancelEditing}>Cancel</Button>
-                    </div>
-                  ) : (
-                    <Button 
-                      size="sm" 
-                      variant="outline" 
-                      onClick={() => startEditingPrice(passType, passPrices[passType] || 0)}
-                    >
-                      Edit
-                    </Button>
-                  )}
-                </div>
-                <div className="mt-2">
-                  {editingPrice === passType ? (
-                    <div className="flex items-center gap-2">
-                      <Label htmlFor={`price-${passType}`} className="text-sm">₹</Label>
-                      <Input
-                        id={`price-${passType}`}
-                        type="number"
-                        min="0"
-                        step="1"
-                        value={newPrice}
-                        onChange={(e) => setNewPrice(Number(e.target.value))}
-                        className="w-full"
-                      />
-                    </div>
-                  ) : (
-                    <p className="text-lg font-bold text-[#144449]">
-                      ₹{(passPrices[passType] || 0).toFixed(2)}
-                    </p>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
       
       {/* Payment Submissions */}
       <Card>

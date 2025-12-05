@@ -12,7 +12,9 @@ const DEFAULT_PASS_PRICES = {
   "team": 2999,
   "premium": 1199,
   "shark-tank": 3999,
-  "expo": 8000
+  "expo": 8000,
+  "expo-standard": 6000,
+  "expo-premium": 8000
 }
 
 export async function GET(req: NextRequest) {
@@ -58,7 +60,12 @@ export async function POST(req: NextRequest) {
     }
     
     // Validate that passType is one of our known types
-    if (!DEFAULT_PASS_PRICES.hasOwnProperty(passType)) {
+    const validPassTypes = [
+      "venture-vault", "premium-pass", "roundtable", "booth", "access-pass",
+      "general", "team", "premium", "shark-tank", "expo", "expo-standard", "expo-premium"
+    ];
+    
+    if (!validPassTypes.includes(passType)) {
       return NextResponse.json(
         { ok: false, message: "Invalid pass type" }, 
         { status: 400 }

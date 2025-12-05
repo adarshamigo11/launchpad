@@ -27,6 +27,8 @@ export default function ESummitCheckoutPage() {
   const [discount, setDiscount] = useState(0)
   const [validatingPromo, setValidatingPromo] = useState(false)
   const [processingPayment, setProcessingPayment] = useState(false)
+  const [boothType, setBoothType] = useState<"standard" | "premium">("standard")
+  const [passPrices, setPassPrices] = useState<Record<string, number>>({})
 
   // Define pass types and their display names
   const PASS_TYPES: Record<string, string> = {
@@ -59,11 +61,21 @@ export default function ESummitCheckoutPage() {
       const data = await res.json()
       
       if (data.ok) {
-        const price = data.prices[passType] || 0
-        setPassInfo({
-          name: PASS_TYPES[passType],
-          price: price
-        })
+        // For expo booths, we need to set the initial booth type
+        if (passType === "expo") {
+          const standardPrice = data.prices["expo-standard"] || 6000;
+          setPassInfo({
+            name: PASS_TYPES[passType],
+            price: standardPrice
+          });
+        } else {
+          const price = data.prices[passType] || 0;
+          setPassInfo({
+            name: PASS_TYPES[passType],
+            price: price
+          });
+        }
+        setPassPrices(data.prices);
       } else {
         // Fallback to default prices if API fails
         const defaultPrices: Record<string, number> = {
@@ -76,16 +88,27 @@ export default function ESummitCheckoutPage() {
           "team": 2999,
           "premium": 1199,
           "shark-tank": 3999,
-          "expo": 8000
+          "expo": 8000,
+          "expo-standard": 6000,
+          "expo-premium": 8000
         }
         
-        setPassInfo({
-          name: PASS_TYPES[passType],
-          price: defaultPrices[passType] || 0
-        })
+        // For expo booths, we need to set the initial booth type
+        if (passType === "expo") {
+          setPassInfo({
+            name: PASS_TYPES[passType],
+            price: defaultPrices["expo-standard"] || 6000
+          });
+        } else {
+          setPassInfo({
+            name: PASS_TYPES[passType],
+            price: defaultPrices[passType] || 0
+          });
+        }
+        setPassPrices(defaultPrices);
       }
     } catch (error) {
-      console.error("Error loading pass price:", error)
+      console.error("Error loading pass price:", error);
       // Fallback to default prices if API fails
       const defaultPrices: Record<string, number> = {
         "venture-vault": 2999,
@@ -97,15 +120,26 @@ export default function ESummitCheckoutPage() {
         "team": 2999,
         "premium": 1199,
         "shark-tank": 3999,
-        "expo": 8000
+        "expo": 8000,
+        "expo-standard": 6000,
+        "expo-premium": 8000
       }
       
-      setPassInfo({
-        name: PASS_TYPES[passType],
-        price: defaultPrices[passType] || 0
-      })
+      // For expo booths, we need to set the initial booth type
+      if (passType === "expo") {
+        setPassInfo({
+          name: PASS_TYPES[passType],
+          price: defaultPrices["expo-standard"] || 6000
+        });
+      } else {
+        setPassInfo({
+          name: PASS_TYPES[passType],
+          price: defaultPrices[passType] || 0
+        });
+      }
+      setPassPrices(defaultPrices);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   }
 
@@ -212,7 +246,8 @@ export default function ESummitCheckoutPage() {
           passType: passType,
           passName: passInfo?.name,
           amount: passInfo ? Math.max(0, passInfo.price - discount) : 0,
-          promoCode: appliedPromoCode || undefined
+          promoCode: appliedPromoCode || undefined,
+          boothType: passType === "expo" ? boothType : undefined
         }),
       })
 
@@ -251,6 +286,15 @@ export default function ESummitCheckoutPage() {
     }
   }
 
+  const updatePassInfo = (passType: string, boothType: "standard" | "premium") => {
+    const priceKey = passType === "expo" ? `expo-${boothType}` : passType;
+    const price = passPrices[priceKey] || 0;
+    setPassInfo({
+      name: PASS_TYPES[passType],
+      price: price
+    });
+  }
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -283,6 +327,34 @@ export default function ESummitCheckoutPage() {
                   <div>
                     <h3 className="text-lg font-semibold text-[#144449]">{passInfo.name}</h3>
                     <p className="text-sm text-gray-600">E-Summit 2025 Pass</p>
+                    {/* Booth type selector for expo passes */}
+                    {passType === "expo" && (
+                      <div className="mt-4">
+                        <Label className="text-sm font-medium">Select Booth Type:</Label>
+                        <div className="flex gap-4 mt-2">
+                          <Button
+                            variant={boothType === "standard" ? "default" : "outline"}
+                            onClick={() => {
+                              setBoothType("standard");
+                              updatePassInfo("expo", "standard");
+                            }}
+                            className="text-sm"
+                          >
+                            Standard (₹{passPrices["expo-standard"] || 6000})
+                          </Button>
+                          <Button
+                            variant={boothType === "premium" ? "default" : "outline"}
+                            onClick={() => {
+                              setBoothType("premium");
+                              updatePassInfo("expo", "premium");
+                            }}
+                            className="text-sm"
+                          >
+                            Premium (₹{passPrices["expo-premium"] || 8000})
+                          </Button>
+                        </div>
+                      </div>
+                    )}
                   </div>
                   <div className="text-right">
                     <p className="text-lg font-bold text-[#144449]">₹{originalPrice.toFixed(2)}</p>

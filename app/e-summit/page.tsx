@@ -137,6 +137,29 @@ export default function ESummitPage() {
         </div>
       </section>
 
+      {/* Who Should Attend */}
+      <section className="py-16 sm:py-20 bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] text-white">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12 sm:mb-16 animate-fade-in-up">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl mb-4 text-heading font-bold">Who should attend?</h2>
+            <div className="w-20 h-1 bg-white mx-auto"></div>
+          </div>
+          
+          <div className="max-w-4xl mx-auto text-center">
+            <p className="text-lg sm:text-xl mb-6">
+              Are you an <span className="font-bold">Aspiring founder</span>—with an idea, prototype? 
+              a <span className="font-bold">Student</span> who wants to experience exposure no classrooms can provide, 
+              an <span className="font-bold">Investor</span> who is ready to scout the next wave of disruptive startups, 
+              <span className="font-bold">Professionals</span> who wants to discover a collaboration opportunity– 
+              <span className="font-bold block mt-4 text-2xl">E-SUMMIT 2025 has grounds to support, to give you the surge of exposure you have been hunting for.</span>
+            </p>
+            <p className="text-2xl sm:text-3xl font-bold mt-8 animate-pulse">
+              Don't think, You belong here.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Key Highlights */}
       <section className="py-16 sm:py-20 bg-white">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -176,42 +199,11 @@ export default function ESummitPage() {
               </p>
             </div>
             
-            <div className="bg-white p-6 rounded-xl shadow-lg border border-[var(--border)] hover:shadow-xl transition-all duration-300 group">
-              <div className="w-16 h-16 bg-gradient-to-br from-[var(--secondary)] to-[var(--primary)] rounded-full flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform duration-300">
-                <span className="text-white text-2xl">🏆</span>
-              </div>
-              <h3 className="text-xl font-semibold text-[var(--primary)] mb-3 text-center">Entrepreneur Olympics</h3>
-              <p className="text-[var(--text-primary)] text-center mb-4">
-                Gamified business challenges—from "Logo Redesign Races" to "Meme Marketing Battles."
-              </p>
-            </div>
-            
-            <div className="bg-white p-6 rounded-xl shadow-lg border border-[var(--border)] hover:shadow-xl transition-all duration-300 group md:col-span-2 lg:col-span-1 lg:col-start-2">
-              <div className="w-16 h-16 bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] rounded-full flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform duration-300">
-                <span className="text-white text-2xl">🎉</span>
-              </div>
-              <h3 className="text-xl font-semibold text-[var(--primary)] mb-3 text-center">The Experience</h3>
-              <p className="text-[var(--text-primary)] text-center mb-4">
-                Stand-up comedy, live DJ, and networking dinners to unwind and connect.
-              </p>
-            </div>
+            {/* Removed Entrepreneur Olympics section as requested */}
           </div>
         </div>
       </section>
       
-      {/* Final Home CTA */}
-      <section className="py-16 sm:py-20 bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] text-white relative">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl mb-4 text-heading animate-fade-in-up">Early Bird Ends December 13th.</h2>
-          <p className="text-lg sm:text-xl text-white/90 mb-8 max-w-2xl mx-auto animate-fade-in-up-delay">
-            Don't let your idea sit in a notebook. Bring it to the Launchpad.
-          </p>
-          <Button className="bg-[var(--accent)] text-black hover:bg-[var(--accent)]/90 font-bold text-base sm:text-lg px-8 py-4 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl animate-fade-in-up-delay-2">
-            GET MY TICKET NOW
-          </Button>
-        </div>
-      </section>
-
       {/* Page Intro */}
       <section className="py-8 sm:py-10 bg-[var(--background)]">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -369,86 +361,42 @@ export default function ESummitPage() {
       </div>
       </section>
 
-      {/* Final Summary: What You Get In One Glance */}
+      {/* Final Summary: What You Get In One Glance - Pie Chart Version */}
       <div className="py-8 sm:py-12"></div>
-      <section className="py-16 sm:py-20 bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] text-white relative">
+      <section className="py-16 sm:py-20 bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] text-white relative overflow-hidden">
+        {/* Animated background elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-[var(--accent)] rounded-full mix-blend-soft-light filter blur-3xl opacity-20 animate-pulse-slow"></div>
+          <div className="absolute bottom-1/3 right-1/4 w-48 h-48 bg-[var(--primary)] rounded-full mix-blend-soft-light filter blur-3xl opacity-20 animate-float animation-delay-2000"></div>
+          <div className="absolute top-1/3 right-1/3 w-32 h-32 bg-white rounded-full mix-blend-soft-light filter blur-3xl opacity-10 animate-rotate animation-delay-3000"></div>
+        </div>
+        
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl text-white mb-4 text-heading animate-fade-in-up">FINAL SUMMARY: What You Get In One Glance</h2>
-            <div className="w-20 h-1 bg-[var(--accent)] mx-auto"></div>
+          <div className="text-center mb-12 sm:mb-16 animate-fade-in-up">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl text-white mb-4 text-heading transform transition-all duration-700 hover:scale-105">FINAL SUMMARY: What You Get In One Glance</h2>
+            <div className="w-24 h-1 bg-[var(--accent)] mx-auto rounded-full transform transition-all duration-500 hover:w-32"></div>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12">
-            <div className="bg-white/10 p-6 sm:p-8 rounded-xl border border-white/20 backdrop-blur-sm">
-              <div className="flex items-start mb-4">
-                <span className="text-2xl mr-3">🤝</span>
-                <div>
-                  <h3 className="text-xl text-[var(--accent)] text-subheading mb-2">Real Connections</h3>
-                  <p className="text-white/90">
-                    Meet people who can hire you, fund you, or mentor you.
-                  </p>
+          {/* Pie Chart Visualization */}
+          <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16">
+            <InteractivePieChart />
+            
+            {/* Legend/Details Panel */}
+            <div className="w-full lg:w-1/2 max-w-md">
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 p-6">
+                <h3 className="text-2xl font-bold text-white mb-4">Benefits Overview</h3>
+                <p className="text-white/80 mb-6">
+                  Hover over or click on any section of the pie chart to see details about each benefit.
+                </p>
+                
+                {/* Details will be shown here dynamically */}
+                <div id="pie-chart-details" className="min-h-[200px]">
+                  <div className="text-center py-8 text-white/60">
+                    <p>Select a section to view details</p>
+                  </div>
                 </div>
               </div>
             </div>
-            
-            <div className="bg-white/10 p-6 sm:p-8 rounded-xl border border-white/20 backdrop-blur-sm">
-              <div className="flex items-start mb-4">
-                <span className="text-2xl mr-3">📚</span>
-                <div>
-                  <h3 className="text-xl text-[var(--accent)] text-subheading mb-2">Practical Learning</h3>
-                  <p className="text-white/90">
-                    Go home with skills in marketing and finance, not just theory.
-                  </p>
-                </div>
-              </div>
-            </div>
-            
-            <div className="bg-white/10 p-6 sm:p-8 rounded-xl border border-white/20 backdrop-blur-sm">
-              <div className="flex items-start mb-4">
-                <span className="text-2xl mr-3">📜</span>
-                <div>
-                  <h3 className="text-xl text-[var(--accent)] text-subheading mb-2">Certificate</h3>
-                  <p className="text-white/90">
-                    A valuable addition to your resume (for Premium Pass holders).
-                  </p>
-                </div>
-              </div>
-            </div>
-            
-            <div className="bg-white/10 p-6 sm:p-8 rounded-xl border border-white/20 backdrop-blur-sm">
-              <div className="flex items-start mb-4">
-                <span className="text-2xl mr-3">🎉</span>
-                <div>
-                  <h3 className="text-xl text-[var(--accent)] text-subheading mb-2">Entertainment</h3>
-                  <p className="text-white/90">
-                    Comedy, Music, and Dinner to relax after a hard day of work.
-                  </p>
-                </div>
-              </div>
-            </div>
-            
-            <div className="bg-white/10 p-6 sm:p-8 rounded-xl border border-white/20 backdrop-blur-sm md:col-span-2 lg:col-span-1 lg:col-start-2">
-              <div className="flex items-start mb-4">
-                <span className="text-2xl mr-3">🚀</span>
-                <div>
-                  <h3 className="text-xl text-[var(--accent)] text-subheading mb-2">Opportunity</h3>
-                  <p className="text-white/90">
-                    The chance to win prizes and grants for your idea.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div className="text-center mt-16 sm:mt-20">
-            <h3 className="text-xl sm:text-2xl text-[var(--accent)] mb-6 text-subheading animate-fade-in-up">Ready to Launch?</h3>
-            <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto animate-fade-in-up-delay">
-              Secure your spot before prices go up on December 13th!
-            </p>
-            
-            <Button className="bg-[var(--accent)] text-black hover:bg-[var(--accent)]/90 font-bold text-base sm:text-lg px-8 py-4 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl animate-fade-in-up-delay-2">
-              ENROLL NOW
-            </Button>
           </div>
         </div>
       </section>
@@ -459,7 +407,7 @@ export default function ESummitPage() {
           <div className="text-center mb-12 sm:mb-16">
             <h2 className="text-2xl sm:text-3xl md:text-4xl text-[var(--primary)] mb-4 text-heading animate-fade-in-up font-bold">PRICING & PACKAGES</h2>
             <p className="text-lg text-[var(--text-secondary)] max-w-2xl mx-auto mb-6">
-              Choose the plan that fits you. Prices increase after December 13th!
+              Choose the plan that fits you. Prices can be updated from the admin panel!
             </p>
             <div className="w-20 h-1 bg-[var(--secondary)] mx-auto"></div>
           </div>
@@ -469,7 +417,7 @@ export default function ESummitPage() {
             <h3 className="text-xl font-semibold text-[var(--primary)] mb-6 text-center">For Individual Students (Attendees)</h3>
             
             <div className="grid grid-cols-1 gap-8 justify-items-center">
-              {/* Premium Pass */}
+              {/* General Pass */}
               <div className="bg-white rounded-xl shadow-lg border-2 border-[var(--primary)] overflow-hidden hover:shadow-xl transition-all duration-300 relative">
                 <div className="absolute top-0 right-0 bg-[var(--accent)] text-black text-xs font-bold px-4 py-1 rounded-bl-lg">
                   MOST POPULAR
@@ -477,7 +425,7 @@ export default function ESummitPage() {
                 <div className="p-6 bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] text-white text-center">
                   <h3 className="text-xl mb-2 text-subheading text-white animate-fade-in-up">GENERAL PASS<br /><span className="text-sm font-normal">(The Full Experience)</span></h3>
                   <div className="flex justify-center items-baseline mt-4 mb-2">
-                    <span className="text-3xl font-bold mr-2 animate-fade-in-up text-white">₹1199</span>
+                    <span className="text-3xl font-bold mr-2 animate-fade-in-up text-white">₹{getPrice("general") || 1199}</span>
                   </div>
                 </div>
                 <div className="p-6">
@@ -509,8 +457,8 @@ export default function ESummitPage() {
                   </ul>
                   <p className="text-sm text-gray-500 mb-4"><strong>Best For:</strong> Serious learning & fun.</p>
                   <Button 
-                    className="w-full bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] hover:from-[var(--accent)] hover:to-[var(--primary)] text-black font-bold py-3 transition-all duration-300"
-                    onClick={() => window.location.href = '/e-summit/checkout?pass=premium'}
+                    className="w-full bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] hover:from-[var(--primary)] hover:to-[var(--secondary)] text-white font-semibold py-3 transition-all duration-300"
+                    onClick={() => window.location.href = '/e-summit/checkout?pass=general'}
                   >
                     BUY GENERAL PASS
                   </Button>
@@ -530,11 +478,9 @@ export default function ESummitPage() {
                   <h3 className="text-xl mb-2 text-subheading text-white animate-fade-in-up">🚀 SHARK TANK TEAM PASS<br /><span className="text-sm font-normal">(Venture Vault)</span></h3>
                   <p className="text-sm mb-3">If you want to pitch your idea to investors on stage.</p>
                   <div className="flex justify-center items-baseline mt-2 mb-2">
-                    <span className="text-2xl font-bold mr-2 animate-fade-in-up text-white">₹2,999</span>
+                    <span className="text-2xl font-bold mr-2 animate-fade-in-up text-white">₹{getPrice("shark-tank") || 2999}</span>
                     <span className="text-sm opacity-90 animate-fade-in-up text-white">per team</span>
                   </div>
-                  <div className="text-sm opacity-90 mb-2 animate-fade-in-up text-white">Early Bird (First 20 teams only!)</div>
-                  <div className="text-sm opacity-90 mb-2 animate-fade-in-up text-white">Regular: ₹3,999 per team</div>
                 </div>
                 <div className="p-6">
                   <h4 className="font-semibold text-[var(--primary)] mb-2">Includes:</h4>
@@ -567,17 +513,11 @@ export default function ESummitPage() {
                 <div className="p-6 bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] text-white text-center">
                   <h3 className="text-xl mb-2 text-subheading text-white animate-fade-in-up">🎪 STARTUP EXPO BOOTH</h3>
                   <p className="text-sm mb-3">If you want to set up a stall to show your product.</p>
-                  <div className="flex flex-col items-center mt-2 mb-2">
-                    <div className="mb-1">
-                      <span className="text-lg font-bold mr-2 animate-fade-in-up text-white">Standard:</span>
-                      <span className="text-xl font-bold animate-fade-in-up text-white">₹6,000</span>
-                    </div>
-                    <div>
-                      <span className="text-lg font-bold mr-2 animate-fade-in-up text-white">Premium:</span>
-                      <span className="text-xl font-bold animate-fade-in-up text-white">₹8,000</span>
-                    </div>
+                  <div className="flex justify-center items-baseline mt-2 mb-2">
+                    <span className="text-2xl font-bold mr-2 animate-fade-in-up text-white">₹6000 Standard</span>
+                    <span className="text-2xl font-bold mr-2 animate-fade-in-up text-white">₹{getPrice("expo") || 6000} Premium</span>
+                    <span className="text-sm opacity-90 animate-fade-in-up text-white">per booth</span>
                   </div>
-                  <p className="text-sm opacity-90 animate-fade-in-up text-white">High visibility spot</p>
                 </div>
                 <div className="p-6">
                   <h4 className="font-semibold text-[var(--primary)] mb-2">Includes:</h4>
@@ -625,11 +565,9 @@ export default function ESummitPage() {
                   <h3 className="text-xl mb-2 text-subheading text-white animate-fade-in-up">🧠 FOUNDERS ROUNDTABLE ACCESS</h3>
                   <p className="text-sm mb-3">If your team wants to sit in the closed-door session with CEOs.</p>
                   <div className="flex justify-center items-baseline mt-2 mb-2">
-                    <span className="text-2xl font-bold mr-2 animate-fade-in-up text-white">₹1,999</span>
+                    <span className="text-2xl font-bold mr-2 animate-fade-in-up text-white">₹{getPrice("roundtable") || 1999}</span>
                     <span className="text-sm opacity-90 animate-fade-in-up text-white">per team</span>
                   </div>
-                  <div className="text-sm opacity-90 mb-2 animate-fade-in-up text-white">Early Bird</div>
-                  <div className="text-sm opacity-90 mb-2 animate-fade-in-up text-white">Regular: ₹2,999 per team</div>
                 </div>
                 <div className="p-6">
                   <h4 className="font-semibold text-[var(--primary)] mb-2">Includes:</h4>
@@ -717,4 +655,227 @@ export default function ESummitPage() {
       </section>
     </div>
   )
+}
+
+// Add this interface for our pie chart data
+interface PieChartData {
+  id: string;
+  title: string;
+  description: string;
+  value: number;
+  color: string;
+  emoji: string;
+}
+
+// Create an interactive pie chart component
+function InteractivePieChart() {
+  const [activeSegment, setActiveSegment] = useState<string | null>(null);
+  
+  // Data for our pie chart segments using only black, white, and brand colors (no blue)
+  const pieData: PieChartData[] = [
+    {
+      id: "connections",
+      title: "Real Connections",
+      description: "Meet people who can hire you, fund you, or mentor you.",
+      value: 20,
+      color: "#144449", // Dark teal (primary color)
+      emoji: "🤝"
+    },
+    {
+      id: "learning",
+      title: "Practical Learning",
+      description: "Go home with skills in marketing and finance, not just theory.",
+      value: 20,
+      color: "#36454F", // Charcoal (secondary color)
+      emoji: "📚"
+    },
+    {
+      id: "certificate",
+      title: "Certificate",
+      description: "A valuable addition to your resume (for Premium Pass holders).",
+      value: 15,
+      color: "#000000", // Black
+      emoji: "📜"
+    },
+    {
+      id: "entertainment",
+      title: "Entertainment",
+      description: "Comedy, Music, and Dinner to relax after a hard day of work.",
+      value: 20,
+      color: "#FFFFFF", // White
+      emoji: "🎉"
+    },
+    {
+      id: "opportunity",
+      title: "Opportunity",
+      description: "The chance to win prizes and grants for your idea.",
+      value: 25,
+      color: "#144449", // Dark teal (primary color) - replacing blue
+      emoji: "🚀"
+    }
+  ];
+
+  // Calculate segment angles for pie chart
+  const calculateSegments = () => {
+    const total = pieData.reduce((sum, item) => sum + item.value, 0);
+    let startAngle = 0;
+    
+    return pieData.map(item => {
+      const percentage = (item.value / total) * 100;
+      const endAngle = startAngle + (percentage / 100) * 360;
+      
+      const segment = {
+        ...item,
+        startAngle,
+        endAngle,
+        percentage
+      };
+      
+      startAngle = endAngle;
+      return segment;
+    });
+  };
+
+  // Create SVG path for a pie segment
+  const createArcPath = (cx: number, cy: number, r: number, startAngle: number, endAngle: number) => {
+    const start = polarToCartesian(cx, cy, r, endAngle);
+    const end = polarToCartesian(cx, cy, r, startAngle);
+    
+    const largeArcFlag = endAngle - startAngle <= 180 ? "0" : "1";
+    
+    return [
+      "M", cx, cy,
+      "L", start.x, start.y,
+      "A", r, r, 0, largeArcFlag, 0, end.x, end.y,
+      "Z"
+    ].join(" ");
+  };
+
+  // Convert polar coordinates to cartesian
+  const polarToCartesian = (cx: number, cy: number, r: number, angle: number) => {
+    const rad = (angle * Math.PI) / 180;
+    return {
+      x: cx + r * Math.cos(rad),
+      y: cy + r * Math.sin(rad)
+    };
+  };
+
+  // Handle segment hover/click
+  const handleSegmentInteraction = (id: string) => {
+    setActiveSegment(id);
+    
+    // Update details panel
+    const segment = pieData.find(item => item.id === id);
+    if (segment) {
+      const detailsContainer = document.getElementById('pie-chart-details');
+      if (detailsContainer) {
+        detailsContainer.innerHTML = `
+          <div class="p-4 rounded-lg bg-white/5 border border-white/10">
+            <div class="flex items-center mb-3">
+              <span class="text-2xl mr-3">${segment.emoji}</span>
+              <h4 class="text-xl font-bold text-white">${segment.title}</h4>
+            </div>
+            <p class="text-white/90">${segment.description}</p>
+            <div class="mt-3 text-sm text-white/70">
+              <span>Value: ${segment.value}% of experience</span>
+            </div>
+          </div>
+        `;
+      }
+    }
+  };
+
+  const segments = calculateSegments();
+  const centerX = 200;
+  const centerY = 200;
+  const radius = 150;
+
+  return (
+    <div className="relative">
+      <svg 
+        width="400" 
+        height="400" 
+        viewBox="0 0 400 400"
+        className="w-full h-auto max-w-[400px]"
+      >
+        {/* Background circle */}
+        <circle 
+          cx={centerX} 
+          cy={centerY} 
+          r={radius} 
+          fill="rgba(255,255,255,0.05)" 
+        />
+        
+        {/* Pie segments */}
+        {segments.map((segment) => {
+          // Only render if segment has value
+          if (segment.value <= 0) return null;
+          
+          const isActive = activeSegment === segment.id;
+          const path = createArcPath(centerX, centerY, radius, segment.startAngle, segment.endAngle);
+          
+          return (
+            <path
+              key={segment.id}
+              d={path}
+              fill={segment.color}
+              stroke="rgba(255,255,255,0.1)"
+              strokeWidth="1"
+              className={`cursor-pointer transition-all duration-300 ${isActive ? 'filter:brightness-125' : ''}`}
+              onMouseEnter={() => handleSegmentInteraction(segment.id)}
+              onClick={() => handleSegmentInteraction(segment.id)}
+              style={{
+                transform: isActive ? 'scale(1.05)' : 'scale(1)',
+                transformOrigin: `${centerX}px ${centerY}px`,
+                transition: 'transform 0.3s ease, filter 0.3s ease'
+              }}
+            />
+          );
+        })}
+        
+        {/* Text labels on pie segments */}
+        {segments.map((segment) => {
+          // Calculate midpoint angle for text placement
+          const midAngle = (segment.startAngle + segment.endAngle) / 2;
+          const labelRadius = radius * 0.7;
+          const textPos = polarToCartesian(centerX, centerY, labelRadius, midAngle);
+          
+          // Determine text color based on segment color for contrast
+          const textColor = segment.color === "#FFFFFF" ? "#000000" : "#FFFFFF";
+          
+          return (
+            <text
+              key={`label-${segment.id}`}
+              x={textPos.x}
+              y={textPos.y}
+              textAnchor="middle"
+              dominantBaseline="middle"
+              fill={textColor}
+              fontSize="12"
+              fontWeight="bold"
+              className="pointer-events-none select-none"
+            >
+              {segment.title}
+            </text>
+          );
+        })}
+        
+        {/* Center circle with emoji */}
+        <circle 
+          cx={centerX} 
+          cy={centerY} 
+          r={40} 
+          fill="rgba(255,255,255,0.1)" 
+        />
+        <text 
+          x={centerX} 
+          y={centerY + 8} 
+          textAnchor="middle" 
+          className="text-2xl font-bold fill-white"
+        >
+          🚀
+        </text>
+      </svg>
+    </div>
+  );
 }
