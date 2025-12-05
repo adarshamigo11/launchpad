@@ -80,10 +80,21 @@ export default function ESummitPage() {
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center mb-8 animate-fade-in-up-delay-4">
-              <Button className="bg-[var(--accent)] text-black hover:bg-[var(--accent)]/90 font-bold text-base sm:text-lg px-6 sm:px-8 py-3 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl w-full sm:w-auto">
+              <Button 
+                className="bg-[var(--accent)] text-black hover:bg-[var(--accent)]/90 font-bold text-base sm:text-lg px-6 sm:px-8 py-3 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl w-full sm:w-auto"
+                onClick={() => {
+                  document.getElementById('pricing-packages')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
                 GRAB YOUR EARLY BIRD PASS
               </Button>
-              <Button variant="outline" className="border-white text-white hover:bg-white hover:text-[var(--primary)] font-semibold text-base sm:text-lg px-6 sm:px-8 py-3 w-full sm:w-auto transition-all duration-300 hover:scale-105 !bg-transparent !border-white !text-white hover:!bg-white hover:!text-[var(--primary)] shadow-lg hover:shadow-xl">
+              <Button 
+                variant="outline" 
+                className="border-white text-white hover:bg-white hover:text-[var(--primary)] font-semibold text-base sm:text-lg px-6 sm:px-8 py-3 w-full sm:w-auto transition-all duration-300 hover:scale-105 !bg-transparent !border-white !text-white hover:!bg-white hover:!text-[var(--primary)] shadow-lg hover:shadow-xl"
+                onClick={() => {
+                  document.getElementById('events-section')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
                 VIEW EVENT LINEUP
               </Button>
             </div>
@@ -220,7 +231,7 @@ export default function ESummitPage() {
         </div>
       </section>
       {/* Events Section */}
-      <section className="py-4 sm:py-6 bg-white">
+      <section id="events-section" className="py-8 sm:py-12 bg-white">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 sm:mb-16 animate-fade-in-up">
             <h2 className="text-2xl sm:text-3xl md:text-4xl text-[var(--primary)] mb-4 text-heading font-bold">Events</h2>
@@ -361,9 +372,11 @@ export default function ESummitPage() {
       </div>
       </section>
 
-      {/* Final Summary: What You Get In One Glance - Pie Chart Version */}
-      <div className="py-8 sm:py-12"></div>
-      <section className="py-16 sm:py-20 bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] text-white relative overflow-hidden">
+      {/* Spacer to increase distance to next section */}
+      <div className="mb-12 sm:mb-16"></div>
+
+      {/* FINAL SUMMARY: What You Get In One Glance */}
+      <section id="event-lineup" className="py-16 sm:py-20 bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] text-white relative overflow-hidden">
         {/* Animated background elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-[var(--accent)] rounded-full mix-blend-soft-light filter blur-3xl opacity-20 animate-pulse-slow"></div>
@@ -402,7 +415,7 @@ export default function ESummitPage() {
       </section>
 
       {/* Pricing & Packages (Netflix-Style) */}
-      <section className="py-16 sm:py-20 bg-[var(--background)]">
+      <section id="pricing-packages" className="py-16 sm:py-20 bg-[var(--background)]">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 sm:mb-16">
             <h2 className="text-2xl sm:text-3xl md:text-4xl text-[var(--primary)] mb-4 text-heading animate-fade-in-up font-bold">PRICING & PACKAGES</h2>
