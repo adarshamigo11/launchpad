@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -13,6 +13,23 @@ export default function TestPaymentPage() {
   const [discount, setDiscount] = useState(0);
   const [appliedPromo, setAppliedPromo] = useState<string | null>(null);
   const [paymentProcessing, setPaymentProcessing] = useState(false);
+  const [promoCodes, setPromoCodes] = useState<any[]>([]);
+
+  useEffect(() => {
+    loadPromoCodes();
+  }, []);
+
+  const loadPromoCodes = async () => {
+    try {
+      const response = await fetch("/api/promo-codes");
+      const data = await response.json();
+      if (data.ok) {
+        setPromoCodes(data.promoCodes);
+      }
+    } catch (error) {
+      console.error("Error loading promo codes:", error);
+    }
+  };
 
   const validatePromoCode = async () => {
     if (!promoCode.trim()) return;
@@ -145,6 +162,41 @@ export default function TestPaymentPage() {
     }
   };
 
+  const createTestPromoCode = async () => {
+    try {
+      const response = await fetch("/api/promo-codes", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          code: "TEST20",
+          description: "20% off",
+          discountType: "percentage",
+          discountValue: 20,
+          validFrom: new Date().toISOString(),
+          validUntil: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(), // 30 days from now
+        }),
+      });
+
+      const data = await response.json();
+      
+      if (data.ok) {
+        toast.success("Test Promo Code Created", {
+          description: "Promo code TEST20 created successfully",
+        });
+        loadPromoCodes();
+      } else {
+        toast.error("Error", {
+          description: data.message || "Failed to create test promo code",
+        });
+      }
+    } catch (error) {
+      console.error("Error creating test promo code:", error);
+      toast.error("Error", {
+        description: "Failed to create test promo code",
+      });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
@@ -197,6 +249,33 @@ export default function TestPaymentPage() {
                 <p className="text-sm text-blue-800">
                   Final Amount: ₹{(Math.max(0, amount - discount)).toFixed(2)}
                 </p>
+              </div>
+              
+              <div className="pt-4">
+                <Button onClick={createTestPromoCode} variant="outline">
+                  Create Test Promo Code (TEST20)
+                </Button>
+              </div>
+              
+              <div className="pt-4">
+                <h3 className="text-sm font-medium mb-2">Available Promo Codes:</h3>
+                {promoCodes.length === 0 ? (
+                  <p className="text-sm text-gray-500">No promo codes found</p>
+                ) : (
+                  <div className="space-y-2">
+                    {promoCodes.map((code) => (
+                      <div key={code.id} className="text-sm p-2 bg-gray-50 rounded">
+                        <div className="font-medium">{code.code}</div>
+                        <div className="text-gray-600">{code.description}</div>
+                        <div className="text-gray-500">
+                          {code.discountType === "percentage" 
+                            ? `${code.discountValue}% off` 
+                            : `₹${code.discountValue} off`}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             </CardContent>
           </Card>
