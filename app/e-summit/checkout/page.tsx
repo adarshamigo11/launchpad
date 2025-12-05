@@ -148,20 +148,29 @@ export default function ESummitCheckoutPage() {
 
     setValidatingPromo(true)
     try {
-      // Simulate promo code validation
-      // In a real implementation, this would call an API
-      if (promoCode.toLowerCase() === "save10") {
-        const discountAmount = passInfo.price * 0.10
-        setDiscount(discountAmount)
-        setAppliedPromoCode(promoCode.toUpperCase())
+      // Call the actual promo code validation API
+      const response = await fetch("/api/promo-codes/validate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          code: promoCode,
+          amount: passInfo.price
+        }),
+      })
+
+      const data = await response.json()
+
+      if (data.valid) {
+        setDiscount(data.discount)
+        setAppliedPromoCode(promoCode)
         toast({
           title: "Promo Code Applied",
-          description: `10% discount applied! You saved ₹${discountAmount.toFixed(2)}`,
+          description: data.message || `Discount applied! You saved ₹${data.discount.toFixed(2)}`,
         })
       } else {
         toast({
           title: "Invalid Promo Code",
-          description: "Please check your promo code and try again.",
+          description: data.message || "Please check your promo code and try again.",
           variant: "destructive",
         })
         setAppliedPromoCode(null)
@@ -174,6 +183,8 @@ export default function ESummitCheckoutPage() {
         description: "Failed to validate promo code. Please try again.",
         variant: "destructive",
       })
+      setAppliedPromoCode(null)
+      setDiscount(0)
     } finally {
       setValidatingPromo(false)
     }
@@ -235,6 +246,7 @@ export default function ESummitCheckoutPage() {
       });
 
       // Call the e-summit payment initiation API
+      console.log("Making request to /api/e-summit/payments/initiate");
       const response = await fetch("/api/e-summit/payments/initiate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -253,6 +265,11 @@ export default function ESummitCheckoutPage() {
 
       console.log("Payment API response status:", response.status);
       console.log("Payment API response headers:", [...response.headers.entries()]);
+      
+      // Check if response is OK
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
 
       const data = await response.json()
       console.log("Payment API response data:", data);
