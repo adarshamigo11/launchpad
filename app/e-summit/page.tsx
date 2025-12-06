@@ -390,22 +390,188 @@ export default function ESummitPage() {
             <div className="w-24 h-1 bg-[var(--accent)] mx-auto rounded-full transform transition-all duration-500 hover:w-32"></div>
           </div>
           
-          {/* Pie Chart Visualization */}
-          <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16">
-            <InteractivePieChart />
+          {/* Foldable List with Micro-Animations */}
+          <div className="max-w-3xl mx-auto">
+            {/* Real Connections */}
+            <div className="mb-4 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 overflow-hidden transition-all duration-300 hover:bg-white/20">
+              <div className="flex items-center justify-between p-4 cursor-pointer group" onClick={(e) => {
+                const content = e.currentTarget.nextElementSibling as HTMLElement;
+                const icon = e.currentTarget.querySelector('.expand-icon');
+                if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+                  content.style.maxHeight = '0px';
+                  content.style.paddingTop = '0px';
+                  content.style.paddingBottom = '0px';
+                  if (icon instanceof Element) icon.classList.remove('rotate-180');
+                } else {
+                  content.style.maxHeight = content.scrollHeight + 'px';
+                  content.style.paddingTop = '1rem';
+                  content.style.paddingBottom = '1rem';
+                  if (icon instanceof Element) icon.classList.add('rotate-180');
+                }
+              }}>
+                <div className="flex items-center">
+                  <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
+                    <span className="text-gray-700">🤝</span>
+                  </div>
+                  <h3 className="text-xl font-bold text-white">Real Connections</h3>
+                </div>
+                <div className="expand-icon transition-transform duration-300">▼</div>
+              </div>
+              <div className="max-h-0 overflow-hidden transition-all duration-500 ease-in-out" style={{maxHeight: '0px', paddingTop: '0px', paddingBottom: '0px'}}>
+                <div className="px-4 pb-4">
+                  <p className="text-white/90 mb-3">
+                    Meet people who can hire you, fund you, or mentor you.
+                  </p>
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-300 font-semibold">20% of experience</span>
+                  </div>
+                </div>
+              </div>
+            </div>
             
-            {/* Legend/Details Panel */}
-            <div className="w-full lg:w-1/2 max-w-md">
-              <div className="bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 p-6">
-                <h3 className="text-2xl font-bold text-white mb-4">Benefits Overview</h3>
-                <p className="text-white/80 mb-6">
-                  Hover over or click on any section of the pie chart to see details about each benefit.
-                </p>
-                
-                {/* Details will be shown here dynamically */}
-                <div id="pie-chart-details" className="min-h-[200px]">
-                  <div className="text-center py-8 text-white/60">
-                    <p>Select a section to view details</p>
+            {/* Practical Learning */}
+            <div className="mb-4 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 overflow-hidden transition-all duration-300 hover:bg-white/20">
+              <div className="flex items-center justify-between p-4 cursor-pointer group" onClick={(e) => {
+                const content = e.currentTarget.nextElementSibling as HTMLElement;
+                const icon = e.currentTarget.querySelector('.expand-icon');
+                if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+                  content.style.maxHeight = '0px';
+                  content.style.paddingTop = '0px';
+                  content.style.paddingBottom = '0px';
+                  if (icon instanceof Element) icon.classList.remove('rotate-180');
+                } else {
+                  content.style.maxHeight = content.scrollHeight + 'px';
+                  content.style.paddingTop = '1rem';
+                  content.style.paddingBottom = '1rem';
+                  if (icon instanceof Element) icon.classList.add('rotate-180');
+                }
+              }}>
+                <div className="flex items-center">
+                  <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
+                    <span className="text-gray-700">📚</span>
+                  </div>
+                  <h3 className="text-xl font-bold text-white">Practical Learning</h3>
+                </div>
+                <div className="expand-icon transition-transform duration-300">▼</div>
+              </div>
+              <div className="max-h-0 overflow-hidden transition-all duration-500 ease-in-out" style={{maxHeight: '0px', paddingTop: '0px', paddingBottom: '0px'}}>
+                <div className="px-4 pb-4">
+                  <p className="text-white/90 mb-3">
+                    Go home with skills in marketing and finance, not just theory.
+                  </p>
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-300 font-semibold">20% of experience</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Certificate */}
+            <div className="mb-4 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 overflow-hidden transition-all duration-300 hover:bg-white/20">
+              <div className="flex items-center justify-between p-4 cursor-pointer group" onClick={(e) => {
+                const content = e.currentTarget.nextElementSibling as HTMLElement;
+                const icon = e.currentTarget.querySelector('.expand-icon');
+                if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+                  content.style.maxHeight = '0px';
+                  content.style.paddingTop = '0px';
+                  content.style.paddingBottom = '0px';
+                  if (icon instanceof Element) icon.classList.remove('rotate-180');
+                } else {
+                  content.style.maxHeight = content.scrollHeight + 'px';
+                  content.style.paddingTop = '1rem';
+                  content.style.paddingBottom = '1rem';
+                  if (icon instanceof Element) icon.classList.add('rotate-180');
+                }
+              }}>
+                <div className="flex items-center">
+                  <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
+                    <span className="text-gray-700">📜</span>
+                  </div>
+                  <h3 className="text-xl font-bold text-white">Certificate</h3>
+                </div>
+                <div className="expand-icon transition-transform duration-300">▼</div>
+              </div>
+              <div className="max-h-0 overflow-hidden transition-all duration-500 ease-in-out" style={{maxHeight: '0px', paddingTop: '0px', paddingBottom: '0px'}}>
+                <div className="px-4 pb-4">
+                  <p className="text-white/90 mb-3">
+                    A valuable addition to your resume (for Premium Pass holders).
+                  </p>
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-300 font-semibold">15% of experience</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Entertainment */}
+            <div className="mb-4 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 overflow-hidden transition-all duration-300 hover:bg-white/20">
+              <div className="flex items-center justify-between p-4 cursor-pointer group" onClick={(e) => {
+                const content = e.currentTarget.nextElementSibling as HTMLElement;
+                const icon = e.currentTarget.querySelector('.expand-icon');
+                if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+                  content.style.maxHeight = '0px';
+                  content.style.paddingTop = '0px';
+                  content.style.paddingBottom = '0px';
+                  if (icon instanceof Element) icon.classList.remove('rotate-180');
+                } else {
+                  content.style.maxHeight = content.scrollHeight + 'px';
+                  content.style.paddingTop = '1rem';
+                  content.style.paddingBottom = '1rem';
+                  if (icon instanceof Element) icon.classList.add('rotate-180');
+                }
+              }}>
+                <div className="flex items-center">
+                  <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
+                    <span className="text-gray-700">🎉</span>
+                  </div>
+                  <h3 className="text-xl font-bold text-white">Entertainment</h3>
+                </div>
+                <div className="expand-icon transition-transform duration-300">▼</div>
+              </div>
+              <div className="max-h-0 overflow-hidden transition-all duration-500 ease-in-out" style={{maxHeight: '0px', paddingTop: '0px', paddingBottom: '0px'}}>
+                <div className="px-4 pb-4">
+                  <p className="text-white/90 mb-3">
+                    Comedy, Music, and Dinner to relax after a hard day of work.
+                  </p>
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-300 font-semibold">20% of experience</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Opportunity */}
+            <div className="mb-4 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 overflow-hidden transition-all duration-300 hover:bg-white/20">
+              <div className="flex items-center justify-between p-4 cursor-pointer group" onClick={(e) => {
+                const content = e.currentTarget.nextElementSibling as HTMLElement;
+                const icon = e.currentTarget.querySelector('.expand-icon');
+                if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+                  content.style.maxHeight = '0px';
+                  content.style.paddingTop = '0px';
+                  content.style.paddingBottom = '0px';
+                  if (icon instanceof Element) icon.classList.remove('rotate-180');
+                } else {
+                  content.style.maxHeight = content.scrollHeight + 'px';
+                  content.style.paddingTop = '1rem';
+                  content.style.paddingBottom = '1rem';
+                  if (icon instanceof Element) icon.classList.add('rotate-180');
+                }
+              }}>
+                <div className="flex items-center">
+                  <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
+                    <span className="text-gray-700">🚀</span>
+                  </div>
+                  <h3 className="text-xl font-bold text-white">Opportunity</h3>
+                </div>
+                <div className="expand-icon transition-transform duration-300">▼</div>
+              </div>
+              <div className="max-h-0 overflow-hidden transition-all duration-500 ease-in-out" style={{maxHeight: '0px', paddingTop: '0px', paddingBottom: '0px'}}>
+                <div className="px-4 pb-4">
+                  <p className="text-white/90 mb-3">
+                    The chance to win prizes and grants for your idea.
+                  </p>
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-300 font-semibold">25% of experience</span>
                   </div>
                 </div>
               </div>
@@ -678,215 +844,4 @@ interface PieChartData {
   emoji: string;
 }
 
-// Create an interactive pie chart component
-function InteractivePieChart() {
-  const [activeSegment, setActiveSegment] = useState<string | null>(null);
-  
-  // Data for our pie chart segments using only black, white, and brand colors (no blue)
-  const pieData: PieChartData[] = [
-    {
-      id: "connections",
-      title: "Real Connections",
-      description: "Meet people who can hire you, fund you, or mentor you.",
-      value: 20,
-      color: "#144449", // Dark teal (primary color)
-      emoji: "🤝"
-    },
-    {
-      id: "learning",
-      title: "Practical Learning",
-      description: "Go home with skills in marketing and finance, not just theory.",
-      value: 20,
-      color: "#36454F", // Charcoal (secondary color)
-      emoji: "📚"
-    },
-    {
-      id: "certificate",
-      title: "Certificate",
-      description: "A valuable addition to your resume (for Premium Pass holders).",
-      value: 15,
-      color: "#000000", // Black
-      emoji: "📜"
-    },
-    {
-      id: "entertainment",
-      title: "Entertainment",
-      description: "Comedy, Music, and Dinner to relax after a hard day of work.",
-      value: 20,
-      color: "#FFFFFF", // White
-      emoji: "🎉"
-    },
-    {
-      id: "opportunity",
-      title: "Opportunity",
-      description: "The chance to win prizes and grants for your idea.",
-      value: 25,
-      color: "#144449", // Dark teal (primary color) - replacing blue
-      emoji: "🚀"
-    }
-  ];
 
-  // Calculate segment angles for pie chart
-  const calculateSegments = () => {
-    const total = pieData.reduce((sum, item) => sum + item.value, 0);
-    let startAngle = 0;
-    
-    return pieData.map(item => {
-      const percentage = (item.value / total) * 100;
-      const endAngle = startAngle + (percentage / 100) * 360;
-      
-      const segment = {
-        ...item,
-        startAngle,
-        endAngle,
-        percentage
-      };
-      
-      startAngle = endAngle;
-      return segment;
-    });
-  };
-
-  // Create SVG path for a pie segment
-  const createArcPath = (cx: number, cy: number, r: number, startAngle: number, endAngle: number) => {
-    const start = polarToCartesian(cx, cy, r, endAngle);
-    const end = polarToCartesian(cx, cy, r, startAngle);
-    
-    const largeArcFlag = endAngle - startAngle <= 180 ? "0" : "1";
-    
-    return [
-      "M", cx, cy,
-      "L", start.x, start.y,
-      "A", r, r, 0, largeArcFlag, 0, end.x, end.y,
-      "Z"
-    ].join(" ");
-  };
-
-  // Convert polar coordinates to cartesian
-  const polarToCartesian = (cx: number, cy: number, r: number, angle: number) => {
-    const rad = (angle * Math.PI) / 180;
-    return {
-      x: cx + r * Math.cos(rad),
-      y: cy + r * Math.sin(rad)
-    };
-  };
-
-  // Handle segment hover/click
-  const handleSegmentInteraction = (id: string) => {
-    setActiveSegment(id);
-    
-    // Update details panel
-    const segment = pieData.find(item => item.id === id);
-    if (segment) {
-      const detailsContainer = document.getElementById('pie-chart-details');
-      if (detailsContainer) {
-        detailsContainer.innerHTML = `
-          <div class="p-4 rounded-lg bg-white/5 border border-white/10">
-            <div class="flex items-center mb-3">
-              <span class="text-2xl mr-3">${segment.emoji}</span>
-              <h4 class="text-xl font-bold text-white">${segment.title}</h4>
-            </div>
-            <p class="text-white/90">${segment.description}</p>
-            <div class="mt-3 text-sm text-white/70">
-              <span>Value: ${segment.value}% of experience</span>
-            </div>
-          </div>
-        `;
-      }
-    }
-  };
-
-  const segments = calculateSegments();
-  const centerX = 250;
-  const centerY = 250;
-  const radius = 200;
-
-  return (
-    <div className="relative">
-      <svg 
-        width="500" 
-        height="500" 
-        viewBox="0 0 500 500"
-        className="w-full h-auto max-w-[500px]"
-      >
-        {/* Background circle */}
-        <circle 
-          cx={centerX} 
-          cy={centerY} 
-          r={radius} 
-          fill="rgba(255,255,255,0.05)" 
-        />
-        
-        {/* Pie segments */}
-        {segments.map((segment) => {
-          // Only render if segment has value
-          if (segment.value <= 0) return null;
-          
-          const isActive = activeSegment === segment.id;
-          const path = createArcPath(centerX, centerY, radius, segment.startAngle, segment.endAngle);
-          
-          return (
-            <path
-              key={segment.id}
-              d={path}
-              fill={segment.color}
-              stroke="rgba(255,255,255,0.1)"
-              strokeWidth="1"
-              className={`cursor-pointer transition-all duration-300 ${isActive ? 'filter:brightness-125' : ''}`}
-              onMouseEnter={() => handleSegmentInteraction(segment.id)}
-              onClick={() => handleSegmentInteraction(segment.id)}
-              style={{
-                transform: isActive ? 'scale(1.05)' : 'scale(1)',
-                transformOrigin: `${centerX}px ${centerY}px`,
-                transition: 'transform 0.3s ease, filter 0.3s ease'
-              }}
-            />
-          );
-        })}
-        
-        {/* Text labels on pie segments */}
-        {segments.map((segment) => {
-          // Calculate midpoint angle for text placement
-          const midAngle = (segment.startAngle + segment.endAngle) / 2;
-          const labelRadius = radius * 0.7;
-          const textPos = polarToCartesian(centerX, centerY, labelRadius, midAngle);
-          
-          // Determine text color based on segment color for contrast
-          const textColor = segment.color === "#FFFFFF" ? "#000000" : "#FFFFFF";
-          
-          return (
-            <text
-              key={`label-${segment.id}`}
-              x={textPos.x}
-              y={textPos.y}
-              textAnchor="middle"
-              dominantBaseline="middle"
-              fill={textColor}
-              fontSize="16"
-              fontWeight="bold"
-              className="pointer-events-none select-none"
-            >
-              {segment.title}
-            </text>
-          );
-        })}
-        
-        {/* Center circle with emoji */}
-        <circle 
-          cx={centerX} 
-          cy={centerY} 
-          r={40} 
-          fill="rgba(255,255,255,0.1)" 
-        />
-        <text 
-          x={centerX} 
-          y={centerY + 8} 
-          textAnchor="middle" 
-          className="text-2xl font-bold fill-white"
-        >
-          🚀
-        </text>
-      </svg>
-    </div>
-  );
-}
