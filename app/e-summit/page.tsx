@@ -386,7 +386,7 @@ export default function ESummitPage() {
         
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-12 sm:mb-16 animate-fade-in-up">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl text-white mb-4 text-heading transform transition-all duration-700 hover:scale-105">FINAL SUMMARY: What You Get In One Glance</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl text-white mb-4 text-heading transform transition-all duration-700 hover:scale-105">FINAL SUMMARY: What You Get In One Glance</h2>
             <div className="w-24 h-1 bg-[var(--accent)] mx-auto rounded-full transform transition-all duration-500 hover:w-32"></div>
           </div>
           
@@ -797,17 +797,17 @@ function InteractivePieChart() {
   };
 
   const segments = calculateSegments();
-  const centerX = 200;
-  const centerY = 200;
-  const radius = 150;
+  const centerX = 250;
+  const centerY = 250;
+  const radius = 200;
 
   return (
     <div className="relative">
       <svg 
-        width="400" 
-        height="400" 
-        viewBox="0 0 400 400"
-        className="w-full h-auto max-w-[400px]"
+        width="500" 
+        height="500" 
+        viewBox="0 0 500 500"
+        className="w-full h-auto max-w-[500px]"
       >
         {/* Background circle */}
         <circle 
@@ -862,7 +862,7 @@ function InteractivePieChart() {
               textAnchor="middle"
               dominantBaseline="middle"
               fill={textColor}
-              fontSize="12"
+              fontSize="16"
               fontWeight="bold"
               className="pointer-events-none select-none"
             >
