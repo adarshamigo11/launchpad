@@ -226,7 +226,7 @@ export default function ContactPage() {
                 <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-[var(--secondary)] to-[var(--secondary)]/80 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-5 shadow-lg">
                   <span className="text-black text-2xl sm:text-3xl">📱</span>
                 </div>
-                <h3 className="text-xl sm:text-2xl text-[var(--secondary)] mb-2 text-subheading">Call Us</h3>
+                <h3 className="text-xl sm:text-2xl text-black mb-2 text-subheading">Call Us</h3>
                 <p className="text-base sm:text-lg text-[var(--text-primary)] mb-1">+91 9039654155</p>
                 <p className="text-sm text-[var(--text-secondary)]">Click to call</p>
               </Card>

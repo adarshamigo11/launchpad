@@ -77,10 +77,10 @@ export default function AboutPage() {
       </section>
 
       {/* What is Launchpad Section */}
-      <section className="py-16 sm:py-20 md:py-24 bg-[var(--background)]">
+      <section className="py-8 sm:py-10 md:py-12 mt-12 sm:mt-16 md:mt-20 pb-4 sm:pb-6 bg-[var(--background)]">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 sm:mb-12 animate-fade-in-up">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[var(--primary)] mb-4 sm:mb-6 text-heading">What is Launchpad?</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--primary)] mb-4 sm:mb-6 text-heading">What is Launchpad?</h2>
             <p className="text-base sm:text-lg text-[var(--text-primary)] max-w-4xl mx-auto leading-relaxed px-2 mb-6">
               Launchpad is a platform that supports aspiring solopreneurs, youth, and startups in building their own agencies and brands. 
               It provides mentorship, ready-to-sell services, and a community to learn and grow. Through real-world sales and healthy competition, 
@@ -91,9 +91,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-
       {/* Code of Conduct */}
-      <section className="py-24 bg-[var(--background)]">
+      <section className="py-12 bg-[var(--background)]">
         <div className="mx-auto max-w-4xl px-4">
           <div className="text-center mb-12 animate-fade-in-up">
             <h2 className="text-4xl md:text-5xl font-bold text-center text-[var(--primary)] mb-4">Guidelines</h2>

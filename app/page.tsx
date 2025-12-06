@@ -238,7 +238,7 @@ export default function HomePage() {
             <h3 className="text-xl sm:text-2xl md:text-3xl mb-6 sm:mb-8 max-w-4xl mx-auto text-subheading">
               The Inaugural Entrepreneurship Summit. 2 Days. 3 Tracks. Infinite Possibilities.
             </h3>
-            <p className="text-base sm:text-lg md:text-xl text-white/90 mb-8 sm:mb-12 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-white mb-8 sm:mb-12 max-w-4xl mx-auto leading-relaxed">
               History isn't watched. It's written. Join the first-ever cohort of Launchpad to ditch the lectures for live simulations. 
               Pitch to investors, negotiate deals, and build your network before you graduate.
             </p>
@@ -379,19 +379,18 @@ export default function HomePage() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-8 sm:mb-12 animate-fade-in-up">
             <div className="inline-block mb-4 sm:mb-6">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-[var(--secondary)] to-[var(--primary)] rounded-full flex items-center justify-center mx-auto animate-pulse shadow-lg">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-[#0a2529] rounded-full flex items-center justify-center mx-auto shadow-lg">
                 <span className="text-white text-2xl sm:text-3xl">🏆</span>
               </div>
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] bg-clip-text text-transparent mb-4 sm:mb-6 text-display">Launchpad Award Night</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center text-[#0a2529] mb-4 sm:mb-6 text-display">Launchpad Award Night</h2>
             <p className="text-lg sm:text-xl text-center text-[var(--text-primary)] mb-8 sm:mb-12 max-w-4xl mx-auto">
               Top performers will be recognized during the Launchpad Award Night, with awards for:
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             <div className="bg-white p-6 sm:p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out cursor-pointer group relative overflow-hidden border border-[var(--border)] transform hover:-translate-y-2">
-              {/* Shine effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
+              
               
               <div className="w-20 h-20 bg-gradient-to-br from-[var(--secondary)] to-[var(--light-gold)] rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-lg group-hover:shadow-xl">
                 <span className="text-black text-3xl font-bold group-hover:scale-110 transition-transform duration-300">💰</span>
@@ -401,14 +400,10 @@ export default function HomePage() {
                 Best revenue performance
               </p>
               
-              {/* Award badge effect */}
-              <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-[var(--secondary)] to-[var(--light-gold)] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <span className="text-white text-xs">★</span>
-              </div>
+              
             </div>
             <div className="bg-white p-6 sm:p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out cursor-pointer group relative overflow-hidden border border-[var(--border)] transform hover:-translate-y-2">
-              {/* Shine effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
+              
               
               <div className="w-20 h-20 bg-gradient-to-br from-[var(--primary)] to-[var(--dark-blue)] rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-lg group-hover:shadow-xl">
                 <span className="text-white text-3xl font-bold group-hover:scale-110 transition-transform duration-300">🎨</span>
@@ -424,8 +419,7 @@ export default function HomePage() {
               </div>
             </div>
             <div className="bg-white p-6 sm:p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out cursor-pointer group relative overflow-hidden border border-[var(--border)] transform hover:-translate-y-2">
-              {/* Shine effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
+              
               
               <div className="w-20 h-20 bg-gradient-to-br from-[var(--secondary)] to-[var(--light-gold)] rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-lg group-hover:shadow-xl">
                 <span className="text-black text-3xl font-bold group-hover:scale-110 transition-transform duration-300">⭐</span>
@@ -435,10 +429,7 @@ export default function HomePage() {
                 Most promising newcomer
               </p>
               
-              {/* Award badge effect */}
-              <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-[var(--secondary)] to-[var(--light-gold)] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <span className="text-white text-xs">★</span>
-              </div>
+              
             </div>
           </div>
         </div>

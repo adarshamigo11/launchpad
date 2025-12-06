@@ -46,16 +46,16 @@ export default function ESummitPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] text-white">
+      <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 bg-gradient-to-r from-[#0a2529] via-[var(--primary)] to-gray-500 text-white">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-6 leading-tight text-display text-white animate-fade-in-up">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-6 leading-tight text-display text-white animate-fade-in-up">
               Ignite. Innovate. Inspire.
             </h1>
-            <p className="text-lg sm:text-xl md:text-2xl text-white/90 mb-8 leading-relaxed max-w-3xl mx-auto animate-fade-in-up-delay">
+            <p className="text-xl sm:text-2xl md:text-3xl text-white mb-8 leading-relaxed max-w-3xl mx-auto animate-fade-in-up-delay">
               The Ultimate Entrepreneurship Summit for India's Next Gen.
             </p>
-            <p className="text-base sm:text-lg md:text-xl text-white/80 mb-8 max-w-3xl mx-auto leading-relaxed animate-fade-in-up-delay-2">
+            <p className="text-lg sm:text-xl md:text-2xl text-white mb-8 max-w-3xl mx-auto leading-relaxed animate-fade-in-up-delay-2">
               <strong>Two days</strong> of high-stakes pitching, intense learning, and real-world networking. Connect with
               investors, learn from CEOs, and validate your business idea in the heart of Indore.
             </p>
@@ -81,7 +81,7 @@ export default function ESummitPage() {
             
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center mb-8 animate-fade-in-up-delay-4">
               <Button 
-                className="bg-[var(--accent)] text-black hover:bg-[var(--accent)]/90 font-bold text-base sm:text-lg px-6 sm:px-8 py-3 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl w-full sm:w-auto"
+                className="bg-transparent border-2 border-white text-white hover:bg-white/10 font-bold text-base sm:text-lg px-6 sm:px-8 py-3 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl w-full sm:w-auto"
                 onClick={() => {
                   document.getElementById('pricing-packages')?.scrollIntoView({ behavior: 'smooth' });
                 }}
@@ -241,7 +241,7 @@ export default function ESummitPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* The Venture Vault */}
             <div className="bg-white border border-[var(--border)] rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
-              <div className="bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] text-white p-5">
+              <div className="bg-gradient-to-r from-[#0a2529] to-[var(--primary)] text-white p-5">
                 <h3 className="text-xl font-bold mb-1">The Venture Vault</h3>
                 <p className="text-sm">Shark Tank Style Pitch</p>
               </div>
@@ -280,7 +280,7 @@ export default function ESummitPage() {
           
           {/* The Startup Expo */}
           <div className="bg-white border border-[var(--border)] rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
-            <div className="bg-gradient-to-r from-[var(--secondary)] to-[var(--primary)] text-white p-5">
+            <div className="bg-gradient-to-r from-[#0a2529] to-[var(--primary)] text-white p-5">
               <h3 className="text-xl font-bold mb-1">The Startup Expo</h3>
               <p className="text-sm">Set Up Your Own Shop</p>
             </div>
@@ -316,7 +316,7 @@ export default function ESummitPage() {
           
           {/* Founders Roundtable */}
           <div className="bg-white border border-[var(--border)] rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
-            <div className="bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] text-white p-5">
+            <div className="bg-gradient-to-r from-[#0a2529] to-[var(--primary)] text-white p-5">
               <h3 className="text-xl font-bold mb-1">Founders Roundtable</h3>
               <p className="text-sm">Real Talk with CEOs</p>
             </div>
@@ -347,7 +347,7 @@ export default function ESummitPage() {
           
           {/* Workshops */}
           <div className="bg-white border border-[var(--border)] rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
-            <div className="bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] text-white p-5">
+            <div className="bg-gradient-to-r from-[#0a2529] to-[var(--primary)] text-white p-5">
               <h3 className="text-xl font-bold mb-1">Panel Discussion</h3>
               <p className="text-sm">Classrooms That Teach Real Skills</p>
             </div>
@@ -419,9 +419,7 @@ export default function ESummitPage() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 sm:mb-16">
             <h2 className="text-2xl sm:text-3xl md:text-4xl text-[var(--primary)] mb-4 text-heading animate-fade-in-up font-bold">PRICING & PACKAGES</h2>
-            <p className="text-lg text-[var(--text-secondary)] max-w-2xl mx-auto mb-6">
-              Choose the plan that fits you. Prices can be updated from the admin panel!
-            </p>
+           
             <div className="w-20 h-1 bg-[var(--secondary)] mx-auto"></div>
           </div>
           
@@ -435,7 +433,7 @@ export default function ESummitPage() {
                 <div className="absolute top-0 right-0 bg-[var(--accent)] text-black text-xs font-bold px-4 py-1 rounded-bl-lg">
                   MOST POPULAR
                 </div>
-                <div className="p-6 bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] text-white text-center">
+                <div className="p-6 bg-gradient-to-r from-[#0a2529] to-[var(--primary)] text-white text-center">
                   <h3 className="text-xl mb-2 text-subheading text-white animate-fade-in-up">GENERAL PASS<br /><span className="text-sm font-normal">(The Full Experience)</span></h3>
                   <div className="flex justify-center items-baseline mt-4 mb-2">
                     <span className="text-3xl font-bold mr-2 animate-fade-in-up text-white">₹{getPrice("general") || 1199}</span>
@@ -484,11 +482,11 @@ export default function ESummitPage() {
           <div>
             <h3 className="text-xl font-semibold text-[var(--primary)] mb-6 text-center">For Teams & Startups (Participants)</h3>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {/* Shark Tank Team Pass */}
               <div className="bg-white rounded-xl shadow-lg border border-[var(--border)] overflow-hidden hover:shadow-xl transition-all duration-300">
-                <div className="p-6 bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] text-white text-center">
-                  <h3 className="text-xl mb-2 text-subheading text-white animate-fade-in-up">🚀 SHARK TANK TEAM PASS<br /><span className="text-sm font-normal">(Venture Vault)</span></h3>
+                <div className="p-6 bg-gradient-to-r from-[#0a2529] to-[var(--primary)] text-white text-center">
+                  <h3 className="text-xl mb-2 text-subheading text-white animate-fade-in-up">SHARK TANK TEAM PASS<br /><span className="text-sm font-normal">(Venture Vault)</span></h3>
                   <p className="text-sm mb-3">If you want to pitch your idea to investors on stage.</p>
                   <div className="flex justify-center items-baseline mt-2 mb-2">
                     <span className="text-2xl font-bold mr-2 animate-fade-in-up text-white">₹{getPrice("shark-tank") || 2999}</span>
@@ -523,8 +521,8 @@ export default function ESummitPage() {
               
               {/* Startup Expo Booth */}
               <div className="bg-white rounded-xl shadow-lg border border-[var(--border)] overflow-hidden hover:shadow-xl transition-all duration-300">
-                <div className="p-6 bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] text-white text-center">
-                  <h3 className="text-xl mb-2 text-subheading text-white animate-fade-in-up">🎪 STARTUP EXPO BOOTH</h3>
+                <div className="p-6 bg-gradient-to-r from-[#0a2529] to-[var(--primary)] text-white text-center">
+                  <h3 className="text-xl mb-2 text-subheading text-white animate-fade-in-up">STARTUP EXPO BOOTH</h3>
                   <p className="text-sm mb-3">If you want to set up a stall to show your product.</p>
                   <div className="flex justify-center items-baseline mt-2 mb-2">
                     <span className="text-2xl font-bold mr-2 animate-fade-in-up text-white">₹6000 Standard</span>
@@ -574,8 +572,8 @@ export default function ESummitPage() {
               
               {/* Founders Roundtable Access */}
               <div className="bg-white rounded-xl shadow-lg border border-[var(--border)] overflow-hidden hover:shadow-xl transition-all duration-300">
-                <div className="p-6 bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] text-white text-center">
-                  <h3 className="text-xl mb-2 text-subheading text-white animate-fade-in-up">🧠 FOUNDERS ROUNDTABLE ACCESS</h3>
+                <div className="p-6 bg-gradient-to-r from-[#0a2529] to-[var(--primary)] text-white text-center">
+                  <h3 className="text-xl mb-2 text-subheading text-white animate-fade-in-up">FOUNDERS ROUNDTABLE ACCESS</h3>
                   <p className="text-sm mb-3">If your team wants to sit in the closed-door session with CEOs.</p>
                   <div className="flex justify-center items-baseline mt-2 mb-2">
                     <span className="text-2xl font-bold mr-2 animate-fade-in-up text-white">₹{getPrice("roundtable") || 1999}</span>
