@@ -64,16 +64,16 @@ export default function ESummitPage() {
               <div className="inline-block bg-white/10 backdrop-blur-sm rounded-xl p-4 mb-6">
                 <div className="flex flex-wrap justify-center gap-4 md:gap-8">
                   <div className="flex items-center">
-                    <span className="text-2xl mr-2">🗓️</span>
-                    <span className="text-sm sm:text-base">Dates: 19th & 20th December</span>
+                    <span className="text-2xl mr-2"></span>
+                    <span className="text-base sm:text-lg">Dates: 19th & 20th December</span>
                   </div>
                   <div className="flex items-center">
-                    <span className="text-2xl mr-2">🏢</span>
-                    <span className="text-sm sm:text-base">Venue: Indore</span>
+                    <span className="text-2xl mr-2"></span>
+                    <span className="text-base sm:text-lg">Venue: Indore</span>
                   </div>
                   <div className="flex items-center">
-                    <span className="text-2xl mr-2">⏰</span>
-                    <span className="text-sm sm:text-base">Early Bird Pricing Ends: 13th December</span>
+                    <span className="text-2xl mr-2"></span>
+                    <span className="text-base sm:text-lg">Early Bird Pricing Ends: 13th December</span>
                   </div>
                 </div>
               </div>
