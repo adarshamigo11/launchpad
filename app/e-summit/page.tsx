@@ -634,7 +634,7 @@ export default function ESummitPage() {
                   </ul>
                   <p className="text-sm text-gray-500 mb-4"><strong>Best For:</strong> Serious learning & fun.</p>
                   <Button 
-                    className="w-full bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] hover:from-[var(--primary)] hover:to-[var(--secondary)] text-white font-semibold py-3 transition-all duration-300"
+                    className="w-full bg-gradient-to-r from-[var(--charcoal)] to-[var(--dark-teal)] hover:from-[var(--charcoal)] hover:to-[var(--dark-teal)] text-white font-semibold py-3 transition-all duration-300"
                     onClick={() => window.location.href = '/e-summit/checkout?pass=general'}
                   >
                     BUY GENERAL PASS
@@ -677,7 +677,7 @@ export default function ESummitPage() {
                   </ul>
                   <p className="text-sm text-gray-600 mb-4">Who: For a team of 1–4 people.</p>
                   <Button 
-                    className="w-full bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] hover:from-[var(--primary)] hover:to-[var(--secondary)] text-white font-semibold py-3 transition-all duration-300"
+                    className="w-full bg-gradient-to-r from-[var(--charcoal)] to-[var(--dark-teal)] hover:from-[var(--charcoal)] hover:to-[var(--dark-teal)] text-white font-semibold py-3 transition-all duration-300"
                     onClick={() => window.location.href = '/e-summit/checkout?pass=shark-tank'}
                   >
                     REGISTER MY TEAM
@@ -728,7 +728,7 @@ export default function ESummitPage() {
                   </ul>
                   <p className="text-sm text-gray-600 mb-4">Who: For startups who want customers.</p>
                   <Button 
-                    className="w-full bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] hover:from-[var(--primary)] hover:to-[var(--secondary)] text-white font-semibold py-3 transition-all duration-300"
+                    className="w-full bg-gradient-to-r from-[var(--charcoal)] to-[var(--dark-teal)] hover:from-[var(--charcoal)] hover:to-[var(--dark-teal)] text-white font-semibold py-3 transition-all duration-300"
                     onClick={() => window.location.href = '/e-summit/checkout?pass=expo'}
                   >
                     BOOK A BOOTH
@@ -759,7 +759,7 @@ export default function ESummitPage() {
                     </li>
                   </ul>
                   <Button 
-                    className="w-full bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] hover:from-[var(--primary)] hover:to-[var(--secondary)] text-white font-semibold py-3 transition-all duration-300"
+                    className="w-full bg-gradient-to-r from-[var(--charcoal)] to-[var(--dark-teal)] hover:from-[var(--charcoal)] hover:to-[var(--dark-teal)] text-white font-semibold py-3 transition-all duration-300"
                     onClick={() => window.location.href = '/e-summit/checkout?pass=roundtable'}
                   >
                     GET ROUNDTABLE ACCESS
