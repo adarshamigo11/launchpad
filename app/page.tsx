@@ -292,67 +292,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Launchpad Award Night Section */}
-      <section className="py-16 sm:py-20 md:py-24 bg-gradient-to-br from-[var(--surface)] via-white to-[var(--light-grey)] relative">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-8 sm:mb-12 animate-fade-in-up">
-            <div className="inline-block mb-4 sm:mb-6">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-[#0a2529] rounded-full flex items-center justify-center mx-auto shadow-lg">
-                <span className="text-white text-2xl sm:text-3xl">🏆</span>
-              </div>
-            </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center text-[#0a2529] mb-4 sm:mb-6 text-display">Launchpad Award Night</h2>
-            <p className="text-lg sm:text-xl text-center text-[var(--text-primary)] mb-8 sm:mb-12 max-w-4xl mx-auto">
-              Top performers will be recognized during the Launchpad Award Night, with awards for:
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-            <div className="bg-white p-6 sm:p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out cursor-pointer group relative overflow-hidden border border-[var(--border)] transform hover:-translate-y-2">
-              
-              
-              <div className="w-20 h-20 bg-gradient-to-br from-[var(--secondary)] to-[var(--light-gold)] rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-lg group-hover:shadow-xl">
-                <span className="text-black text-3xl font-bold group-hover:scale-110 transition-transform duration-300">💰</span>
-              </div>
-              <h3 className="text-xl sm:text-2xl font-semibold text-[var(--primary)] mb-3 sm:mb-4 group-hover:text-[var(--primary)]/90 transition-colors duration-300 text-center">Highest Turnover</h3>
-              <p className="text-[var(--text-primary)] text-sm sm:text-base group-hover:text-[var(--text-secondary)] transition-colors duration-300 text-center">
-                Best revenue performance
-              </p>
-              
-              
-            </div>
-            <div className="bg-white p-6 sm:p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out cursor-pointer group relative overflow-hidden border border-[var(--border)] transform hover:-translate-y-2">
-              
-              
-              <div className="w-20 h-20 bg-gradient-to-br from-[var(--primary)] to-[var(--dark-blue)] rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-lg group-hover:shadow-xl">
-                <span className="text-white text-3xl font-bold group-hover:scale-110 transition-transform duration-300">🎨</span>
-              </div>
-              <h3 className="text-xl sm:text-2xl font-semibold text-[var(--primary)] mb-3 sm:mb-4 group-hover:text-[var(--primary)]/90 transition-colors duration-300 text-center">Best Branding</h3>
-              <p className="text-[var(--text-primary)] text-sm sm:text-base group-hover:text-[var(--text-secondary)] transition-colors duration-300 text-center">
-                Most creative brand identity
-              </p>
-              
-              {/* Award badge effect */}
-              <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-[var(--primary)] to-[var(--dark-blue)] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <span className="text-white text-xs">★</span>
-              </div>
-            </div>
-            <div className="bg-white p-6 sm:p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out cursor-pointer group relative overflow-hidden border border-[var(--border)] transform hover:-translate-y-2">
-              
-              
-              <div className="w-20 h-20 bg-gradient-to-br from-[var(--secondary)] to-[var(--light-gold)] rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-lg group-hover:shadow-xl">
-                <span className="text-black text-3xl font-bold group-hover:scale-110 transition-transform duration-300">⭐</span>
-              </div>
-              <h3 className="text-xl sm:text-2xl font-semibold text-[var(--primary)] mb-3 sm:mb-4 group-hover:text-[var(--primary)]/90 transition-colors duration-300 text-center">Rising Star</h3>
-              <p className="text-[var(--text-primary)] text-sm sm:text-base group-hover:text-[var(--text-secondary)] transition-colors duration-300 text-center">
-                Most promising newcomer
-              </p>
-              
-              
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section */}
       <section className="py-16 bg-[var(--primary)] relative">
         <div className="mx-auto max-w-4xl px-4 text-center relative z-10">
